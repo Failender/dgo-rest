@@ -1,6 +1,7 @@
-package de.failender.dgo.user;
+package de.failender.dgo.persistance;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import de.failender.dgo.persistance.user.UserEntity;
 
 import javax.persistence.*;
 import java.util.List;

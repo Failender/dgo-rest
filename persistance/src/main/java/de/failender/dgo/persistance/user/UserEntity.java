@@ -1,4 +1,7 @@
-package de.failender.dgo.user;
+package de.failender.dgo.persistance.user;
+
+import de.failender.dgo.persistance.AuditingEntity;
+import de.failender.dgo.persistance.GruppeEntity;
 
 import javax.persistence.*;
 import java.util.List;

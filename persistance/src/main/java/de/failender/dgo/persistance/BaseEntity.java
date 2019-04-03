@@ -1,4 +1,4 @@
-package de.failender.dgo.user;
+package de.failender.dgo.persistance;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

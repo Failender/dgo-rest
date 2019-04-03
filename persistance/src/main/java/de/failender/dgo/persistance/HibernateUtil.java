@@ -1,7 +1,6 @@
-package de.failender.dgo.user;
+package de.failender.dgo.persistance;
 
-import com.fasterxml.classmate.AnnotationConfiguration;
-import org.apache.commons.io.IOUtils;
+import de.failender.dgo.persistance.user.UserEntity;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -9,7 +8,6 @@ import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.Properties;
 
 public class HibernateUtil

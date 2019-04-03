@@ -1,13 +1,8 @@
 package de.failender.dgo.graal;
 
-import de.failender.dgo.user.HibernateUtil;
-import de.failender.dgo.user.UserDao;
-import de.failender.dgo.user.UserEntity;
+import de.failender.dgo.persistance.user.UserEntity;
+import de.failender.dgo.persistance.user.UserRepositoryService;
 import io.javalin.Javalin;
-import org.hibernate.SessionFactory;
-import org.omg.CORBA.UserException;
-
-import java.util.List;
 
 public class Main {
 
@@ -15,8 +10,8 @@ public class Main {
         Test t = new Test();
 
         t.setSomeValue("Hello World!");
-        List<UserEntity> users = new UserDao().getUser();
+        UserEntity user = new UserRepositoryService().findUserByName("Failender");
         Javalin app = Javalin.create().start(7000);
-        app.get("/", ctx -> ctx.json(users));
+        app.get("/", ctx -> ctx.json(user));
     }
 }
