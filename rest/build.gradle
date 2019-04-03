@@ -1,0 +1,32 @@
+plugins {
+    id 'java'
+}
+
+group 'de.failender.dgo-rest'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+
+dependencies {
+
+    compile group: 'io.javalin', name: 'javalin', version: '2.2.0'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.6'
+
+    compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.25'
+    compile group: 'org.graalvm', name: 'graal-sdk', version: '1.0.0-rc6'
+    compile project(':persistance')
+}
+
+repositories{
+    mavenCentral()
+}
+
+task fatJar(type: Jar) {
+    manifest {
+        attributes 'Main-Class': 'de.failender.dgo.graal.Main'
+    }
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}

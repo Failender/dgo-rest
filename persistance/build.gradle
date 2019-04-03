@@ -1,0 +1,12 @@
+apply plugin: 'java'
+
+
+repositories { mavenCentral() }
+dependencies {
+    compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.15'
+    compile group: 'commons-io', name: 'commons-io', version: '2.6'
+
+    compile group: 'org.hibernate', name: 'hibernate-core', version: '5.4.2.Final'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.9.8'
+
+}

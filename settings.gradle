@@ -1,0 +1,6 @@
+rootProject.name = 'dgo-rest'
+
+
+include 'persistance'
+include 'rest'
+include 'helden-online'
