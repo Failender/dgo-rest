@@ -1,17 +1,19 @@
-package de.failender.dgo.graal;
+package de.failender.dgo.rest;
 
-import de.failender.dgo.persistance.user.UserEntity;
+import de.failender.dgo.persistance.HibernateUtil;
 import de.failender.dgo.persistance.user.UserRepositoryService;
 import io.javalin.Javalin;
 
-public class Main {
+public class DgoRest {
 
     public static void main(String[] args) {
         Test t = new Test();
 
         t.setSomeValue("Hello World!");
-        UserEntity user = new UserRepositoryService().findUserByName("Failender");
+
+        HibernateUtil.getSessionFactory();
         Javalin app = Javalin.create().start(7000);
-        app.get("/", ctx -> ctx.json(user));
+        app.get("/", ctx -> ctx.json(new UserRepositoryService().findUserByName("Failender")));
+
     }
 }

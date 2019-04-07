@@ -24,7 +24,7 @@ repositories{
 
 task fatJar(type: Jar) {
     manifest {
-        attributes 'Main-Class': 'de.failender.dgo.graal.Main'
+        attributes 'Main-Class': 'de.failender.dgo.rest.DgoRest'
     }
     baseName = project.name + '-all'
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }

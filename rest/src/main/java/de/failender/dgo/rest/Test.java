@@ -1,4 +1,4 @@
-package de.failender.dgo.graal;
+package de.failender.dgo.rest;
 
 public class Test {
 
