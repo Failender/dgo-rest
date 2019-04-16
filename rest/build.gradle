@@ -15,7 +15,9 @@ dependencies {
 
     compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.25'
     compile group: 'org.graalvm', name: 'graal-sdk', version: '1.0.0-rc6'
+    implementation 'com.auth0:java-jwt:3.8.0'
     compile project(':persistance')
+    compile project(':helden-online')
 }
 
 repositories{

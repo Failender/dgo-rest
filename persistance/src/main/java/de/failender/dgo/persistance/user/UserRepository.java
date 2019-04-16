@@ -21,4 +21,17 @@ class UserRepository {
 			return query.getSingleResult();
 		}
 	}
+
+	public List<String> getUserRights(int userid) {
+
+		String queryString = "SELECT RIGHTS.NAME FROM USERS U INNER JOIN ROLES_TO_USER RTU ON RTU.USER_ID = U.ID INNER JOIN ROLES_TO_RIGHTS RTR ON RTR.ROLE_ID = RTU.ROLE_ID INNER JOIN RIGHTS ON RIGHTS.ID = RTR.RIGHT_ID WHERE U.ID = :user";
+
+		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+			Query<String> query = session.createSQLQuery(queryString);
+			query.setParameter("user", userid);
+			return query.getResultList();
+		}
+	}
+
+
 }

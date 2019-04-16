@@ -1,5 +1,8 @@
 package de.failender.dgo.persistance;
 
+import de.failender.dgo.persistance.gruppe.GruppeEntity;
+import de.failender.dgo.persistance.held.HeldEntity;
+import de.failender.dgo.persistance.held.VersionEntity;
 import de.failender.dgo.persistance.user.UserEntity;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -29,6 +32,8 @@ public class HibernateUtil
 		configuration.setProperties(properties);
 		configuration.addAnnotatedClass(UserEntity.class);
 		configuration.addAnnotatedClass(GruppeEntity.class);
+		configuration.addAnnotatedClass(HeldEntity.class);
+		configuration.addAnnotatedClass(VersionEntity.class);
 
 		ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
 
