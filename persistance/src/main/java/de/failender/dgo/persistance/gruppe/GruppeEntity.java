@@ -14,11 +14,9 @@ public class GruppeEntity extends BaseEntity {
 	private String name;
 	@Column(name = "DATUM")
 	private Integer datum;
-	@JsonIgnore
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "meisterGruppen")
-	private List<UserEntity> meister;
-	@Column(name ="IMAGE")
-	private String image;
+//	@JsonIgnore
+//	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "meisterGruppen")
+//	private List<UserEntity> meister;
 
 
 	public String getName() {
@@ -29,9 +27,9 @@ public class GruppeEntity extends BaseEntity {
 		return this.datum;
 	}
 
-	public List<UserEntity> getMeister() {
-		return this.meister;
-	}
+//	public List<UserEntity> getMeister() {
+//		return this.meister;
+//	}
 
 	public void setName(final String name) {
 		this.name = name;
@@ -41,15 +39,7 @@ public class GruppeEntity extends BaseEntity {
 		this.datum = datum;
 	}
 
-	public void setMeister(final List<UserEntity> meister) {
-		this.meister = meister;
-	}
-
-	public String getImage() {
-		return image;
-	}
-
-	public void setImage(String image) {
-		this.image = image;
-	}
+//	public void setMeister(final List<UserEntity> meister) {
+//		this.meister = meister;
+//	}
 }

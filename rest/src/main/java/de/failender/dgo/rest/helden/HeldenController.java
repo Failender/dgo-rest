@@ -1,4 +1,4 @@
-package de.failender.dgo.rest.integration.helden;
+package de.failender.dgo.rest.helden;
 
 import io.javalin.Context;
 import io.javalin.Javalin;
