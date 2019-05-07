@@ -15,12 +15,12 @@ public class ReturnHeldXmlRequest extends IdCachedRequest<String> {
 	private final Authentication authentication;
 
 
-	public ReturnHeldXmlRequest(BigInteger heldid, Authentication authentication, UUID cacheId) {
+	public ReturnHeldXmlRequest(Long heldid, Authentication authentication, UUID cacheId) {
 		super(cacheId, heldid, false);
 		this.authentication = authentication;
 	}
 
-	public ReturnHeldXmlRequest(BigInteger heldid, Authentication authentication, UUID cacheId, boolean ignoreCache) {
+	public ReturnHeldXmlRequest(Long heldid, Authentication authentication, UUID cacheId, boolean ignoreCache) {
 		super(cacheId, heldid, ignoreCache);
 		this.authentication = authentication;
 	}

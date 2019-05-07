@@ -3,33 +3,22 @@ package de.failender.dgo.persistance.held;
 
 import de.failender.dgo.persistance.BaseEntity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import java.math.BigInteger;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.UUID;
 
-@Table(name = "HELD_VERSION")
-@Entity
 public class VersionEntity extends BaseEntity {
-	@Column(name = "HELDID")
-	private BigInteger heldid;
-	@Column(name = "VERSION")
+	private Long heldid;
 	private int version;
-	@Column(name = "CREATED_DATE")
-	private Date createdDate;
-	@Column(name = "LAST_EVENT")
+	private LocalDateTime createdDate;
 	private String lastEvent;
-	@Column(name = "CACHE_ID")
 	private UUID cacheId;
-	@Column(name = "AP")
 	private Integer ap;
 
 	public VersionEntity() {
 	}
 
-	public BigInteger getHeldid() {
+	public Long getHeldid() {
 		return this.heldid;
 	}
 
@@ -37,7 +26,7 @@ public class VersionEntity extends BaseEntity {
 		return this.version;
 	}
 
-	public Date getCreatedDate() {
+	public LocalDateTime getCreatedDate() {
 		return this.createdDate;
 	}
 
@@ -53,7 +42,7 @@ public class VersionEntity extends BaseEntity {
 		return this.ap;
 	}
 
-	public void setHeldid(final BigInteger heldid) {
+	public void setHeldid(final Long heldid) {
 		this.heldid = heldid;
 	}
 
@@ -61,7 +50,7 @@ public class VersionEntity extends BaseEntity {
 		this.version = version;
 	}
 
-	public void setCreatedDate(final Date createdDate) {
+	public void setCreatedDate(final LocalDateTime createdDate) {
 		this.createdDate = createdDate;
 	}
 

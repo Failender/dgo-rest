@@ -18,8 +18,10 @@ public class UserMapper extends EntityMapper<UserEntity> {
 	public static final StringFieldMapper<UserEntity> PASSWORD = new StringFieldMapper<UserEntity>("PASSWORD",
 			UserEntity::setPassword, UserEntity::getPassword);
 
-	public static final IntFieldMapper<UserEntity> ID = new IntFieldMapper<UserEntity>("ID",
+	public static final LongFieldMapper<UserEntity> ID = new LongFieldMapper<UserEntity>("ID",
 			UserEntity::setId, UserEntity::getId);
+
+	public static final UUIDFieldMapper<UserEntity> UUID = new UUIDFieldMapper<>("UUID", UserEntity::setUuid, UserEntity::getUuid);
 
 	/**
 	public static final DateFieldMapper<UserEntity> LAST_LOGIN = new DateFieldMapper<UserEntity>("LAST_LOGIN",
@@ -41,15 +43,15 @@ public class UserMapper extends EntityMapper<UserEntity> {
 		return SelectQuery.Builder.select(INSTANCE, USER_NAME).build().execute();
 	}
 
-	public static UserEntity selectOnlyName(int id) {
+	public static UserEntity selectOnlyName(Long id) {
 		return SelectQuery.Builder.select(INSTANCE, USER_NAME).limit(1).where(ID, id).build().execute().get(0);
 	}
 
-	public static UserEntity selectById(Integer id) {
+	public static UserEntity selectById(Long id) {
 		return SelectQuery.Builder.selectAll(INSTANCE).where(ID, id).limit(1).build().execute().get(0);
 	}
 
-	public static void updateName(Integer id, String name) {
+	public static void updateName(Long id, String name) {
 		UpdateQuery.Builder.update(INSTANCE).where(ID, id).update(USER_NAME, name).build().execute();
 	}
 
@@ -64,18 +66,15 @@ public class UserMapper extends EntityMapper<UserEntity> {
 		return new UserEntity();
 	}
 
-	@Override
-	public Class<UserEntity> entityClass() {
-		return UserEntity.class;
-	}
+
 
 	@Override
 	public List<FieldMapper<UserEntity, ?>> fieldMappers() {
-		return Arrays.asList(USER_NAME, PASSWORD, ID, ACTIVE);
+		return Arrays.asList(USER_NAME, PASSWORD, ID, ACTIVE, UUID);
 	}
 
 	@Override
-	public IntFieldMapper idField() {
+	public LongFieldMapper idField() {
 		return ID;
 	}
 }

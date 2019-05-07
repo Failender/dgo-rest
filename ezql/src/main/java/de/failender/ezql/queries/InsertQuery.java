@@ -39,7 +39,7 @@ public class InsertQuery<ENTITY> {
 
            ResultSet rs  =  statement.executeQuery(sql);
            rs.next();
-           int id = rs.getInt(1);
+           long id = rs.getLong(1);
            this.mapper.idField().getOriginalSetter().accept(this.entity, id);
         } catch (SQLException e) {
             throw new RuntimeException(e);

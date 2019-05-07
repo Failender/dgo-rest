@@ -19,11 +19,11 @@ public class ReturnHeldDatenRequest extends IdCachedRequest<Daten> {
 
 	private final Authentication authentication;
 
-	public ReturnHeldDatenRequest(BigInteger heldid, Authentication authentication, UUID cacheId) {
+	public ReturnHeldDatenRequest(Long heldid, Authentication authentication, UUID cacheId) {
 		this(heldid, authentication,cacheId, false);
 	}
 
-	public ReturnHeldDatenRequest(BigInteger heldid, Authentication authentication, UUID cacheId, boolean ignoreCache) {
+	public ReturnHeldDatenRequest(Long heldid, Authentication authentication, UUID cacheId, boolean ignoreCache) {
 		super(cacheId, heldid, ignoreCache);
 		this.authentication = authentication;
 	}

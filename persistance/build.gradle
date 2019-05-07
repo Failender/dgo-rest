@@ -5,10 +5,7 @@ repositories { mavenCentral() }
 dependencies {
     compile group: 'commons-io', name: 'commons-io', version: '2.6'
     compile group: 'postgresql', name: 'postgresql', version: '9.1-901-1.jdbc4'
-
-
+    
     compile project(':ezql')
-    compile group: 'org.hibernate', name: 'hibernate-core', version: '5.4.2.Final'
-    compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.9.8'
 
 }

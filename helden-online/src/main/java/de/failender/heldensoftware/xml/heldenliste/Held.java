@@ -45,7 +45,7 @@ import java.math.BigInteger;
 public class Held {
 
     @XmlElement(required = true)
-    protected BigInteger heldenid;
+    protected Long heldenid;
     @XmlElement(required = true)
     protected String name;
     @XmlElement(required = true)
@@ -61,7 +61,7 @@ public class Held {
      *     {@link BigInteger }
      *     
      */
-    public BigInteger getHeldenid() {
+    public Long getHeldenid() {
         return heldenid;
     }
 
@@ -73,7 +73,7 @@ public class Held {
      *     {@link BigInteger }
      *     
      */
-    public void setHeldenid(BigInteger value) {
+    public void setHeldenid(Long value) {
         this.heldenid = value;
     }
 

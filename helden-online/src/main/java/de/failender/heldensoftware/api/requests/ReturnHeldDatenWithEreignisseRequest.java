@@ -22,7 +22,7 @@ public class ReturnHeldDatenWithEreignisseRequest extends IdCachedRequest<Daten>
 
 	private final Authentication authentication;
 
-	public ReturnHeldDatenWithEreignisseRequest(BigInteger heldid, Authentication authentication, UUID cacheId) {
+	public ReturnHeldDatenWithEreignisseRequest(Long heldid, Authentication authentication, UUID cacheId) {
 		super(cacheId, heldid, false);
 		this.authentication = authentication;
 	}

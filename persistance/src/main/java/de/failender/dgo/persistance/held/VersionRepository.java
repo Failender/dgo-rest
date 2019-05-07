@@ -1,32 +1,23 @@
 package de.failender.dgo.persistance.held;
 
-import de.failender.dgo.persistance.BaseRepository;
-import de.failender.dgo.persistance.HibernateUtil;
-import org.hibernate.Session;
-import org.hibernate.query.Query;
+import de.failender.ezql.clause.OrderClause;
+import de.failender.ezql.queries.InsertQuery;
+import de.failender.ezql.queries.SelectQuery;
 
-import java.math.BigInteger;
+public class VersionRepository  {
 
-public class VersionRepository extends BaseRepository<VersionEntity> {
+	public static VersionEntity findFirstByHeldidOrderByVersionDesc(Long id) {
 
-	public static VersionEntity findFirstByHeldidOrderByVersionDesc(BigInteger id) {
-
-		String queryString = "from VersionEntity WHERE heldid = :held ORDER BY version desc";
-		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-			Query<VersionEntity> query = session.createQuery(queryString, VersionEntity.class);
-			query.setParameter("held", id);
-			query.setMaxResults(1);
-			return query.getSingleResult();
-		}
+		return SelectQuery.Builder.selectAll(VersionMapper.INSTANCE)
+				.where(VersionMapper.HELD_ID, id)
+				.orderBy(VersionMapper.VERSION, OrderClause.ORDER.DESC)
+				.limit(1)
+				.build()
+				.execute()
+				.get(0);
 	}
 
-	@Override
-	protected String entityName() {
-		return "VersionEntity";
-	}
-
-	@Override
-	protected Class<VersionEntity> entityClass() {
-		return VersionEntity.class;
+	public static void persist(VersionEntity versionEntity) {
+		new InsertQuery<>(VersionMapper.INSTANCE, versionEntity).execute();
 	}
 }

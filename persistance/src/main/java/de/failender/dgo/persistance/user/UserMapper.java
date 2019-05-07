@@ -1,9 +1,6 @@
 package de.failender.dgo.persistance.user;
 
-import de.failender.ezql.mapper.EntityMapper;
-import de.failender.ezql.mapper.FieldMapper;
-import de.failender.ezql.mapper.IntFieldMapper;
-import de.failender.ezql.mapper.StringFieldMapper;
+import de.failender.ezql.mapper.*;
 import de.failender.ezql.queries.SelectQuery;
 
 import java.util.Arrays;
@@ -19,14 +16,19 @@ public class UserMapper extends EntityMapper<UserEntity> {
     public static final StringFieldMapper<UserEntity> PASSWORD = new StringFieldMapper<UserEntity>("PASSWORD",
             UserEntity::setPassword, UserEntity::getPassword);
 
-    public static final IntFieldMapper<UserEntity> ID = new IntFieldMapper<UserEntity>("ID",
+    public static final LongFieldMapper<UserEntity> ID = new LongFieldMapper<UserEntity>("ID",
             UserEntity::setId, UserEntity::getId);
 
     public static final StringFieldMapper<UserEntity> TOKEN = new StringFieldMapper<UserEntity>("TOKEN",
             UserEntity::setToken, UserEntity::getToken);
 
-    public static final IntFieldMapper<UserEntity> GRUPPE = new IntFieldMapper<UserEntity>("GRUPPE_ID",
+    public static final LongFieldMapper<UserEntity> GRUPPE = new LongFieldMapper<UserEntity>("GRUPPE_ID",
             UserEntity::setGruppe, UserEntity::getGruppe);
+
+    public static final BooleanFieldMapper<UserEntity> CAN_WRITE = new BooleanFieldMapper<UserEntity>("CAN_WRITE",
+            UserEntity::setCanWrite, UserEntity::isCanWrite);
+
+
 
 
     @Override
@@ -39,18 +41,14 @@ public class UserMapper extends EntityMapper<UserEntity> {
         return new UserEntity();
     }
 
-    @Override
-    public Class<UserEntity> entityClass() {
-        return UserEntity.class;
-    }
 
     @Override
     public List<FieldMapper<UserEntity, ?>> fieldMappers() {
-        return Arrays.asList(USER_NAME,PASSWORD, ID, TOKEN, GRUPPE);
+        return Arrays.asList(USER_NAME,PASSWORD, ID, TOKEN, GRUPPE, CAN_WRITE);
     }
 
     @Override
-    public IntFieldMapper<UserEntity> idField() {
+    public LongFieldMapper<UserEntity> idField() {
         return ID;
     }
 }

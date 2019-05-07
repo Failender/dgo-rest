@@ -11,6 +11,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 public class SelectQueryTest extends EzqlTest {
 
@@ -23,11 +24,12 @@ public class SelectQueryTest extends EzqlTest {
 		List<UserEntity> userEntityList = UserMapper.selectAll();
 		Assert.assertEquals(userEntityList.size(), 3);
 
-		UserEntity userEntity = UserMapper.selectById(0);
+		UserEntity userEntity = UserMapper.selectById(0L);
 		Assert.assertEquals(userEntity.getName(), "Demo");
 		Assert.assertEquals(userEntity.getPassword(), "1234");
-		Assert.assertEquals((Object)userEntity.getId(), 0);
+		Assert.assertEquals((Object)userEntity.getId(), 0L);
 		Assert.assertEquals(userEntity.isActive(), true);
+		Assert.assertEquals(userEntity.getUuid(), UUID.fromString("7dc53df5-703e-49b3-8670-b1c468f47f1f"));
 
 
 	}
@@ -36,7 +38,7 @@ public class SelectQueryTest extends EzqlTest {
 	public void testSelectSpecificFields() {
 
 
-		UserEntity userEntity = UserMapper.selectOnlyName(0);
+		UserEntity userEntity = UserMapper.selectOnlyName(0L);
 		Assert.assertNull(userEntity.getPassword());
 		Assert.assertNull(userEntity.getId());
 		Assert.assertEquals(userEntity.getName(), "Demo");

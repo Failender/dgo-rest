@@ -1,27 +1,20 @@
 package de.failender.dgo.persistance;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
 
-@MappedSuperclass
 public abstract class BaseEntity {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Long id;
 
 
 	public BaseEntity() {
 	}
 
 
-	public Integer getId() {
+	public Long getId() {
 		return this.id;
 	}
 
 
-	public void setId(final Integer id) {
+	public void setId(final Long id) {
 		this.id = id;
 	}
 

@@ -13,7 +13,7 @@ public class ReturnHeldPdfRequest extends IdCachedRequest<InputStream> {
 
 	private final Authentication authentication;
 
-	public ReturnHeldPdfRequest(BigInteger heldid, Authentication authentication, UUID cacheId) {
+	public ReturnHeldPdfRequest(Long heldid, Authentication authentication, UUID cacheId) {
 		super(cacheId, heldid, false);
 
 		this.authentication = authentication;

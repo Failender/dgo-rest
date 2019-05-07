@@ -46,4 +46,8 @@ public abstract class FieldMapper<ENTITY, FIELD> {
 	public Function<ENTITY, FIELD> getOriginalGetter() {
 		return originalGetter;
 	}
+
+	protected String escape(String string) {
+		return "'" + string + "'";
+	}
 }

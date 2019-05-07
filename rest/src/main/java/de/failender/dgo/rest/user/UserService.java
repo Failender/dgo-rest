@@ -2,12 +2,10 @@ package de.failender.dgo.rest.user;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import de.failender.dgo.persistance.HibernateUtil;
 import de.failender.dgo.persistance.gruppe.GruppeEntity;
 import de.failender.dgo.persistance.gruppe.GruppeRepository;
 import de.failender.dgo.persistance.gruppe.GruppeRepositoryService;
 import de.failender.dgo.persistance.user.UserEntity;
-import de.failender.dgo.persistance.user.UserMapper;
 import de.failender.dgo.persistance.user.UserRepositoryService;
 import de.failender.dgo.rest.helden.HeldenService;
 import de.failender.dgo.rest.integration.Beans;
@@ -15,7 +13,6 @@ import de.failender.heldensoftware.api.requests.PermissionRequest;
 import de.failender.heldensoftware.xml.currentrights.Recht;
 import de.failender.heldensoftware.xml.currentrights.Rechte;
 
-import javax.xml.bind.ValidationException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;

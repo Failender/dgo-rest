@@ -2,6 +2,7 @@ package de.failender.ezql.queries;
 
 import de.failender.ezql.EzqlConnector;
 import de.failender.ezql.clause.BaseClause;
+import de.failender.ezql.clause.OrderClause;
 import de.failender.ezql.mapper.EntityMapper;
 import de.failender.ezql.mapper.FieldMapper;
 
@@ -21,13 +22,15 @@ public class SelectQuery<ENTITY> extends BaseQuery<ENTITY> {
 	private final Collection<FieldMapper<ENTITY, ?>> fieldMapper;
 	private final String returnFields;
 	private final Integer limit;
+	private final List<OrderClause<?>> orderClauses;
 
-	public SelectQuery(EntityMapper<ENTITY> mapper, Collection<FieldMapper<ENTITY, ?>> fieldMapper, String returnFields, List<BaseClause<ENTITY, ?>> whereClauses, Integer limit) {
+	public SelectQuery(EntityMapper<ENTITY> mapper, Collection<FieldMapper<ENTITY, ?>> fieldMapper, String returnFields, List<BaseClause<ENTITY, ?>> whereClauses, Integer limit, List<OrderClause<?>> orderClauses) {
 		super(whereClauses);
 		this.mapper = mapper;
 		this.fieldMapper = fieldMapper;
 		this.returnFields = returnFields;
 		this.limit = limit;
+		this.orderClauses = orderClauses;
 	}
 
 	public List<ENTITY> execute() {
@@ -63,6 +66,7 @@ public class SelectQuery<ENTITY> extends BaseQuery<ENTITY> {
 		private final String returnFields;
 		private Integer limit;
 		private List<BaseClause<T, ?>> whereClauses = new ArrayList<>();
+		private List<OrderClause<?>> orderClauses = new ArrayList<>();
 
 		private Builder(EntityMapper<T> mapper, List<FieldMapper<T, ?>> fieldMapper, String returnFields) {
 			this.mapper = mapper;
@@ -82,7 +86,7 @@ public class SelectQuery<ENTITY> extends BaseQuery<ENTITY> {
 		}
 
 		public SelectQuery<T> build() {
-			return new SelectQuery(mapper, fieldMapper, returnFields, whereClauses, limit);
+			return new SelectQuery(mapper, fieldMapper, returnFields, whereClauses, limit, orderClauses);
 		}
 
 		public Builder<T> limit(int limit) {
@@ -92,6 +96,11 @@ public class SelectQuery<ENTITY> extends BaseQuery<ENTITY> {
 
 		public <VALUE> Builder<T> where(FieldMapper<T, VALUE> field, VALUE value) {
 			whereClauses.add(new BaseClause(field, value));
+			return this;
+		}
+
+		public <VALUE> Builder<T> orderBy(FieldMapper<T, VALUE> field, OrderClause.ORDER order) {
+			orderClauses.add(new OrderClause<>(order, field));
 			return this;
 		}
 

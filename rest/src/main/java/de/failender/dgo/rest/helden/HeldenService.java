@@ -20,10 +20,9 @@ import reactor.core.publisher.Mono;
 import reactor.util.function.Tuple3;
 
 import java.io.InputStream;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.util.*;
 
 public class HeldenService {
 
@@ -90,17 +89,21 @@ public class HeldenService {
             heldEntity.setUserId(userEntity.getId());
             heldEntity.setKey(XmlUtil.getKeyFromString(xml));
             HeldRepositoryService.saveHeld(heldEntity);
-            VersionEntity versionEntity = VersionService.persistVersion(heldEntity, userEntity, 1, xml, uuid, data.getT2());
+            VersionService.persistVersion(heldEntity, userEntity, 1, xml, uuid, data.getT2());
 
             log.info("Saving new held {} for user {} with version {}", heldEntity.getName(), userEntity.getName(), 1);
         });
     }
 
-    private static boolean isOnlineVersionOlder(Held xmlHeld, Date heldCreatedDate) {
-        Date lastEditedDate = new Date((xmlHeld.getHeldlastchange().longValue() / 1000L) * 1000L);
-        if (lastEditedDate.getTime() == heldCreatedDate.getTime()) {
+    private static boolean isOnlineVersionOlder(Held xmlHeld, LocalDateTime heldCreatedDate) {
+
+        Long lastEditedTimestamp = (xmlHeld.getHeldlastchange().longValue() / 1000L) * 1000L;
+        LocalDateTime lastEditedDate = LocalDateTime.ofInstant(Instant.ofEpochMilli(lastEditedTimestamp),
+                TimeZone.getDefault().toZoneId());
+        if (lastEditedDate.equals(heldCreatedDate)) {
             return false;
         }
-        return lastEditedDate.after(heldCreatedDate);
+
+        return lastEditedDate.isAfter(heldCreatedDate);
     }
 }

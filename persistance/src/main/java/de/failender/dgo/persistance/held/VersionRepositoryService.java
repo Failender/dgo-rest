@@ -6,6 +6,6 @@ public class VersionRepositoryService {
     }
 
     public static void saveVersion(HeldEntity heldEntity, VersionEntity versionEntity) {
-        new VersionRepository().save(versionEntity);
+        new VersionRepository().persist(versionEntity);
     }
 }

@@ -15,10 +15,9 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.StringReader;
 import java.io.StringWriter;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.util.*;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
@@ -57,11 +56,12 @@ public class XmlUtil {
 
 	}
 
-	public static Date getStandFromString(String xml) {
+	public static LocalDateTime getStandFromString(String xml) {
 
 		String stand = getHeldFromXml(xml).getAttribute("stand");
 
-		Date date = new Date(Long.valueOf(stand));
+		LocalDateTime date = LocalDateTime.ofInstant(Instant.ofEpochMilli(Long.valueOf(stand)),
+				TimeZone.getDefault().toZoneId());
 		return date;
 	}
 	public static long getKeyFromString(String xml) {

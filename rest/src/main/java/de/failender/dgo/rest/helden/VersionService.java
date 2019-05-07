@@ -8,13 +8,14 @@ import de.failender.heldensoftware.api.XmlUtil;
 import de.failender.heldensoftware.xml.datenxml.Daten;
 import de.failender.heldensoftware.xml.datenxml.Ereignis;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
 public class VersionService {
     public static VersionEntity persistVersion(HeldEntity held, UserEntity user, int version, String xml, UUID uuid, Daten daten) {
-        Date date = XmlUtil.getStandFromString(xml);
+        LocalDateTime date = XmlUtil.getStandFromString(xml);
         VersionEntity versionEntity = new VersionEntity();
         versionEntity.setVersion(version);
         versionEntity.setHeldid(held.getId());

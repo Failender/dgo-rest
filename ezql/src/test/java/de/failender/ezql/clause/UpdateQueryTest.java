@@ -10,7 +10,7 @@ public class UpdateQueryTest extends EzqlTest {
 
 	@Test
 	public void testUpdate() {
-		UserMapper.updateName(0, "NEW_NAME");
-		Assert.assertEquals(UserMapper.selectOnlyName(0).getName(), "NEW_NAME");
+		UserMapper.updateName(0L, "NEW_NAME");
+		Assert.assertEquals(UserMapper.selectOnlyName(0L).getName(), "NEW_NAME");
 	}
 }

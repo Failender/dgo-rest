@@ -6,14 +6,25 @@ import java.util.Properties;
 
 public class PropertyReader{
 
-	private static Properties properties = new Properties();
 
-	static {
+	public static void initialize(String[] args) {
 		tryLoadProperties("/application.properties");
+		for (String arg : args) {
+			if(arg.contains("=")) {
+				String[] splits = arg.split("=");
+				properties.put(splits[0], splits[1]);
+			}
+		}
 		String profile = properties.getProperty("profile");
 		if(profile != null) {
 			tryLoadProperties("/application-" + profile + ".properties");
 		}
+	}
+
+	private static Properties properties = new Properties();
+
+	static {
+
 	}
 
 	private static void tryLoadProperties(String name) {

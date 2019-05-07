@@ -1,30 +1,13 @@
 package de.failender.dgo.persistance.user;
 
 import de.failender.dgo.persistance.BaseEntity;
-import de.failender.dgo.persistance.gruppe.GruppeEntity;
 
-import javax.persistence.*;
-import java.util.List;
-
-@Entity
-@Table(name = "USERS")
 public class UserEntity extends BaseEntity {
 
-	public static final String FIELD_NAME = "NAME";
-
-	@Column(name = "NAME")
 	private String name;
-	@Column(name = "PASSWORD")
 	private String password;
-	@Column(name = "TOKEN")
 	private String token;
-	@Column(name = "GRUPPE_ID")
-	private Integer gruppe;
-//	@ManyToMany(fetch = FetchType.EAGER)
-//	@JoinTable(name = "USER_TO_MEISTER", joinColumns = {@JoinColumn(name = "USER_ID")}, inverseJoinColumns = {@JoinColumn(name = "GRUPPE_ID")})
-//	private List<GruppeEntity> meisterGruppen;
-
-	@Column(name = "CAN_WRITE")
+	private Long gruppe;
 	private Boolean canWrite;
 
 	public String getName() {
@@ -40,13 +23,9 @@ public class UserEntity extends BaseEntity {
 		return this.token;
 	}
 
-	public Integer getGruppe() {
+	public Long getGruppe() {
 		return this.gruppe;
 	}
-
-//	public List<GruppeEntity> getMeisterGruppen() {
-//		return this.meisterGruppen;
-//	}
 
 	public void setName(final String name) {
 		this.name = name;
@@ -60,13 +39,9 @@ public class UserEntity extends BaseEntity {
 		this.token = token;
 	}
 
-	public void setGruppe(final int gruppe) {
+	public void setGruppe(final Long gruppe) {
 		this.gruppe = gruppe;
 	}
-
-//	public void setMeisterGruppen(final List<GruppeEntity> meisterGruppen) {
-//		this.meisterGruppen = meisterGruppen;
-//	}
 
 	public Boolean isCanWrite() {
 		return canWrite;

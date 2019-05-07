@@ -2,20 +2,22 @@ package de.failender.ezql.user;
 
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.UUID;
 
 public class UserEntity {
 
-	private Integer id;
+	private Long id;
 	private String name;
 	private String password;
 	private LocalDateTime lastLogin;
+	private UUID uuid;
 	private boolean active;
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -49,5 +51,13 @@ public class UserEntity {
 
 	public void setActive(boolean active) {
 		this.active = active;
+	}
+
+	public UUID getUuid() {
+		return uuid;
+	}
+
+	public void setUuid(UUID uuid) {
+		this.uuid = uuid;
 	}
 }

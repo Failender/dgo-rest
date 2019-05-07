@@ -1,29 +1,20 @@
 package de.failender.dgo.persistance.held;
 
-import de.failender.dgo.persistance.HibernateUtil;
-import de.failender.dgo.persistance.gruppe.GruppeEntity;
-import org.hibernate.Session;
-import org.hibernate.query.Query;
+import de.failender.ezql.queries.InsertQuery;
+import de.failender.ezql.queries.SelectQuery;
 
-import javax.persistence.NoResultException;
-import java.math.BigInteger;
 import java.util.List;
 
 public class HeldRepository {
 
+	public static List<HeldEntity> findByUserId(Long id) {
+		return SelectQuery.Builder.selectAll(HeldMapper.INSTANCE)
+				.where(HeldMapper.USER_ID, id)
+				.build()
+				.execute();
+	}
 
-    public static List<HeldEntity> findByUserId(Integer id) {
-        String sql = "from HeldEntity WHERE userId = :id";
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            Query<HeldEntity> query = session.createQuery(sql, HeldEntity.class);
-            query.setParameter("id", id);
-            return query.getResultList();
-        }
-    }
-
-    public static void persist(HeldEntity heldEntity) {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            heldEntity.setId((BigInteger)session.save(heldEntity));
-        }
-    }
+	public static void persist(HeldEntity heldEntity) {
+		new InsertQuery<>(HeldMapper.INSTANCE, heldEntity).execute();
+	}
 }

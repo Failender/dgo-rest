@@ -9,7 +9,7 @@ CREATE TABLE USERS(
                     NAME varchar(40) NOT NULL,
                     PASSWORD varchar(60),
                     TOKEN varchar(64),
-                    GRUPPE_ID INTEGER NOT NULL,
+                    GRUPPE_ID BIGINT NOT NULL,
                     CAN_WRITE BOOLEAN NOT NULL
 );
 
@@ -23,18 +23,18 @@ CREATE TABLE GRUPPEN(
 
 CREATE TABLE HELDEN(
                      ID SERIAL PRIMARY KEY,
-                     USER_ID INTEGER NOT NULL,
+                     USER_ID BIGINT NOT NULL,
                      NAME VARCHAR(200) NOT NULL,
                      GRUPPE_ID INTEGER NOT NULL,
                      PUBLIC BOOLEAN NOT NULL,
                      DELETED BOOLEAN NOT NULL,
                      ACTIVE BOOLEAN NOT NULL,
-                     HKEY INTEGER NOT NULL
+                     HKEY BIGINT NOT NULL
 );
 
 CREATE TABLE HELD_VERSION(
                            ID SERIAL PRIMARY KEY,
-                           HELDID INTEGER NOT NULL,
+                           HELDID BIGINT NOT NULL,
                            VERSION INTEGER NOT NULL,
                            CREATED_DATE TIMESTAMP  NOT NULL,
                            LAST_EVENT varchar(200),

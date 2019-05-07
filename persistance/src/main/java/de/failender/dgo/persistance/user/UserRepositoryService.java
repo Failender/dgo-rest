@@ -1,8 +1,6 @@
 package de.failender.dgo.persistance.user;
 
-import de.failender.ezql.queries.InsertQuery;
 
-import javax.persistence.NoResultException;
 import java.util.List;
 
 public class UserRepositoryService {

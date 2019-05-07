@@ -22,6 +22,6 @@ public class StringFieldMapper<ENTITY> extends FieldMapper<ENTITY, String> {
 
 	@Override
 	protected Function<String, String> converter() {
-		return s ->  "'" + s + "'";
+		return this::escape;
 	}
 }

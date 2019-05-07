@@ -6,10 +6,10 @@ import java.util.UUID;
 
 public abstract class IdCachedRequest<T>  extends ApiRequest<T>{
 	private final UUID cacheId;
-	protected final BigInteger heldid;
+	protected final Long heldid;
 	private final boolean ignoreCache;
 
-	public IdCachedRequest(UUID cacheId, BigInteger heldid, boolean ignoreCache) {
+	public IdCachedRequest(UUID cacheId, Long heldid, boolean ignoreCache) {
 		if(!ignoreCache && cacheId == null) {
 			throw new IllegalArgumentException("CacheId can not be null");
 		}

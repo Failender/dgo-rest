@@ -2,42 +2,30 @@
 package de.failender.dgo.persistance.held;
 
 
-import de.failender.dgo.persistance.gruppe.GruppeEntity;
 
-import javax.persistence.*;
-import java.math.BigInteger;
-import java.util.Date;
-
-@Entity
-@Table(name = "HELDEN")
 public class HeldEntity {
-	@Id
-	private BigInteger id;
-	@Column(name = "USER_ID")
-	private Integer userId;
-	@Column(name = "NAME")
+
+	private Long id;
+
+	private Long userId;
 	private String name;
-	@Column(name = "PUBLIC")
 	private boolean isPublic;
-	@Column(name = "ACTIVE")
 	private boolean isActive = true;
-	@Column(name = "DELETED")
 	private boolean deleted;
 
-	private Integer gruppe;
+	private Long gruppe;
 
-	@Column(name = "HKEY")
 	private Long key;
 
 	public HeldEntity() {
 	}
 
-	public BigInteger getId() {
+	public Long getId() {
 		return this.id;
 	}
 
 
-	public Integer getUserId() {
+	public Long getUserId() {
 		return this.userId;
 	}
 
@@ -63,17 +51,17 @@ public class HeldEntity {
 	}
 
 
-	public Integer getGruppe() {
+	public Long getGruppe() {
 		return this.gruppe;
 	}
 
 
-	public void setId(final BigInteger id) {
+	public void setId(final Long id) {
 		this.id = id;
 	}
 
 
-	public void setUserId(final Integer userId) {
+	public void setUserId(final Long userId) {
 		this.userId = userId;
 	}
 
@@ -98,7 +86,7 @@ public class HeldEntity {
 	}
 
 
-	public void setGruppe(final Integer gruppe) {
+	public void setGruppe(final Long gruppe) {
 		this.gruppe = gruppe;
 	}
 
