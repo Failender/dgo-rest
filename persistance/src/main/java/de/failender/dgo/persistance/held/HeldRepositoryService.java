@@ -20,6 +20,6 @@ public class HeldRepositoryService {
     }
 
     public static void updateActive(HeldEntity heldEntity, boolean value) {
-        HeldRepository.updatePublic(heldEntity.getId(), value);
+        HeldRepository.updateActive(heldEntity.getId(), value);
     }
 }

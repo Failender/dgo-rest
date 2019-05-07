@@ -4,7 +4,7 @@ import de.failender.ezql.clause.OrderClause;
 import de.failender.ezql.queries.InsertQuery;
 import de.failender.ezql.queries.SelectQuery;
 
-public class VersionRepository  {
+class VersionRepository  {
 
 	public static VersionEntity findFirstByHeldidOrderByVersionDesc(Long id) {
 
