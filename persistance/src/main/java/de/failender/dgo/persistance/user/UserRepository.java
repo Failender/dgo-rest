@@ -2,38 +2,49 @@ package de.failender.dgo.persistance.user;
 
 import de.failender.dgo.persistance.BaseRepository;
 import de.failender.dgo.persistance.HibernateUtil;
+import de.failender.ezql.EzqlConnector;
+import de.failender.ezql.queries.InsertQuery;
+import de.failender.ezql.queries.SelectQuery;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
-class UserRepository extends BaseRepository<UserEntity> {
+import static de.failender.ezql.mapper.EntityMapper.firstOrNull;
 
-	public List<UserEntity> getUser() {
-		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-			return session.createQuery("from UserEntity", UserEntity.class).list();
+class UserRepository {
+
+
+	public static List<UserEntity> selectAll() {
+		return SelectQuery.Builder.selectAll(UserMapper.INSTANCE).build().execute();
+	}
+
+	public static UserEntity findById(Integer id) {
+		return firstOrNull(SelectQuery.Builder.selectAll(UserMapper.INSTANCE).where(UserMapper.ID, id).limit(1).build().execute());
+	}
+
+	public static UserEntity findByName(String name) {
+		return firstOrNull(SelectQuery.Builder.selectAll(UserMapper.INSTANCE).where(UserMapper.USER_NAME, name).limit(1).build().execute());
+	}
+
+	public static List<String> getPermissionsForUser(int id) {
+		try {
+
+			ResultSet rs = EzqlConnector.getConnection().createStatement().executeQuery("SELECT RIGHTS.NAME FROM USERS U INNER JOIN ROLES_TO_USER RTU ON RTU.USER_ID = U.ID INNER JOIN ROLES_TO_RIGHTS RTR ON RTR.ROLE_ID = RTU.ROLE_ID INNER JOIN RIGHTS ON RIGHTS.ID = RTR.RIGHT_ID WHERE U.ID = " + id);
+			List<String> permissions = new ArrayList<>();
+			while(rs.next()) {
+				permissions.add(rs.getString("name"));
+			}
+			return permissions;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
 		}
 	}
 
-	public List<String> getUserRights(int userid) {
-
-		String queryString = "SELECT RIGHTS.NAME FROM USERS U INNER JOIN ROLES_TO_USER RTU ON RTU.USER_ID = U.ID INNER JOIN ROLES_TO_RIGHTS RTR ON RTR.ROLE_ID = RTU.ROLE_ID INNER JOIN RIGHTS ON RIGHTS.ID = RTR.RIGHT_ID WHERE U.ID = :user";
-
-		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-			Query<String> query = session.createSQLQuery(queryString);
-			query.setParameter("user", userid);
-			return query.getResultList();
-		}
-	}
-
-
-	@Override
-	protected String entityName() {
-		return "UserEntity";
-	}
-
-	@Override
-	protected Class entityClass() {
-		return UserEntity.class;
+	public static void insert(UserEntity userEntity) {
+		new InsertQuery<>(UserMapper.INSTANCE, userEntity).execute();
 	}
 }

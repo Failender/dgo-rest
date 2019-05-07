@@ -23,14 +23,11 @@ public class HeldEntity {
 	private boolean isActive = true;
 	@Column(name = "DELETED")
 	private boolean deleted;
-	@JoinColumn(name = "GRUPPE_ID")
-	@ManyToOne
-	private GruppeEntity gruppe;
+
+	private Integer gruppe;
 
 	@Column(name = "HKEY")
 	private Long key;
-	@Column(name = "LOCK_EXPIRE")
-	private Date lockExpire;
 
 	public HeldEntity() {
 	}
@@ -66,7 +63,7 @@ public class HeldEntity {
 	}
 
 
-	public GruppeEntity getGruppe() {
+	public Integer getGruppe() {
 		return this.gruppe;
 	}
 
@@ -101,7 +98,7 @@ public class HeldEntity {
 	}
 
 
-	public void setGruppe(final GruppeEntity gruppe) {
+	public void setGruppe(final Integer gruppe) {
 		this.gruppe = gruppe;
 	}
 
@@ -111,13 +108,5 @@ public class HeldEntity {
 
 	public void setKey(Long key) {
 		this.key = key;
-	}
-
-	public Date getLockExpire() {
-		return lockExpire;
-	}
-
-	public void setLockExpire(Date lockExpire) {
-		this.lockExpire = lockExpire;
 	}
 }

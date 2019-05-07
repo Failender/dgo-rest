@@ -20,12 +20,14 @@ public class HibernateUtil
 {
 	private static SessionFactory sessionFactory;
 
+	public static Properties properties;
+
 	private static void initialize() throws IOException {
 		Configuration configuration = new Configuration();
 
 
 
-		Properties properties = new Properties();
+		properties = new Properties();
 
 		properties.load(HibernateUtil.class.getResourceAsStream("/application.properties"));
 		properties.put(Environment.SHOW_SQL, "true");
@@ -39,14 +41,6 @@ public class HibernateUtil
 		ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
 
 		sessionFactory =  configuration.buildSessionFactory(serviceRegistry);
-
-		String sql = IOUtils.toString(HibernateUtil.class.getResourceAsStream("/setup.sql"), "UTF-8");
-		Session session = sessionFactory.openSession();
-
-		Transaction transaction = session.beginTransaction();
-		session.createNativeQuery(sql).executeUpdate();
-		transaction.commit();
-
 
 	}
 

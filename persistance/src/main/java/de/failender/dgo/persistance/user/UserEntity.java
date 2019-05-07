@@ -18,9 +18,8 @@ public class UserEntity extends BaseEntity {
 	private String password;
 	@Column(name = "TOKEN")
 	private String token;
-	@JoinColumn(name = "GRUPPE_ID")
-	@ManyToOne
-	private GruppeEntity gruppe;
+	@Column(name = "GRUPPE_ID")
+	private Integer gruppe;
 //	@ManyToMany(fetch = FetchType.EAGER)
 //	@JoinTable(name = "USER_TO_MEISTER", joinColumns = {@JoinColumn(name = "USER_ID")}, inverseJoinColumns = {@JoinColumn(name = "GRUPPE_ID")})
 //	private List<GruppeEntity> meisterGruppen;
@@ -41,7 +40,7 @@ public class UserEntity extends BaseEntity {
 		return this.token;
 	}
 
-	public GruppeEntity getGruppe() {
+	public Integer getGruppe() {
 		return this.gruppe;
 	}
 
@@ -61,7 +60,7 @@ public class UserEntity extends BaseEntity {
 		this.token = token;
 	}
 
-	public void setGruppe(final GruppeEntity gruppe) {
+	public void setGruppe(final int gruppe) {
 		this.gruppe = gruppe;
 	}
 

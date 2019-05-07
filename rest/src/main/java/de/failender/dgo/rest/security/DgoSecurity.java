@@ -7,6 +7,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.InvalidClaimException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import de.failender.dgo.persistance.user.UserEntity;
+import de.failender.dgo.persistance.user.UserMapper;
 import de.failender.dgo.persistance.user.UserRepositoryService;
 import io.javalin.Javalin;
 
@@ -36,7 +37,8 @@ public class DgoSecurity {
 					DecodedJWT jwt = verifier.verify(token);
 					String username = jwt.getClaim("username").asString();
 					System.out.println(username);
-					contextThreadLocal.set(new SecurityContext(new UserRepositoryService().findUserByName(username)));
+
+					contextThreadLocal.set(new SecurityContext(UserRepositoryService.findUserByName(username)));
 				} catch(InvalidClaimException e) {
 					context.status(401);
 				}
@@ -48,7 +50,7 @@ public class DgoSecurity {
 		app.get(GENERATE, context -> {
 
 			String username = context.header("username");
-			UserEntity userEntity = new UserRepositoryService().findUserByName(username);
+			UserEntity userEntity = UserRepositoryService.findUserByName(username);
 
 			String password = context.header("password");
 			if(!userEntity.getPassword().equals(password)) {

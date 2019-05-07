@@ -7,7 +7,9 @@ import de.failender.dgo.persistance.gruppe.GruppeEntity;
 import de.failender.dgo.persistance.gruppe.GruppeRepository;
 import de.failender.dgo.persistance.gruppe.GruppeRepositoryService;
 import de.failender.dgo.persistance.user.UserEntity;
+import de.failender.dgo.persistance.user.UserMapper;
 import de.failender.dgo.persistance.user.UserRepositoryService;
+import de.failender.dgo.rest.helden.HeldenService;
 import de.failender.dgo.rest.integration.Beans;
 import de.failender.heldensoftware.api.requests.PermissionRequest;
 import de.failender.heldensoftware.xml.currentrights.Recht;
@@ -19,6 +21,8 @@ import java.io.InputStream;
 import java.util.List;
 
 public class UserService {
+
+	private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(UserService.class);
 
 	public static void initialize() {
 		InputStream is = UserService.class.getResourceAsStream("/user.json");
@@ -36,10 +40,12 @@ public class UserService {
 
 	public static UserEntity registerUser(UserRegistration userRegistration) {
 		if (userRegistration.getName() == null || userRegistration.getGruppe() == null) {
-			throw new RuntimeException("User or group cant be null");
+			log.error("User or group cant be null");
+			return null;
 		}
-		if (UserRepositoryService.existsByName(userRegistration.getName())) {
-			throw new RuntimeException("User already exists");
+		if (UserRepositoryService.findUserByName(userRegistration.getName()) != null) {
+			log.error("User already exists");
+			return null;
 		}
 		GruppeEntity gruppeEntity = GruppeRepository.findByName(userRegistration.getGruppe());
 		if (gruppeEntity == null) {
@@ -48,7 +54,7 @@ public class UserService {
 			GruppeRepositoryService.save(gruppeEntity);
 		}
 		UserEntity userEntity = new UserEntity();
-		userEntity.setGruppe(gruppeEntity);
+		userEntity.setGruppe(gruppeEntity.getId());
 		userEntity.setName(userRegistration.getName());
 		userEntity.setToken(userRegistration.getToken());
 		if (userRegistration.getPassword() != null && !userRegistration.getPassword().isEmpty()) {
@@ -67,11 +73,7 @@ public class UserService {
 			userEntity.setCanWrite(false);
 		}
 		UserRepositoryService.save(userEntity);
-		updateHeldenForUser();
+		HeldenService.updateHeldenForUser(userEntity);
 		return userEntity;
-	}
-
-	public static void updateHeldenForUser() {
-
 	}
 }
