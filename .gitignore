@@ -5,5 +5,8 @@
 
 *.iml
 /out/
-
+*/out/
+*/build/
 *.class
+
+rest/src/main/resources/user.json
