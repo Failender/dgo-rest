@@ -1,9 +1,5 @@
 package de.failender.dgo.rest;
 
-import de.failender.dgo.persistance.held.HeldEntity;
-import de.failender.dgo.persistance.held.HeldRepository;
-import de.failender.dgo.persistance.held.HeldRepositoryService;
-import de.failender.dgo.persistance.user.UserEntity;
 import de.failender.dgo.persistance.user.UserRepositoryService;
 import de.failender.dgo.rest.security.DgoSecurity;
 import de.failender.dgo.rest.user.UserService;
@@ -13,12 +9,12 @@ import io.javalin.Javalin;
 import org.apache.commons.io.IOUtils;
 
 import java.io.IOException;
-import java.util.List;
 
 public class DgoRest {
 
     public static void main(String[] args) throws IOException {
 
+		long start = System.nanoTime();
 
         PropertyReader.initialize(args);
         EzqlConnector.connect("hibernate.connection");
@@ -32,6 +28,11 @@ public class DgoRest {
 
         DgoSecurity.registerSecurity(app);
         UserService.initialize();
+
+		double elapsedTimeInSecond = (double) (System.nanoTime() - start) / 1_000_000_000;
+		long takenMemory = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
+		double mb = 1024 * 1024;
+		System.out.printf("DGO Online in %f seconds, using %f MB ram", elapsedTimeInSecond, takenMemory / mb);
 
     }
 }
