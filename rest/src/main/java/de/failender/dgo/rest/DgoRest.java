@@ -1,6 +1,7 @@
 package de.failender.dgo.rest;
 
 import de.failender.dgo.persistance.user.UserRepositoryService;
+import de.failender.dgo.rest.helden.HeldenController;
 import de.failender.dgo.rest.security.DgoSecurity;
 import de.failender.dgo.rest.user.UserService;
 import de.failender.ezql.EzqlConnector;
@@ -23,11 +24,14 @@ public class DgoRest {
             EzqlConnector.execute(sql);
 
         }
-        Javalin app = Javalin.create().start(7000);
+        Javalin app = Javalin.create()
+                .enableCorsForAllOrigins()
+                .start(7000);
         app.get("/", ctx -> ctx.json(UserRepositoryService.findUserByName("Failender")));
 
         DgoSecurity.registerSecurity(app);
         UserService.initialize();
+        new HeldenController(app);
 
 		double elapsedTimeInSecond = (double) (System.nanoTime() - start) / 1_000_000_000;
 		long takenMemory = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();

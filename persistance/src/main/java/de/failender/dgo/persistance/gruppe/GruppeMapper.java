@@ -1,9 +1,7 @@
 package de.failender.dgo.persistance.gruppe;
 
-import com.sun.javafx.scene.control.skin.IntegerFieldSkin;
 import de.failender.ezql.mapper.*;
 
-import javax.print.attribute.standard.MediaSize;
 import java.util.Arrays;
 import java.util.List;
 

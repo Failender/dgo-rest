@@ -19,7 +19,6 @@ public class DgoSecurity {
 	private static ThreadLocal<SecurityContext> contextThreadLocal = new ThreadLocal<>();
 
 	public static void registerSecurity(Javalin app) {
-
 		Algorithm algorithm = Algorithm.HMAC256("very_secret");
 		JWTVerifier verifier = JWT.require(algorithm)
 				.withIssuer("dgo-rest")
@@ -28,7 +27,6 @@ public class DgoSecurity {
 		app.before(context -> {
 
 			String token = context.header("token");
-			System.out.println(token);
 
 			if(token == null) {
 				contextThreadLocal.set(null);
@@ -36,7 +34,6 @@ public class DgoSecurity {
 				try {
 					DecodedJWT jwt = verifier.verify(token);
 					String username = jwt.getClaim("username").asString();
-					System.out.println(username);
 
 					contextThreadLocal.set(new SecurityContext(UserRepositoryService.findUserByName(username)));
 				} catch(InvalidClaimException e) {
@@ -53,7 +50,7 @@ public class DgoSecurity {
 			UserEntity userEntity = UserRepositoryService.findUserByName(username);
 
 			String password = context.header("password");
-			if(!userEntity.getPassword().equals(password)) {
+			if(userEntity == null || !userEntity.getPassword().equals(password)) {
 				context.status(401);
 				return;
 			}
@@ -62,8 +59,13 @@ public class DgoSecurity {
 					.withIssuer("dgo-rest")
 					.sign(algorithm);
 			context.header("token",token);
+			context.header("access-control-expose-headers", "token");
 
 		});
+	}
+
+	public static UserEntity getAuthenticatedUser() {
+		return contextThreadLocal.get().userEntity;
 	}
 
 	private static class SecurityContext {

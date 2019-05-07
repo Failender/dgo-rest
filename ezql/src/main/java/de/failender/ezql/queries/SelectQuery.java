@@ -37,6 +37,13 @@ public class SelectQuery<ENTITY> extends BaseQuery<ENTITY> {
 		String sql = "SELECT " + returnFields + " FROM " + mapper.table() + "";
 		sql = appendWhereClauses(sql);
 
+		if(!orderClauses.isEmpty()) {
+			String orders = orderClauses
+					.stream()
+					.map(orderClause -> orderClause.toString())
+					.collect(Collectors.joining(", "));
+			sql += " ORDER BY " + orders;
+		}
 		if(limit != null) {
 			sql += " LIMIT " + limit;
 		}

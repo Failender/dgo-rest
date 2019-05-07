@@ -10,6 +10,10 @@ public class GruppeRepositoryService {
 		return GruppeRepository.existsByName(name);
 	}
 
+	public static GruppeEntity findById(Long id) {
+		return GruppeRepository.findById(id);
+	}
+
 	public static void save(GruppeEntity gruppeEntity) {
 		GruppeRepository.save(gruppeEntity);
 	}

@@ -25,4 +25,12 @@ public class GruppeRepository {
 	public static void save(GruppeEntity gruppeEntity) {
 		new InsertQuery<>(GruppeMapper.INSTANCE, gruppeEntity).execute();
 	}
+
+    public static GruppeEntity findById(Long id) {
+		return EntityMapper.firstOrNull(SelectQuery.Builder.selectAll(GruppeMapper.INSTANCE)
+				.where(GruppeMapper.ID, id)
+				.limit(1)
+				.build()
+				.execute());
+    }
 }

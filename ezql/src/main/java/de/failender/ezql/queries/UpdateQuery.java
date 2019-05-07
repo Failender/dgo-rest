@@ -31,9 +31,11 @@ public class UpdateQuery<ENTITY> extends BaseQuery<ENTITY>{
 				.map(BaseClause::toString)
 				.collect(Collectors.joining(", "));
 		sql = appendWhereClauses(sql);
+		System.out.println(sql);
 		try(Statement statement = EzqlConnector.getConnection().createStatement()) {
 
-			statement.executeUpdate(sql);
+			int result = statement.executeUpdate(sql);
+			System.out.println(result);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
