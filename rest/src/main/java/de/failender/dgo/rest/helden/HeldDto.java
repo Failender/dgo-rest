@@ -9,13 +9,15 @@ public class HeldDto {
     private String gruppe;
     private boolean isPublic;
     private boolean active;
+    private String lastChange;
 
-    public HeldDto(HeldEntity heldEntity, String gruppe) {
+    public HeldDto(HeldEntity heldEntity, String gruppe, String lastChange) {
         this.name = heldEntity.getName();
         this.id = heldEntity.getId();
         this.gruppe = gruppe;
         this.isPublic = heldEntity.isPublic();
         this.active = heldEntity.isActive();
+        this.lastChange = lastChange;
     }
 
     public String getName() {
@@ -36,5 +38,9 @@ public class HeldDto {
 
     public String getGruppe() {
         return gruppe;
+    }
+
+    public String getLastChange() {
+        return lastChange;
     }
 }

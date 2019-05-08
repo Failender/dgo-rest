@@ -11,6 +11,7 @@ import de.failender.heldensoftware.xml.datenxml.Daten;
 import io.javalin.Context;
 import io.javalin.Javalin;
 
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -25,6 +26,8 @@ public class HeldenController {
 	public static final String HELD = PREFIX + "held/:held";
 	public static final String UPDATE_PUBLIC = PREFIX + "held/:held/public/:public";
 	public static final String UPDATE_ACTIVE = PREFIX + "held/:held/active/:active";
+
+	private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 
 	public HeldenController(Javalin javalin) {
 
@@ -81,8 +84,9 @@ public class HeldenController {
 						map.put(heldEntity.getGruppe(), GruppeRepository.findById(heldEntity.getGruppe()));
 					}
 
+					VersionEntity versionEntity = VersionRepositoryService.findLatestVersion(heldEntity);
 					String name = map.get(heldEntity.getGruppe()).getName();
-					return new HeldDto(heldEntity, name);
+					return new HeldDto(heldEntity, name, FORMATTER.format(versionEntity.getCreatedDate()));
 				})
 				.collect(Collectors.toList());
 		context.json(helden);
