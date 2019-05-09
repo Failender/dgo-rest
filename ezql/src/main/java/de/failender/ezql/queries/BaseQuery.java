@@ -23,7 +23,7 @@ public abstract class BaseQuery<ENTITY> {
 		sql += whereClauses
 				.stream()
 				.map(clause -> clause.toString())
-				.collect(Collectors.joining(" AND"));
+				.collect(Collectors.joining(" AND "));
 		return sql;
 	}
 }

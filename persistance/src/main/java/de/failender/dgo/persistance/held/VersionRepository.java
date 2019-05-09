@@ -20,4 +20,14 @@ class VersionRepository  {
 	public static void persist(VersionEntity versionEntity) {
 		new InsertQuery<>(VersionMapper.INSTANCE, versionEntity).execute();
 	}
+
+	public static VersionEntity findByHeldAndVersion(Long id, int version) {
+		return SelectQuery.Builder.selectAll(VersionMapper.INSTANCE)
+				.where(VersionMapper.HELD_ID, id)
+				.where(VersionMapper.VERSION, version)
+				.limit(1)
+				.build()
+				.execute()
+				.get(0);
+	}
 }

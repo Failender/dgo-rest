@@ -31,6 +31,7 @@ public class HeldenApi {
 		return requestRaw(request, useCache).map(is -> request.mapResponse(is));
 	}
 
+
 	public void provideDownload(IdCachedRequest<?> request, OutputStream stream) {
 		requestRaw(request, true).subscribe(is -> {
 			try {
@@ -39,6 +40,10 @@ public class HeldenApi {
 				throw new RuntimeException(e);
 			}
 		});
+	}
+
+	public InputStream provideDownload(IdCachedRequest<?> request) {
+		return requestRaw(request, true).block();
 	}
 
 	public Mono<InputStream> requestRaw(ApiRequest request, boolean useCache) {

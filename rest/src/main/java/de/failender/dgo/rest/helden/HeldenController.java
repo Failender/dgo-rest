@@ -7,6 +7,7 @@ import de.failender.dgo.persistance.held.*;
 import de.failender.dgo.rest.integration.Beans;
 import de.failender.dgo.rest.security.DgoSecurity;
 import de.failender.heldensoftware.api.requests.ReturnHeldDatenWithEreignisseRequest;
+import de.failender.heldensoftware.api.requests.ReturnHeldPdfRequest;
 import de.failender.heldensoftware.xml.datenxml.Daten;
 import io.javalin.Context;
 import io.javalin.Javalin;
@@ -23,7 +24,8 @@ public class HeldenController {
 	public static final String PREFIX = "api/helden/";
 	public static final String FOR_USER = PREFIX + "user/:user";
 	public static final String MEINE_HELDEN = PREFIX + "meine";
-	public static final String HELD = PREFIX + "held/:held";
+	public static final String HELD = PREFIX + "held/:held/:version/daten";
+	public static final String PDF = PREFIX + "held/:held/:version/pdf";
 	public static final String UPDATE_PUBLIC = PREFIX + "held/:held/public/:public";
 	public static final String UPDATE_ACTIVE = PREFIX + "held/:held/active/:active";
 
@@ -34,17 +36,30 @@ public class HeldenController {
 		javalin.get(FOR_USER, this::getHeldenForUser);
 		javalin.get(MEINE_HELDEN, this::getMeineHelden);
 		javalin.get(HELD, this::getHeld);
+		javalin.get(PDF, this::getPdf);
 		javalin.put(UPDATE_ACTIVE, this::updateActive);
 		javalin.put(UPDATE_PUBLIC, this::updatePublic);
 	}
 
 	private void getHeld(Context context) {
 		Long held = Long.valueOf(context.pathParam("held"));
+		int version = Integer.valueOf(context.pathParam("version"));
 		HeldEntity heldEntity = HeldRepositoryService.findById(held);
-		VersionEntity latest = VersionRepositoryService.findLatestVersion(heldEntity);
-		Daten daten = Beans.HELDEN_API.request(new ReturnHeldDatenWithEreignisseRequest(heldEntity.getId(), null, latest.getCacheId()))
+		VersionEntity versionEntity = VersionRepositoryService.findVersion(heldEntity, version);
+		Daten daten = Beans.HELDEN_API.request(new ReturnHeldDatenWithEreignisseRequest(heldEntity.getId(), null, versionEntity.getCacheId()))
 				.block();
 		context.json(daten);
+	}
+
+	private void getPdf(Context context) {
+
+		Long held = Long.valueOf(context.pathParam("held"));
+		int version = Integer.valueOf(context.pathParam("version"));
+		HeldEntity heldEntity = HeldRepositoryService.findById(held);
+		VersionEntity versionEntity = VersionRepositoryService.findVersion(heldEntity, version);
+
+		context.result(
+			Beans.HELDEN_API.provideDownload(new ReturnHeldPdfRequest(held, null, versionEntity.getCacheId())));
 	}
 
 	private void getMeineHelden(Context context) {
@@ -86,7 +101,7 @@ public class HeldenController {
 
 					VersionEntity versionEntity = VersionRepositoryService.findLatestVersion(heldEntity);
 					String name = map.get(heldEntity.getGruppe()).getName();
-					return new HeldDto(heldEntity, name, FORMATTER.format(versionEntity.getCreatedDate()));
+					return new HeldDto(heldEntity, name, FORMATTER.format(versionEntity.getCreatedDate()), versionEntity.getVersion());
 				})
 				.collect(Collectors.toList());
 		context.json(helden);
