@@ -1,13 +1,11 @@
 package de.failender.dgo.rest.security;
 
 import com.auth0.jwt.JWT;
-import com.auth0.jwt.JWTCreator;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.InvalidClaimException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import de.failender.dgo.persistance.user.UserEntity;
-import de.failender.dgo.persistance.user.UserMapper;
 import de.failender.dgo.persistance.user.UserRepositoryService;
 import io.javalin.Javalin;
 
@@ -19,6 +17,10 @@ public class DgoSecurity {
 	private static ThreadLocal<SecurityContext> contextThreadLocal = new ThreadLocal<>();
 
 	public static void registerSecurity(Javalin app) {
+
+		app.exception(UserNotLoggedInException.class, ((exception, ctx) -> {
+			ctx.status(401);
+		}));
 		Algorithm algorithm = Algorithm.HMAC256("very_secret");
 		JWTVerifier verifier = JWT.require(algorithm)
 				.withIssuer("dgo-rest")
@@ -65,7 +67,11 @@ public class DgoSecurity {
 	}
 
 	public static UserEntity getAuthenticatedUser() {
-		return contextThreadLocal.get().userEntity;
+		SecurityContext ctx = contextThreadLocal.get();
+		if (ctx == null) {
+			throw new UserNotLoggedInException();
+		}
+		return ctx.userEntity;
 	}
 
 	private static class SecurityContext {
