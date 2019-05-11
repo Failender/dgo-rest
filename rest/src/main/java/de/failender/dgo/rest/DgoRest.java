@@ -2,6 +2,7 @@ package de.failender.dgo.rest;
 
 import de.failender.dgo.persistance.user.UserRepositoryService;
 import de.failender.dgo.rest.helden.HeldenController;
+import de.failender.dgo.rest.pdf.PdfController;
 import de.failender.dgo.rest.security.DgoSecurity;
 import de.failender.dgo.rest.user.UserService;
 import de.failender.ezql.EzqlConnector;
@@ -32,6 +33,7 @@ public class DgoRest {
         DgoSecurity.registerSecurity(app);
         UserService.initialize();
         new HeldenController(app);
+        new PdfController(app);
 
 		double elapsedTimeInSecond = (double) (System.nanoTime() - start) / 1_000_000_000;
 		long takenMemory = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();

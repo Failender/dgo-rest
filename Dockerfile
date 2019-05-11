@@ -1,12 +1,11 @@
-FROM birdy/graalvm:latest
-
-WORKDIR /tmp/build
-ENV GRADLE_USER_HOME /tmp/build/.gradle
-
-ADD . /tmp/build
+FROM openjdk:8-alpine
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+COPY . /usr/src/app
 RUN ./gradlew fatJar
-RUN native-image -jar /tmp/build/rest/build/libs/rest-all-1.0-SNAPSHOT.jar -H:+JNI -H:ReflectionConfigurationFiles=reflection.json -H:Name=graal-javalin --static --delay-class-initialization-to-runtime=org.hibernate.secure.spi.JaccIntegrator,org.hibernate.dialect.OracleTypesHelper,de.failender.dgo.persistance.HibernateUtil,de.failender.dgo.rest.DgoRest
 
-FROM scratch
-COPY --from=0 /tmp/build/graal-javalin /
-ENTRYPOINT ["/graal-javalin", "args"]
+
+FROM openjdk:8-jre-slim
+COPY --from=0 /usr/src/app/rest/build/libs/rest-all.jar app.jar
+EXPOSE 8080
+CMD ["java", "-jar", "app.jar"]
