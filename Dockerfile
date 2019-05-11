@@ -6,6 +6,6 @@ RUN ./gradlew fatJar
 
 
 FROM openjdk:8-jre-slim
-COPY --from=0 /usr/src/app/rest/build/libs/dgo-all.jar app.jar
+COPY --from=0 /usr/src/app/rest/build/libs/dgo-all-1.0-SNAPSHOT.jar app.jar
 EXPOSE 8080
 CMD ["java", "-jar", "app.jar"]
