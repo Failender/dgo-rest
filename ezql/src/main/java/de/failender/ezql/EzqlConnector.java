@@ -16,6 +16,7 @@ public class EzqlConnector {
 
 		try {
 			Class.forName(driver);
+			System.out.println("Connecting to " + url);
 			connection = DriverManager.getConnection(url, user, password);
 
 		} catch (ClassNotFoundException e) {

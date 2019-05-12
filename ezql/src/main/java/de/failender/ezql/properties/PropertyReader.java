@@ -2,13 +2,16 @@ package de.failender.ezql.properties;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Map;
 import java.util.Properties;
 
 public class PropertyReader{
 
 
 	public static void initialize(String[] args) {
+
 		tryLoadProperties("/application.properties");
+		properties.putAll(System.getenv());
 		for (String arg : args) {
 			if(arg.contains("=")) {
 				String[] splits = arg.split("=");
