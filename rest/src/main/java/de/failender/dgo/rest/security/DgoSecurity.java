@@ -16,6 +16,8 @@ public class DgoSecurity {
 	public static final String PREFIX = "/api/security/";
 	public static final String GENERATE = PREFIX + "generate";
 
+	public static final String CREATE_USER = "CREATE_USER";
+
 	private static ThreadLocal<SecurityContext> contextThreadLocal = new ThreadLocal<>();
 
 	public static void registerSecurity(Javalin app) {
@@ -23,6 +25,12 @@ public class DgoSecurity {
 		app.exception(UserNotLoggedInException.class, ((exception, ctx) -> {
 			ctx.status(401);
 		}));
+
+		app.exception(NoPermissionException.class, ((exception, ctx) -> {
+			ctx.status(403);
+		}));
+
+
 		Algorithm algorithm = Algorithm.HMAC256("very_secret");
 		JWTVerifier verifier = JWT.require(algorithm)
 				.withIssuer("dgo-rest")
@@ -70,6 +78,17 @@ public class DgoSecurity {
 			context.json(permissions);
 
 		});
+	}
+
+	public static void checkPermission(String permission) {
+		SecurityContext ctx = contextThreadLocal.get();
+		if (ctx == null) {
+			throw new UserNotLoggedInException();
+		}
+		if(ctx.permissions.contains(permission)) {
+			return;
+		}
+		throw new NoPermissionException();
 	}
 
 	public static UserEntity getAuthenticatedUser() {
