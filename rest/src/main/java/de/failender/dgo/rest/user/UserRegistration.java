@@ -6,6 +6,7 @@ public class UserRegistration {
 	private String password;
 	private String token;
 	private String gruppe;
+	private Long role;
 
 
 	public String getName() {
@@ -47,6 +48,13 @@ public class UserRegistration {
 		this.gruppe = gruppe;
 	}
 
+	public Long getRole() {
+		return role;
+	}
+
+	public void setRole(Long role) {
+		this.role = role;
+	}
 
 	public UserRegistration() {
 	}

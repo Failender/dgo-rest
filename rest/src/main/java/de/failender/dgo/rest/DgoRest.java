@@ -1,5 +1,6 @@
 package de.failender.dgo.rest;
 
+import de.failender.dgo.persistance.user.UserEntity;
 import de.failender.dgo.persistance.user.UserRepositoryService;
 import de.failender.dgo.rest.helden.HeldenController;
 import de.failender.dgo.rest.pdf.PdfController;
@@ -23,7 +24,10 @@ public class DgoRest {
         if(PropertyReader.getProperty("hibernate.initialize.on.start").equals("true")) {
             String sql = IOUtils.toString(DgoRest.class.getResourceAsStream("/setup.sql"), "UTF-8");
             EzqlConnector.execute(sql);
-
+            String adminInsert = "INSERT INTO USERS (NAME, PASSWORD, TOKEN, GRUPPE_ID, CAN_WRITE) VALUES ('Admin', 'pass', null, null, false)";
+            EzqlConnector.execute(adminInsert);
+            UserEntity admin = UserRepositoryService.findUserByName("Admin");
+            UserRepositoryService.addRoleForUser(admin, 1L);
         }
         Javalin app = Javalin.create()
                 .enableCorsForAllOrigins()

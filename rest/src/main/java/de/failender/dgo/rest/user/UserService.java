@@ -70,6 +70,9 @@ public class UserService {
 			userEntity.setCanWrite(false);
 		}
 		UserRepositoryService.save(userEntity);
+		if(userRegistration.getRole() != null) {
+			UserRepositoryService.addRoleForUser(userEntity, userRegistration.getRole());
+		}
 		HeldenService.updateHeldenForUser(userEntity);
 		return userEntity;
 	}

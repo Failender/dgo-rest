@@ -22,6 +22,10 @@ public class UserRepositoryService {
         return UserRepository.findByName(name) != null;
     }
 
+    public static void addRoleForUser(UserEntity userEntity, Long permission) {
+        UserRepository.addRoleForUser(userEntity, permission);
+    }
+
     public static void save(UserEntity userEntity) {
         UserRepository.insert(userEntity);
     }

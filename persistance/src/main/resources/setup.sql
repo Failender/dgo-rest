@@ -1,3 +1,7 @@
+DROP TABLE IF EXISTS ROLES_TO_USER;
+DROP TABLE IF EXISTS ROLES_TO_RIGHTS;
+DROP TABLE IF EXISTS ROLES;
+DROP TABLE IF EXISTS RIGHTS;
 DROP TABLE IF EXISTS USERS;
 DROP TABLE IF EXISTS GRUPPEN;
 DROP TABLE IF EXISTS HELDEN;
@@ -9,7 +13,7 @@ CREATE TABLE USERS(
                     NAME varchar(40) NOT NULL,
                     PASSWORD varchar(60),
                     TOKEN varchar(64),
-                    GRUPPE_ID BIGINT NOT NULL,
+                    GRUPPE_ID BIGINT,
                     CAN_WRITE BOOLEAN NOT NULL
 );
 
@@ -41,3 +45,36 @@ CREATE TABLE HELD_VERSION(
                            CACHE_ID varchar(36) NOT NULL,
                            AP INTEGER NOT NULL
 );
+
+CREATE TABLE ROLES(
+                      ID SERIAL PRIMARY KEY,
+                      NAME varchar(20) NOT NULL
+);
+
+CREATE TABLE RIGHTS(
+                       ID SERIAL PRIMARY KEY,
+                       NAME varchar(20) NOT NULL
+);
+
+CREATE TABLE ROLES_TO_RIGHTS(
+                                ROLE_ID INTEGER REFERENCES ROLES(ID),
+                                RIGHT_ID INTEGER REFERENCES RIGHTS(ID),
+                                PRIMARY KEY(ROLE_ID , RIGHT_ID)
+);
+
+CREATE TABLE ROLES_TO_USER(
+                              ROLE_ID INTEGER REFERENCES ROLES(ID),
+                              USER_ID INTEGER REFERENCES USERS(ID),
+                              PRIMARY KEY(USER_ID, ROLE_ID)
+);
+
+
+INSERT INTO ROLES VALUES
+    (1, 'Administrator');
+
+INSERT INTO RIGHTS VALUES
+    (1, 'CREATE_USER');
+
+INSERT INTO ROLES_TO_RIGHTS VALUES
+    (1, 1);
+

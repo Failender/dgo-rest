@@ -9,6 +9,8 @@ import de.failender.dgo.persistance.user.UserEntity;
 import de.failender.dgo.persistance.user.UserRepositoryService;
 import io.javalin.Javalin;
 
+import java.util.List;
+
 public class DgoSecurity {
 
 	public static final String PREFIX = "/api/security/";
@@ -36,8 +38,8 @@ public class DgoSecurity {
 				try {
 					DecodedJWT jwt = verifier.verify(token);
 					String username = jwt.getClaim("username").asString();
-
-					contextThreadLocal.set(new SecurityContext(UserRepositoryService.findUserByName(username)));
+					List<String> permissions = jwt.getClaim("permissions").asList(String.class);
+					contextThreadLocal.set(new SecurityContext(UserRepositoryService.findUserByName(username), permissions));
 				} catch(InvalidClaimException e) {
 					context.status(401);
 				}
@@ -56,12 +58,16 @@ public class DgoSecurity {
 				context.status(401);
 				return;
 			}
+			List<String> permissions = UserRepositoryService.findUserPermissions(userEntity);
 			String token = JWT.create()
 					.withClaim("username", username)
+					.withArrayClaim("permissions", permissions.toArray(new String[0]))
 					.withIssuer("dgo-rest")
 					.sign(algorithm);
 			context.header("token",token);
-			context.header("access-control-expose-headers", "token");
+			context.header("permissions", String.join(",", permissions ));
+			context.header("access-control-expose-headers", "token,permissions");
+			context.json(permissions);
 
 		});
 	}
@@ -75,10 +81,12 @@ public class DgoSecurity {
 	}
 
 	private static class SecurityContext {
-		private UserEntity userEntity;
+		private final UserEntity userEntity;
+		private final List<String> permissions;
 
-		public SecurityContext(UserEntity userEntity) {
+		public SecurityContext(UserEntity userEntity, List<String> permissions) {
 			this.userEntity = userEntity;
+			this.permissions = permissions;
 		}
 
 		public UserEntity getUserEntity() {

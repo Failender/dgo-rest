@@ -22,6 +22,11 @@ class UserRepository {
 		return firstOrNull(SelectQuery.Builder.selectAll(UserMapper.INSTANCE).where(UserMapper.ID, id).limit(1).build().execute());
 	}
 
+	public static void addRoleForUser(UserEntity userEntity, Long permission) {
+		String permissionInsert = "INSERT INTO ROLES_TO_USER VALUES (" + permission + ", " + userEntity.getId() + ")";
+		EzqlConnector.execute(permissionInsert);
+	}
+
 	public static UserEntity findByName(String name) {
 		return firstOrNull(SelectQuery.Builder.selectAll(UserMapper.INSTANCE).where(UserMapper.USER_NAME, name).limit(1).build().execute());
 	}

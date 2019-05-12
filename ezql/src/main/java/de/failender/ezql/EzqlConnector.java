@@ -39,6 +39,7 @@ public class EzqlConnector {
 
 	public static void execute(String sql) {
 		try {
+			System.out.println(sql);
 			Statement statement = EzqlConnector.getConnection().createStatement();
 			statement.execute(sql);
 			statement.close();

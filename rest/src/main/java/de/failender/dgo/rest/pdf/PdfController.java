@@ -21,7 +21,12 @@ public class PdfController {
 
 	public PdfController(Javalin app) {
 		app.get(PAGE, this::getPdf);
-		preparePdf("lcd");
+		try {
+			preparePdf("lcd");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 	}
 
 	private void getPdf(Context context) {
