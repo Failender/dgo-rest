@@ -1,5 +1,7 @@
 package de.failender.dgo.persistance.gruppe;
 
+import java.util.List;
+
 public class GruppeRepositoryService {
 
 	public static GruppeEntity findByName(String name) {
@@ -16,5 +18,9 @@ public class GruppeRepositoryService {
 
 	public static void save(GruppeEntity gruppeEntity) {
 		GruppeRepository.save(gruppeEntity);
+	}
+
+	public static List<GruppeEntity> findAll() {
+		return GruppeRepository.findAll();
 	}
 }

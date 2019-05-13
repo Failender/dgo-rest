@@ -6,7 +6,6 @@ import de.failender.dgo.persistance.held.VersionEntity;
 import de.failender.dgo.persistance.held.VersionRepositoryService;
 import de.failender.dgo.persistance.user.UserEntity;
 import de.failender.dgo.rest.integration.Beans;
-import de.failender.dgo.rest.user.UserService;
 import de.failender.heldensoftware.api.XmlUtil;
 import de.failender.heldensoftware.api.authentication.TokenAuthentication;
 import de.failender.heldensoftware.api.requests.GetAllHeldenRequest;
@@ -22,14 +21,17 @@ import reactor.util.function.Tuple3;
 import java.io.InputStream;
 import java.time.Instant;
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.List;
+import java.util.Optional;
+import java.util.TimeZone;
+import java.util.UUID;
 
 public class HeldenService {
 
     private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(HeldenService.class);
 
     public static void updateHeldenForUser(UserEntity userEntity) {
-        if (userEntity.getToken() == null) {
+		if (userEntity.getToken() == null || userEntity.getToken().isEmpty()) {
             log.error("User with getName {} has null token ", userEntity.getName());
             return;
         }

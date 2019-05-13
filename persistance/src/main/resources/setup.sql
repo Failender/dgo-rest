@@ -6,21 +6,22 @@ DROP TABLE IF EXISTS USERS;
 DROP TABLE IF EXISTS GRUPPEN;
 DROP TABLE IF EXISTS HELDEN;
 DROP TABLE IF EXISTS HELD_VERSION;
+DROP TABLE IF EXISTS PDFS;
 
 
 CREATE TABLE USERS(
-                    ID SERIAL PRIMARY KEY,
-                    NAME varchar(40) NOT NULL,
-                    PASSWORD varchar(60),
-                    TOKEN varchar(64),
+                    ID        SERIAL PRIMARY KEY,
+                    NAME      varchar(40) NOT NULL UNIQUE,
+                    PASSWORD  varchar(60),
+                    TOKEN     varchar(64),
                     GRUPPE_ID BIGINT,
-                    CAN_WRITE BOOLEAN NOT NULL
+                    CAN_WRITE BOOLEAN     NOT NULL
 );
 
 
 CREATE TABLE GRUPPEN(
-                      ID SERIAL PRIMARY KEY,
-                      NAME VARCHAR(40) NOT NULL,
+                      ID    SERIAL PRIMARY KEY,
+                      NAME  VARCHAR(40) NOT NULL UNIQUE,
                       DATUM INTEGER
 );
 
@@ -47,13 +48,13 @@ CREATE TABLE HELD_VERSION(
 );
 
 CREATE TABLE ROLES(
-                      ID SERIAL PRIMARY KEY,
-                      NAME varchar(20) NOT NULL
+                    ID   SERIAL PRIMARY KEY,
+                    NAME varchar(20) NOT NULL UNIQUE
 );
 
 CREATE TABLE RIGHTS(
-                       ID SERIAL PRIMARY KEY,
-                       NAME varchar(20) NOT NULL
+                     ID   SERIAL PRIMARY KEY,
+                     NAME varchar(20) NOT NULL UNIQUE
 );
 
 CREATE TABLE ROLES_TO_RIGHTS(
@@ -66,6 +67,19 @@ CREATE TABLE ROLES_TO_USER(
                               ROLE_ID INTEGER REFERENCES ROLES(ID),
                               USER_ID INTEGER REFERENCES USERS(ID),
                               PRIMARY KEY(USER_ID, ROLE_ID)
+);
+
+CREATE TABLE PDFS
+(
+  ID   SERIAL PRIMARY KEY,
+  NAME varchar(20) NOT NULL UNIQUE
+);
+
+CREATE TABLE PDFS_TO_USER
+(
+  PDF_ID  INTEGER REFERENCES PDFS (ID),
+  USER_ID INTEGER REFERENCES USERS (ID),
+  PRIMARY KEY (PDF_ID, USER_ID)
 );
 
 

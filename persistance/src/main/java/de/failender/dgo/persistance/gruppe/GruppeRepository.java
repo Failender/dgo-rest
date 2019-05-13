@@ -4,6 +4,8 @@ import de.failender.ezql.mapper.EntityMapper;
 import de.failender.ezql.queries.InsertQuery;
 import de.failender.ezql.queries.SelectQuery;
 
+import java.util.List;
+
 public class GruppeRepository {
 
 
@@ -33,4 +35,10 @@ public class GruppeRepository {
 				.build()
 				.execute());
     }
+
+	public static List<GruppeEntity> findAll() {
+		return SelectQuery.Builder.selectAll(GruppeMapper.INSTANCE)
+				.build()
+				.execute();
+	}
 }

@@ -1,16 +1,19 @@
 package de.failender.dgo.rest.pdf;
 
+import de.failender.dgo.persistance.pdf.PdfEntity;
+import de.failender.dgo.persistance.pdf.PdfRepositoryService;
 import de.failender.dgo.rest.integration.Beans;
+import de.failender.dgo.rest.security.DgoSecurity;
+import de.failender.dgo.rest.security.NoPermissionException;
 import de.failender.ezql.properties.PropertyReader;
 import io.javalin.Context;
 import io.javalin.Javalin;
-import org.apache.commons.io.IOUtils;
 import org.apache.pdfbox.multipdf.Splitter;
 import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.pdmodel.PDPage;
-import org.eclipse.jetty.security.PropertyUserStore;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.List;
 
 public class PdfController {
@@ -32,6 +35,9 @@ public class PdfController {
 	private void getPdf(Context context) {
 
 		String source = context.pathParam("source");
+		if (!PdfRepositoryService.canUserView(source, DgoSecurity.getAuthenticatedUser())) {
+			throw new NoPermissionException();
+		}
 		int page = Integer.valueOf(context.pathParam("page"));
 
 		try {
@@ -49,6 +55,7 @@ public class PdfController {
 		File file = new File(PropertyReader.getProperty(propertyName));
 		File outDir = pdfDir(source);
 		if(outDir.exists()) {
+			System.out.println("skipping preparation, outdir already exists");
 			return;
 		}
 		outDir.mkdirs();
@@ -66,6 +73,9 @@ public class PdfController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		PdfEntity pdfEntity = new PdfEntity();
+		pdfEntity.setName(source);
+		PdfRepositoryService.save(pdfEntity);
 		System.out.println("Done preparing pdf " + source);
 
 	}
