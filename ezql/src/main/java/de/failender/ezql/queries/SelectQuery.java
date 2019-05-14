@@ -2,6 +2,8 @@ package de.failender.ezql.queries;
 
 import de.failender.ezql.EzqlConnector;
 import de.failender.ezql.clause.BaseClause;
+import de.failender.ezql.clause.Clause;
+import de.failender.ezql.clause.InClause;
 import de.failender.ezql.clause.OrderClause;
 import de.failender.ezql.mapper.EntityMapper;
 import de.failender.ezql.mapper.FieldMapper;
@@ -16,7 +18,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class SelectQuery<ENTITY> extends BaseQuery<ENTITY> {
+public class SelectQuery<ENTITY> extends BaseQuery {
 
 	private final EntityMapper<ENTITY> mapper;
 	private final Collection<FieldMapper<ENTITY, ?>> fieldMapper;
@@ -24,7 +26,7 @@ public class SelectQuery<ENTITY> extends BaseQuery<ENTITY> {
 	private final Integer limit;
 	private final List<OrderClause<?>> orderClauses;
 
-	public SelectQuery(EntityMapper<ENTITY> mapper, Collection<FieldMapper<ENTITY, ?>> fieldMapper, String returnFields, List<BaseClause<ENTITY, ?>> whereClauses, Integer limit, List<OrderClause<?>> orderClauses) {
+	public SelectQuery(EntityMapper<ENTITY> mapper, Collection<FieldMapper<ENTITY, ?>> fieldMapper, String returnFields, List<Clause> whereClauses, Integer limit, List<OrderClause<?>> orderClauses) {
 		super(whereClauses);
 		this.mapper = mapper;
 		this.fieldMapper = fieldMapper;
@@ -72,7 +74,7 @@ public class SelectQuery<ENTITY> extends BaseQuery<ENTITY> {
 		private final Collection<FieldMapper<T, ?>> fieldMapper;
 		private final String returnFields;
 		private Integer limit;
-		private List<BaseClause<T, ?>> whereClauses = new ArrayList<>();
+		private List<Clause> whereClauses = new ArrayList<>();
 		private List<OrderClause<?>> orderClauses = new ArrayList<>();
 
 		private Builder(EntityMapper<T> mapper, List<FieldMapper<T, ?>> fieldMapper, String returnFields) {
@@ -103,6 +105,11 @@ public class SelectQuery<ENTITY> extends BaseQuery<ENTITY> {
 
 		public <VALUE> Builder<T> where(FieldMapper<T, VALUE> field, VALUE value) {
 			whereClauses.add(new BaseClause(field, value));
+			return this;
+		}
+
+		public <VALUE> Builder<T> whereIn(FieldMapper<T, VALUE> field, List<VALUE> values) {
+			whereClauses.add(new InClause(field, values));
 			return this;
 		}
 

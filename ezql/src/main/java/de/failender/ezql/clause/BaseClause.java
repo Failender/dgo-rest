@@ -2,7 +2,7 @@ package de.failender.ezql.clause;
 
 import de.failender.ezql.mapper.FieldMapper;
 
-public class BaseClause<ENTITY, FIELD> {
+public class BaseClause<ENTITY, FIELD> implements Clause{
 
 	private final FieldMapper<ENTITY, FIELD> field;
 	private final FIELD value;

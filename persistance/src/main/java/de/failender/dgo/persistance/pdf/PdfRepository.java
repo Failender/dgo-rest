@@ -8,6 +8,8 @@ import de.failender.ezql.queries.SelectQuery;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 class PdfRepository {
 
@@ -34,5 +36,26 @@ class PdfRepository {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	public static List<Long> findVisiblePdfs(Long user) {
+		String sql = "SELECT PDF_ID FROM PDFS_TO_USER WHERE USER_ID = " +user;
+		try(Statement statement = EzqlConnector.getConnection().createStatement()) {
+			ResultSet rs = statement.executeQuery(sql);
+			List<Long> pdfIds = new ArrayList<>();
+			while(rs.next()) {
+				pdfIds.add(rs.getLong("PDF_ID"));
+			}
+			return pdfIds;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	public static List<PdfEntity> findByIdIn(List<Long> ids) {
+		return SelectQuery.Builder.selectAll(PdfMapper.INSTANCE)
+				.whereIn(PdfMapper.ID, ids)
+				.build()
+				.execute();
 	}
 }

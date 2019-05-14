@@ -21,14 +21,21 @@ public class PdfController {
 
 	private static final String PREFIX = "/api/pdf/";
 	private static final String PAGE =PREFIX + ":source/:page";
+	private static final String VISIBLE =PREFIX + "visible";
 
 	public PdfController(Javalin app) {
 		app.get(PAGE, this::getPdf);
+		app.get(VISIBLE, this::getVisiblePdfs);
 		try {
 			preparePdf("lcd");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
+	}
+
+	private void getVisiblePdfs(Context context) {
+		context.json(PdfRepositoryService.getVisiblePdfs(DgoSecurity.getAuthenticatedUser()));
 
 	}
 

@@ -5,6 +5,7 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.InvalidClaimException;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import de.failender.dgo.persistance.pdf.PdfRepositoryService;
 import de.failender.dgo.persistance.user.UserEntity;
 import de.failender.dgo.persistance.user.UserRepositoryService;
 import io.javalin.Javalin;
@@ -47,7 +48,9 @@ public class DgoSecurity {
 					DecodedJWT jwt = verifier.verify(token);
 					String username = jwt.getClaim("username").asString();
 					List<String> permissions = jwt.getClaim("permissions").asList(String.class);
+
 					contextThreadLocal.set(new SecurityContext(UserRepositoryService.findUserByName(username), permissions));
+					List<String> pdfs = PdfRepositoryService.getVisiblePdfs(contextThreadLocal.get().userEntity);
 				} catch(InvalidClaimException e) {
 					context.status(401);
 				}
@@ -67,14 +70,15 @@ public class DgoSecurity {
 				return;
 			}
 			List<String> permissions = UserRepositoryService.findUserPermissions(userEntity);
+			List<String> visiblePdfs = PdfRepositoryService.getVisiblePdfs(userEntity);
 			String token = JWT.create()
 					.withClaim("username", username)
-					.withArrayClaim("permissions", permissions.toArray(new String[0]))
 					.withIssuer("dgo-rest")
 					.sign(algorithm);
 			context.header("token",token);
 			context.header("permissions", String.join(",", permissions ));
-			context.header("access-control-expose-headers", "token,permissions");
+			context.header("pdfs", String.join(",", visiblePdfs));
+			context.header("access-control-expose-headers", "token,permissions,pdfs");
 			context.json(permissions);
 
 		});

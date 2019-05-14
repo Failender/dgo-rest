@@ -8,6 +8,7 @@ import de.failender.dgo.rest.pdf.PdfController;
 import de.failender.dgo.rest.security.DgoSecurity;
 import de.failender.dgo.rest.user.UserController;
 import de.failender.dgo.rest.user.UserService;
+import de.failender.dgo.rest.zauberspeicher.ZauberspeicherController;
 import de.failender.ezql.EzqlConnector;
 import de.failender.ezql.properties.PropertyReader;
 import io.javalin.Javalin;
@@ -42,6 +43,7 @@ public class DgoRest {
         new PdfController(app);
 		new GruppeController(app);
         new UserController(app);
+        new ZauberspeicherController(app);
 
 		double elapsedTimeInSecond = (double) (System.nanoTime() - start) / 1_000_000_000;
 		long takenMemory = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();

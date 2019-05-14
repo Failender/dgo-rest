@@ -1,15 +1,16 @@
 package de.failender.ezql.queries;
 
 import de.failender.ezql.clause.BaseClause;
+import de.failender.ezql.clause.Clause;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-public abstract class BaseQuery<ENTITY> {
+public abstract class BaseQuery {
 
-	private final List<BaseClause<ENTITY, ?>> whereClauses;
+	private final List<Clause> whereClauses;
 
-	protected BaseQuery(List<BaseClause<ENTITY, ?>> whereClauses) {
+	protected BaseQuery(List<Clause> whereClauses) {
 		this.whereClauses = whereClauses;
 	}
 

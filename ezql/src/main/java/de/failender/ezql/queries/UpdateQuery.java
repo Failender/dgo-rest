@@ -2,6 +2,7 @@ package de.failender.ezql.queries;
 
 import de.failender.ezql.EzqlConnector;
 import de.failender.ezql.clause.BaseClause;
+import de.failender.ezql.clause.Clause;
 import de.failender.ezql.mapper.EntityMapper;
 import de.failender.ezql.mapper.FieldMapper;
 
@@ -11,12 +12,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class UpdateQuery<ENTITY> extends BaseQuery<ENTITY>{
+public class UpdateQuery<ENTITY> extends BaseQuery{
 
 	private final EntityMapper<ENTITY> mapper;
-	private final List<BaseClause<ENTITY, ?>> updateClauses;
+	private final List<BaseClause<?, ?>> updateClauses;
 
-	public UpdateQuery(EntityMapper<ENTITY> mapper, List<BaseClause<ENTITY, ?>> updateClauses, List<BaseClause<ENTITY, ?>> whereClauses) {
+	public UpdateQuery(EntityMapper<ENTITY> mapper, List<BaseClause<?, ?>> updateClauses, List<Clause> whereClauses) {
 		super(whereClauses);
 		this.updateClauses = updateClauses;
 		this.mapper = mapper;
@@ -45,8 +46,8 @@ public class UpdateQuery<ENTITY> extends BaseQuery<ENTITY>{
 	public static class Builder<T> {
 
 		private final EntityMapper<T> mapper;
-		private List<BaseClause<T, ?>> whereClauses = new ArrayList<>();
-		private List<BaseClause<T, ?>> updateClauses = new ArrayList<>();
+		private List<Clause> whereClauses = new ArrayList<>();
+		private List<BaseClause<?, ?>> updateClauses = new ArrayList<>();
 
 		private Builder(EntityMapper<T> mapper) {
 			this.mapper = mapper;

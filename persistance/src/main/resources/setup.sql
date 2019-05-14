@@ -38,13 +38,13 @@ CREATE TABLE HELDEN(
 );
 
 CREATE TABLE HELD_VERSION(
-                           ID SERIAL PRIMARY KEY,
-                           HELDID BIGINT NOT NULL,
-                           VERSION INTEGER NOT NULL,
-                           CREATED_DATE TIMESTAMP  NOT NULL,
-                           LAST_EVENT varchar(200),
-                           CACHE_ID varchar(36) NOT NULL,
-                           AP INTEGER NOT NULL
+                       ID SERIAL PRIMARY KEY,
+                       HELDID BIGINT NOT NULL,
+                       VERSION INTEGER NOT NULL,
+                       CREATED_DATE TIMESTAMP  NOT NULL,
+                       LAST_EVENT varchar(200),
+                       CACHE_ID varchar(36) NOT NULL,
+                       AP INTEGER NOT NULL
 );
 
 CREATE TABLE ROLES(
@@ -77,7 +77,7 @@ CREATE TABLE PDFS
 
 CREATE TABLE PDFS_TO_USER
 (
-  PDF_ID  INTEGER REFERENCES PDFS (ID),
+  PDF_ID INTEGER REFERENCES PDFS (ID),
   USER_ID INTEGER REFERENCES USERS (ID),
   PRIMARY KEY (PDF_ID, USER_ID)
 );

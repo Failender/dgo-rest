@@ -2,6 +2,7 @@ package de.failender.ezql.queries;
 
 import de.failender.ezql.EzqlConnector;
 import de.failender.ezql.clause.BaseClause;
+import de.failender.ezql.clause.Clause;
 import de.failender.ezql.mapper.EntityMapper;
 import de.failender.ezql.mapper.FieldMapper;
 
@@ -11,12 +12,12 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ExistsQuery<ENTITY> extends BaseQuery<ENTITY> {
+public class ExistsQuery<ENTITY> extends BaseQuery {
 
 
 	private final EntityMapper<ENTITY> mapper;
 
-	protected ExistsQuery(EntityMapper<ENTITY> mapper, List<BaseClause<ENTITY, ?>> whereClauses) {
+	protected ExistsQuery(EntityMapper<ENTITY> mapper, List<Clause> whereClauses) {
 		super(whereClauses);
 		this.mapper = mapper;
 	}
@@ -39,7 +40,7 @@ public class ExistsQuery<ENTITY> extends BaseQuery<ENTITY> {
 
 		private final EntityMapper<ENTITY> mapper;
 
-		private List<BaseClause<ENTITY, ?>> whereClauses = new ArrayList<>();
+		private List<Clause> whereClauses = new ArrayList<>();
 
 
 		private Builder(EntityMapper<ENTITY> mapper) {
