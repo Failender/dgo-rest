@@ -1,5 +1,7 @@
 package de.failender.dgo.rest;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import de.failender.dgo.persistance.user.UserEntity;
 import de.failender.dgo.persistance.user.UserRepositoryService;
 import de.failender.dgo.rest.gruppen.GruppeController;
@@ -12,6 +14,7 @@ import de.failender.dgo.rest.zauberspeicher.ZauberspeicherController;
 import de.failender.ezql.EzqlConnector;
 import de.failender.ezql.properties.PropertyReader;
 import io.javalin.Javalin;
+import io.javalin.json.JavalinJackson;
 import org.apache.commons.io.IOUtils;
 
 import java.io.IOException;
@@ -35,6 +38,9 @@ public class DgoRest {
         Javalin app = Javalin.create()
                 .enableCorsForAllOrigins()
                 .start(7000);
+
+        ObjectMapper om = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        JavalinJackson.configure(om);
         app.get("/", ctx -> ctx.json(UserRepositoryService.findUserByName("Failender")));
 
         DgoSecurity.registerSecurity(app);

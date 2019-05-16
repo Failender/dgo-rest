@@ -6,8 +6,10 @@ public class ZauberspeicherEntity extends BaseEntity {
 
     private Long heldid;
     private Integer kosten;
+    private Integer qualitaet;
     private String komplexitaet;
     private String spomos;
+    private String zauber;
 
     public Long getHeldid() {
         return heldid;
@@ -39,6 +41,22 @@ public class ZauberspeicherEntity extends BaseEntity {
 
     public void setSpomos(String spomos) {
         this.spomos = spomos;
+    }
+
+    public Integer getQualitaet() {
+        return qualitaet;
+    }
+
+    public void setQualitaet(Integer qualitaet) {
+        this.qualitaet = qualitaet;
+    }
+
+    public String getZauber() {
+        return zauber;
+    }
+
+    public void setZauber(String zauber) {
+        this.zauber = zauber;
     }
 }
 

@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 class PdfRepository {
@@ -53,6 +54,9 @@ class PdfRepository {
 	}
 
 	public static List<PdfEntity> findByIdIn(List<Long> ids) {
+		if(ids.isEmpty()) {
+			return Collections.emptyList();
+		}
 		return SelectQuery.Builder.selectAll(PdfMapper.INSTANCE)
 				.whereIn(PdfMapper.ID, ids)
 				.build()
