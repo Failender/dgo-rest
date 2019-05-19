@@ -18,6 +18,9 @@ public class LongFieldMapper<ENTITY> extends FieldMapper<ENTITY, Long>{
 	private static final <ENTITY> BiConsumer<ENTITY, ResultSet> convertedSetter(BiConsumer<ENTITY, Long> original, String field) {
 		return (ENTITY entity, ResultSet rs)  -> {
 			try {
+				if(rs.getObject(field) == null) {
+					return;
+				}
 				original.accept(entity, rs.getLong(field));
 			} catch (SQLException e) {
 				e.printStackTrace();

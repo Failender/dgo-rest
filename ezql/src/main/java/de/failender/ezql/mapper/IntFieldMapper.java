@@ -18,6 +18,9 @@ public class IntFieldMapper<ENTITY> extends FieldMapper<ENTITY, Integer>{
 	private static final <ENTITY> BiConsumer<ENTITY, ResultSet> convertedSetter(BiConsumer<ENTITY, Integer> original, String field) {
 		return (ENTITY entity, ResultSet rs)  -> {
 			try {
+				if(rs.getObject(field) == null) {
+					return;
+				}
 				original.accept(entity, rs.getInt(field));
 			} catch (SQLException e) {
 				e.printStackTrace();

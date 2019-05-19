@@ -13,6 +13,7 @@ public class StringFieldMapper<ENTITY> extends FieldMapper<ENTITY, String> {
 	private static final <ENTITY> BiConsumer<ENTITY, ResultSet> convertedSetter(BiConsumer<ENTITY, String> original, String field) {
 		return (ENTITY entity, ResultSet rs)  -> {
 			try {
+
 				original.accept(entity, rs.getString(field));
 			} catch (SQLException e) {
 				e.printStackTrace();

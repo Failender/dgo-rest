@@ -6,6 +6,7 @@ import de.failender.dgo.persistance.user.UserEntity;
 import de.failender.dgo.persistance.user.UserRepositoryService;
 import de.failender.dgo.rest.gruppen.GruppeController;
 import de.failender.dgo.rest.helden.HeldenController;
+import de.failender.dgo.rest.helden.inventar.HeldInventarController;
 import de.failender.dgo.rest.pdf.PdfController;
 import de.failender.dgo.rest.security.DgoSecurity;
 import de.failender.dgo.rest.user.UserController;
@@ -18,6 +19,7 @@ import io.javalin.json.JavalinJackson;
 import org.apache.commons.io.IOUtils;
 
 import java.io.IOException;
+import java.io.InputStream;
 
 public class DgoRest {
 
@@ -35,6 +37,13 @@ public class DgoRest {
             UserEntity admin = UserRepositoryService.findUserByName("Admin");
             UserRepositoryService.addRoleForUser(admin, 1L);
         }
+        //Migration for dev mode
+        InputStream is = DgoRest.class.getResourceAsStream("/migration.sql");
+        if(is != null) {
+            String sql = IOUtils.toString(is, "UTF-8");
+            EzqlConnector.execute(sql);
+        }
+
         Javalin app = Javalin.create()
                 .enableCorsForAllOrigins()
                 .start(7000);
@@ -45,6 +54,7 @@ public class DgoRest {
 
         DgoSecurity.registerSecurity(app);
         UserService.initialize();
+        new HeldInventarController(app);
         new HeldenController(app);
         new PdfController(app);
 		new GruppeController(app);
