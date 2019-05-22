@@ -10,14 +10,18 @@ import java.util.List;
 public class HeldInventarRepositoryService {
 
     public static void persist(HeldEntity heldEntity, HeldInventarEntity entity) {
-        HeldInventarRepository.persist(entity);
+        HeldInventarRepository.INSTANCE.persist(entity);
     }
 
     public static List<HeldInventarEntity> findByHeldid(HeldEntity heldEntity) {
-        return HeldInventarRepository.findByHeldid(heldEntity.getId());
+        return HeldInventarRepository.INSTANCE.findByHeldid(heldEntity.getId());
     }
 
-    public static void delete(Long id) {
-        HeldInventarRepository.delete(id);
+    public static HeldInventarEntity findById(Long id) {
+        return HeldInventarRepository.INSTANCE.findById(id);
+    }
+
+    public static void delete(HeldInventarEntity entity) {
+        HeldInventarRepository.delete(entity.getId());
     }
 }

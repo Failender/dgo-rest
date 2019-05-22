@@ -13,9 +13,16 @@ public class HeldInventarController {
 
     private static final String PREFIX ="/api/helden/inventar/";
     private static final String FOR_HELD = PREFIX + "held/:held";
+    private static final String ENTRY = PREFIX + "entry/:id";
     public HeldInventarController(Javalin app) {
         app.get(FOR_HELD, this::getInventarForHeld);
         app.post(PREFIX, this::addInventar);
+        app.delete(ENTRY, this::deleteEntry);
+    }
+
+    private void deleteEntry(Context context) {
+        Long id = Long.valueOf(context.pathParam("id"));
+        HeldInventarRepositoryService.delete(HeldInventarRepositoryService.findById(id));
     }
 
     private void getInventarForHeld(Context context) {
