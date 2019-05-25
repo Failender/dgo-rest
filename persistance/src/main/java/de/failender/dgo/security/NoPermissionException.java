@@ -1,4 +1,4 @@
-package de.failender.dgo.rest.security;
+package de.failender.dgo.security;
 
 public class NoPermissionException extends RuntimeException{
 }

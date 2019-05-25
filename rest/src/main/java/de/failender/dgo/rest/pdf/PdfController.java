@@ -4,7 +4,7 @@ import de.failender.dgo.persistance.pdf.PdfEntity;
 import de.failender.dgo.persistance.pdf.PdfRepositoryService;
 import de.failender.dgo.rest.integration.Beans;
 import de.failender.dgo.rest.security.DgoSecurity;
-import de.failender.dgo.rest.security.NoPermissionException;
+import de.failender.dgo.security.NoPermissionException;
 import de.failender.ezql.properties.PropertyReader;
 import io.javalin.Context;
 import io.javalin.Javalin;

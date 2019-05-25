@@ -21,6 +21,10 @@ public class HeldInventarRepositoryService {
         return HeldInventarRepository.INSTANCE.findById(id);
     }
 
+    public static void updateAnzahl(HeldInventarEntity entity, int anzahl) {
+        HeldInventarRepository.INSTANCE.updateAnzahl(entity.getId(), anzahl);
+    }
+
     public static void delete(HeldInventarEntity entity) {
         HeldInventarRepository.delete(entity.getId());
     }

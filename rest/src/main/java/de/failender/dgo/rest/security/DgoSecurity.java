@@ -8,6 +8,9 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import de.failender.dgo.persistance.pdf.PdfRepositoryService;
 import de.failender.dgo.persistance.user.UserEntity;
 import de.failender.dgo.persistance.user.UserRepositoryService;
+import de.failender.dgo.security.DgoSecurityContext;
+import de.failender.dgo.security.NoPermissionException;
+import de.failender.dgo.security.UserNotLoggedInException;
 import io.javalin.Javalin;
 
 import java.util.List;
@@ -19,7 +22,6 @@ public class DgoSecurity {
 
 	public static final String CREATE_USER = "CREATE_USER";
 
-	private static ThreadLocal<SecurityContext> contextThreadLocal = new ThreadLocal<>();
 
 	public static void registerSecurity(Javalin app) {
 
@@ -42,15 +44,14 @@ public class DgoSecurity {
 			String token = context.header("token");
 
 			if(token == null) {
-				contextThreadLocal.set(null);
+				DgoSecurityContext.resetContext();
 			} else {
 				try {
 					DecodedJWT jwt = verifier.verify(token);
 					String username = jwt.getClaim("username").asString();
-					List<String> permissions = jwt.getClaim("permissions").asList(String.class);
 
-					contextThreadLocal.set(new SecurityContext(UserRepositoryService.findUserByName(username), permissions));
-					List<String> pdfs = PdfRepositoryService.getVisiblePdfs(contextThreadLocal.get().userEntity);
+					List<String> permissions = jwt.getClaim("permissions").asList(String.class);
+					DgoSecurityContext.login(username, permissions);
 				} catch(InvalidClaimException e) {
 					context.status(401);
 				}
@@ -84,36 +85,7 @@ public class DgoSecurity {
 		});
 	}
 
-	public static void checkPermission(String permission) {
-		SecurityContext ctx = contextThreadLocal.get();
-		if (ctx == null) {
-			throw new UserNotLoggedInException();
-		}
-		if(ctx.permissions.contains(permission)) {
-			return;
-		}
-		throw new NoPermissionException();
-	}
 
-	public static UserEntity getAuthenticatedUser() {
-		SecurityContext ctx = contextThreadLocal.get();
-		if (ctx == null) {
-			throw new UserNotLoggedInException();
-		}
-		return ctx.userEntity;
-	}
 
-	private static class SecurityContext {
-		private final UserEntity userEntity;
-		private final List<String> permissions;
 
-		public SecurityContext(UserEntity userEntity, List<String> permissions) {
-			this.userEntity = userEntity;
-			this.permissions = permissions;
-		}
-
-		public UserEntity getUserEntity() {
-			return userEntity;
-		}
-	}
 }

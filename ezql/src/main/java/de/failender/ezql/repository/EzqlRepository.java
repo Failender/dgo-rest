@@ -1,10 +1,14 @@
-package de.failender.ezql;
+package de.failender.ezql.repository;
 
+import de.failender.ezql.clause.BaseClause;
+import de.failender.ezql.clause.Clause;
 import de.failender.ezql.mapper.EntityMapper;
 import de.failender.ezql.mapper.FieldMapper;
 import de.failender.ezql.queries.InsertQuery;
 import de.failender.ezql.queries.SelectQuery;
+import de.failender.ezql.queries.UpdateQuery;
 
+import java.util.Collections;
 import java.util.List;
 
 public abstract class EzqlRepository <ENTITY>{
@@ -24,6 +28,16 @@ public abstract class EzqlRepository <ENTITY>{
                 .limit(1)
                 .build()
                 .execute());
+    }
+
+    public void update(List<Clause> whereClauses, List<BaseClause<ENTITY, ?>> updateClauses) {
+        UpdateQuery.Builder.update(getMapper());
+        new UpdateQuery<>(getMapper(), updateClauses, whereClauses)
+                .execute();
+    }
+
+    public void update(Clause whereClauses, BaseClause<ENTITY, ?> updateClause) {
+        update(Collections.singletonList(whereClauses), Collections.singletonList(updateClause));
     }
 
     public void persist(ENTITY entity) {

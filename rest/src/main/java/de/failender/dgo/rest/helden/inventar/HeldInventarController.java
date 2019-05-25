@@ -13,10 +13,12 @@ public class HeldInventarController {
 
     private static final String PREFIX ="/api/helden/inventar/";
     private static final String FOR_HELD = PREFIX + "held/:held";
+    private static final String ANZAHL = PREFIX + "entry/:id/anzahl/:anzahl";
     private static final String ENTRY = PREFIX + "entry/:id";
     public HeldInventarController(Javalin app) {
         app.get(FOR_HELD, this::getInventarForHeld);
         app.post(PREFIX, this::addInventar);
+        app.put(ANZAHL, this::updateAnzahl);
         app.delete(ENTRY, this::deleteEntry);
     }
 
@@ -37,5 +39,12 @@ public class HeldInventarController {
         HeldInventarEntity heldInventarEntity = context.bodyAsClass(HeldInventarEntity.class);
         HeldEntity heldEntity = HeldRepositoryService.findById(heldInventarEntity.getHeldid());
         HeldInventarRepositoryService.persist(heldEntity, heldInventarEntity);
+    }
+
+    private void updateAnzahl(Context context) {
+        long id = Long.valueOf(context.pathParam("id"));
+        int anzahl = Integer.valueOf(context.pathParam("anzahl"));
+        HeldInventarEntity heldInventarEntity = HeldInventarRepositoryService.findById(id);
+        HeldInventarRepositoryService.updateAnzahl(heldInventarEntity, anzahl);
     }
 }

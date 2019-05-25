@@ -15,9 +15,9 @@ import java.util.stream.Collectors;
 public class UpdateQuery<ENTITY> extends BaseQuery{
 
 	private final EntityMapper<ENTITY> mapper;
-	private final List<BaseClause<?, ?>> updateClauses;
+	private final List<BaseClause<ENTITY, ?>> updateClauses;
 
-	public UpdateQuery(EntityMapper<ENTITY> mapper, List<BaseClause<?, ?>> updateClauses, List<Clause> whereClauses) {
+	public UpdateQuery(EntityMapper<ENTITY> mapper, List<BaseClause<ENTITY, ?>> updateClauses, List<Clause> whereClauses) {
 		super(whereClauses);
 		this.updateClauses = updateClauses;
 		this.mapper = mapper;
@@ -47,7 +47,7 @@ public class UpdateQuery<ENTITY> extends BaseQuery{
 
 		private final EntityMapper<T> mapper;
 		private List<Clause> whereClauses = new ArrayList<>();
-		private List<BaseClause<?, ?>> updateClauses = new ArrayList<>();
+		private List<BaseClause<T, ?>> updateClauses = new ArrayList<>();
 
 		private Builder(EntityMapper<T> mapper) {
 			this.mapper = mapper;

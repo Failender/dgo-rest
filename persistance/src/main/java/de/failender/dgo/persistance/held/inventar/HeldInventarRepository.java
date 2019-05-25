@@ -1,14 +1,11 @@
 package de.failender.dgo.persistance.held.inventar;
 
-import com.sun.org.apache.bcel.internal.generic.Select;
-import de.failender.dgo.persistance.held.HeldEntity;
-import de.failender.ezql.EzqlRepository;
+import de.failender.ezql.clause.BaseClause;
+import de.failender.ezql.repository.EzqlRepository;
 import de.failender.ezql.mapper.EntityMapper;
 import de.failender.ezql.queries.DeleteQuery;
-import de.failender.ezql.queries.InsertQuery;
-import de.failender.ezql.queries.SelectQuery;
 
-import javax.swing.text.DefaultEditorKit;
+import java.util.Collections;
 import java.util.List;
 
 class HeldInventarRepository extends EzqlRepository<HeldInventarEntity> {
@@ -34,4 +31,9 @@ class HeldInventarRepository extends EzqlRepository<HeldInventarEntity> {
                 .where(HeldInventarMapper.ID, id)
                 .build().execute();
     }
+
+    public void updateAnzahl(Long id, int anzahl) {
+        update(new BaseClause<>(HeldInventarMapper.ID, id), new BaseClause<>(HeldInventarMapper.ANZAHL, anzahl));
+    }
+
 }
