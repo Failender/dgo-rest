@@ -7,7 +7,7 @@ public class HeldInventarEntity extends BaseEntity {
     private String name;
     private Long heldid;
     private Integer container;
-    private Integer gewicht;
+    private Float gewicht;
     private int anzahl;
     private String notiz;
 
@@ -35,11 +35,11 @@ public class HeldInventarEntity extends BaseEntity {
         this.container = container;
     }
 
-    public Integer getGewicht() {
+    public Float getGewicht() {
         return gewicht;
     }
 
-    public void setGewicht(Integer gewicht) {
+    public void setGewicht(Float gewicht) {
         this.gewicht = gewicht;
     }
 
@@ -59,17 +59,3 @@ public class HeldInventarEntity extends BaseEntity {
         this.notiz = notiz;
     }
 }
-
-
-/*
-
-
-CREATE TABLE HELD_INVENTAR(
-  ID SERIAL PRIMARY KEY,
-  NAME VARCHAR(200) NOT NULL,
-  HELDID BIGINT NOT NULL REFERENCES HELDEN(ID),
-  CONTAINER ID REFERENCES HELD_INVENTAR(ID),
-  GEWICHT INTEGER
-
-);
- */
