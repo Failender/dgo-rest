@@ -4,6 +4,7 @@ import de.failender.dgo.persistance.pdf.PdfEntity;
 import de.failender.dgo.persistance.pdf.PdfRepositoryService;
 import de.failender.dgo.rest.integration.Beans;
 import de.failender.dgo.rest.security.DgoSecurity;
+import de.failender.dgo.security.DgoSecurityContext;
 import de.failender.dgo.security.NoPermissionException;
 import de.failender.ezql.properties.PropertyReader;
 import io.javalin.Context;
@@ -35,14 +36,14 @@ public class PdfController {
 	}
 
 	private void getVisiblePdfs(Context context) {
-		context.json(PdfRepositoryService.getVisiblePdfs(DgoSecurity.getAuthenticatedUser()));
+		context.json(PdfRepositoryService.getVisiblePdfs(DgoSecurityContext.getAuthenticatedUser()));
 
 	}
 
 	private void getPdf(Context context) {
 
 		String source = context.pathParam("source");
-		if (!PdfRepositoryService.canUserView(source, DgoSecurity.getAuthenticatedUser())) {
+		if (!PdfRepositoryService.canUserView(source, DgoSecurityContext.getAuthenticatedUser())) {
 			throw new NoPermissionException();
 		}
 		int page = Integer.valueOf(context.pathParam("page"));

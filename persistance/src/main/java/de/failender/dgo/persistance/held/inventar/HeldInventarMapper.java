@@ -19,7 +19,7 @@ public class HeldInventarMapper extends EntityMapper<HeldInventarEntity> {
     public static final StringFieldMapper<HeldInventarEntity> NAME = new StringFieldMapper<>("NAME", HeldInventarEntity::setName, HeldInventarEntity::getName);
     public static final LongFieldMapper<HeldInventarEntity> HELDID = new LongFieldMapper<>("HELDID", HeldInventarEntity::setHeldid, HeldInventarEntity::getHeldid);
     public static final IntFieldMapper<HeldInventarEntity> CONTAINER = new IntFieldMapper<>("CONTAINER", HeldInventarEntity::setContainer, HeldInventarEntity::getContainer);
-    public static final IntFieldMapper<HeldInventarEntity> GEWICHT = new IntFieldMapper<>("GEWICHT", HeldInventarEntity::setGewicht, HeldInventarEntity::getGewicht);
+    public static final FloatFieldMapper<HeldInventarEntity> GEWICHT = new FloatFieldMapper<>("GEWICHT", HeldInventarEntity::setGewicht, HeldInventarEntity::getGewicht);
     public static final StringFieldMapper<HeldInventarEntity> NOTIZ = new StringFieldMapper<>("NOTIZ", HeldInventarEntity::setNotiz, HeldInventarEntity::getNotiz);
     public static final IntFieldMapper<HeldInventarEntity> ANZAHL = new IntFieldMapper<>("ANZAHL", HeldInventarEntity::setAnzahl, HeldInventarEntity::getAnzahl);
 

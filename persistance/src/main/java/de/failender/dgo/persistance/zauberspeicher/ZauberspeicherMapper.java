@@ -18,7 +18,8 @@ public class ZauberspeicherMapper extends EntityMapper<ZauberspeicherEntity> {
     public static final StringFieldMapper<ZauberspeicherEntity> KOMPLEXITAET = new StringFieldMapper<>("KOMPLEXITAET", ZauberspeicherEntity::setKomplexitaet, ZauberspeicherEntity::getKomplexitaet);
     public static final StringFieldMapper<ZauberspeicherEntity> SPOMOS = new StringFieldMapper<>("SPOMOS", ZauberspeicherEntity::setSpomos, ZauberspeicherEntity::getSpomos);
     public static final StringFieldMapper<ZauberspeicherEntity> ZAUBER = new StringFieldMapper<>("ZAUBER", ZauberspeicherEntity::setZauber, ZauberspeicherEntity::getZauber);
-
+    public static final IntFieldMapper<ZauberspeicherEntity> ZFW = new IntFieldMapper<>("ZFW", ZauberspeicherEntity::setZfw, ZauberspeicherEntity::getZfw);
+    public static final IntFieldMapper<ZauberspeicherEntity> MR = new IntFieldMapper<>("MR", ZauberspeicherEntity::setMr, ZauberspeicherEntity::getMr);
 
     @Override
     public String table() {
@@ -32,7 +33,7 @@ public class ZauberspeicherMapper extends EntityMapper<ZauberspeicherEntity> {
 
     @Override
     public List<FieldMapper<ZauberspeicherEntity, ?>> fieldMappers() {
-        return Arrays.asList(ID, HELD_ID, KOSTEN, KOMPLEXITAET, SPOMOS, QUALITAET, ZAUBER);
+        return Arrays.asList(ID, HELD_ID, KOSTEN, KOMPLEXITAET, SPOMOS, QUALITAET, ZAUBER, ZFW, MR);
     }
 
     @Override

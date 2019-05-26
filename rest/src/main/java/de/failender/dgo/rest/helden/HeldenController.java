@@ -6,6 +6,7 @@ import de.failender.dgo.persistance.gruppe.GruppeRepositoryService;
 import de.failender.dgo.persistance.held.*;
 import de.failender.dgo.rest.integration.Beans;
 import de.failender.dgo.rest.security.DgoSecurity;
+import de.failender.dgo.security.DgoSecurityContext;
 import de.failender.heldensoftware.api.requests.ReturnHeldDatenWithEreignisseRequest;
 import de.failender.heldensoftware.api.requests.ReturnHeldPdfRequest;
 import de.failender.heldensoftware.xml.datenxml.Daten;
@@ -63,7 +64,7 @@ public class HeldenController {
 	}
 
 	private void getMeineHelden(Context context) {
-		Long id = DgoSecurity.getAuthenticatedUser().getId();
+		Long id = DgoSecurityContext.getAuthenticatedUser().getId();
 		getHeldenForUser(context, id);
 	}
 
