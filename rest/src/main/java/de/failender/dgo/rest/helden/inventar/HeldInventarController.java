@@ -30,14 +30,14 @@ public class HeldInventarController {
     private void getInventarForHeld(Context context) {
         Long held = Long.valueOf(context.pathParam("held"));
 
-        HeldEntity heldEntity = HeldRepositoryService.findById(held);
+        HeldEntity heldEntity = HeldRepositoryService.findByIdReduced(held);
         List<HeldInventarEntity> heldInventar = HeldInventarRepositoryService.findByHeldid(heldEntity);
         context.json(heldInventar);
     }
 
     private void addInventar(Context context) {
         HeldInventarEntity heldInventarEntity = context.bodyAsClass(HeldInventarEntity.class);
-        HeldEntity heldEntity = HeldRepositoryService.findById(heldInventarEntity.getHeldid());
+        HeldEntity heldEntity = HeldRepositoryService.findByIdReduced(heldInventarEntity.getHeldid());
         HeldInventarRepositoryService.persist(heldEntity, heldInventarEntity);
     }
 

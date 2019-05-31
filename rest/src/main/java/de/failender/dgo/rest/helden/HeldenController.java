@@ -56,7 +56,7 @@ public class HeldenController {
 
 		Long held = Long.valueOf(context.pathParam("held"));
 		int version = Integer.valueOf(context.pathParam("version"));
-		HeldEntity heldEntity = HeldRepositoryService.findById(held);
+		HeldEntity heldEntity = HeldRepositoryService.findByIdReduced(held);
 		VersionEntity versionEntity = VersionRepositoryService.findVersion(heldEntity, version);
 
 		context.result(
@@ -71,14 +71,14 @@ public class HeldenController {
 	private void updatePublic(Context context) {
 		Long held = Long.valueOf(context.pathParam("held"));
 		boolean value = Boolean.valueOf(context.pathParam("public"));
-		HeldEntity heldEntity = HeldRepositoryService.findById(held);
+		HeldEntity heldEntity = HeldRepositoryService.findByIdReduced(held);
 		HeldRepositoryService.updatePublic(heldEntity, value);
 	}
 
 	private void updateActive(Context context) {
 		Long held = Long.valueOf(context.pathParam("held"));
 		boolean value = Boolean.valueOf(context.pathParam("active"));
-		HeldEntity heldEntity = HeldRepositoryService.findById(held);
+		HeldEntity heldEntity = HeldRepositoryService.findByIdReduced(held);
 		HeldRepositoryService.updateActive(heldEntity, value);
 	}
 

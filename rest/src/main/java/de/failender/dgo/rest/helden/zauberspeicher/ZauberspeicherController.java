@@ -1,4 +1,4 @@
-package de.failender.dgo.rest.zauberspeicher;
+package de.failender.dgo.rest.helden.zauberspeicher;
 
 import de.failender.dgo.persistance.held.HeldEntity;
 import de.failender.dgo.persistance.held.HeldRepositoryService;
@@ -9,7 +9,7 @@ import io.javalin.Javalin;
 
 public class ZauberspeicherController {
 
-    private static final String PREFIX = "/api/zauberspeicher/";
+    private static final String PREFIX = "/api/helden/zauberspeicher/";
     private static final String FOR_HELD = PREFIX + "held/:held";
     private static final String SPEICHER = PREFIX + "speicher/:speicher";
 
@@ -21,7 +21,7 @@ public class ZauberspeicherController {
 
     private void getZauberspeicherForHeld(Context context) {
         Long held = Long.valueOf(context.pathParam("held"));
-        HeldEntity heldEntity = HeldRepositoryService.findById(held);
+        HeldEntity heldEntity = HeldRepositoryService.findByIdReduced(held);
         context.json(ZauberspeicherRepositoryService.findByHeld(heldEntity));
     }
 

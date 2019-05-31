@@ -12,11 +12,21 @@ public class HeldRepositoryService {
     }
 
     public static void saveHeld(HeldEntity heldEntity) {
-        HeldRepository.persist(heldEntity);
+        new HeldRepository().persist(heldEntity);
     }
 
+    /**
+     * Finds a held by its id, with only the fields that are needed to check if the user can view this one
+     */
+    public static HeldEntity findByIdReduced(Long id) {
+        HeldEntity heldEntity = new HeldRepository().findByIdReduced(id);
+        if(!canCurrentUserViewHeld(heldEntity)) {
+            throw new NoPermissionException();
+        }
+        return heldEntity;
+    }
     public static HeldEntity findById(Long id) {
-        HeldEntity heldEntity = HeldRepository.findById(id);
+        HeldEntity heldEntity = new HeldRepository().findById(id);
 
 
         if(!canCurrentUserViewHeld(heldEntity)) {

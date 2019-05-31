@@ -10,7 +10,7 @@ import java.util.List;
 public class ZauberspeicherRepositoryService {
 
     public static void save(ZauberspeicherEntity zauberspeicherEntity) {
-        HeldRepositoryService.findById(zauberspeicherEntity.getHeldid());
+        HeldRepositoryService.findByIdReduced(zauberspeicherEntity.getHeldid());
         ZauberspeicherRepository.save(zauberspeicherEntity);
     }
 

@@ -5,10 +5,15 @@ import de.failender.ezql.mapper.EntityMapper;
 import de.failender.ezql.queries.InsertQuery;
 import de.failender.ezql.queries.SelectQuery;
 import de.failender.ezql.queries.UpdateQuery;
+import de.failender.ezql.repository.EzqlRepository;
 
 import java.util.List;
 
-class HeldRepository {
+class HeldRepository extends EzqlRepository<HeldEntity> {
+
+	public HeldEntity findByIdReduced(Long id) {
+		return findOneBy(HeldMapper.ID, id, HeldMapper.USER_ID);
+	}
 
 	public static List<HeldEntity> findByUserIdOrdered(Long id) {
 		return SelectQuery.Builder.selectAll(HeldMapper.INSTANCE)
@@ -33,15 +38,9 @@ class HeldRepository {
 	}
 
 
-
-	public static void persist(HeldEntity heldEntity) {
-		new InsertQuery<>(HeldMapper.INSTANCE, heldEntity, true).execute();
+	@Override
+	protected EntityMapper<HeldEntity> getMapper() {
+		return HeldMapper.INSTANCE;
 	}
 
-	public static HeldEntity findById(Long id) {
-		return EntityMapper.firstOrNull(SelectQuery.Builder.selectAll(HeldMapper.INSTANCE)
-				.where(HeldMapper.ID, id)
-				.limit(1)
-				.build().execute());
-	}
 }

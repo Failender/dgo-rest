@@ -15,20 +15,34 @@ public abstract class EzqlRepository <ENTITY>{
 
     protected abstract EntityMapper<ENTITY> getMapper();
 
-    public <FIELD> List<ENTITY> findBy(FieldMapper<ENTITY, FIELD> fieldMapper, FIELD field) {
+    public ENTITY findById(Long id) {
+        return findOneBy(getMapper().idField(), id);
+    }
+
+    protected <FIELD> List<ENTITY> findBy(FieldMapper<ENTITY, FIELD> fieldMapper, FIELD field) {
         return SelectQuery.Builder.selectAll(getMapper())
                 .where(fieldMapper, field)
                 .build()
                 .execute();
     }
 
-    public <FIELD> ENTITY findOneBy(FieldMapper<ENTITY, FIELD> fieldMapper, FIELD field) {
+    protected  <FIELD> ENTITY findOneBy(FieldMapper<ENTITY, FIELD> fieldMapper, FIELD field) {
         return firstOrNull(SelectQuery.Builder.selectAll(getMapper())
                 .where(fieldMapper, field)
                 .limit(1)
                 .build()
                 .execute());
     }
+
+    protected <FIELD> ENTITY findOneBy(FieldMapper<ENTITY, FIELD> fieldMapper, FIELD field, FieldMapper<ENTITY, ?>... fields) {
+        return firstOrNull(SelectQuery.Builder.select(getMapper(), fields)
+                .where(fieldMapper, field)
+                .limit(1)
+                .build()
+                .execute());
+    }
+
+
 
     public void update(List<Clause> whereClauses, List<BaseClause<ENTITY, ?>> updateClauses) {
         UpdateQuery.Builder.update(getMapper());

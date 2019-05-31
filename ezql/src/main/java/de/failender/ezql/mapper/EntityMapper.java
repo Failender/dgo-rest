@@ -7,7 +7,7 @@ public abstract class EntityMapper<T> {
 	public abstract String table();
 	public abstract T create();
 	public abstract List<FieldMapper<T, ?>> fieldMappers();
-	public abstract LongFieldMapper idField();
+	public abstract LongFieldMapper<T> idField();
 
 	public static <T> T firstOrNull(List<T> list) {
 		if(list.isEmpty()) {
