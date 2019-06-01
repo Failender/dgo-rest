@@ -42,6 +42,9 @@ public class DgoSecurity {
 		app.before(context -> {
 
 			String token = context.header("token");
+			if (token == null) {
+				token = context.queryParam("token");
+			}
 
 			if(token == null) {
 				DgoSecurityContext.resetContext();
