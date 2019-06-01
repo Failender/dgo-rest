@@ -15,7 +15,7 @@ public class GeldController {
 
     public GeldController(Javalin app) {
         app.get(FOR_HELD, this::getGeldBoerseForHeld);
-        app.put(FOR_HELD, this::updateGeldBoerseForHeld);
+        app.put(PREFIX, this::updateGeldBoerseForHeld);
     }
 
     private void getGeldBoerseForHeld(Context context) {
@@ -30,5 +30,6 @@ public class GeldController {
         GeldBoerseEntity geldBoerseEntity = context.bodyAsClass(GeldBoerseEntity.class);
         HeldEntity heldEntity = HeldRepositoryService.findByIdReduced(geldBoerseEntity.getHeldid());
         GeldBoerseRepositoryService.updateGeldboerseForHeld(geldBoerseEntity, heldEntity);
+        context.json(geldBoerseEntity);
     }
 }

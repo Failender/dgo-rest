@@ -2,7 +2,6 @@ package de.failender.dgo.persistance.held;
 
 import de.failender.ezql.clause.OrderClause;
 import de.failender.ezql.mapper.EntityMapper;
-import de.failender.ezql.queries.InsertQuery;
 import de.failender.ezql.queries.SelectQuery;
 import de.failender.ezql.queries.UpdateQuery;
 import de.failender.ezql.repository.EzqlRepository;
@@ -12,7 +11,9 @@ import java.util.List;
 class HeldRepository extends EzqlRepository<HeldEntity> {
 
 	public HeldEntity findByIdReduced(Long id) {
-		return findOneBy(HeldMapper.ID, id, HeldMapper.USER_ID);
+		HeldEntity heldEntity = findOneBy(HeldMapper.ID, id, HeldMapper.USER_ID);
+		heldEntity.setId(id);
+		return heldEntity;
 	}
 
 	public static List<HeldEntity> findByUserIdOrdered(Long id) {

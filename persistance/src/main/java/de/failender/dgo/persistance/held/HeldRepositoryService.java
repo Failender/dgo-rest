@@ -12,7 +12,7 @@ public class HeldRepositoryService {
     }
 
     public static void saveHeld(HeldEntity heldEntity) {
-        new HeldRepository().persist(heldEntity);
+        new HeldRepository().persist(heldEntity, true);
     }
 
     /**

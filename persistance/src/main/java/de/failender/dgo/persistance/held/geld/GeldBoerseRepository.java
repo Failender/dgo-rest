@@ -23,4 +23,8 @@ public class GeldBoerseRepository extends EzqlRepository<GeldBoerseEntity> {
         updateClauses.add(new BaseClause<>(GeldBoerseMapper.ANZAHL, geldBoerseEntity.getAnzahl()));
         updateById(geldBoerseEntity.getId(), updateClauses);
     }
+
+    public GeldBoerseEntity findByHeldid(Long heldid) {
+        return findOneBy(GeldBoerseMapper.HELD_ID, heldid);
+    }
 }

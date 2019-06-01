@@ -62,6 +62,10 @@ public abstract class EzqlRepository <ENTITY>{
         new InsertQuery<>(getMapper(), entity).execute();
     }
 
+    public void persist(ENTITY entity, boolean fixedId) {
+        new InsertQuery<>(getMapper(), entity, fixedId).execute();
+    }
+
 
     public static <T> T firstOrNull(List<T> list) {
         if(list.isEmpty()) {
