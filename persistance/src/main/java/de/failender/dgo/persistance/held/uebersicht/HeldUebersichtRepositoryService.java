@@ -13,6 +13,7 @@ public class HeldUebersichtRepositoryService {
 
         entity = new HeldUebersichtEntity();
         entity.setHeldid(heldEntity.getId());
+        persist(entity);
         return entity;
     }
 
