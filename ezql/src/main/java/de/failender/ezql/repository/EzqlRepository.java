@@ -8,6 +8,7 @@ import de.failender.ezql.queries.InsertQuery;
 import de.failender.ezql.queries.SelectQuery;
 import de.failender.ezql.queries.UpdateQuery;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -42,7 +43,10 @@ public abstract class EzqlRepository <ENTITY>{
                 .execute());
     }
 
-
+    protected void updateById(Long id, List<BaseClause<ENTITY, ?>> updateClauses) {
+        List<Clause> whereClauses = Arrays.asList(new BaseClause<>(getMapper().idField(), id));
+        update(whereClauses, updateClauses);
+    }
 
     public void update(List<Clause> whereClauses, List<BaseClause<ENTITY, ?>> updateClauses) {
         UpdateQuery.Builder.update(getMapper());

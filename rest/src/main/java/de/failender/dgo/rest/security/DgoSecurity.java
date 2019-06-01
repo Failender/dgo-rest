@@ -9,6 +9,7 @@ import de.failender.dgo.persistance.pdf.PdfRepositoryService;
 import de.failender.dgo.persistance.user.UserEntity;
 import de.failender.dgo.persistance.user.UserRepositoryService;
 import de.failender.dgo.security.DgoSecurityContext;
+import de.failender.dgo.security.EntityNotFoundException;
 import de.failender.dgo.security.NoPermissionException;
 import de.failender.dgo.security.UserNotLoggedInException;
 import io.javalin.Javalin;
@@ -32,6 +33,13 @@ public class DgoSecurity {
 		app.exception(NoPermissionException.class, ((exception, ctx) -> {
 			ctx.status(403);
 		}));
+
+		app.exception(EntityNotFoundException.class, ((exception, ctx) -> {
+			ctx.status(404);
+			ctx.result(exception.getMessage());
+		}));
+
+
 
 
 		Algorithm algorithm = Algorithm.HMAC256("very_secret");
