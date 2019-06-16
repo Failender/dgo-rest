@@ -15,6 +15,10 @@ public class BaseClause<ENTITY, FIELD> implements Clause{
 	@Override
 	public String toString() {
 
+		String sqlValue = field.toSqlValue(value);
+		if(sqlValue == null) {
+			return field.getField() + " IS NULL";
+		}
 		return field.getField() + " = " + field.toSqlValue(value);
 	}
 }
