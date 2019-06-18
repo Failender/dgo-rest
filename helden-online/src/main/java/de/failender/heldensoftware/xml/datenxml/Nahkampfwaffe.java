@@ -256,6 +256,10 @@ public class Nahkampfwaffe {
         return tpkk;
     }
 
+    public String getTpKKValue() {
+        return tpkk.value;
+    }
+
     /**
      * Sets the value of the tpkk property.
      * 

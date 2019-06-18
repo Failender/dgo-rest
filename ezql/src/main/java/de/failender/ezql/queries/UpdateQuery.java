@@ -36,7 +36,6 @@ public class UpdateQuery<ENTITY> extends BaseQuery{
 		try(Statement statement = EzqlConnector.getConnection().createStatement()) {
 
 			int result = statement.executeUpdate(sql);
-			System.out.println(result);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}

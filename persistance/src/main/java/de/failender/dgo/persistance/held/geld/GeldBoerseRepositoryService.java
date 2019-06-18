@@ -6,10 +6,22 @@ public class GeldBoerseRepositoryService {
 
 
     public static GeldBoerseEntity findGeldboerseForHeld(HeldEntity heldEntity) {
-        GeldBoerseEntity geldBoerseEntity = new GeldBoerseRepository().findById(heldEntity.getId());
+        GeldBoerseEntity geldBoerseEntity = GeldBoerseRepository.INSTANCE.findByHeldid(heldEntity.getId());
         if(geldBoerseEntity != null) {
             return geldBoerseEntity;
         }
-        return new GeldBoerseEntity();
+        GeldBoerseEntity entity = new GeldBoerseEntity();
+        entity.setHeldid(heldEntity.getId());
+        return entity;
+    }
+
+    public static void updateGeldboerseForHeld(GeldBoerseEntity geldBoerseEntity, HeldEntity heldEntity) {
+
+        if (geldBoerseEntity.getId() == null) {
+            GeldBoerseRepository.INSTANCE.persist(geldBoerseEntity);
+        } else {
+            GeldBoerseRepository.INSTANCE.updateAnzahl(geldBoerseEntity);
+        }
+
     }
 }

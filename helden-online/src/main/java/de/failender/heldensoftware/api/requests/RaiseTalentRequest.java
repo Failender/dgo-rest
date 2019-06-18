@@ -32,7 +32,7 @@ public class RaiseTalentRequest extends ApiRequest<String> {
 	@Override
 	public String mapResponse(InputStream is) {
 		try {
-			return IOUtils.toString(is);
+            return IOUtils.toString(is, "UTF-8");
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}

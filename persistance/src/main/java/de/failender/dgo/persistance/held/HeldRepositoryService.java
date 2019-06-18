@@ -1,7 +1,7 @@
 package de.failender.dgo.persistance.held;
 
-import de.failender.dgo.persistance.user.UserEntity;
 import de.failender.dgo.security.DgoSecurityContext;
+import de.failender.dgo.security.EntityNotFoundException;
 import de.failender.dgo.security.NoPermissionException;
 
 import java.util.List;
@@ -12,7 +12,7 @@ public class HeldRepositoryService {
     }
 
     public static void saveHeld(HeldEntity heldEntity) {
-        new HeldRepository().persist(heldEntity);
+        new HeldRepository().persist(heldEntity, true);
     }
 
     /**
@@ -37,6 +37,9 @@ public class HeldRepositoryService {
     }
 
     public static boolean canCurrentUserViewHeld(HeldEntity heldEntity) {
+        if (heldEntity == null) {
+            throw new EntityNotFoundException("Der Held konnte nicht gefunden werden");
+        }
         return DgoSecurityContext.getAuthenticatedUser().getId() == heldEntity.getUserId();
     }
 
