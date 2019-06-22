@@ -20,10 +20,11 @@ public class HeldUebersichtRepository extends EzqlRepository<HeldUebersichtEntit
         return findOneBy(HeldUebersichtMapper.HELDID, heldid);
     }
 
-    public void updateLepAndAsp(Long id, int lep, int asp) {
+    public void updateLepAndAspAndWunden(Long id, int lep, int asp, List<Integer> wunden) {
         List<BaseClause<HeldUebersichtEntity, ?>> updateClauses = new ArrayList<>();
         updateClauses.add(new BaseClause<>(HeldUebersichtMapper.ASP, asp));
         updateClauses.add(new BaseClause<>(HeldUebersichtMapper.LEP, lep));
+        updateClauses.add(new BaseClause<>(HeldUebersichtMapper.WUNDEN, wunden));
         updateById(id, updateClauses);
     }
 }

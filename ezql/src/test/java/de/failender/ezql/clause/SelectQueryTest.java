@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -30,6 +30,7 @@ public class SelectQueryTest extends EzqlTest {
 		Assert.assertEquals((Object)userEntity.getId(), 0L);
 		Assert.assertEquals(userEntity.isActive(), true);
 		Assert.assertEquals(userEntity.getUuid(), UUID.fromString("7dc53df5-703e-49b3-8670-b1c468f47f1f"));
+		Assert.assertEquals(Arrays.asList(12, 13, 14), userEntity.getNumbers());
 
 
 	}

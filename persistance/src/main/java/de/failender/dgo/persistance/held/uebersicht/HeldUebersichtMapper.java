@@ -4,6 +4,7 @@ import de.failender.ezql.mapper.EntityMapper;
 import de.failender.ezql.mapper.FieldMapper;
 import de.failender.ezql.mapper.IntFieldMapper;
 import de.failender.ezql.mapper.LongFieldMapper;
+import de.failender.ezql.mapper.array.IntArrayFieldMapper;
 
 import java.util.Arrays;
 import java.util.List;
@@ -16,6 +17,7 @@ public class HeldUebersichtMapper extends EntityMapper<HeldUebersichtEntity> {
     public static final LongFieldMapper<HeldUebersichtEntity> HELDID = new LongFieldMapper<>("HELDID", HeldUebersichtEntity::setHeldid, HeldUebersichtEntity::getHeldid);
     public static final IntFieldMapper<HeldUebersichtEntity> LEP = new IntFieldMapper<>("LEP", HeldUebersichtEntity::setLep, HeldUebersichtEntity::getLep);
     public static final IntFieldMapper<HeldUebersichtEntity> ASP = new IntFieldMapper<>("ASP", HeldUebersichtEntity::setAsp, HeldUebersichtEntity::getAsp);
+    public static final IntArrayFieldMapper<HeldUebersichtEntity> WUNDEN = new IntArrayFieldMapper<>("WUNDEN", HeldUebersichtEntity::setWunden, HeldUebersichtEntity::getWunden);
 
     @Override
     public String table() {
@@ -29,7 +31,7 @@ public class HeldUebersichtMapper extends EntityMapper<HeldUebersichtEntity> {
 
     @Override
     public List<FieldMapper<HeldUebersichtEntity, ?>> fieldMappers() {
-        return Arrays.asList(ID, HELDID, LEP, ASP);
+        return Arrays.asList(ID, HELDID, LEP, ASP, WUNDEN);
     }
 
     @Override

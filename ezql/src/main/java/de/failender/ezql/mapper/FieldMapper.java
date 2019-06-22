@@ -10,41 +10,31 @@ public abstract class FieldMapper<ENTITY, FIELD> {
 
 
 	private final BiConsumer<ENTITY, ResultSet> setter;
-	private final Function<ENTITY, String> getter;
-	private final Function<ENTITY, FIELD> originalGetter;
+	private final Function<ENTITY, FIELD> getter;
 
-	public FieldMapper(String field, BiConsumer<ENTITY, ResultSet> setter, Function<ENTITY, String> getter, Function<ENTITY, FIELD> originalGetter) {
+	public FieldMapper(String field, BiConsumer<ENTITY, ResultSet> setter, Function<ENTITY, FIELD> getter) {
 		this.field = field;
-		this.getter = getter;
 		this.setter = setter;
-		this.originalGetter = originalGetter;
+		this.getter = getter;
 	}
 
 	public String getField() {
 		return field;
 	}
 
-
-	public Function<ENTITY, String> getGetter() {
-		return getter;
-	}
-
 	public void setValue(ENTITY entity, ResultSet resultSet) {
 			setter.accept(entity, resultSet);
 	}
 
-	protected abstract Function<FIELD, String> converter();
+	protected abstract String converter(FIELD value);
+
 
 	public String toSqlValue(FIELD value) {
-		return converter().apply(value);
+		return converter(value);
 	}
 
 	public String toSqlValueFromEntity(ENTITY entity) {
-		return converter().apply(originalGetter.apply(entity));
-	}
-
-	public Function<ENTITY, FIELD> getOriginalGetter() {
-		return originalGetter;
+		return converter(getter.apply(entity));
 	}
 
 	protected String escape(String string) {

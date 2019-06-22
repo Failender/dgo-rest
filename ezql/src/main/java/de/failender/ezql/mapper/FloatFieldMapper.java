@@ -8,7 +8,7 @@ import java.util.function.Function;
 public class FloatFieldMapper<ENTITY> extends FieldMapper<ENTITY, Float>{
 
 	public FloatFieldMapper(String field, BiConsumer<ENTITY, Float> setter, Function<ENTITY, Float> getter) {
-		super(field, convertedSetter(setter, field), convertedGetter(getter), getter);
+        super(field, convertedSetter(setter, field), getter);
 
 	}
 
@@ -25,11 +25,8 @@ public class FloatFieldMapper<ENTITY> extends FieldMapper<ENTITY, Float>{
 		};
 	}
 
-	private static final <ENTITY> Function<ENTITY, String> convertedGetter(Function<ENTITY, Float> original) {
-		return (ENTITY entity) -> String.valueOf(original.apply(entity));
-	}
 	@Override
-	protected Function converter() {
-		return value -> String.valueOf(value);
+    protected String converter(Float value) {
+        return String.valueOf(value);
 	}
 }

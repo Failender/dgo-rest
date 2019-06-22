@@ -7,7 +7,7 @@ import java.util.function.Function;
 
 public class StringFieldMapper<ENTITY> extends FieldMapper<ENTITY, String> {
 	public StringFieldMapper(String field, BiConsumer<ENTITY, String> setter, Function<ENTITY, String> getter) {
-		super(field, convertedSetter(setter, field), getter, getter);
+        super(field, convertedSetter(setter, field), getter);
 	}
 
 	private static final <ENTITY> BiConsumer<ENTITY, ResultSet> convertedSetter(BiConsumer<ENTITY, String> original, String field) {
@@ -22,7 +22,7 @@ public class StringFieldMapper<ENTITY> extends FieldMapper<ENTITY, String> {
 	}
 
 	@Override
-	protected Function<String, String> converter() {
-		return this::escape;
+    protected String converter(String value) {
+        return this.escape(value);
 	}
 }

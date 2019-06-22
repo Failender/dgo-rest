@@ -52,7 +52,6 @@ public class DgoRest {
 
         ObjectMapper om = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         JavalinJackson.configure(om);
-        app.get("/", ctx -> ctx.json(UserRepositoryService.findUserByName("Failender")));
 
         DgoSecurity.registerSecurity(app);
         UserService.initialize();

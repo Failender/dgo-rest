@@ -10,7 +10,7 @@ public class LongFieldMapper<ENTITY> extends FieldMapper<ENTITY, Long>{
 	private final BiConsumer<ENTITY, Long> originalSetter;
 
 	public LongFieldMapper(String field, BiConsumer<ENTITY, Long> setter, Function<ENTITY, Long> getter) {
-		super(field, convertedSetter(setter, field), convertedGetter(getter), getter);
+        super(field, convertedSetter(setter, field), getter);
 		this.originalSetter = setter;
 
 	}
@@ -28,16 +28,12 @@ public class LongFieldMapper<ENTITY> extends FieldMapper<ENTITY, Long>{
 		};
 	}
 
-	private static final <ENTITY> Function<ENTITY, String> convertedGetter(Function<ENTITY, Long> original) {
-		return (ENTITY entity) -> String.valueOf(original.apply(entity));
-	}
-
 	public BiConsumer<ENTITY, Long> getOriginalSetter() {
 		return originalSetter;
 	}
 
 	@Override
-	protected Function converter() {
-		return value -> String.valueOf(value);
+    protected String converter(Long value) {
+        return String.valueOf(value);
 	}
 }

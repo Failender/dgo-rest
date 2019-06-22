@@ -2,11 +2,14 @@ package de.failender.dgo.persistance.held.uebersicht;
 
 import de.failender.dgo.persistance.BaseEntity;
 
+import java.util.List;
+
 public class HeldUebersichtEntity extends BaseEntity {
 
     private Long heldid;
     private int lep;
     private int asp;
+    private List<Integer> wunden;
 
 
     public Long getHeldid() {
@@ -31,6 +34,14 @@ public class HeldUebersichtEntity extends BaseEntity {
 
     public void setAsp(int asp) {
         this.asp = asp;
+    }
+
+    public List<Integer> getWunden() {
+        return wunden;
+    }
+
+    public void setWunden(List<Integer> wunden) {
+        this.wunden = wunden;
     }
 }
 

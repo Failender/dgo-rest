@@ -7,7 +7,7 @@ import java.util.function.Function;
 
 public class BooleanFieldMapper<ENTITY> extends FieldMapper<ENTITY, Boolean> {
     public BooleanFieldMapper(String field, BiConsumer<ENTITY, Boolean> setter, Function<ENTITY, Boolean> getter) {
-        super(field, convertedSetter(setter, field), convertedGetter(getter), getter);
+        super(field, convertedSetter(setter, field), getter);
 
 
     }
@@ -22,13 +22,9 @@ public class BooleanFieldMapper<ENTITY> extends FieldMapper<ENTITY, Boolean> {
         };
     }
 
-    private static final <ENTITY> Function<ENTITY, String> convertedGetter(Function<ENTITY, Boolean> original) {
-        return (ENTITY entity) -> String.valueOf(original.apply(entity));
-    }
-
 
     @Override
-    protected Function converter() {
-        return value -> String.valueOf(value);
+    protected String converter(Boolean value) {
+        return String.valueOf(value);
     }
 }

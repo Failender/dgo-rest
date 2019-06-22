@@ -1,7 +1,7 @@
 package de.failender.ezql.user;
 
 import java.time.LocalDateTime;
-import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 public class UserEntity {
@@ -12,6 +12,7 @@ public class UserEntity {
 	private LocalDateTime lastLogin;
 	private UUID uuid;
 	private boolean active;
+	private List<Integer> numbers;
 
 	public Long getId() {
 		return id;
@@ -59,5 +60,13 @@ public class UserEntity {
 
 	public void setUuid(UUID uuid) {
 		this.uuid = uuid;
+	}
+
+	public List<Integer> getNumbers() {
+		return numbers;
+	}
+
+	public void setNumbers(List<Integer> numbers) {
+		this.numbers = numbers;
 	}
 }

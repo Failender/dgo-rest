@@ -3,14 +3,13 @@ package de.failender.ezql.mapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.UUID;
-import java.util.UUID;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
 
 public class UUIDFieldMapper<ENTITY> extends FieldMapper<ENTITY, UUID>{
 
 	public UUIDFieldMapper(String field, BiConsumer<ENTITY, UUID> setter, Function<ENTITY, UUID> getter) {
-		super(field, convertedSetter(setter, field), convertedGetter(getter), getter);
+        super(field, convertedSetter(setter, field), getter);
 
 	}
 
@@ -28,13 +27,9 @@ public class UUIDFieldMapper<ENTITY> extends FieldMapper<ENTITY, UUID>{
 		};
 	}
 
-	private static final <ENTITY> Function<ENTITY, String> convertedGetter(Function<ENTITY, UUID> original) {
-		return (ENTITY entity) -> String.valueOf(original.apply(entity));
-	}
-
 	@Override
-	protected Function converter() {
-		return value -> escape(String.valueOf(value));
+    protected String converter(UUID value) {
+        return escape(String.valueOf(value));
 	}
 }
 

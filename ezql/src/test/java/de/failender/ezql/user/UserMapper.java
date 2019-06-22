@@ -1,6 +1,7 @@
 package de.failender.ezql.user;
 
 import de.failender.ezql.mapper.*;
+import de.failender.ezql.mapper.array.IntArrayFieldMapper;
 import de.failender.ezql.queries.SelectQuery;
 import de.failender.ezql.queries.UpdateQuery;
 
@@ -23,12 +24,10 @@ public class UserMapper extends EntityMapper<UserEntity> {
 
 	public static final UUIDFieldMapper<UserEntity> UUID = new UUIDFieldMapper<>("UUID", UserEntity::setUuid, UserEntity::getUuid);
 
-	/**
-	public static final DateFieldMapper<UserEntity> LAST_LOGIN = new DateFieldMapper<UserEntity>("LAST_LOGIN",
-			UserEntity::setLastLogin, UserEntity::getLastLogin);
-**/
 	public static final BooleanFieldMapper<UserEntity> ACTIVE = new BooleanFieldMapper<UserEntity>("ACTIVE",
 			UserEntity::setActive, UserEntity::isActive);
+
+	public static final IntArrayFieldMapper<UserEntity> NUMBERS = new IntArrayFieldMapper<>("NUMBERS", UserEntity::setNumbers, UserEntity::getNumbers);
 
 
 
@@ -70,7 +69,7 @@ public class UserMapper extends EntityMapper<UserEntity> {
 
 	@Override
 	public List<FieldMapper<UserEntity, ?>> fieldMappers() {
-		return Arrays.asList(USER_NAME, PASSWORD, ID, ACTIVE, UUID);
+		return Arrays.asList(USER_NAME, PASSWORD, ID, ACTIVE, UUID, NUMBERS);
 	}
 
 	@Override

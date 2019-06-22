@@ -2,6 +2,8 @@ package de.failender.dgo.persistance.held.uebersicht;
 
 import de.failender.dgo.persistance.held.HeldEntity;
 
+import java.util.Arrays;
+
 public class HeldUebersichtRepositoryService {
 
     public static HeldUebersichtEntity findByHeld(HeldEntity heldEntity) {
@@ -13,6 +15,7 @@ public class HeldUebersichtRepositoryService {
 
         entity = new HeldUebersichtEntity();
         entity.setHeldid(heldEntity.getId());
+        entity.setWunden(Arrays.asList(0, 0, 0, 0, 0));
         persist(entity);
         return entity;
     }
@@ -23,7 +26,7 @@ public class HeldUebersichtRepositoryService {
             return;
         }
 
-        HeldUebersichtRepository.INSTANCE.updateLepAndAsp(heldUebersichtEntity.getId(), heldUebersichtEntity.getLep(), heldUebersichtEntity.getAsp());
+        HeldUebersichtRepository.INSTANCE.updateLepAndAspAndWunden(heldUebersichtEntity.getId(), heldUebersichtEntity.getLep(), heldUebersichtEntity.getAsp(), heldUebersichtEntity.getWunden());
 
     }
 
