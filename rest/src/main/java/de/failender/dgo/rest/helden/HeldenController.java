@@ -30,7 +30,7 @@ public class HeldenController {
 	public static final String UPDATE_PUBLIC = PREFIX + "held/:held/public/:public";
 	public static final String UPDATE_ACTIVE = PREFIX + "held/:held/active/:active";
 
-	private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+	public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 
 	public HeldenController(Javalin javalin) {
 

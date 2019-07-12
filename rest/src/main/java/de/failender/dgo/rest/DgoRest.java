@@ -10,6 +10,7 @@ import de.failender.dgo.rest.helden.geld.GeldController;
 import de.failender.dgo.rest.helden.inventar.HeldInventarController;
 import de.failender.dgo.rest.helden.uebersicht.HeldUebersichtController;
 import de.failender.dgo.rest.helden.zauberspeicher.ZauberspeicherController;
+import de.failender.dgo.rest.meister.raumplan.RaumplanController;
 import de.failender.dgo.rest.pdf.PdfController;
 import de.failender.dgo.rest.security.DgoSecurity;
 import de.failender.dgo.rest.user.UserController;
@@ -63,6 +64,7 @@ public class DgoRest {
         new ZauberspeicherController(app);
         new GeldController(app);
         new HeldUebersichtController(app);
+        new RaumplanController(app);
 
 		double elapsedTimeInSecond = (double) (System.nanoTime() - start) / 1_000_000_000;
 		long takenMemory = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();

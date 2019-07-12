@@ -25,6 +25,9 @@ public class LocalDateTimeFieldMapper<ENTITY> extends FieldMapper<ENTITY, LocalD
 
 	@Override
     protected String converter(LocalDateTime value) {
+		if(value == null) {
+			return "null";
+		}
         return escape(String.valueOf(value));
 	}
 }

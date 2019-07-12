@@ -4,6 +4,7 @@ import de.failender.ezql.clause.BaseClause;
 import de.failender.ezql.clause.Clause;
 import de.failender.ezql.mapper.EntityMapper;
 import de.failender.ezql.mapper.FieldMapper;
+import de.failender.ezql.queries.DeleteQuery;
 import de.failender.ezql.queries.InsertQuery;
 import de.failender.ezql.queries.SelectQuery;
 import de.failender.ezql.queries.UpdateQuery;
@@ -56,6 +57,16 @@ public abstract class EzqlRepository <ENTITY>{
 
     public void update(Clause whereClauses, BaseClause<ENTITY, ?> updateClause) {
         update(Collections.singletonList(whereClauses), Collections.singletonList(updateClause));
+    }
+
+    public void deleteById(Long id) {
+        DeleteQuery.Builder.delete(getMapper()).where(getMapper().idField(), id)
+                .build().execute();
+    }
+
+    protected <FIELD> void deleteBy(FieldMapper<ENTITY, FIELD> field, FIELD value ) {
+        DeleteQuery.Builder.delete(getMapper()).where(field, value)
+                .build().execute();
     }
 
     public void persist(ENTITY entity) {
