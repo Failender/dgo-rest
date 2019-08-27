@@ -15,6 +15,8 @@ public class DgoSecurityContext {
         contextThreadLocal.set(null);
     }
 
+    public static final String VIEW_ALL = "VIEW_ALL";
+
     public static void login(String username, List<String> permissions) {
         contextThreadLocal.set(new SecurityContext(UserRepositoryService.findUserByName(username), permissions));
 

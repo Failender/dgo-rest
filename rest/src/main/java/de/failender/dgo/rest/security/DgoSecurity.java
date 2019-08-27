@@ -85,6 +85,7 @@ public class DgoSecurity {
 			List<String> visiblePdfs = PdfRepositoryService.getVisiblePdfs(userEntity);
 			String token = JWT.create()
 					.withClaim("username", username)
+					.withArrayClaim("permissions", permissions.toArray(new String[0]))
 					.withIssuer("dgo-rest")
 					.sign(algorithm);
 			context.header("token",token);

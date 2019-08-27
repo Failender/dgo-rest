@@ -24,6 +24,20 @@ class HeldRepository extends EzqlRepository<HeldEntity> {
 				.execute();
 	}
 
+	public static List<HeldEntity> findByGruppe(Long gruppe, boolean includePrivate, boolean showInactive) {
+
+		SelectQuery.Builder builder = SelectQuery.Builder.selectAll(HeldMapper.INSTANCE)
+				.where(HeldMapper.GRUPPE, gruppe);
+		if(!includePrivate) {
+			builder.where(HeldMapper.PUBLIC, true);
+		}
+		if(!showInactive) {
+			builder.where(HeldMapper.ACTIVE, true);
+		}
+
+		return builder.build().execute();
+	}
+
 	public static void updatePublic(Long heldid, boolean value) {
 		UpdateQuery.Builder.update(HeldMapper.INSTANCE)
 				.where(HeldMapper.ID, heldid)

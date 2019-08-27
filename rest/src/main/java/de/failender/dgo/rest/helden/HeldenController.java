@@ -92,8 +92,12 @@ public class HeldenController {
 
 	private void getHeldenForUser(Context context, Long id) {
 
+		context.json(map(HeldRepositoryService.findByUserId(id)));
+	}
+
+	public static List<HeldDto> map(List<HeldEntity> heldEntities) {
 		Map<Long, GruppeEntity> map = new HashMap<>();
-		List<HeldDto> helden = HeldRepositoryService.findByUserId(id)
+		return heldEntities
 				.stream()
 				.map(heldEntity -> {
 					if(!map.containsKey(heldEntity.getGruppe())) {
@@ -105,6 +109,5 @@ public class HeldenController {
 					return new HeldDto(heldEntity, name, FORMATTER.format(versionEntity.getCreatedDate()), versionEntity.getVersion());
 				})
 				.collect(Collectors.toList());
-		context.json(helden);
 	}
 }

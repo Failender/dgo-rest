@@ -70,6 +70,7 @@ public class DgoRest {
 		long takenMemory = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
 		double mb = 1024 * 1024;
 		System.out.printf("DGO Online in %f seconds, using %f MB ram", elapsedTimeInSecond, takenMemory / mb);
+		System.out.println();
 
     }
 }

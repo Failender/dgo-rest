@@ -7,10 +7,18 @@ import de.failender.dgo.security.NoPermissionException;
 import java.util.List;
 
 public class HeldRepositoryService {
+
     public static List<HeldEntity> findByUserId(Long id) {
         return HeldRepository.findByUserIdOrdered(id);
     }
 
+    public static List<HeldEntity> findByGruppeId(Long id, boolean includePrivate, boolean showInactive) {
+        if(includePrivate) {
+            DgoSecurityContext.checkPermission(DgoSecurityContext.VIEW_ALL);
+
+        }
+        return HeldRepository.findByGruppe(id, includePrivate, showInactive);
+    }
     public static void saveHeld(HeldEntity heldEntity) {
         new HeldRepository().persist(heldEntity, true);
     }
