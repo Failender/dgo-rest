@@ -55,7 +55,6 @@ public class ReturnHeldDatenWithEreignisseRequest extends IdCachedRequest<Daten>
 		Unmarshaller unmarshaller = JaxbUtil.getUnmarshaller(Daten.class);
 		try {
 			Daten daten = (Daten) unmarshaller.unmarshal(is);
-			clearEreigniskontrolle(daten.getEreignisse().getEreignis());
 			return daten;
 		} catch (JAXBException e) {
 			System.err.println("Critical error getting held-daten " + heldid);

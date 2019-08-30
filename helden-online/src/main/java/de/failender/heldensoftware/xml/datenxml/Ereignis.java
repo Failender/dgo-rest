@@ -83,7 +83,9 @@ public class Ereignis {
 
 	public Long getDate() {
 		try {
-			return format.parse(date).getTime();
+			synchronized (format) {
+				return format.parse(date).getTime();
+			}
 		} catch (ParseException e) {
 			throw new RuntimeException(e);
 		}
