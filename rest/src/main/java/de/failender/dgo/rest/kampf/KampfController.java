@@ -13,6 +13,10 @@ public class KampfController {
     private static final String PREFIX = "/api/kampf/";
     private static final String KAMPF = PREFIX + ":gruppe/";
     private static final String NEXT = KAMPF + "next";
+    private static final String HALTEN = KAMPF + "halten";
+    private static final String TEILNEHMER = KAMPF + "teilnehmer/:teilnehmer/";
+    private static final String AT = TEILNEHMER + "at";
+    private static final String PA = TEILNEHMER + "pa";
 
 
     private Cache<Integer, Kampf> cache = Caffeine.newBuilder()
@@ -24,8 +28,11 @@ public class KampfController {
         app.get(KAMPF, this::getKampf);
         app.get(PREFIX, this::getKaempfe);
         app.post(PREFIX, this::startKampf);
-        app.put(PREFIX, this::startKampf);
+        app.put(PREFIX, this::updateKampf);
         app.post(NEXT, this::nextTeilnehmer);
+        app.post(HALTEN, this::halten);
+        app.post(AT, this::at);
+        app.post(PA, this::pa);
     }
 
     private void getKampf(Context ctx) {
@@ -51,6 +58,7 @@ public class KampfController {
 
         kampf.getTeilnehmer().sort(Comparator.comparingInt(Teilnehmer::getIni));
         cache.put(kampf.getGruppe(), kampf);
+        ctx.json(kampf);
     }
 
     private void nextTeilnehmer(Context ctx) {
@@ -61,9 +69,83 @@ public class KampfController {
             ctx.json("Aktuell ist kein Kampf aktiv");
             return;
         }
-        kampf.setCurrentTeilnehmer((kampf.getCurrentTeilnehmer() +1) % kampf.getTeilnehmer().size());
+        Teilnehmer active = kampf.getTeilnehmer().get(kampf.getCurrentTeilnehmer());
+        if(!nextTeilnehmer(kampf)) {
+            active.setAtAktion(false);
+        }
 
         ctx.json(kampf);
+    }
+
+    // Updates the teilnehmer to the next one. Will return true if new round began
+    private boolean nextTeilnehmer(Kampf kampf) {
+        if(kampf.getCurrentTeilnehmer() +1 == kampf.getTeilnehmer().size() ) {
+            kampf.setCurrentTeilnehmer(0);
+            for (Teilnehmer teilnehmer : kampf.getTeilnehmer()) {
+                teilnehmer.resetAktionen();
+            }
+
+            return true;
+
+        }
+        kampf.setCurrentTeilnehmer(kampf.getCurrentTeilnehmer() +1);
+        return false;
+    }
+
+    private void halten(Context ctx) {
+        int gruppe = Integer.valueOf(ctx.pathParam("gruppe"));
+        Kampf kampf = cache.getIfPresent(gruppe);
+        if(kampf == null) {
+            ctx.status(404);
+            ctx.json("Aktuell ist kein Kampf aktiv");
+            return;
+        }
+
+        nextTeilnehmer(kampf);
+
+        ctx.json(kampf);
+    }
+
+    private void at(Context ctx) {
+        int gruppe = Integer.valueOf(ctx.pathParam("gruppe"));
+        Kampf kampf = cache.getIfPresent(gruppe);
+        if(kampf == null) {
+            ctx.status(404);
+            ctx.json("Aktuell ist kein Kampf aktiv");
+            return;
+        }
+
+        int teilnehmerId = Integer.valueOf(ctx.pathParam("teilnehmer"));
+        Teilnehmer teilnehmer = getTeilnehmer(kampf, teilnehmerId);
+        teilnehmer.setAtAktion(false);
+        if(kampf.getTeilnehmer().get(kampf.getCurrentTeilnehmer()) == teilnehmer) {
+            nextTeilnehmer(kampf);
+        }
+        ctx.json(kampf);
+
+    }
+
+    private void pa(Context ctx) {
+        int gruppe = Integer.valueOf(ctx.pathParam("gruppe"));
+        Kampf kampf = cache.getIfPresent(gruppe);
+        if(kampf == null) {
+            ctx.status(404);
+            ctx.json("Aktuell ist kein Kampf aktiv");
+            return;
+        }
+
+        int teilnehmerId = Integer.valueOf(ctx.pathParam("teilnehmer"));
+        Teilnehmer teilnehmer = getTeilnehmer(kampf, teilnehmerId);
+        teilnehmer.setPaAktion(false);
+        ctx.json(kampf);
+    }
+
+    private Teilnehmer getTeilnehmer(Kampf kampf, int id) {
+        return kampf.getTeilnehmer()
+                .stream()
+                .filter(teilnehmer -> teilnehmer.getId() == id)
+                .findFirst()
+                .orElse(null);
     }
 
     private void startKampf(Context ctx) {
@@ -71,8 +153,16 @@ public class KampfController {
         if(!validateKampf(kampf, ctx)) {
             return;
         }
+        if(cache.getIfPresent(kampf.getGruppe()) != null) {
+            ctx.status(409);
+            return;
+        }
 
         kampf.getTeilnehmer().sort(Comparator.comparingInt(Teilnehmer::getIni));
+
+        for (int i = 0; i < kampf.getTeilnehmer().size(); i++) {
+            kampf.getTeilnehmer().get(i).setId(i);
+        }
         cache.put(kampf.getGruppe(), kampf);
 
     }
@@ -80,11 +170,6 @@ public class KampfController {
     private boolean validateKampf(Kampf kampf, Context ctx) {
         if(kampf.getName() == null || kampf.getName().isEmpty()) {
             ctx.status(400);
-            return false;
-        }
-
-        if(cache.getIfPresent(kampf.getGruppe()) != null) {
-            ctx.status(409);
             return false;
         }
 
