@@ -85,6 +85,8 @@ public class KampfController {
                 teilnehmer.resetAktionen();
             }
 
+
+            this.sortTeilnehmer(kampf);
             return true;
 
         }
@@ -158,12 +160,16 @@ public class KampfController {
             return;
         }
 
-        kampf.getTeilnehmer().sort(Comparator.comparingInt(Teilnehmer::getIni));
-
+        sortTeilnehmer(kampf);
         for (int i = 0; i < kampf.getTeilnehmer().size(); i++) {
             kampf.getTeilnehmer().get(i).setId(i);
         }
         cache.put(kampf.getGruppe(), kampf);
+
+    }
+
+    private void sortTeilnehmer(Kampf kampf) {
+        kampf.getTeilnehmer().sort(Comparator.comparingInt(Teilnehmer::getIni).reversed());
 
     }
 

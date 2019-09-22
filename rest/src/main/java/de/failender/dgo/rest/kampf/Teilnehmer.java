@@ -9,6 +9,8 @@ public class Teilnehmer {
     private boolean paAktion = true;
     private int freieAktionen = 1;
     private int iniMod;
+    private Distanzklasse distanzklasse;
+    private Integer focussedTeilnehmer;
 
     public String getName() {
         return name;
@@ -82,5 +84,21 @@ public class Teilnehmer {
         atAktion = true;
         paAktion = true;
         freieAktionen = 1; //TODO More freie aktionen while high ini
+    }
+
+    public Distanzklasse getDistanzklasse() {
+        return distanzklasse;
+    }
+
+    public Integer getFocussedTeilnehmer() {
+        return focussedTeilnehmer;
+    }
+
+    public void setDistanzklasse(Distanzklasse distanzklasse) {
+        this.distanzklasse = distanzklasse;
+    }
+
+    public void setFocussedTeilnehmer(Integer focussedTeilnehmer) {
+        this.focussedTeilnehmer = focussedTeilnehmer;
     }
 }
