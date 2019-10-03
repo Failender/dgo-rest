@@ -56,7 +56,7 @@ public class KampfController {
             return;
         }
 
-        kampf.getTeilnehmer().sort(Comparator.comparingInt(Teilnehmer::getIni));
+        //kampf.getTeilnehmer().sort(Comparator.comparingInt(Teilnehmer::getIni));
         cache.put(kampf.getGruppe(), kampf);
         ctx.json(kampf);
     }
