@@ -18,6 +18,7 @@ public class HeldMapper extends EntityMapper<HeldEntity> {
 	public static final BooleanFieldMapper<HeldEntity> PUBLIC = new BooleanFieldMapper<>("PUBLIC", HeldEntity::setPublic, HeldEntity::isPublic);
 	public static final LongFieldMapper<HeldEntity> GRUPPE = new LongFieldMapper<>("GRUPPE_ID", HeldEntity::setGruppe, HeldEntity::getGruppe);
 	public static final LongFieldMapper<HeldEntity> HKEY = new LongFieldMapper<>("HKEY", HeldEntity::setKey, HeldEntity::getKey);
+	public static final LocalDateTimeFieldMapper<HeldEntity> LOCK_EXPIRE = new LocalDateTimeFieldMapper<>("LOCK_EXPIRE", HeldEntity::setLockExpire, HeldEntity::getLockExpire);
 
 	public static final HeldMapper INSTANCE = new HeldMapper();
 
@@ -35,7 +36,7 @@ public class HeldMapper extends EntityMapper<HeldEntity> {
 
 	@Override
 	public List<FieldMapper<HeldEntity, ?>> fieldMappers() {
-		return Arrays.asList(ID, USER_ID, NAME, ACTIVE, DELETED, PUBLIC, GRUPPE, HKEY);
+		return Arrays.asList(ID, USER_ID, NAME, ACTIVE, DELETED, PUBLIC, GRUPPE, HKEY, LOCK_EXPIRE);
 	}
 
 	@Override

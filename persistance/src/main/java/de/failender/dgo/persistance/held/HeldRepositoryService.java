@@ -4,6 +4,7 @@ import de.failender.dgo.security.DgoSecurityContext;
 import de.failender.dgo.security.EntityNotFoundException;
 import de.failender.dgo.security.NoPermissionException;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class HeldRepositoryService {
@@ -59,5 +60,9 @@ public class HeldRepositoryService {
 
     public static void updateActive(HeldEntity heldEntity, boolean value) {
         HeldRepository.updateActive(heldEntity.getId(), value);
+    }
+
+    public static void updateLockExpire(HeldEntity heldEntity, LocalDateTime value) {
+        HeldRepository.updateLockExpire(heldEntity.getId(), value);
     }
 }

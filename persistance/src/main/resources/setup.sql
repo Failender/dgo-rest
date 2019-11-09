@@ -41,7 +41,8 @@ CREATE TABLE HELDEN(
                      PUBLIC BOOLEAN NOT NULL,
                      DELETED BOOLEAN NOT NULL,
                      ACTIVE BOOLEAN NOT NULL,
-                     HKEY BIGINT NOT NULL
+                     HKEY BIGINT NOT NULL,
+                     LOCK_EXPIRE TIMESTAMP
 );
 
 CREATE TABLE HELD_VERSION(

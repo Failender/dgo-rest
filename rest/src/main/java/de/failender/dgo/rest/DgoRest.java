@@ -8,6 +8,7 @@ import de.failender.dgo.rest.gruppen.GruppeController;
 import de.failender.dgo.rest.helden.HeldenController;
 import de.failender.dgo.rest.helden.geld.GeldController;
 import de.failender.dgo.rest.helden.inventar.HeldInventarController;
+import de.failender.dgo.rest.helden.steigern.SteigernController;
 import de.failender.dgo.rest.helden.uebersicht.HeldUebersichtController;
 import de.failender.dgo.rest.helden.zauberspeicher.ZauberspeicherController;
 import de.failender.dgo.rest.kampf.KampfController;
@@ -67,6 +68,7 @@ public class DgoRest {
         new HeldUebersichtController(app);
         new RaumplanController(app);
         new KampfController(app);
+        new SteigernController(app);
 
 		double elapsedTimeInSecond = (double) (System.nanoTime() - start) / 1_000_000_000;
 		long takenMemory = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();

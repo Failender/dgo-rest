@@ -56,6 +56,9 @@ public class HeldenService {
                 }
                 Held xmlHeld = heldOptional.get();
                 helden.remove(xmlHeld);
+                if(heldEntity.getLockExpire() != null && heldEntity.getLockExpire().isBefore(LocalDateTime.now())) {
+                    log.info("Held {} is locked - skipping", heldEntity.getName());
+                }
                 VersionEntity versionEntity = VersionRepositoryService.findLatestVersion(heldEntity);
                 if (isOnlineVersionOlder(xmlHeld, versionEntity.getCreatedDate())) {
                     log.info("Got a new version for held with name {}", heldEntity.getName());

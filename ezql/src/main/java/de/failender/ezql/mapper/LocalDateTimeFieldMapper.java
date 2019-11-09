@@ -2,6 +2,7 @@ package de.failender.ezql.mapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
@@ -16,7 +17,11 @@ public class LocalDateTimeFieldMapper<ENTITY> extends FieldMapper<ENTITY, LocalD
 	private static final <ENTITY> BiConsumer<ENTITY, ResultSet> convertedSetter(BiConsumer<ENTITY, LocalDateTime> original, String field) {
 		return (ENTITY entity, ResultSet rs)  -> {
 			try {
-				original.accept(entity,rs.getTimestamp(field).toLocalDateTime());
+				Timestamp ts = rs.getTimestamp(field);
+				if(ts != null) {
+					original.accept(entity,ts.toLocalDateTime());
+
+				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

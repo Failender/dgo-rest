@@ -9,6 +9,11 @@ public class UserRepositoryService {
         return UserRepository.findByName(name);
     }
 
+    public static UserEntity findUserById(Long id) {
+        return UserRepository.findById(id);
+    }
+
+
     public static List<String> findUserPermissions(UserEntity userEntity) {
         return UserRepository.getPermissionsForUser(userEntity.getId());
     }

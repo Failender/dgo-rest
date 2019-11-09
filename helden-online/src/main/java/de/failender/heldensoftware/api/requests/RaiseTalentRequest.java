@@ -13,11 +13,11 @@ import java.util.Map;
 public class RaiseTalentRequest extends ApiRequest<String> {
 
 	private final TokenAuthentication tokenAuthentication;
-	private final BigInteger heldid;
+	private final Long heldid;
 	private final String talent;
 	private final int aktwert;
 
-	public RaiseTalentRequest(TokenAuthentication tokenAuthentication, BigInteger heldid, String talent, int aktwert) {
+	public RaiseTalentRequest(TokenAuthentication tokenAuthentication, Long heldid, String talent, int aktwert) {
 		this.tokenAuthentication = tokenAuthentication;
 		this.heldid = heldid;
 		this.talent = talent;

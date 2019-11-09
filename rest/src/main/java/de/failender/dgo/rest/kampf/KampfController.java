@@ -26,6 +26,7 @@ public class KampfController {
 
     public KampfController(Javalin app) {
         app.get(KAMPF, this::getKampf);
+        app.delete(KAMPF, this::removeKampf);
         app.get(PREFIX, this::getKaempfe);
         app.post(PREFIX, this::startKampf);
         app.put(PREFIX, this::updateKampf);
@@ -44,6 +45,11 @@ public class KampfController {
             ctx.status(404);
             ctx.json("Aktuell ist kein Kampf aktiv");
         }
+    }
+
+    private void removeKampf(Context ctx) {
+        int gruppe = Integer.valueOf(ctx.pathParam("gruppe"));
+        cache.invalidate(gruppe);
     }
 
     private void getKaempfe(Context ctx) {
@@ -169,7 +175,12 @@ public class KampfController {
     }
 
     private void sortTeilnehmer(Kampf kampf) {
-        kampf.getTeilnehmer().sort(Comparator.comparingInt(Teilnehmer::getIni).reversed());
+        kampf.getTeilnehmer().sort((a,b) -> {
+            if(a.getIni() == b.getIni()) {
+                return b.getIniBasis() - a.getIniBasis();
+            }
+            return b.getIni() - a.getIni();
+        });
 
     }
 

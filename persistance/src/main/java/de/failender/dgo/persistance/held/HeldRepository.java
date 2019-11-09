@@ -6,6 +6,7 @@ import de.failender.ezql.queries.SelectQuery;
 import de.failender.ezql.queries.UpdateQuery;
 import de.failender.ezql.repository.EzqlRepository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 class HeldRepository extends EzqlRepository<HeldEntity> {
@@ -49,6 +50,13 @@ class HeldRepository extends EzqlRepository<HeldEntity> {
 		UpdateQuery.Builder.update(HeldMapper.INSTANCE)
 				.where(HeldMapper.ID, heldid)
 				.update(HeldMapper.ACTIVE, value)
+				.build().execute();
+	}
+
+	public static void updateLockExpire(Long heldid, LocalDateTime value) {
+		UpdateQuery.Builder.update(HeldMapper.INSTANCE)
+				.where(HeldMapper.ID, heldid)
+				.update(HeldMapper.LOCK_EXPIRE, value)
 				.build().execute();
 	}
 

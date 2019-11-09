@@ -14,8 +14,8 @@ import java.util.Map;
 public class ListTalenteRequest extends ApiRequest<ListTalente> {
 
     private final TokenAuthentication tokenAuthentication;
-    private final BigInteger heldid;
-    public ListTalenteRequest(TokenAuthentication tokenAuthentication, BigInteger heldid) {
+    private final Long heldid;
+    public ListTalenteRequest(TokenAuthentication tokenAuthentication, Long heldid) {
         this.tokenAuthentication = tokenAuthentication;
         this.heldid = heldid;
     }
