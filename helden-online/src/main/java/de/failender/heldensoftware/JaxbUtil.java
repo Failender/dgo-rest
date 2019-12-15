@@ -9,10 +9,7 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.List;
 
 public class JaxbUtil {
@@ -50,6 +47,13 @@ public class JaxbUtil {
 		} catch (JAXBException e) {
 			throw new CorruptXmlException(e);
 		}
+	}
+
+	public static InputStream marshall(Object o) throws JAXBException {
+		ByteArrayOutputStream bos = new ByteArrayOutputStream();
+		getMarshaller(o.getClass()).marshal(o, bos);
+		return new ByteArrayInputStream(bos.toByteArray());
+
 	}
 
 	public static Unmarshaller getUnmarshaller(Class... classes) {

@@ -98,6 +98,12 @@ public class SelectQuery<ENTITY> extends BaseQuery {
 			return new SelectQuery(mapper, fieldMapper, returnFields, whereClauses, limit, orderClauses);
 		}
 
+		public List<T> execute() {
+			return build().execute();
+		}
+
+
+
 		public Builder<T> limit(int limit) {
 			this.limit = limit;
 			return this;

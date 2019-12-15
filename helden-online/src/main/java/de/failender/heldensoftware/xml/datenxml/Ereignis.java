@@ -82,11 +82,15 @@ public class Ereignis {
 	private static final DateFormat format = new SimpleDateFormat("dd.MM.yyyy kk:mm");
 
 	public Long getDate() {
+
 		try {
 			synchronized (format) {
-				return format.parse(date).getTime();
+					return format.parse(date).getTime();
 			}
 		} catch (ParseException e) {
+			try {
+				return Long.valueOf(date);
+			} catch(NumberFormatException ignore){}
 			throw new RuntimeException(e);
 		}
 	}

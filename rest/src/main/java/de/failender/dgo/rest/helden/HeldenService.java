@@ -14,6 +14,7 @@ import de.failender.heldensoftware.api.requests.ReturnHeldPdfRequest;
 import de.failender.heldensoftware.api.requests.ReturnHeldXmlRequest;
 import de.failender.heldensoftware.xml.datenxml.Daten;
 import de.failender.heldensoftware.xml.heldenliste.Held;
+import io.javalin.Context;
 import org.apache.commons.io.IOUtils;
 import reactor.core.publisher.Mono;
 import reactor.util.function.Tuple3;
@@ -71,7 +72,7 @@ public class HeldenService {
                             Beans.HELDEN_API.request(new ReturnHeldPdfRequest(heldEntity.getId(), new TokenAuthentication(userEntity.getToken()), uuid), false)).block();
                     IOUtils.closeQuietly(data.getT3());
                     String xml = data.getT1();
-                    versionEntity = VersionService.persistVersion(heldEntity, userEntity, versionEntity.getVersion() + 1, xml, uuid, data.getT2());
+                    versionEntity = VersionService.persistVersion(heldEntity, versionEntity.getVersion() + 1, xml, uuid, data.getT2());
 
 
                 } else {
@@ -94,7 +95,7 @@ public class HeldenService {
             heldEntity.setUserId(userEntity.getId());
             heldEntity.setKey(XmlUtil.getKeyFromString(xml));
             HeldRepositoryService.saveHeld(heldEntity);
-            VersionService.persistVersion(heldEntity, userEntity, 1, xml, uuid, data.getT2());
+            VersionService.persistVersion(heldEntity, 1, xml, uuid, data.getT2());
 
             log.info("Saving new held {} for user {} with version {}", heldEntity.getName(), userEntity.getName(), 1);
         });
@@ -110,5 +111,11 @@ public class HeldenService {
         }
 
         return lastEditedDate.isAfter(heldCreatedDate);
+    }
+
+    public static HeldEntity getHeldEntity(Context context) {
+        Long held = Long.valueOf(context.pathParam("held"));
+        return HeldRepositoryService.findByIdReduced(held);
+
     }
 }

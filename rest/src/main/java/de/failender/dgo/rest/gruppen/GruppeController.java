@@ -1,6 +1,6 @@
 package de.failender.dgo.rest.gruppen;
 
-import de.failender.dgo.persistance.gruppe.GruppeRepository;
+import de.failender.dgo.persistance.gruppe.GruppeRepositoryService;
 import de.failender.dgo.persistance.held.HeldRepositoryService;
 import io.javalin.Context;
 import io.javalin.Javalin;
@@ -20,7 +20,7 @@ public class GruppeController {
 
 	private void getGruppen(Context ctx) {
 
-		ctx.json(GruppeRepository.findAll());
+		ctx.json(GruppeRepositoryService.findAll());
 	}
 
 	private void getHeldenInGruppe(Context ctx) {

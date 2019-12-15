@@ -6,9 +6,10 @@ import de.failender.ezql.queries.SelectQuery;
 
 import java.util.List;
 
-public class GruppeRepository {
+class GruppeRepository {
 
 
+	static GruppeRepository INSTANCE = new GruppeRepository();
 
 	public static GruppeEntity findByName(String name) {
 
@@ -27,6 +28,8 @@ public class GruppeRepository {
 	public static void save(GruppeEntity gruppeEntity) {
 		new InsertQuery<>(GruppeMapper.INSTANCE, gruppeEntity).execute();
 	}
+
+
 
     public static GruppeEntity findById(Long id) {
 		return EntityMapper.firstOrNull(SelectQuery.Builder.selectAll(GruppeMapper.INSTANCE)

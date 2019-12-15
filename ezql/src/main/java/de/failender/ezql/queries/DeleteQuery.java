@@ -4,6 +4,7 @@ package de.failender.ezql.queries;
 import de.failender.ezql.EzqlConnector;
 import de.failender.ezql.clause.BaseClause;
 import de.failender.ezql.clause.Clause;
+import de.failender.ezql.clause.InClause;
 import de.failender.ezql.mapper.EntityMapper;
 import de.failender.ezql.mapper.FieldMapper;
 
@@ -50,11 +51,22 @@ public class DeleteQuery<ENTITY> extends BaseQuery {
             return new DeleteQuery<>(mapper, whereClauses);
         }
 
+        public void execute() {
+            new DeleteQuery<>(mapper, whereClauses).execute();
+        }
+
+
+
 
         public <VALUE> DeleteQuery.Builder<ENTITY> where(FieldMapper<ENTITY, VALUE> field, VALUE value) {
             whereClauses.add(new BaseClause(field, value));
             return this;
         }
+        public <VALUE> DeleteQuery.Builder<ENTITY> whereIn(FieldMapper<ENTITY, VALUE> field, List<VALUE> values) {
+            whereClauses.add(new InClause<ENTITY, VALUE>(field, values));
+            return this;
+        }
+
 
 
     }

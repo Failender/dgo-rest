@@ -2,19 +2,23 @@ package de.failender.dgo.rest;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import de.failender.dgo.persistance.user.UserEntity;
 import de.failender.dgo.persistance.user.UserRepositoryService;
 import de.failender.dgo.rest.gruppen.GruppeController;
 import de.failender.dgo.rest.helden.HeldenController;
+import de.failender.dgo.rest.helden.VersionService;
 import de.failender.dgo.rest.helden.geld.GeldController;
 import de.failender.dgo.rest.helden.inventar.HeldInventarController;
 import de.failender.dgo.rest.helden.steigern.SteigernController;
 import de.failender.dgo.rest.helden.uebersicht.HeldUebersichtController;
+import de.failender.dgo.rest.helden.version.VersionController;
 import de.failender.dgo.rest.helden.zauberspeicher.ZauberspeicherController;
 import de.failender.dgo.rest.kampf.KampfController;
 import de.failender.dgo.rest.meister.raumplan.RaumplanController;
 import de.failender.dgo.rest.pdf.PdfController;
 import de.failender.dgo.rest.security.DgoSecurity;
+import de.failender.dgo.rest.synchronization.SynchronizationService;
 import de.failender.dgo.rest.user.UserController;
 import de.failender.dgo.rest.user.UserService;
 import de.failender.ezql.EzqlConnector;
@@ -25,6 +29,7 @@ import org.apache.commons.io.IOUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.zip.ZipFile;
 
 public class DgoRest {
 
@@ -35,8 +40,8 @@ public class DgoRest {
         PropertyReader.initialize(args);
         EzqlConnector.connect("hibernate.connection");
         if(PropertyReader.getProperty("hibernate.initialize.on.start").equals("true")) {
-            String sql = IOUtils.toString(DgoRest.class.getResourceAsStream("/setup.sql"), "UTF-8");
-            EzqlConnector.execute(sql);
+            EzqlConnector.execute(IOUtils.toString(DgoRest.class.getResourceAsStream("/setup.sql"), "UTF-8"));
+            //EzqlConnector.execute(IOUtils.toString(DgoRest.class.getResourceAsStream("/talente.sql"), "UTF-8"));
             String adminInsert = "INSERT INTO USERS (NAME, PASSWORD, TOKEN, GRUPPE_ID, CAN_WRITE) VALUES ('Admin', 'pass', null, null, false)";
             EzqlConnector.execute(adminInsert);
             UserEntity admin = UserRepositoryService.findUserByName("Admin");
@@ -54,6 +59,8 @@ public class DgoRest {
                 .start(7000);
 
         ObjectMapper om = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        om.findAndRegisterModules();
+        om.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
         JavalinJackson.configure(om);
 
         DgoSecurity.registerSecurity(app);
@@ -69,6 +76,10 @@ public class DgoRest {
         new RaumplanController(app);
         new KampfController(app);
         new SteigernController(app);
+        new VersionController(app);
+
+        SynchronizationService.intialize(om);
+
 
 		double elapsedTimeInSecond = (double) (System.nanoTime() - start) / 1_000_000_000;
 		long takenMemory = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();

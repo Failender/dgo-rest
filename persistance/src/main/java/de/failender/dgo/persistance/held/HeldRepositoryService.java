@@ -52,7 +52,13 @@ public class HeldRepositoryService {
         return DgoSecurityContext.getAuthenticatedUser().getId() == heldEntity.getUserId();
     }
 
+    public static List<HeldEntity> findAllReduced() {
+        return HeldRepository.INSTANCE.findAllReduced();
+    }
 
+    public static List<HeldEntity> findAll() {
+        return HeldRepository.INSTANCE.findAll();
+    }
 
     public static void updatePublic(HeldEntity heldEntity, boolean value) {
         HeldRepository.updatePublic(heldEntity.getId(), value);
@@ -64,5 +70,9 @@ public class HeldRepositoryService {
 
     public static void updateLockExpire(HeldEntity heldEntity, LocalDateTime value) {
         HeldRepository.updateLockExpire(heldEntity.getId(), value);
+    }
+
+    public static boolean existsById(Long id) {
+        return HeldRepository.INSTANCE.existsById(id);
     }
 }

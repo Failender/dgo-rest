@@ -1,7 +1,6 @@
 package de.failender.dgo.rest.helden;
 
 import de.failender.dgo.persistance.gruppe.GruppeEntity;
-import de.failender.dgo.persistance.gruppe.GruppeRepository;
 import de.failender.dgo.persistance.gruppe.GruppeRepositoryService;
 import de.failender.dgo.persistance.held.*;
 import de.failender.dgo.rest.integration.Beans;
@@ -77,8 +76,8 @@ public class HeldenController {
 
 	private void updateActive(Context context) {
 		Long held = Long.valueOf(context.pathParam("held"));
-		boolean value = Boolean.valueOf(context.pathParam("active"));
 		HeldEntity heldEntity = HeldRepositoryService.findByIdReduced(held);
+		boolean value = Boolean.valueOf(context.pathParam("active"));
 		HeldRepositoryService.updateActive(heldEntity, value);
 	}
 
@@ -101,7 +100,7 @@ public class HeldenController {
 				.stream()
 				.map(heldEntity -> {
 					if(!map.containsKey(heldEntity.getGruppe())) {
-						map.put(heldEntity.getGruppe(), GruppeRepository.findById(heldEntity.getGruppe()));
+						map.put(heldEntity.getGruppe(), GruppeRepositoryService.findById(heldEntity.getGruppe()));
 					}
 
 					VersionEntity versionEntity = VersionRepositoryService.findLatestVersion(heldEntity);

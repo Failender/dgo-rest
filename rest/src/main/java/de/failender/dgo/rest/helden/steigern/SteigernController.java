@@ -25,6 +25,7 @@ import java.io.IOException;
 import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class SteigernController {
 
@@ -68,12 +69,42 @@ public class SteigernController {
         Long id = Long.valueOf(context.pathParam("held"));
         HeldEntity heldEntity = HeldRepositoryService.findById(id);
         UserEntity userEntity = UserRepositoryService.findUserById(heldEntity.getUserId());
+        VersionEntity versionEntity = VersionRepositoryService.findLatestVersion(heldEntity);
 
         ListTalente talente = Beans.HELDEN_API.request(new ListTalenteRequest(new TokenAuthentication(userEntity.getToken()), heldEntity.getId()))
                 .block();
+        String xml = Beans.HELDEN_API.request(new ReturnHeldXmlRequest(id, new TokenAuthentication(userEntity.getToken()), versionEntity.getCacheId()), false)
+                .block();
+        Element held = XmlUtil.getHeldFromXml(xml);
+        Element talentliste = (Element) held.getElementsByTagName("talentliste").item(0);
 
-        context.json(talente.getTalent());
+        List<SteigerungsTalentDto> dtos = talente.getTalent()
+                .stream()
+                .map(entry -> {
+                    boolean isSe = getIsSe(entry.getTalent(), talentliste);
+                    return new SteigerungsTalentDto(entry, isSe);
+                }).collect(Collectors.toList());
+
+
+
+        context.json(dtos);
     }
+
+    private boolean getIsSe(String talent, Element talentliste) {
+        for(int i = 0; i<talentliste.getChildNodes().getLength(); i++) {
+            Node node = talentliste.getChildNodes().item(i);
+            if(!(node instanceof Element)) {
+                continue;
+            }
+            Element e = (Element) node;
+            if(e.getAttribute("name").equals(talent)) {
+                String value = e.getAttribute("se");
+                return value != null && value.equals("true");
+            }
+        }
+        return false;
+    }
+
 
     private void updateSteigerungenForHeld(Context context) throws IOException {
         Long id = Long.valueOf(context.pathParam("held"));

@@ -11,6 +11,12 @@ import java.util.List;
 
 class HeldRepository extends EzqlRepository<HeldEntity> {
 
+	static final HeldRepository INSTANCE = new HeldRepository();
+
+	public boolean existsById(Long id) {
+		return findByIdReduced(id) != null;
+	}
+
 	public HeldEntity findByIdReduced(Long id) {
 		HeldEntity heldEntity = findOneBy(HeldMapper.ID, id, HeldMapper.USER_ID);
 		heldEntity.setId(id);
@@ -66,4 +72,7 @@ class HeldRepository extends EzqlRepository<HeldEntity> {
 		return HeldMapper.INSTANCE;
 	}
 
+	public List<HeldEntity> findAllReduced() {
+		return findAll(HeldMapper.USER_ID, HeldMapper.ID);
+	}
 }

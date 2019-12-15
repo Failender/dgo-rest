@@ -3,7 +3,6 @@ package de.failender.dgo.rest.user;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import de.failender.dgo.persistance.gruppe.GruppeEntity;
-import de.failender.dgo.persistance.gruppe.GruppeRepository;
 import de.failender.dgo.persistance.gruppe.GruppeRepositoryService;
 import de.failender.dgo.persistance.user.UserEntity;
 import de.failender.dgo.persistance.user.UserRepositoryService;
@@ -36,6 +35,10 @@ public class UserService {
 	}
 
 	public static UserEntity registerUser(UserRegistration userRegistration) {
+		return registerUser(userRegistration, true);
+	}
+
+	public static UserEntity registerUser(UserRegistration userRegistration, boolean syncHelden) {
 		if (userRegistration.getName() == null || userRegistration.getGruppe() == null) {
 			log.error("User or group cant be null");
 			return null;
@@ -44,7 +47,7 @@ public class UserService {
 			log.error("User already exists");
 			return null;
 		}
-		GruppeEntity gruppeEntity = GruppeRepository.findByName(userRegistration.getGruppe());
+		GruppeEntity gruppeEntity = GruppeRepositoryService.findByName(userRegistration.getGruppe());
 		if (gruppeEntity == null) {
 			gruppeEntity = new GruppeEntity();
 			gruppeEntity.setName(userRegistration.getGruppe());
@@ -73,7 +76,10 @@ public class UserService {
 		if(userRegistration.getRole() != null) {
 			UserRepositoryService.addRoleForUser(userEntity, userRegistration.getRole());
 		}
-		HeldenService.updateHeldenForUser(userEntity);
+		if(syncHelden) {
+			HeldenService.updateHeldenForUser(userEntity);
+
+		}
 		return userEntity;
 	}
 }

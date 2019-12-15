@@ -64,32 +64,8 @@ public class HeldenApi {
 		String body = buildBody(request);
 		System.out.println(request.url());
 		System.out.println(body);
-		try {
-			URL url = new URL(request.url());
-			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-			connection.setRequestMethod(request.requestMethod());
-			connection.setDoInput(true);
-			connection.setDoOutput(true);
-			connection.setUseCaches(false);
-			connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded; charset=utf-8");
+		return Mono.just(RestUtils.request(request.url(), body, request.requestMethod()));
 
-			connection.setRequestProperty("Content-Length", String.valueOf(body.length()));
-			OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
-			writer.write(body);
-			writer.close();
-			return Mono.just(connection.getInputStream());
-		} catch (Exception e) {
-			logError(request, body);
-			throw new RuntimeException(e);
-		}
-	}
-
-	private void logError(ApiRequest request, String body) {
-		System.out.println("############");
-		System.out.println("Received failed request to url " +  request.url());
-		System.out.println("Body is: ");
-		System.out.println(body);
-		System.out.println("############");
 	}
 
 	public String buildBody(ApiRequest request) {

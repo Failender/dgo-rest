@@ -12,6 +12,9 @@ import de.failender.ezql.queries.UpdateQuery;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public abstract class EzqlRepository <ENTITY>{
 
@@ -21,10 +24,21 @@ public abstract class EzqlRepository <ENTITY>{
         return findOneBy(getMapper().idField(), id);
     }
 
+    protected <FIELD> Field<FIELD> field(FieldMapper<ENTITY, FIELD> fieldMapper, FIELD field) {
+        return new Field<>(fieldMapper, field);
+    }
+
+    protected List<ENTITY> findBy(Field... fields) {
+        SelectQuery.Builder builder =  SelectQuery.Builder.selectAll(getMapper());
+        for (Field field : fields) {
+            builder.where(field.getFieldMapper(), field.getField());
+        }
+        return builder.execute();
+    }
+
     protected <FIELD> List<ENTITY> findBy(FieldMapper<ENTITY, FIELD> fieldMapper, FIELD field) {
         return SelectQuery.Builder.selectAll(getMapper())
                 .where(fieldMapper, field)
-                .build()
                 .execute();
     }
 
@@ -32,25 +46,60 @@ public abstract class EzqlRepository <ENTITY>{
         return firstOrNull(SelectQuery.Builder.selectAll(getMapper())
                 .where(fieldMapper, field)
                 .limit(1)
-                .build()
                 .execute());
+    }
+
+    protected Optional<ENTITY> findOneBy(Field... fields) {
+        SelectQuery.Builder builder =  SelectQuery.Builder.selectAll(getMapper()).limit(1);
+        for (Field field : fields) {
+            builder.where(field.getFieldMapper(), field.getField());
+        }
+        List<ENTITY> list = builder.execute();
+        if(list.isEmpty()) {
+            return Optional.empty();
+        }
+        return Optional.of(list.get(0));
     }
 
     protected <FIELD> ENTITY findOneBy(FieldMapper<ENTITY, FIELD> fieldMapper, FIELD field, FieldMapper<ENTITY, ?>... fields) {
         return firstOrNull(SelectQuery.Builder.select(getMapper(), fields)
                 .where(fieldMapper, field)
                 .limit(1)
-                .build()
                 .execute());
     }
+
+    public List<ENTITY> findAll() {
+        return SelectQuery.Builder.selectAll(getMapper())
+                .execute();
+    }
+
+    public List<ENTITY> findAll(FieldMapper<ENTITY, ?>... fields) {
+        return SelectQuery.Builder.select(getMapper(), fields)
+                .execute();
+    }
+
+
 
     protected void updateById(Long id, List<BaseClause<ENTITY, ?>> updateClauses) {
         List<Clause> whereClauses = Arrays.asList(new BaseClause<>(getMapper().idField(), id));
         update(whereClauses, updateClauses);
     }
 
+    protected void updateById(Long id, Field<?>... fields) {
+        List<Clause> whereClauses = Arrays.asList(new BaseClause<>(getMapper().idField(), id));
+        List<BaseClause<ENTITY, ?>> updateClauses = Stream.of(fields)
+                .map(this::buildBaseClause)
+                .collect(Collectors.toList());
+        new UpdateQuery<>(getMapper(), updateClauses, whereClauses)
+                .execute();
+    }
+
+    private <FIELD> BaseClause<ENTITY, ?> buildBaseClause(Field<FIELD> field) {
+        return new BaseClause<ENTITY, FIELD>(field.getFieldMapper(), field.getField());
+    }
+
+
     public void update(List<Clause> whereClauses, List<BaseClause<ENTITY, ?>> updateClauses) {
-        UpdateQuery.Builder.update(getMapper());
         new UpdateQuery<>(getMapper(), updateClauses, whereClauses)
                 .execute();
     }
@@ -62,6 +111,12 @@ public abstract class EzqlRepository <ENTITY>{
     public void deleteById(Long id) {
         DeleteQuery.Builder.delete(getMapper()).where(getMapper().idField(), id)
                 .build().execute();
+    }
+
+    public void deleteBulkById(List<Long> ids) {
+        DeleteQuery.Builder.delete(getMapper())
+                .whereIn(getMapper().idField(), ids)
+                .execute();
     }
 
     protected <FIELD> void deleteBy(FieldMapper<ENTITY, FIELD> field, FIELD value ) {
@@ -83,6 +138,24 @@ public abstract class EzqlRepository <ENTITY>{
             return null;
         }
         return list.get(0);
+    }
+
+    protected class Field<FIELD> {
+        private final FieldMapper<ENTITY, FIELD> fieldMapper;
+         private final FIELD field;
+
+        public Field(FieldMapper<ENTITY, FIELD> fieldMapper, FIELD field) {
+            this.fieldMapper = fieldMapper;
+            this.field = field;
+        }
+
+        public FIELD getField() {
+            return field;
+        }
+
+        public FieldMapper<ENTITY, FIELD> getFieldMapper() {
+            return fieldMapper;
+        }
     }
 
 }

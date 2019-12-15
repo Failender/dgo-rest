@@ -23,4 +23,5 @@ public class GruppeRepositoryService {
 	public static List<GruppeEntity> findAll() {
 		return GruppeRepository.findAll();
 	}
+
 }
