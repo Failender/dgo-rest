@@ -63,4 +63,9 @@ public class ConvertingRequest extends ApiRequest<InputStream> {
 	public HeldenApi.Format getFormat() {
 		return format;
 	}
+
+	@Override
+	public boolean needsReplacing() {
+		return format != HeldenApi.Format.pdfintern;
+	}
 }

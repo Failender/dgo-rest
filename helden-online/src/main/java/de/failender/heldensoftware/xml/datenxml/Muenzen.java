@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{}münze" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element ref="{}muenze" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -37,40 +37,40 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "m\u00fcnze"
+    "muenze"
 })
 @XmlRootElement(name = "m\u00fcnzen")
-public class Münzen {
+public class Muenzen {
 
-    protected List<Münze> münze;
+    protected List<Muenze> muenze;
 
     /**
-     * Gets the value of the münze property.
+     * Gets the value of the muenze property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the münze property.
+     * This is why there is not a <CODE>set</CODE> method for the muenze property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getMünze().add(newItem);
+     *    getMuenze().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link Münze }
+     * {@link Muenze }
      * 
      * 
      */
-    public List<Münze> getMünze() {
-        if (münze == null) {
-            münze = new ArrayList<Münze>();
+    public List<Muenze> getMuenze() {
+        if (muenze == null) {
+            muenze = new ArrayList<Muenze>();
         }
-        return this.münze;
+        return this.muenze;
     }
 
 }

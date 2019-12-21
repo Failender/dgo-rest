@@ -19,7 +19,7 @@ create table TALENTE(
 INSERT INTO TALENT_KATEGORIEN VALUES(1, 'Gesellschaftlich');
 
 INSERT INTO TALENTE (NAME, KATEGORIE_ID, LERNKOMPLEXITAET, BE) VALUES
-('Betören', 1, 'B', 'BE-2'),
+('Betoeren', 1, 'B', 'BE-2'),
 ('Etikette', 1, 'B', 'BE-2'),
 ('Gassenwissen', 1, 'B', 'BE-4'),
 ('Lehren', 1, 'B', ''),
@@ -27,13 +27,13 @@ INSERT INTO TALENTE (NAME, KATEGORIE_ID, LERNKOMPLEXITAET, BE) VALUES
 ('Schauspielerei', 1, 'B', ''),
 ('Schriftlicher Ausdruck', 1, 'B', ''),
 ('Sich verkleIDen', 1, 'B', ''),
-('Überreden', 1, 'B', ''),
-('Überzeugen', 1, 'B', '');
+('Ueberreden', 1, 'B', ''),
+('Ueberzeugen', 1, 'B', '');
 
 INSERT INTO TALENT_KATEGORIEN VALUES(2, 'Natur');
 
 INSERT INTO TALENTE (NAME, KATEGORIE_ID, LERNKOMPLEXITAET, BE) VALUES
-('Fährtensuchen', 2, 'B', ''),
+('Faehrtensuchen', 2, 'B', ''),
 ('Fallen stellen', 2, 'B', ''),
 ('Fesseln/Entfesseln', 2, 'B', ''),
 ('Fischen/Angeln', 2, 'B', ''),
@@ -50,9 +50,9 @@ INSERT INTO TALENTE (NAME, KATEGORIE_ID, LERNKOMPLEXITAET, BE) VALUES
 ('Geografie', 3, 'B', ''),
 ('Geschichtswissen', 3, 'B', ''),
 ('Gesteinskunde', 3, 'B', ''),
-('Götter und Kulte', 3, 'B', ''),
+('Goetter und Kulte', 3, 'B', ''),
 ('Heraldik', 3, 'B', ''),
-('Hüttenkunde', 3, 'B', ''),
+('Huettenkunde', 3, 'B', ''),
 ('Kriegskunst', 3, 'B', ''),
 ('Kryptographie', 3, 'B', ''),
 ('Magiekunde', 3, 'B', ''),
@@ -62,7 +62,7 @@ INSERT INTO TALENTE (NAME, KATEGORIE_ID, LERNKOMPLEXITAET, BE) VALUES
 ('Rechnen', 3, 'B', ''),
 ('Rechtskunde', 3, 'B', ''),
 ('Sagen und Legenden', 3, 'B', ''),
-('Schätzen', 3, 'B', ''),
+('Schaetzen', 3, 'B', ''),
 ('Sprachenkunde', 3, 'B', ''),
 ('Staatskunst', 3, 'B', ''),
 ('Sternkunde', 3, 'B', ''),
@@ -71,7 +71,7 @@ INSERT INTO TALENTE (NAME, KATEGORIE_ID, LERNKOMPLEXITAET, BE) VALUES
 INSERT INTO TALENT_KATEGORIEN VALUES(4, 'Kampf');
 
 INSERT INTO TALENTE (ID, NAME, KATEGORIE_ID, LERNKOMPLEXITAET,BE) VALUES
-(42, 'Anderthalbhänder', 4, 'E', 'BE-2'),
+(42, 'Anderthalbhaender', 4, 'E', 'BE-2'),
 (43, 'Armbrust', 4, 'C', 'BE-5'),
 (44, 'BElagerungswaffen', 4, 'D', ''),
 (45, 'Blasrohr', 4, 'D', 'BE-5'),
@@ -81,7 +81,7 @@ INSERT INTO TALENTE (ID, NAME, KATEGORIE_ID, LERNKOMPLEXITAET,BE) VALUES
 (49, 'Fechtwaffen', 4, 'E', 'BE-1'),
 (50, 'Hiebwaffen', 4, 'D', 'BE-4'),
 (51, 'Infanteriewaffen', 4, 'D', 'BE-3'),
-(52, 'KettenstäBE', 4, 'E', 'BE-1'),
+(52, 'KettenstaeBE', 4, 'E', 'BE-1'),
 (53, 'Kettenwaffen', 4, 'D', 'BE-3'),
 (54, 'Lanzenreiten', 4, 'E', null);
 
@@ -89,17 +89,17 @@ INSERT INTO TALENTE (ID, NAME, KATEGORIE_ID, LERNKOMPLEXITAET,BE) VALUES
 (55, 'Peitsche', 4, 'E', 'BE-1'),
 (56, 'Raufen', 4, 'C', 'BE'),
 (57, 'Ringen', 4, 'D', 'BE'),
-(58, 'SäBEl', 4, 'D', 'BE-2'),
+(58, 'SaeBEl', 4, 'D', 'BE-2'),
 (59, 'Schleuder', 4, 'E', 'BE-2'),
 (60, 'Schwerter', 4, 'E', 'BE-2'),
 (61, 'Speere', 4, 'D', 'BE-3'),
-(62, 'StäBE', 4, 'D', 'BE-2'),
+(62, 'StaeBE', 4, 'D', 'BE-2'),
 (63, 'WurfBEile', 4, 'D', 'BE-2'),
 (64, 'Wurfmesser', 4, 'C', 'BE-3'),
 (65, 'Wurfspeere', 4, 'C', 'BE-2'),
 (66, 'Zweihandflegel', 4, 'D', 'BE-3'),
 (67, 'Zweihandhiebwaffen', 4, 'D', 'BE-3'),
-(68, 'Zweihandschwerter/-säBEl', 4, 'D', 'BE-2');
+(68, 'Zweihandschwerter/-saeBEl', 4, 'D', 'BE-2');
 
 INSERT INTO TALENT_KATEGORIEN VALUES(5, 'Handwerk');
 
@@ -116,7 +116,7 @@ INSERT INTO TALENTE (NAME, KATEGORIE_ID, LERNKOMPLEXITAET) VALUES
     ('Feinmechanik', 5, 'B'),
     ('FeuersteinBEarBEitung', 5, 'B'),
     ('Fleischer', 5, 'B'),
-    ('GerBEr/Kürschner', 5, 'B'),
+    ('GerBEr/Kuerschner', 5, 'B'),
     ('Grobschmied', 5, 'B'),
     ('Glaskunst', 5, 'B'),
     ('Handel', 5, 'B'),
@@ -139,7 +139,7 @@ INSERT INTO TALENTE (NAME, KATEGORIE_ID, LERNKOMPLEXITAET) VALUES
     ('Maurer', 5, 'B'),
     ('Metallguss', 5, 'B'),
     ('Musizieren', 5, 'B'),
-    ('Schlösser knacken', 5, 'B'),
+    ('Schloesser knacken', 5, 'B'),
     ('Schnaps Brennen', 5, 'B'),
     ('SchneIDern', 5, 'B'),
     ('Seefahrt', 5, 'B'),
@@ -147,9 +147,9 @@ INSERT INTO TALENTE (NAME, KATEGORIE_ID, LERNKOMPLEXITAET) VALUES
     ('Steinmetz', 5, 'B'),
     ('SteinschneIDer/Juwelier', 5, 'B'),
     ('Stellmacher', 5, 'B'),
-    ('Stoffe färBEn', 5, 'B'),
-    ('Tätowieren', 5, 'B'),
-    ('Töpfern', 5, 'B'),
+    ('Stoffe faerBEn', 5, 'B'),
+    ('Taetowieren', 5, 'B'),
+    ('Toepfern', 5, 'B'),
     ('Viehzucht', 5, 'B'),
     ('Webkunst', 5, 'B'),
     ('Winzer', 5, 'B'),
@@ -162,7 +162,7 @@ INSERT INTO TALENTE (NAME, KATEGORIE_ID, LERNKOMPLEXITAET) VALUES
     ('Ritualkenntnis: DruIDe', 6, 'E'),
     ('Gefahreninstinkt', 6, 'E');
 
-INSERT INTO TALENT_KATEGORIEN VALUES(7, 'Körperlich');
+INSERT INTO TALENT_KATEGORIEN VALUES(7, 'Koerperlich');
 
 INSERT INTO TALENTE (NAME, KATEGORIE_ID, LERNKOMPLEXITAET, BE) VALUES
     ('Akrobatik', 7, 'D', 'BEx2'),
@@ -170,14 +170,14 @@ INSERT INTO TALENTE (NAME, KATEGORIE_ID, LERNKOMPLEXITAET, BE) VALUES
     ('Fliegen', 7, 'D', 'BE'),
     ('Gaukeleien', 7, 'D', 'BEx2'),
     ('Klettern', 7, 'D', 'BEx2'),
-    ('KörperBEherrschung', 7, 'D', 'BEx2'),
+    ('KoerperBEherrschung', 7, 'D', 'BEx2'),
     ('Reiten', 7, 'D', ' BE-2'),
     ('Schleichen', 7, 'D', 'BE'),
     ('Schwimmen', 7, 'D', 'BEx2'),
     ('SelbstBEherrschung', 7, 'D', ''),
     ('Sich verstecken', 7, 'D', 'BE-2'),
     ('Singen', 7, 'D', 'BE-3'),
-    ('Sinnenschärfe', 7, 'D', ''),
+    ('Sinnenschaerfe', 7, 'D', ''),
     ('Skifahren', 7, 'D', 'BE-2'),
     ('Stimmen imitieren', 7, 'D', 'BE-4'),
     ('Tanzen', 7, 'D', 'BEx2'),

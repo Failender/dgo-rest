@@ -49,7 +49,7 @@ import java.math.BigInteger;
     "gesamtwertinsilberstuecken"
 })
 @XmlRootElement(name = "m\u00fcnze")
-public class Münze {
+public class Muenze {
 
     @XmlElement(required = true)
     protected String name;

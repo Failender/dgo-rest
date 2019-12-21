@@ -1,1 +1,1 @@
-./gradlew discord:fatJar
+./gradlew rest:fatJar

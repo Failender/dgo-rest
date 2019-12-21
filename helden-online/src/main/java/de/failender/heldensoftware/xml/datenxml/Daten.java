@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.*;
  *         &lt;element ref="{}config"/>
  *         &lt;element ref="{}angaben"/>
  *         &lt;element ref="{}eigenschaften"/>
- *         &lt;element ref="{}münzen"/>
+ *         &lt;element ref="{}muenzen"/>
  *         &lt;element ref="{}vorteile"/>
  *         &lt;element ref="{}sonderfertigkeiten"/>
  *         &lt;element ref="{}verbilligtesonderfertigkeiten"/>
@@ -47,7 +47,7 @@ import javax.xml.bind.annotation.*;
     "config",
     "angaben",
     "eigenschaften",
-    "m\u00fcnzen",
+    "muenzen",
     "vorteile",
     "sonderfertigkeiten",
     "verbilligtesonderfertigkeiten",
@@ -68,7 +68,7 @@ public class Daten {
     @XmlElement(required = true)
     protected Eigenschaften eigenschaften;
     @XmlElement(required = true)
-    protected Münzen münzen;
+    protected Muenzen muenzen;
     @XmlElement(required = true)
     protected Vorteile vorteile;
     @XmlElement(required = true)
@@ -162,27 +162,27 @@ public class Daten {
     }
 
     /**
-     * Gets the value of the münzen property.
+     * Gets the value of the muenzen property.
      * 
      * @return
      *     possible object is
-     *     {@link Münzen }
+     *     {@link Muenzen }
      *     
      */
-    public Münzen getMünzen() {
-        return münzen;
+    public Muenzen getMuenzen() {
+        return muenzen;
     }
 
     /**
-     * Sets the value of the münzen property.
+     * Sets the value of the muenzen property.
      * 
      * @param value
      *     allowed object is
-     *     {@link Münzen }
+     *     {@link Muenzen }
      *     
      */
-    public void setMünzen(Münzen value) {
-        this.münzen = value;
+    public void setMuenzen(Muenzen value) {
+        this.muenzen = value;
     }
 
     /**
@@ -407,7 +407,7 @@ public class Daten {
                 "config=" + config +
                 ", angaben=" + angaben +
                 ", eigenschaften=" + eigenschaften +
-                ", münzen=" + münzen +
+                ", muenzen=" + muenzen +
                 ", vorteile=" + vorteile +
                 ", sonderfertigkeiten=" + sonderfertigkeiten +
                 ", verbilligtesonderfertigkeiten=" + verbilligtesonderfertigkeiten +

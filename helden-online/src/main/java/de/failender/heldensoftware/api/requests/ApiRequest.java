@@ -19,4 +19,8 @@ public abstract class ApiRequest<T> {
 	public String requestMethod() {
 		return "POST";
 	}
+
+	public boolean needsReplacing() {
+		return true;
+	}
 }

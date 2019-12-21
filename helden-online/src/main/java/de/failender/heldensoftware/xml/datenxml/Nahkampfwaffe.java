@@ -23,7 +23,7 @@ import java.math.BigInteger;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element ref="{}nummer"/>
- *         &lt;element ref="{}möglich"/>
+ *         &lt;element ref="{}moeglich"/>
  *         &lt;element ref="{}getName"/>
  *         &lt;element ref="{}spalte2"/>
  *         &lt;element ref="{}dk"/>
@@ -51,7 +51,7 @@ import java.math.BigInteger;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
     "nummer",
-    "m\u00f6glich",
+    "moeglich",
     "name",
     "spalte2",
     "dk",
@@ -74,7 +74,7 @@ public class Nahkampfwaffe {
 
     @XmlElement(required = true)
     protected BigInteger nummer;
-    protected boolean möglich;
+    protected boolean moeglich;
     @XmlElement(required = true)
     protected String name;
     @XmlElement(required = true)
@@ -133,19 +133,19 @@ public class Nahkampfwaffe {
     }
 
     /**
-     * Gets the value of the möglich property.
+     * Gets the value of the moeglich property.
      * 
      */
-    public boolean isMöglich() {
-        return möglich;
+    public boolean isMoeglich() {
+        return moeglich;
     }
 
     /**
-     * Sets the value of the möglich property.
+     * Sets the value of the moeglich property.
      * 
      */
-    public void setMöglich(boolean value) {
-        this.möglich = value;
+    public void setMoeglich(boolean value) {
+        this.moeglich = value;
     }
 
     /**

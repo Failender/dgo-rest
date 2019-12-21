@@ -3,6 +3,7 @@ package de.failender.heldensoftware.api;
 
 import de.failender.heldensoftware.api.requests.*;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.io.input.ReaderInputStream;
 import reactor.core.publisher.Mono;
 
 import java.io.*;
@@ -64,7 +65,16 @@ public class HeldenApi {
 		String body = buildBody(request);
 		System.out.println(request.url());
 		System.out.println(body);
-		return Mono.just(RestUtils.request(request.url(), body, request.requestMethod()));
+		InputStream is = RestUtils.request(request.url(), body, request.requestMethod());
+		if(!request.needsReplacing()) {
+			return Mono.just(is);
+		}
+		try {
+			BufferedReader br = new ReplacingBufferedReader(new InputStreamReader(is, "UTF-8"));
+			return Mono.just(new ReaderInputStream(br, "UTF-8"));
+		} catch (UnsupportedEncodingException e) {
+			throw new RuntimeException(e);
+		}
 
 	}
 

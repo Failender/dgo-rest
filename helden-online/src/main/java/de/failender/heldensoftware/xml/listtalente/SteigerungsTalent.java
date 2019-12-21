@@ -14,6 +14,8 @@ public class SteigerungsTalent {
 	private String Art;
 	@XmlElement(required = true)
 	private int Kosten;
+	@XmlElement(required = false)
+	private boolean se;
 
 
 	public String getTalent() {
@@ -54,5 +56,9 @@ public class SteigerungsTalent {
 
 	public void setKosten(int kosten) {
 		Kosten = kosten;
+	}
+
+	public boolean isSe() {
+		return se;
 	}
 }

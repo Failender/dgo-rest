@@ -13,13 +13,13 @@ public class SteigerungsTalentDto {
     private int kosten;
     private boolean se;
 
-    public SteigerungsTalentDto(SteigerungsTalent steigerungsTalent, boolean se) {
+    public SteigerungsTalentDto(SteigerungsTalent steigerungsTalent) {
         this.talent = steigerungsTalent.getTalent();
         this.lernmethode = steigerungsTalent.getLernmethode();
         this.talentwert = steigerungsTalent.getTalentwert();
         this.art = steigerungsTalent.getArt();
         this.kosten = steigerungsTalent.getKosten();
-        this.se = se;
+        this.se = steigerungsTalent.isSe();
     }
 
     public String getTalent() {

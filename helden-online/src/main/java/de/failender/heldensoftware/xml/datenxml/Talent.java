@@ -34,7 +34,7 @@ import java.math.BigInteger;
  *         &lt;element ref="{}nameausfuehrlichmitprobe"/>
  *         &lt;element ref="{}at" minOccurs="0"/>
  *         &lt;element ref="{}pa" minOccurs="0"/>
- *         &lt;element ref="{}sprachkomplexität" minOccurs="0"/>
+ *         &lt;element ref="{}sprachkomplexitaet" minOccurs="0"/>
  *         &lt;element ref="{}muttersprache" minOccurs="0"/>
  *         &lt;element ref="{}schriftmuttersprache" minOccurs="0"/>
  *         &lt;element ref="{}zweitlehrsprache" minOccurs="0"/>
@@ -43,8 +43,8 @@ import java.math.BigInteger;
  *         &lt;element ref="{}mirakelminus"/>
  *         &lt;element ref="{}metatalent"/>
  *         &lt;element ref="{}bereich"/>
- *         &lt;element ref="{}komplexität"/>
- *         &lt;element ref="{}lernkomplexität"/>
+ *         &lt;element ref="{}komplexitaet"/>
+ *         &lt;element ref="{}lernkomplexitaet"/>
  *         &lt;element ref="{}spezialisierungen"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -67,7 +67,7 @@ import java.math.BigInteger;
     "nameausfuehrlichmitprobe",
     "at",
     "pa",
-    "sprachkomplexit\u00e4t",
+    "sprachkomplexitaet",
     "muttersprache",
     "schriftmuttersprache",
     "zweitlehrsprache",
@@ -76,8 +76,8 @@ import java.math.BigInteger;
     "mirakelminus",
     "metatalent",
     "bereich",
-    "komplexit\u00e4t",
-    "lernkomplexit\u00e4t",
+    "komplexitaet",
+    "lernkomplexitaet",
     "spezialisierungen"
 })
 @XmlRootElement(name = "talent")
@@ -100,7 +100,7 @@ public class Talent implements Unterscheidbar {
     protected String nameausfuehrlichmitprobe;
     protected String at;
     protected String pa;
-    protected BigInteger sprachkomplexität;
+    protected BigInteger sprachkomplexitaet;
     protected Boolean muttersprache;
     protected Boolean schriftmuttersprache;
     protected Boolean zweitlehrsprache;
@@ -112,9 +112,9 @@ public class Talent implements Unterscheidbar {
     @XmlElement(required = true)
     protected String bereich;
     @XmlElement(required = true)
-    protected String komplexität;
+    protected String komplexitaet;
     @XmlElement(required = true)
-    protected String lernkomplexität;
+    protected String lernkomplexitaet;
     @XmlElement(required = true)
     protected String spezialisierungen;
 
@@ -359,27 +359,27 @@ public class Talent implements Unterscheidbar {
     }
 
     /**
-     * Gets the value of the sprachkomplexität property.
+     * Gets the value of the sprachkomplexitaet property.
      * 
      * @return
      *     possible object is
      *     {@link BigInteger }
      *     
      */
-    public BigInteger getSprachkomplexität() {
-        return sprachkomplexität;
+    public BigInteger getSprachkomplexitaet() {
+        return sprachkomplexitaet;
     }
 
     /**
-     * Sets the value of the sprachkomplexität property.
+     * Sets the value of the sprachkomplexitaet property.
      * 
      * @param value
      *     allowed object is
      *     {@link BigInteger }
      *     
      */
-    public void setSprachkomplexität(BigInteger value) {
-        this.sprachkomplexität = value;
+    public void setSprachkomplexitaet(BigInteger value) {
+        this.sprachkomplexitaet = value;
     }
 
     /**
@@ -551,51 +551,51 @@ public class Talent implements Unterscheidbar {
     }
 
     /**
-     * Gets the value of the komplexität property.
+     * Gets the value of the komplexitaet property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getKomplexität() {
-        return komplexität;
+    public String getKomplexitaet() {
+        return komplexitaet;
     }
 
     /**
-     * Sets the value of the komplexität property.
+     * Sets the value of the komplexitaet property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setKomplexität(String value) {
-        this.komplexität = value;
+    public void setKomplexitaet(String value) {
+        this.komplexitaet = value;
     }
 
     /**
-     * Gets the value of the lernkomplexität property.
+     * Gets the value of the lernkomplexitaet property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getLernkomplexität() {
-        return lernkomplexität;
+    public String getLernkomplexitaet() {
+        return lernkomplexitaet;
     }
 
     /**
-     * Sets the value of the lernkomplexität property.
+     * Sets the value of the lernkomplexitaet property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setLernkomplexität(String value) {
-        this.lernkomplexität = value;
+    public void setLernkomplexitaet(String value) {
+        this.lernkomplexitaet = value;
     }
 
     /**
@@ -641,7 +641,7 @@ public class Talent implements Unterscheidbar {
                 ", nameausfuehrlichmitprobe='" + nameausfuehrlichmitprobe + '\'' +
                 ", at='" + at + '\'' +
                 ", pa='" + pa + '\'' +
-                ", sprachkomplexität=" + sprachkomplexität +
+                ", sprachkomplexitaet=" + sprachkomplexitaet +
                 ", muttersprache=" + muttersprache +
                 ", schriftmuttersprache=" + schriftmuttersprache +
                 ", zweitlehrsprache=" + zweitlehrsprache +
@@ -650,8 +650,8 @@ public class Talent implements Unterscheidbar {
                 ", mirakelminus=" + mirakelminus +
                 ", metatalent=" + metatalent +
                 ", bereich='" + bereich + '\'' +
-                ", komplexität='" + komplexität + '\'' +
-                ", lernkomplexität='" + lernkomplexität + '\'' +
+                ", komplexitaet='" + komplexitaet + '\'' +
+                ", lernkomplexitaet='" + lernkomplexitaet + '\'' +
                 ", spezialisierungen='" + spezialisierungen + '\'' +
                 '}';
     }

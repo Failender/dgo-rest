@@ -81,8 +81,7 @@ public class SteigernController {
         List<SteigerungsTalentDto> dtos = talente.getTalent()
                 .stream()
                 .map(entry -> {
-                    boolean isSe = getIsSe(entry.getTalent(), talentliste);
-                    return new SteigerungsTalentDto(entry, isSe);
+                    return new SteigerungsTalentDto(entry);
                 }).collect(Collectors.toList());
 
 
@@ -177,7 +176,7 @@ public class SteigernController {
         Element ereignisse = (Element) held.getElementsByTagName("ereignisse").item(0);
         Element ereignis = ereignisse.getOwnerDocument().createElement("ereignis");
         ereignis.setAttribute("Abenteuerpunkte", String.valueOf(dto.getAp()));
-        ereignis.setAttribute("kommentar", dto.getName() + "Gesamt AP: " + dto.getAp()+ " Verfügbare AP: " + dto.getAp());
+        ereignis.setAttribute("kommentar", dto.getName() + "Gesamt AP: " + dto.getAp()+ " Verfuegbare AP: " + dto.getAp());
         ereignis.setAttribute("obj", "Abenteuerpunkte (Hinzugewinn)");
         ereignis.setAttribute("text", "Ereignis eingeben");
         ereignis.setAttribute("time", String.valueOf(System.currentTimeMillis()));

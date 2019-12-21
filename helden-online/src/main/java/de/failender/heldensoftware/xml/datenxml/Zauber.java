@@ -32,8 +32,8 @@ import java.math.BigInteger;
  *         &lt;element ref="{}probe"/>
  *         &lt;element ref="{}probenwerte"/>
  *         &lt;element ref="{}bereich"/>
- *         &lt;element ref="{}komplexität"/>
- *         &lt;element ref="{}lernkomplexität"/>
+ *         &lt;element ref="{}komplexitaet"/>
+ *         &lt;element ref="{}lernkomplexitaet"/>
  *         &lt;element ref="{}hauszauber"/>
  *         &lt;element ref="{}hauszauberformatiert"/>
  *         &lt;element ref="{}repraesentation"/>
@@ -65,8 +65,8 @@ import java.math.BigInteger;
     "probe",
     "probenwerte",
     "bereich",
-    "komplexit\u00e4t",
-    "lernkomplexit\u00e4t",
+    "komplexitaet",
+    "lernkomplexitaet",
     "hauszauber",
     "hauszauberformatiert",
     "repraesentation",
@@ -102,13 +102,13 @@ public class Zauber implements Unterscheidbar {
     @XmlElement(required = true)
     protected String bereich;
     @XmlElement(required = true)
-    protected String komplexität;
+    protected String komplexitaet;
     @XmlElement(required = true)
-    protected String lernkomplexität;
+    protected String lernkomplexitaet;
     protected boolean hauszauber;
     @XmlElement(required = true)
     protected String hauszauberformatiert;
-    @XmlElement(required = true, name = "repräsentation")
+    @XmlElement(required = true, name = "repraesentation")
     protected String repraesentation;
     @XmlElement(required = true)
     protected String merkmale;
@@ -346,51 +346,51 @@ public class Zauber implements Unterscheidbar {
     }
 
     /**
-     * Gets the value of the komplexität property.
+     * Gets the value of the komplexitaet property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getKomplexität() {
-        return komplexität;
+    public String getKomplexitaet() {
+        return komplexitaet;
     }
 
     /**
-     * Sets the value of the komplexität property.
+     * Sets the value of the komplexitaet property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setKomplexität(String value) {
-        this.komplexität = value;
+    public void setKomplexitaet(String value) {
+        this.komplexitaet = value;
     }
 
     /**
-     * Gets the value of the lernkomplexität property.
+     * Gets the value of the lernkomplexitaet property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getLernkomplexität() {
-        return lernkomplexität;
+    public String getLernkomplexitaet() {
+        return lernkomplexitaet;
     }
 
     /**
-     * Sets the value of the lernkomplexität property.
+     * Sets the value of the lernkomplexitaet property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setLernkomplexität(String value) {
-        this.lernkomplexität = value;
+    public void setLernkomplexitaet(String value) {
+        this.lernkomplexitaet = value;
     }
 
     /**
@@ -690,8 +690,8 @@ public class Zauber implements Unterscheidbar {
                 ", probe='" + probe + '\'' +
                 ", probenwerte='" + probenwerte + '\'' +
                 ", bereich='" + bereich + '\'' +
-                ", komplexität='" + komplexität + '\'' +
-                ", lernkomplexität='" + lernkomplexität + '\'' +
+                ", komplexitaet='" + komplexitaet + '\'' +
+                ", lernkomplexitaet='" + lernkomplexitaet + '\'' +
                 ", hauszauber=" + hauszauber +
                 ", hauszauberformatiert='" + hauszauberformatiert + '\'' +
                 ", repraesentation='" + repraesentation + '\'' +

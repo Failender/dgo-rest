@@ -46,4 +46,8 @@ public class ReturnHeldPdfRequest extends IdCachedRequest<InputStream> {
 		return is;
 	}
 
+	@Override
+	public boolean needsReplacing() {
+		return false;
+	}
 }

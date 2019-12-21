@@ -80,9 +80,9 @@ public class Helper {
 	/**
 	 * Deaktiviert alle SSL Checks
 
-	 * Nur für selbst-signierte Certifikate bei localhost zu nutzen!
+	 * Nur fuer selbst-signierte Certifikate bei localhost zu nutzen!
 
-	 * Alles andere für zu extremen Sicherheitsproblemen!
+	 * Alles andere fuer zu extremen Sicherheitsproblemen!
 	 */
 	public static void disableSSLCheck() {
 		// Create a trust manager that does not validate certificate chains

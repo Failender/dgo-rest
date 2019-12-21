@@ -14,7 +14,7 @@ public class HeldenSoftwareUtil {
         if (ereignis.getAktion() == null) {
             return;
         }
-        if (ereignis.getAktion().equals("Änderungskontrolle")) {
+        if (ereignis.getAktion().equals("Aenderungskontrolle")) {
             ereignisse.remove(ereignisse.size() - 1);
         }
     }
