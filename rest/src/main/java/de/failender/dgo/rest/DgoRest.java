@@ -7,7 +7,6 @@ import de.failender.dgo.persistance.user.UserEntity;
 import de.failender.dgo.persistance.user.UserRepositoryService;
 import de.failender.dgo.rest.gruppen.GruppeController;
 import de.failender.dgo.rest.helden.HeldenController;
-import de.failender.dgo.rest.helden.VersionService;
 import de.failender.dgo.rest.helden.geld.GeldController;
 import de.failender.dgo.rest.helden.inventar.HeldInventarController;
 import de.failender.dgo.rest.helden.steigern.SteigernController;
@@ -29,7 +28,6 @@ import org.apache.commons.io.IOUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.zip.ZipFile;
 
 public class DgoRest {
 
@@ -38,7 +36,7 @@ public class DgoRest {
 		long start = System.nanoTime();
 
         PropertyReader.initialize(args);
-        EzqlConnector.connect("hibernate.connection");
+        EzqlConnector.initialize("hibernate.connection");
         if(PropertyReader.getProperty("hibernate.initialize.on.start").equals("true")) {
             EzqlConnector.execute(IOUtils.toString(DgoRest.class.getResourceAsStream("/setup.sql"), "UTF-8"));
             //EzqlConnector.execute(IOUtils.toString(DgoRest.class.getResourceAsStream("/talente.sql"), "UTF-8"));

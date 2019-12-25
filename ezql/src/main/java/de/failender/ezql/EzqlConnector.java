@@ -10,30 +10,51 @@ import java.sql.Statement;
 public class EzqlConnector {
 
 
+	private static String url;
+	private static String user;
+	private static String password;
 	private static Connection connection;
 
-	public static void connect(String driver, String url, String user, String password) {
+	public static void initialize(String driver, String url, String user, String password) {
 
 		try {
 			Class.forName(driver);
 			System.out.println("Connecting to " + url);
-			connection = DriverManager.getConnection(url, user, password);
+			EzqlConnector.url = url;
+			EzqlConnector.user= user;
+			EzqlConnector.password = password;
+			conect();
 
 		} catch (ClassNotFoundException e) {
-			throw new RuntimeException(e);
-		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
 	}
 
-	public static void connect(String propertyPrefix) {
-		connect(PropertyReader.getProperty(propertyPrefix + ".driver_class"),
+	private static Connection conect() {
+		try {
+			connection = DriverManager.getConnection(url, user, password);
+			return connection;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+
+	}
+
+	public static void initialize(String propertyPrefix) {
+		initialize(PropertyReader.getProperty(propertyPrefix + ".driver_class"),
 				PropertyReader.getProperty(propertyPrefix + ".url"),
 				PropertyReader.getProperty(propertyPrefix + ".username"),
 				PropertyReader.getProperty(propertyPrefix + ".password"));
 	}
 
 	public static Connection getConnection() {
+		try {
+			if(!connection.isValid(1)) {
+				return conect();
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
 		return connection;
 	}
 

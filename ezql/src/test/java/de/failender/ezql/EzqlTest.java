@@ -1,7 +1,5 @@
 package de.failender.ezql;
 
-import de.failender.ezql.user.UserEntity;
-import de.failender.ezql.user.UserMapper;
 import org.junit.Before;
 import org.junit.Rule;
 import org.testcontainers.containers.PostgreSQLContainer;
@@ -16,7 +14,7 @@ public class EzqlTest {
 
 	@Before
 	public void setup() throws IOException {
-		EzqlConnector.connect(postgres.getDriverClassName(), postgres.getJdbcUrl(), postgres.getUsername(), postgres.getPassword());
+		EzqlConnector.initialize(postgres.getDriverClassName(), postgres.getJdbcUrl(), postgres.getUsername(), postgres.getPassword());
 		String sql = IOUtils.toString(EzqlTest.class.getResourceAsStream("/setup.sql"), "UTF-8");
 		EzqlConnector.execute(sql);
 	}
