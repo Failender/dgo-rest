@@ -30,7 +30,7 @@ class PdfRepository {
 
 	public static boolean canUserView(Long pdf, Long userId) {
 		String sql = "SELECT EXISTS(SELECT 1 FROM PDFS_TO_USER WHERE PDF_ID = " + pdf + " AND USER_ID = " + userId + ");";
-		try (Statement statement = EzqlConnector.getConnection().createStatement()) {
+		try (Statement statement = EzqlConnector.createStatement()) {
 			ResultSet rs = statement.executeQuery(sql);
 			rs.next();
 			return rs.getBoolean("exists");
@@ -41,7 +41,7 @@ class PdfRepository {
 
 	public static List<Long> findVisiblePdfs(Long user) {
 		String sql = "SELECT PDF_ID FROM PDFS_TO_USER WHERE USER_ID = " +user;
-		try(Statement statement = EzqlConnector.getConnection().createStatement()) {
+		try (Statement statement = EzqlConnector.createStatement()) {
 			ResultSet rs = statement.executeQuery(sql);
 			List<Long> pdfIds = new ArrayList<>();
 			while(rs.next()) {

@@ -45,7 +45,7 @@ public class InsertQuery<ENTITY> {
                 .collect(Collectors.joining(", "));
         String sql = "INSERT INTO " + mapper.table() + " (" + columnDefinitions + ") VALUES (" + columnValues + ") RETURNING " + mapper.idField().getField() + ";";
 
-        try(Statement statement = EzqlConnector.getConnection().createStatement()) {
+        try (Statement statement = EzqlConnector.createStatement()) {
 
             System.out.println(sql);
 

@@ -33,7 +33,7 @@ public class UpdateQuery<ENTITY> extends BaseQuery{
 				.collect(Collectors.joining(", "));
 		sql = appendWhereClauses(sql);
 		System.out.println(sql);
-		try(Statement statement = EzqlConnector.getConnection().createStatement()) {
+		try (Statement statement = EzqlConnector.createStatement()) {
 
 			int result = statement.executeUpdate(sql);
 		} catch (SQLException e) {

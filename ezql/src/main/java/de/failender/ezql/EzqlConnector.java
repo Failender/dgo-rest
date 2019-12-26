@@ -23,14 +23,14 @@ public class EzqlConnector {
 			EzqlConnector.url = url;
 			EzqlConnector.user= user;
 			EzqlConnector.password = password;
-			conect();
+			connect();
 
 		} catch (ClassNotFoundException e) {
 			throw new RuntimeException(e);
 		}
 	}
 
-	private static Connection conect() {
+	private static Connection connect() {
 		try {
 			connection = DriverManager.getConnection(url, user, password);
 			return connection;
@@ -47,21 +47,23 @@ public class EzqlConnector {
 				PropertyReader.getProperty(propertyPrefix + ".password"));
 	}
 
-	public static Connection getConnection() {
+	public static Statement createStatement() {
 		try {
-			if(!connection.isValid(1)) {
-				return conect();
-			}
+			return getConnection().createStatement();
 		} catch (SQLException e) {
-			throw new RuntimeException(e);
+			connect();
+			return createStatement();
 		}
+	}
+
+	public static Connection getConnection() {
 		return connection;
 	}
 
 	public static void execute(String sql) {
 		try {
 			System.out.println(sql);
-			Statement statement = EzqlConnector.getConnection().createStatement();
+			Statement statement = EzqlConnector.createStatement();
 			statement.execute(sql);
 			statement.close();
 		} catch (SQLException e) {

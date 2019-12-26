@@ -27,7 +27,7 @@ public class ExistsQuery<ENTITY> extends BaseQuery {
 		sql = appendWhereClauses(sql);
 		sql += ");";
 
-		try (Statement statement = EzqlConnector.getConnection().createStatement()) {
+        try (Statement statement = EzqlConnector.createStatement()) {
 			ResultSet rs = statement.executeQuery(sql);
 			rs.next();
 			return rs.getBoolean("exists");

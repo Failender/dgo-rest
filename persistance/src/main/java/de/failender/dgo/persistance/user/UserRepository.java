@@ -6,7 +6,6 @@ import de.failender.ezql.queries.SelectQuery;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,7 +34,7 @@ class UserRepository {
 	public static List<String> getPermissionsForUser(Long id) {
 		try {
 
-			ResultSet rs = EzqlConnector.getConnection().createStatement().executeQuery("SELECT RIGHTS.NAME FROM USERS U INNER JOIN ROLES_TO_USER RTU ON RTU.USER_ID = U.ID INNER JOIN ROLES_TO_RIGHTS RTR ON RTR.ROLE_ID = RTU.ROLE_ID INNER JOIN RIGHTS ON RIGHTS.ID = RTR.RIGHT_ID WHERE U.ID = " + id);
+            ResultSet rs = EzqlConnector.createStatement().executeQuery("SELECT RIGHTS.NAME FROM USERS U INNER JOIN ROLES_TO_USER RTU ON RTU.USER_ID = U.ID INNER JOIN ROLES_TO_RIGHTS RTR ON RTR.ROLE_ID = RTU.ROLE_ID INNER JOIN RIGHTS ON RIGHTS.ID = RTR.RIGHT_ID WHERE U.ID = " + id);
 			List<String> permissions = new ArrayList<>();
 			while(rs.next()) {
 				permissions.add(rs.getString("name"));

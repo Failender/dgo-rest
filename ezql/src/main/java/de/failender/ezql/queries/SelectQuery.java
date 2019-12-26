@@ -50,7 +50,7 @@ public class SelectQuery<ENTITY> extends BaseQuery {
 			sql += " LIMIT " + limit;
 		}
 		System.out.println(sql);
-		try(Statement statement = EzqlConnector.getConnection().createStatement()) {
+        try (Statement statement = EzqlConnector.createStatement()) {
 
 			ResultSet rs = statement.executeQuery(sql);
 			List<ENTITY> results = new ArrayList<>();
