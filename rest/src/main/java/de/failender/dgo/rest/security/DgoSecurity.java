@@ -4,6 +4,7 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.InvalidClaimException;
+import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import de.failender.dgo.persistance.pdf.PdfRepositoryService;
 import de.failender.dgo.persistance.user.UserEntity;
@@ -63,7 +64,7 @@ public class DgoSecurity {
 
 					List<String> permissions = jwt.getClaim("permissions").asList(String.class);
 					DgoSecurityContext.login(username, permissions);
-				} catch(InvalidClaimException e) {
+                } catch (InvalidClaimException | JWTDecodeException e) {
 //					context.status(401);
 				}
 
