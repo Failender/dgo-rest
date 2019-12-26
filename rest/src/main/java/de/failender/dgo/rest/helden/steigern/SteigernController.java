@@ -17,14 +17,14 @@ import de.failender.heldensoftware.xml.listtalente.ListTalente;
 import de.failender.heldensoftware.xml.listtalente.SteigerungsTalent;
 import io.javalin.Context;
 import io.javalin.Javalin;
-import org.omg.PortableInterceptor.USER_EXCEPTION;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import java.io.IOException;
-import java.math.BigInteger;
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class SteigernController {
@@ -32,9 +32,11 @@ public class SteigernController {
 
     private static final String PREFIX = "/api/helden/steigern/";
     private static final String FOR_HELD = PREFIX + "held/:held/";
+    private static final String FOR_HELD_ALLOWED = PREFIX + "held/:held/allowed";
     private static final String EREIGNIS = PREFIX + "held/:held/ereignis";
     private static final String AP_FOR_HELD = FOR_HELD + "ap/";
     public SteigernController(Javalin app) {
+        app.get(FOR_HELD_ALLOWED, this::getCanSteigernForHeld);
         app.get(FOR_HELD, this::getSteigerungenForHeld);
         app.get(AP_FOR_HELD, this::getApForHeldUncached);
         app.put(FOR_HELD, this::updateSteigerungenForHeld);
@@ -64,6 +66,16 @@ public class SteigernController {
         HeldRepositoryService.updateLockExpire(heldEntity, LocalDateTime.now().plusMinutes(30));
 
     }
+
+    private void getCanSteigernForHeld(Context context) {
+        Long id = Long.valueOf(context.pathParam("held"));
+        HeldEntity heldEntity = HeldRepositoryService.findById(id);
+        UserEntity userEntity = UserRepositoryService.findUserById(heldEntity.getUserId());
+        Map<String, Boolean> result = new HashMap<>();
+        result.put("steigern", userEntity.isCanWrite());
+        context.json(result);
+    }
+
 
     private void getSteigerungenForHeld(Context context) {
         Long id = Long.valueOf(context.pathParam("held"));
