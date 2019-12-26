@@ -64,7 +64,7 @@ public class DgoSecurity {
 					List<String> permissions = jwt.getClaim("permissions").asList(String.class);
 					DgoSecurityContext.login(username, permissions);
 				} catch(InvalidClaimException e) {
-					context.status(401);
+//					context.status(401);
 				}
 
 			}
