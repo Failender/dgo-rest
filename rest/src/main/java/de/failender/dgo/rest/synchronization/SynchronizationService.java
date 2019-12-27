@@ -2,39 +2,33 @@ package de.failender.dgo.rest.synchronization;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import de.failender.dgo.persistance.gruppe.GruppeEntity;
-import de.failender.dgo.persistance.gruppe.GruppeRepositoryService;
 import de.failender.dgo.persistance.held.HeldEntity;
 import de.failender.dgo.persistance.held.HeldRepositoryService;
 import de.failender.dgo.persistance.held.VersionEntity;
 import de.failender.dgo.persistance.held.VersionRepositoryService;
-import de.failender.dgo.persistance.user.UserRepositoryService;
+import de.failender.dgo.persistance.user.UserEntity;
 import de.failender.dgo.rest.helden.VersionService;
 import de.failender.dgo.rest.integration.Beans;
-import de.failender.dgo.rest.user.UserRegistration;
-import de.failender.dgo.rest.user.UserService;
 import de.failender.ezql.properties.PropertyReader;
 import de.failender.heldensoftware.JaxbUtil;
 import de.failender.heldensoftware.api.HeldenApi;
 import de.failender.heldensoftware.api.RestUtils;
-import de.failender.heldensoftware.api.requests.*;
+import de.failender.heldensoftware.api.requests.ConvertingRequest;
+import de.failender.heldensoftware.api.requests.ReturnHeldDatenWithEreignisseRequest;
+import de.failender.heldensoftware.api.requests.ReturnHeldPdfRequest;
+import de.failender.heldensoftware.api.requests.ReturnHeldXmlRequest;
 import de.failender.heldensoftware.xml.datenxml.Daten;
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
 
 import javax.xml.bind.JAXBException;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.math.BigInteger;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.ZoneId;
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
-import java.util.zip.ZipInputStream;
 
 import static de.failender.dgo.rest.helden.VersionService.extractLastEreignisString;
 
@@ -62,13 +56,29 @@ public class SynchronizationService {
 
     public static void intialize(ObjectMapper  objectMapper) {
         INSTANCE = new SynchronizationService(objectMapper);
-        if("true".equals(PropertyReader.getProperty("dsa.gruppen.online.synchronize"))) {
+        if (isSyncEnabled()) {
             INSTANCE.synchronize();
         }
     }
 
+    private static boolean isSyncEnabled() {
+        return "true".equals(PropertyReader.getProperty("dsa.gruppen.online.synchronize"));
+
+    }
+
+    public static void synchronizeForUser(UserEntity userEntity) {
+        if (isSyncEnabled()) {
+            HeldRepositoryService.findByUserId(userEntity.getId());
+
+        }
+    }
+
     public void synchronize() {
-        for (HeldEntity heldEntity : HeldRepositoryService.findAll()) {
+        doSynchronize(HeldRepositoryService.findAll());
+    }
+
+    private void doSynchronize(List<HeldEntity> heldEntities) {
+        for (HeldEntity heldEntity : heldEntities) {
             try {
                 List<DSOHeldVersion> versionen = getVersionenForHeld(heldEntity.getId());
                 Set<Integer> versions =versionen
@@ -101,7 +111,9 @@ public class SynchronizationService {
                 e.printStackTrace();
             }
         }
+
     }
+
 
     private void createVersion(HeldEntity heldEntity, DSOHeldVersion version, ZipFile zipFile) throws IOException, JAXBException {
         VersionEntity versionEntity = new VersionEntity();

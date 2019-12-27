@@ -8,6 +8,7 @@ import de.failender.dgo.persistance.user.UserEntity;
 import de.failender.dgo.persistance.user.UserRepositoryService;
 import de.failender.dgo.rest.helden.HeldenService;
 import de.failender.dgo.rest.integration.Beans;
+import de.failender.dgo.rest.synchronization.SynchronizationService;
 import de.failender.heldensoftware.api.requests.PermissionRequest;
 import de.failender.heldensoftware.xml.currentrights.Recht;
 import de.failender.heldensoftware.xml.currentrights.Rechte;
@@ -35,7 +36,12 @@ public class UserService {
 	}
 
 	public static UserEntity registerUser(UserRegistration userRegistration) {
-		return registerUser(userRegistration, true);
+        UserEntity userEntity = registerUser(userRegistration, true);
+        if (userEntity != null) {
+            SynchronizationService.synchronizeForUser(userEntity);
+        }
+        return userEntity;
+
 	}
 
 	public static UserEntity registerUser(UserRegistration userRegistration, boolean syncHelden) {

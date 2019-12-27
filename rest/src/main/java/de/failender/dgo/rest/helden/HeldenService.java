@@ -94,6 +94,9 @@ public class HeldenService {
             heldEntity.setId(held.getHeldenid());
             heldEntity.setUserId(userEntity.getId());
             heldEntity.setKey(XmlUtil.getKeyFromString(xml));
+            heldEntity.setPublic(false);
+            heldEntity.setActive(true);
+            heldEntity.setDeleted(false);
             HeldRepositoryService.saveHeld(heldEntity);
             VersionService.persistVersion(heldEntity, 1, xml, uuid, data.getT2());
 
