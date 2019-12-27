@@ -8,6 +8,7 @@ import de.failender.ezql.repository.EzqlRepository;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 class HeldRepository extends EzqlRepository<HeldEntity> {
 
@@ -15,20 +16,6 @@ class HeldRepository extends EzqlRepository<HeldEntity> {
 
 	public boolean existsById(Long id) {
 		return findByIdReduced(id) != null;
-	}
-
-	public HeldEntity findByIdReduced(Long id) {
-		HeldEntity heldEntity = findOneBy(HeldMapper.ID, id, HeldMapper.USER_ID);
-		heldEntity.setId(id);
-		return heldEntity;
-	}
-
-	public static List<HeldEntity> findByUserIdOrdered(Long id) {
-		return SelectQuery.Builder.selectAll(HeldMapper.INSTANCE)
-				.where(HeldMapper.USER_ID, id)
-				.orderBy(HeldMapper.ID, OrderClause.ORDER.ASC)
-				.build()
-				.execute();
 	}
 
 	public static List<HeldEntity> findByGruppe(Long gruppe, boolean includePrivate, boolean showInactive) {
@@ -42,7 +29,26 @@ class HeldRepository extends EzqlRepository<HeldEntity> {
 			builder.where(HeldMapper.ACTIVE, true);
 		}
 
-		return builder.build().execute();
+		List<HeldEntity> helden = builder.build().execute();
+		helden = helden
+				.stream()
+				.filter(HeldRepositoryService::canCurrentUserViewHeld)
+				.collect(Collectors.toList());
+		return helden;
+	}
+
+	public static List<HeldEntity> findByUserIdOrdered(Long id) {
+		return SelectQuery.Builder.selectAll(HeldMapper.INSTANCE)
+				.where(HeldMapper.USER_ID, id)
+				.orderBy(HeldMapper.ID, OrderClause.ORDER.ASC)
+				.build()
+				.execute();
+	}
+
+	public HeldEntity findByIdReduced(Long id) {
+		HeldEntity heldEntity = findOneBy(HeldMapper.ID, id, HeldMapper.USER_ID, HeldMapper.PUBLIC);
+		heldEntity.setId(id);
+		return heldEntity;
 	}
 
 	public static void updatePublic(Long heldid, boolean value) {
@@ -73,6 +79,6 @@ class HeldRepository extends EzqlRepository<HeldEntity> {
 	}
 
 	public List<HeldEntity> findAllReduced() {
-		return findAll(HeldMapper.USER_ID, HeldMapper.ID);
+		return findAll(HeldMapper.USER_ID, HeldMapper.ID, HeldMapper.PUBLIC);
 	}
 }

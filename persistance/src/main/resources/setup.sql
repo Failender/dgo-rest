@@ -96,11 +96,13 @@ INSERT INTO ROLES VALUES
 
 INSERT INTO RIGHTS VALUES
     (1, 'CREATE_USER'),
-    (2, 'VIEW_ALL');
+    (2, 'VIEW_ALL'),
+    (3, 'EDIT_ALL');
 
 INSERT INTO ROLES_TO_RIGHTS VALUES
     (1, 1),
-    (1,2);
+    (1,2),
+    (1,3);
 
 CREATE TABLE ZAUBERSPEICHER(
                                ID SERIAL PRIMARY KEY,

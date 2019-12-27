@@ -2,8 +2,6 @@
 package de.failender.dgo.persistance.held;
 
 
-import de.failender.ezql.mapper.LocalDateTimeFieldMapper;
-
 import java.time.LocalDateTime;
 
 public class HeldEntity {
@@ -12,9 +10,9 @@ public class HeldEntity {
 
 	private Long userId;
 	private String name;
-	private boolean isPublic;
-	private boolean isActive = true;
-	private boolean deleted;
+    private Boolean isPublic;
+    private Boolean isActive = true;
+    private Boolean deleted;
 	private LocalDateTime lockExpire;
 
 	private Long gruppe;
@@ -39,18 +37,17 @@ public class HeldEntity {
 	}
 
 
-
-	public boolean isPublic() {
+    public Boolean isPublic() {
 		return this.isPublic;
 	}
 
 
-	public boolean isActive() {
+    public Boolean isActive() {
 		return this.isActive;
 	}
 
 
-	public boolean isDeleted() {
+    public Boolean isDeleted() {
 		return this.deleted;
 	}
 
@@ -75,17 +72,17 @@ public class HeldEntity {
 	}
 
 
-	public void setPublic(final boolean isPublic) {
+    public void setPublic(final Boolean isPublic) {
 		this.isPublic = isPublic;
 	}
 
 
-	public void setActive(final boolean isActive) {
+    public void setActive(final Boolean isActive) {
 		this.isActive = isActive;
 	}
 
 
-	public void setDeleted(final boolean deleted) {
+    public void setDeleted(final Boolean deleted) {
 		this.deleted = deleted;
 	}
 

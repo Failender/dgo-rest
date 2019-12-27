@@ -49,7 +49,40 @@ public class HeldRepositoryService {
         if (heldEntity == null) {
             throw new EntityNotFoundException("Der Held konnte nicht gefunden werden");
         }
-        return DgoSecurityContext.getAuthenticatedUser().getId() == heldEntity.getUserId();
+        if (heldEntity.isPublic()) {
+            return true;
+        }
+        if (!DgoSecurityContext.isAuthenticated()) {
+            return false;
+        }
+        if (DgoSecurityContext.getAuthenticatedUser().getId() == heldEntity.getUserId()) {
+            return true;
+        }
+        DgoSecurityContext.checkPermission(DgoSecurityContext.VIEW_ALL);
+        return true;
+    }
+
+    public static boolean canCurrentUserEditHeld(HeldEntity heldEntity) {
+        if (heldEntity == null) {
+            throw new EntityNotFoundException("Der Held konnte nicht gefunden werden");
+        }
+        if (!DgoSecurityContext.isAuthenticated()) {
+            return false;
+        }
+        if (DgoSecurityContext.getAuthenticatedUser().getId() == heldEntity.getUserId()) {
+            return true;
+        }
+        DgoSecurityContext.checkPermission(DgoSecurityContext.EDIT_ALL);
+        return true;
+
+    }
+
+    public static boolean canCurrentUserEditHeldBool(HeldEntity heldEntity) {
+        try {
+            return canCurrentUserEditHeld(heldEntity);
+        } catch (NoPermissionException e) {
+            return false;
+        }
     }
 
     public static List<HeldEntity> findAllReduced() {
@@ -61,14 +94,17 @@ public class HeldRepositoryService {
     }
 
     public static void updatePublic(HeldEntity heldEntity, boolean value) {
+        canCurrentUserEditHeld(heldEntity);
         HeldRepository.updatePublic(heldEntity.getId(), value);
     }
 
     public static void updateActive(HeldEntity heldEntity, boolean value) {
+        canCurrentUserEditHeld(heldEntity);
         HeldRepository.updateActive(heldEntity.getId(), value);
     }
 
     public static void updateLockExpire(HeldEntity heldEntity, LocalDateTime value) {
+        canCurrentUserEditHeld(heldEntity);
         HeldRepository.updateLockExpire(heldEntity.getId(), value);
     }
 

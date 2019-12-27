@@ -11,8 +11,9 @@ public class HeldDto {
     private boolean active;
     private int version;
     private String lastChange;
+    private boolean editable;
 
-    public HeldDto(HeldEntity heldEntity, String gruppe, String lastChange, int version) {
+    public HeldDto(HeldEntity heldEntity, String gruppe, String lastChange, int version, boolean editable) {
         this.name = heldEntity.getName();
         this.id = heldEntity.getId();
         this.gruppe = gruppe;
@@ -20,6 +21,7 @@ public class HeldDto {
         this.active = heldEntity.isActive();
         this.lastChange = lastChange;
         this.version = version;
+        this.editable = editable;
     }
 
     public String getName() {
@@ -48,5 +50,9 @@ public class HeldDto {
 
     public int getVersion() {
         return version;
+    }
+
+    public boolean isEditable() {
+        return editable;
     }
 }

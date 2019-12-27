@@ -4,10 +4,10 @@ package de.failender.dgo.security;
 import de.failender.dgo.persistance.user.UserEntity;
 import de.failender.dgo.persistance.user.UserRepositoryService;
 
-import java.net.UnknownServiceException;
 import java.util.List;
 
 public class DgoSecurityContext {
+
 
     private static ThreadLocal<SecurityContext> contextThreadLocal = new ThreadLocal<>();
 
@@ -15,6 +15,7 @@ public class DgoSecurityContext {
         contextThreadLocal.set(null);
     }
 
+    public static final String EDIT_ALL = "EDIT_ALL";
     public static final String VIEW_ALL = "VIEW_ALL";
 
     public static void login(String username, List<String> permissions) {
@@ -36,6 +37,7 @@ public class DgoSecurityContext {
         }
     }
 
+
     public static void checkPermission(String permission) {
         SecurityContext ctx = contextThreadLocal.get();
         if (ctx == null) {
@@ -45,6 +47,21 @@ public class DgoSecurityContext {
             return;
         }
         throw new NoPermissionException();
+    }
+
+    public static boolean checkPermissionBool(String permission) {
+        SecurityContext ctx = contextThreadLocal.get();
+        if (ctx == null) {
+            return false;
+        }
+        if (ctx.permissions.contains(permission)) {
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean isAuthenticated() {
+        return contextThreadLocal.get() != null;
     }
 
     public static UserEntity getAuthenticatedUser() {

@@ -2,9 +2,11 @@ package de.failender.dgo.rest.helden;
 
 import de.failender.dgo.persistance.gruppe.GruppeEntity;
 import de.failender.dgo.persistance.gruppe.GruppeRepositoryService;
-import de.failender.dgo.persistance.held.*;
+import de.failender.dgo.persistance.held.HeldEntity;
+import de.failender.dgo.persistance.held.HeldRepositoryService;
+import de.failender.dgo.persistance.held.VersionEntity;
+import de.failender.dgo.persistance.held.VersionRepositoryService;
 import de.failender.dgo.rest.integration.Beans;
-import de.failender.dgo.rest.security.DgoSecurity;
 import de.failender.dgo.security.DgoSecurityContext;
 import de.failender.heldensoftware.api.requests.ReturnHeldDatenWithEreignisseRequest;
 import de.failender.heldensoftware.api.requests.ReturnHeldPdfRequest;
@@ -13,7 +15,6 @@ import io.javalin.Context;
 import io.javalin.Javalin;
 
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -105,7 +106,7 @@ public class HeldenController {
 
 					VersionEntity versionEntity = VersionRepositoryService.findLatestVersion(heldEntity);
 					String name = map.get(heldEntity.getGruppe()).getName();
-					return new HeldDto(heldEntity, name, FORMATTER.format(versionEntity.getCreatedDate()), versionEntity.getVersion());
+					return new HeldDto(heldEntity, name, FORMATTER.format(versionEntity.getCreatedDate()), versionEntity.getVersion(), HeldRepositoryService.canCurrentUserEditHeldBool(heldEntity));
 				})
 				.collect(Collectors.toList());
 	}

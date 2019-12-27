@@ -58,6 +58,7 @@ public class SteigernController {
     }
 
     private void steigern(HeldEntity heldEntity, UserEntity userEntity, SteigernDto steigernDto) {
+        HeldRepositoryService.canCurrentUserEditHeld(heldEntity);
         Beans.HELDEN_API.request(new RaiseTalentRequest(new TokenAuthentication(userEntity.getToken()), heldEntity.getId(), steigernDto.getTalent(), steigernDto.getTalentwert()))
                 .block();
     }
