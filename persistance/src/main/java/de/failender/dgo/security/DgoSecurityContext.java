@@ -43,6 +43,9 @@ public class DgoSecurityContext {
         if (ctx == null) {
             throw new UserNotLoggedInException();
         }
+        if(ctx.permissions == null) {
+            throw new NoPermissionException();
+        }
         if(ctx.permissions.contains(permission)) {
             return;
         }
