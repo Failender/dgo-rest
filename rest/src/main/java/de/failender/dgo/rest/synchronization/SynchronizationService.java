@@ -56,9 +56,9 @@ public class SynchronizationService {
 
     public static void intialize(ObjectMapper  objectMapper) {
         INSTANCE = new SynchronizationService(objectMapper);
-        if (isSyncEnabled()) {
-            INSTANCE.synchronize();
-        }
+//        if (isSyncEnabled()) {
+//            INSTANCE.synchronize();
+//        }
     }
 
     private static boolean isSyncEnabled() {
@@ -66,18 +66,17 @@ public class SynchronizationService {
 
     }
 
-    public static void synchronizeForUser(UserEntity userEntity) {
-        if (isSyncEnabled()) {
-            HeldRepositoryService.findByUserId(userEntity.getId());
+    public int synchronizeForUser(UserEntity userEntity) {
+        return doSynchronize(HeldRepositoryService.findByUserId(userEntity.getId()));
 
-        }
     }
 
     public void synchronize() {
         doSynchronize(HeldRepositoryService.findAll());
     }
 
-    private void doSynchronize(List<HeldEntity> heldEntities) {
+    private int doSynchronize(List<HeldEntity> heldEntities) {
+        int synced = 0;
         for (HeldEntity heldEntity : heldEntities) {
             try {
                 List<DSOHeldVersion> versionen = getVersionenForHeld(heldEntity.getId());
@@ -96,6 +95,7 @@ public class SynchronizationService {
                     InputStream is = getXml(heldEntity.getId());
                     Path temp = Files.createTempFile(heldEntity.getId().toString(), ".zip");
                     FileUtils.copyInputStreamToFile(is, temp.toFile());
+                    synced++;
                     try {
                         ZipFile zf = new ZipFile(temp.toFile());
                         for (DSOHeldVersion dsoHeldVersion : versionen) {
@@ -111,6 +111,7 @@ public class SynchronizationService {
                 e.printStackTrace();
             }
         }
+        return synced;
 
     }
 

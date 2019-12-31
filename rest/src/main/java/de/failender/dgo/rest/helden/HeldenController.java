@@ -7,6 +7,7 @@ import de.failender.dgo.persistance.held.HeldRepositoryService;
 import de.failender.dgo.persistance.held.VersionEntity;
 import de.failender.dgo.persistance.held.VersionRepositoryService;
 import de.failender.dgo.rest.integration.Beans;
+import de.failender.dgo.rest.synchronization.SynchronizationService;
 import de.failender.dgo.security.DgoSecurityContext;
 import de.failender.heldensoftware.api.requests.ReturnHeldDatenWithEreignisseRequest;
 import de.failender.heldensoftware.api.requests.ReturnHeldPdfRequest;
@@ -24,7 +25,9 @@ public class HeldenController {
 
 	public static final String PREFIX = "api/helden/";
 	public static final String FOR_USER = PREFIX + "user/:user";
-	public static final String MEINE_HELDEN = PREFIX + "meine";
+	public static final String MEINE_HELDEN = PREFIX + "meine/";
+	public static final String SYNC_DSO = MEINE_HELDEN + "sync/dso";
+	public static final String SYNC_HELDEN_ONLINE = MEINE_HELDEN + "sync/helden-online";
 	public static final String HELD = PREFIX + "held/:held/:version/daten";
 	public static final String PDF = PREFIX + "held/:held/:version/pdf";
 	public static final String UPDATE_PUBLIC = PREFIX + "held/:held/public/:public";
@@ -32,14 +35,16 @@ public class HeldenController {
 
 	public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 
-	public HeldenController(Javalin javalin) {
+	public HeldenController(Javalin app) {
 
-		javalin.get(FOR_USER, this::getHeldenForUser);
-		javalin.get(MEINE_HELDEN, this::getMeineHelden);
-		javalin.get(HELD, this::getHeld);
-		javalin.get(PDF, this::getPdf);
-		javalin.put(UPDATE_ACTIVE, this::updateActive);
-		javalin.put(UPDATE_PUBLIC, this::updatePublic);
+		app.get(FOR_USER, this::getHeldenForUser);
+		app.get(MEINE_HELDEN, this::getMeineHelden);
+		app.get(HELD, this::getHeld);
+		app.get(PDF, this::getPdf);
+		app.put(UPDATE_ACTIVE, this::updateActive);
+		app.put(UPDATE_PUBLIC, this::updatePublic);
+		app.post(SYNC_DSO, this::syncDso);
+		app.post(SYNC_HELDEN_ONLINE, this::syncHeldenOnline);
 	}
 
 	private void getHeld(Context context) {
@@ -109,5 +114,16 @@ public class HeldenController {
 					return new HeldDto(heldEntity, name, FORMATTER.format(versionEntity.getCreatedDate()), versionEntity.getVersion(), HeldRepositoryService.canCurrentUserEditHeldBool(heldEntity));
 				})
 				.collect(Collectors.toList());
+	}
+
+	private void syncDso(Context ctx) {
+
+		Map<String, Integer> result = new HashMap<>();
+		result.put("updated", SynchronizationService.INSTANCE.synchronizeForUser(DgoSecurityContext.getAuthenticatedUser()));
+		ctx.json(result);
+	}
+
+	private void syncHeldenOnline(Context ctx) {
+		ctx.json(HeldenService.updateHeldenForUser(DgoSecurityContext.getAuthenticatedUser()));
 	}
 }

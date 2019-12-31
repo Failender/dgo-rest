@@ -38,7 +38,7 @@ public class UserService {
 	public static UserEntity registerUser(UserRegistration userRegistration) {
         UserEntity userEntity = registerUser(userRegistration, true);
         if (userEntity != null) {
-            SynchronizationService.synchronizeForUser(userEntity);
+			SynchronizationService.INSTANCE.synchronizeForUser(userEntity);
         }
         return userEntity;
 

@@ -31,16 +31,18 @@ public class HeldenService {
 
     private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(HeldenService.class);
 
-    public static void updateHeldenForUser(UserEntity userEntity) {
+    public static SynchronizationResult updateHeldenForUser(UserEntity userEntity) {
 		if (userEntity.getToken() == null || userEntity.getToken().isEmpty()) {
             log.error("User with getName {} has null token ", userEntity.getName());
-            return;
+            return null;
         }
         List<Held> helden = Beans.HELDEN_API.request(new GetAllHeldenRequest(new TokenAuthentication(userEntity.getToken())), false).block().getHeld();
-        updateHeldenForUser(userEntity, helden);
+        return updateHeldenForUser(userEntity, helden);
     }
 
-    public static void updateHeldenForUser(UserEntity userEntity, List<Held> helden) {
+    public static SynchronizationResult updateHeldenForUser(UserEntity userEntity, List<Held> helden) {
+        SynchronizationResult result = new SynchronizationResult();
+
         log.debug("Updating helden for user {}, online found {}", userEntity.getName(), helden.size());
         HeldRepositoryService.findByUserId(userEntity.getId()).forEach(heldEntity -> {
 
@@ -73,7 +75,7 @@ public class HeldenService {
                     IOUtils.closeQuietly(data.getT3());
                     String xml = data.getT1();
                     versionEntity = VersionService.persistVersion(heldEntity, versionEntity.getVersion() + 1, xml, uuid, data.getT2());
-
+                    result.incrementUpdated();
 
                 } else {
                     log.debug("Held with Name {} is already on latest version", heldEntity.getName());
@@ -100,8 +102,10 @@ public class HeldenService {
             HeldRepositoryService.saveHeld(heldEntity);
             VersionService.persistVersion(heldEntity, 1, xml, uuid, data.getT2());
 
+            result.incrementCreated();
             log.info("Saving new held {} for user {} with version {}", heldEntity.getName(), userEntity.getName(), 1);
         });
+        return result;
     }
 
     private static boolean isOnlineVersionOlder(Held xmlHeld, LocalDateTime heldCreatedDate) {
@@ -120,5 +124,34 @@ public class HeldenService {
         Long held = Long.valueOf(context.pathParam("held"));
         return HeldRepositoryService.findByIdReduced(held);
 
+    }
+
+    public static class SynchronizationResult {
+        private int created;
+        private int updated;
+
+        public void incrementCreated() {
+            created++;
+        }
+
+        public void incrementUpdated() {
+            updated++;
+        }
+
+        public int getCreated() {
+            return created;
+        }
+
+        public void setCreated(int created) {
+            this.created = created;
+        }
+
+        public int getUpdated() {
+            return updated;
+        }
+
+        public void setUpdated(int updated) {
+            this.updated = updated;
+        }
     }
 }

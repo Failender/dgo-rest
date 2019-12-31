@@ -7,8 +7,6 @@ import org.apache.commons.io.input.ReaderInputStream;
 import reactor.core.publisher.Mono;
 
 import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.net.URLEncoder;
 import java.util.Arrays;
 import java.util.List;
@@ -63,8 +61,8 @@ public class HeldenApi {
 
 	public synchronized Mono<InputStream> doRequest(ApiRequest request) {
 		String body = buildBody(request);
-		System.out.println(request.url());
-		System.out.println(body);
+//		System.out.println(request.url());
+//		System.out.println(body);
 		InputStream is = RestUtils.request(request.url(), body, request.requestMethod());
 		if(!request.needsReplacing()) {
 			return Mono.just(is);
