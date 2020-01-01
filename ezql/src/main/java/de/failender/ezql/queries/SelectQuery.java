@@ -49,7 +49,7 @@ public class SelectQuery<ENTITY> extends BaseQuery {
 		if(limit != null) {
 			sql += " LIMIT " + limit;
 		}
-		System.out.println(sql);
+//		System.out.println(sql);
         try (Statement statement = EzqlConnector.createStatement()) {
 
 			ResultSet rs = statement.executeQuery(sql);
