@@ -10,6 +10,7 @@ public class Differences {
     private List<Difference> vorteile;
     private List<Difference> eigenschaften;
     private List<Difference> sonderfertigkeiten;
+    private List<Steigerung> steigerungen;
 
 
     public Differences(final String heldname, final List<Difference> talente,
@@ -45,5 +46,13 @@ public class Differences {
 
     public List<Difference> getSonderfertigkeiten() {
         return sonderfertigkeiten;
+    }
+
+    public List<Steigerung> getSteigerungen() {
+        return steigerungen;
+    }
+
+    public void setSteigerungen(List<Steigerung> steigerungen) {
+        this.steigerungen = steigerungen;
     }
 }

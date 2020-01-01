@@ -15,6 +15,7 @@ import de.failender.heldensoftware.api.requests.*;
 import de.failender.heldensoftware.xml.datenxml.Daten;
 import de.failender.heldensoftware.xml.datenxml.Eigenschaftswerte;
 import de.failender.heldensoftware.xml.datenxml.Ereignis;
+import de.failender.heldensoftware.xml.datenxml.Sonderfertigkeit;
 import one.util.streamex.EntryStream;
 import reactor.core.publisher.Mono;
 import reactor.util.function.Tuple2;
@@ -165,22 +166,126 @@ public class VersionService {
                                 .replaceFirst("Lesen/Schreiben", "L/S")
                                 .replaceFirst("Ritualkenntnis: ", "")
                                 .replaceAll(" \\[.*\\]", "")).grouping();
-        return new Differences(name, calculateDifference(from.getTalentliste().getTalent(), to.getTalentliste().getTalent(), map, true),
-                calculateDifference(from.getZauberliste().getZauber(), to.getZauberliste().getZauber(), map, true),
-                calculateDifference(from.getVorteile().getVorteil(), to.getVorteile().getVorteil(), map, false),
+        Differences differences = new Differences(name, calculateDifference(from.getTalentliste().getTalent(), to.getTalentliste().getTalent(), map, "Aktiviert"),
+                calculateDifference(from.getZauberliste().getZauber(), to.getZauberliste().getZauber(), map, "Aktiviert"),
+                calculateDifference(from.getVorteile().getVorteil(), to.getVorteile().getVorteil(), map, null),
                 calculateEigenschaftDifference(from, to, map),
                 calculateSonderfertigkeitenDifference(ereignisList));
+
+        calculateSteigerungen(differences, to);
+        return differences;
+    }
+
+    private static void calculateSteigerungen(Differences differences, Daten to) {
+        //The following requires lehrmeister:
+        // 1. talents via lehrmeister
+        // 2. zauber via lehrmeister
+        // 3. sonderfertigkeiten
+        List<Steigerung> steigerungen = new ArrayList<>();
+        steigerungen.addAll(calculateSteigerungen(differences.getTalente(), 1));
+        steigerungen.addAll(calculateSteigerungen(differences.getZauber(), 5));
+
+        for (Difference difference : differences.getSonderfertigkeiten()) {
+            // TODO find a way to find the verbreitung of the sf to calculate highestLehren..
+            int ap = difference.getKosten();
+            int highestLehren = 7;
+            String name = difference.getName();
+            Sonderfertigkeit sf = to.getSonderfertigkeiten().getSonderfertigkeit()
+                    .stream()
+                    .filter(entry -> entry.getName().equals(name))
+                    .findFirst().orElse(null);
+            boolean isMagisch = Optional.ofNullable(sf)
+                    .map(entry -> entry.getBereich().stream().filter(bereich -> bereich.equals("Magisch")).findFirst().map(bereich -> true).orElse(false))
+                    .orElse(false);
+            int modifier = isMagisch ? 5 : 1;
+            int kosten = ap * modifier * highestLehren;
+            steigerungen.add(new Steigerung(name, highestLehren, ap, kosten, modifier, "Aktiviert"));
+        }
+
+
+        differences.setSteigerungen(steigerungen);
+
+
+    }
+
+    private static List<Steigerung> calculateSteigerungen(List<Difference> differences, int modifier) {
+        return differences
+                .stream()
+                .map(difference -> {
+                    String name = difference.getName();
+                    int ap = 0;
+                    int highestLehren = 7;
+                    List<Integer> lehrmeisterSteigerungen = new ArrayList<>();
+                    if (difference.getEreignisse() != null) {
+                        for (Ereignis ereignis : difference.getEreignisse()) {
+                            if (!ereignis.getBemerkung().contains("Lehrmeister")) {
+                                continue;
+                            }
+                            ap -= ereignis.getAp();
+                            int idx = ereignis.getNeuerzustand().indexOf(";");
+                            if (idx == -1) {
+                                idx = ereignis.getNeuerzustand().length();
+                            }
+                            int neuerZustand = Integer.valueOf(ereignis.getNeuerzustand().substring(0, idx));
+                            lehrmeisterSteigerungen.add(neuerZustand);
+                            highestLehren = Math.max(neuerZustand - 2, highestLehren);
+                        }
+                    }
+                    if (ap == 0) {
+                        return null;
+                    }
+                    int kosten = ap * highestLehren * modifier;
+                    String tooltip;
+                    try {
+                        tooltip = steigerungsTooltip(lehrmeisterSteigerungen);
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        tooltip = "Fehler beim Berechnen";
+                    }
+
+
+                    return new Steigerung(name, highestLehren, ap, kosten, modifier, tooltip);
+                })
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
+
+    }
+
+    private static String steigerungsTooltip(List<Integer> lehrmeisterSteigerungen) {
+        String tooltip = "";
+        Integer from = null;
+        Integer to = null;
+        for (Integer integer : lehrmeisterSteigerungen) {
+            if (from == null) {
+                from = integer - 1;
+                to = integer;
+                continue;
+            }
+            if (integer > to + 1) {
+                tooltip += from + "=>" + to + ",";
+                to = integer + 1;
+                from = integer;
+                continue;
+            }
+
+            to = integer;
+        }
+        if (to != null) {
+            tooltip += from + "=>" + to;
+        }
+        return tooltip;
     }
 
     private static List<Difference> calculateEigenschaftDifference(Daten from, Daten to, Map<String, List<Ereignis>> ereignis) {
         return Stream.of(calculateEigenschaftDifference(from.getEigenschaften().getMut(), to.getEigenschaften().getMut(), ereignis), calculateEigenschaftDifference(from.getEigenschaften().getKlugheit(), to.getEigenschaften().getKlugheit(), ereignis), calculateEigenschaftDifference(from.getEigenschaften().getIntuition(), to.getEigenschaften().getIntuition(), ereignis), calculateEigenschaftDifference(from.getEigenschaften().getCharisma(), to.getEigenschaften().getCharisma(), ereignis), calculateEigenschaftDifference(from.getEigenschaften().getFingerfertigkeit(), to.getEigenschaften().getFingerfertigkeit(), ereignis), calculateEigenschaftDifference(from.getEigenschaften().getGewandtheit(), to.getEigenschaften().getGewandtheit(), ereignis), calculateEigenschaftDifference(from.getEigenschaften().getKonstitution(), to.getEigenschaften().getKonstitution(), ereignis), calculateEigenschaftDifference(from.getEigenschaften().getKoerperkraft(), to.getEigenschaften().getKoerperkraft(), ereignis)).filter(Objects::nonNull).collect(Collectors.toList());
     }
 
-    private static List<Difference> calculateSonderfertigkeitenDifference(List<Ereignis> ereignis) {
+    private static List<Difference> calculateSonderfertigkeitenDifference(List<Ereignis> ereignisse) {
         List<Difference> differences = new ArrayList<>();
-        for (Ereignis ereigni : ereignis) {
-            if (ereigni.getAktion().startsWith("Sonderfertigkeit")) {
-                differences.add(new Difference(-ereigni.getAp(), "aktiv", ereigni.getObject(), ereigni.getKommentar()));
+        for (Ereignis ereignis : ereignisse) {
+            if (ereignis.getAktion().startsWith("Sonderfertigkeit")) {
+                differences.add(new Difference("-", "aktiv", ereignis.getObject(), ereignis.getKommentar(), -ereignis.getAp(), Collections.singletonList(ereignis)));
             }
         }
         return differences;
@@ -193,14 +298,25 @@ public class VersionService {
         String name = from.getName();
         int fromVal = from.getAkt().intValue();
         int toVal = to.getAkt().intValue();
-        String tooltip = calculateTooltip(map, name, false);
-        return new Difference(fromVal, toVal, name, tooltip);
+        String tooltip = calculateTooltip(map, name, "Normal");
+        List<Ereignis> ereignisse = map.get(name);
+        int kosten = ereignisse == null ? 0 : ereignisse.stream()
+                .map(ereignis -> -ereignis.getAp())
+                .reduce((a, b) -> a + b)
+                .orElse(0);
+        //TODO
+        return new Difference(fromVal, toVal, name, tooltip, kosten, ereignisse);
     }
 
-    private static List<Difference> calculateDifference(List<? extends Unterscheidbar> fromList, List<? extends Unterscheidbar> toList, Map<String, List<Ereignis>> ereignisse, boolean replaceSpace) {
+    private static List<Difference> calculateDifference(List<? extends Unterscheidbar> fromList, List<? extends Unterscheidbar> toList, Map<String, List<Ereignis>> ereignisMap, String emptyReplacer) {
         List<Difference> differences = new ArrayList<>();
         fromList.forEach(from -> {
             Optional<? extends Unterscheidbar> toOptional = toList.stream().filter(to -> to.name().equals(from.name())).findFirst();
+            List<Ereignis> ereignisse = ereignisMap.get(from.name());
+            int kosten = ereignisse == null ? 0 : ereignisse.stream()
+                    .map(ereignis -> -ereignis.getAp())
+                    .reduce((a, b) -> a + b)
+                    .orElse(0);
             if (toOptional.isPresent()) {
                 Unterscheidbar to = toOptional.get();
                 toList.remove(to);
@@ -209,26 +325,36 @@ public class VersionService {
                 if (fromWert == null && toWert == null || fromWert != null && toWert != null && fromWert.equals(toWert)) {
                     return;
                 }
-                differences.add(new Difference(fromWert, toWert, from.name(), ""));
+
+
+                differences.add(new Difference(fromWert, toWert, from.name(), "", kosten, ereignisse));
             } else {
-                differences.add(new Difference(from.getWert(), null, from.name(), ""));
+                differences.add(new Difference(from.getWert(), null, from.name(), "", kosten, ereignisse));
             }
         });
-        toList.forEach(toTalent -> differences.add(new Difference(null, toTalent.getWert(), toTalent.name(), "")));
+        toList.forEach(toTalent -> {
+            List<Ereignis> ereignisse = ereignisMap.get(toTalent.name());
+            int kosten = ereignisse == null ? 0 : ereignisse.stream()
+                    .map(ereignis -> -ereignis.getAp())
+                    .reduce((a, b) -> a + b)
+                    .orElse(0);
+            differences.add(new Difference(null, toTalent.getWert(), toTalent.name(), "", kosten, ereignisse));
+        });
         differences.forEach(difference -> {
-            String tooltip = calculateTooltip(ereignisse, difference.getName(), replaceSpace);
+            String tooltip = calculateTooltip(ereignisMap, difference.getName(), emptyReplacer);
             difference.setTooltip(tooltip);
         });
         return differences;
     }
 
-    private static String calculateTooltip(Map<String, List<Ereignis>> map, String name, boolean replaceSpace) {
+    private static String calculateTooltip(Map<String, List<Ereignis>> map, String name, String emptyReplacer) {
         return map.getOrDefault(name, Collections.emptyList()).stream().map(ereignis -> ereignis.getBemerkung().replace(",", "")).map(value -> {
-            if (replaceSpace && value.isEmpty()) {
-                return "Aktiviert";
+            if (emptyReplacer != null && value.isEmpty()) {
+                return emptyReplacer;
             } else {
                 return value;
             }
         }).collect(Collectors.joining(", "));
     }
+
 }
