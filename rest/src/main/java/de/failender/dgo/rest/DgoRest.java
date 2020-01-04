@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import de.failender.dgo.persistance.user.UserEntity;
 import de.failender.dgo.persistance.user.UserRepositoryService;
+import de.failender.dgo.rest.asset.AssetController;
 import de.failender.dgo.rest.gruppen.GruppeController;
 import de.failender.dgo.rest.helden.HeldenController;
 import de.failender.dgo.rest.helden.geld.GeldController;
@@ -61,8 +62,6 @@ public class DgoRest {
         om.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
         JavalinJackson.configure(om);
 
-        DgoSecurity.registerSecurity(app);
-        UserService.initialize();
         new HeldInventarController(app);
         new HeldenController(app);
         new PdfController(app);
@@ -75,11 +74,13 @@ public class DgoRest {
         new KampfController(app);
         new SteigernController(app);
         new VersionController(app);
+        new AssetController(app);
 
+        DgoSecurity.registerSecurity(app);
         SynchronizationService.intialize(om);
+        UserService.initialize();
 
-
-		double elapsedTimeInSecond = (double) (System.nanoTime() - start) / 1_000_000_000;
+        double elapsedTimeInSecond = (double) (System.nanoTime() - start) / 1_000_000_000;
 		long takenMemory = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
 		double mb = 1024 * 1024;
 		System.out.printf("DGO Online in %f seconds, using %f MB ram", elapsedTimeInSecond, takenMemory / mb);
