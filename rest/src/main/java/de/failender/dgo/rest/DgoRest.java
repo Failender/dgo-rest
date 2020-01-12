@@ -23,6 +23,7 @@ import de.failender.dgo.rest.user.UserController;
 import de.failender.dgo.rest.user.UserService;
 import de.failender.ezql.EzqlConnector;
 import de.failender.ezql.properties.PropertyReader;
+import de.failender.ezql.repository.EzqlRepository;
 import io.javalin.Javalin;
 import io.javalin.json.JavalinJackson;
 import org.apache.commons.io.IOUtils;
@@ -56,6 +57,9 @@ public class DgoRest {
         Javalin app = Javalin.create()
                 .enableCorsForAllOrigins()
                 .start(7000);
+
+        app.before(ctx -> EzqlConnector.allocateConnection());
+        app.after(ctx -> EzqlConnector.releaseConnection());
 
         ObjectMapper om = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         om.findAndRegisterModules();
