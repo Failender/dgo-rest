@@ -66,6 +66,8 @@ public class DgoRest {
         om.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
         JavalinJackson.configure(om);
 
+        EzqlConnector.allocateConnection();
+
         new HeldInventarController(app);
         new HeldenController(app);
         new PdfController(app);
@@ -83,6 +85,7 @@ public class DgoRest {
         DgoSecurity.registerSecurity(app);
         SynchronizationService.intialize(om);
         UserService.initialize();
+        EzqlConnector.releaseConnection();
 
         double elapsedTimeInSecond = (double) (System.nanoTime() - start) / 1_000_000_000;
 		long takenMemory = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
