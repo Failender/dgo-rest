@@ -49,6 +49,7 @@ public class GeldController {
                 }).mapToLong(value -> value).sum();
         GeldBoerseEntity geldBoerseEntity = new GeldBoerseEntity();
         geldBoerseEntity.setAnzahl(anzahl);
+        geldBoerseEntity.setHeldid(held);
         context.json(geldBoerseEntity);
 
 
@@ -57,8 +58,7 @@ public class GeldController {
     private void updateGeldBoerseForHeld(Context context) {
 
         GeldBoerseEntity geldBoerseEntity = context.bodyAsClass(GeldBoerseEntity.class);
-        HeldEntity heldEntity = HeldRepositoryService.findByIdReduced(geldBoerseEntity.getHeldid());
-        GeldBoerseRepositoryService.updateGeldboerseForHeld(geldBoerseEntity, heldEntity);
+        GeldService.updateGeld(geldBoerseEntity.getHeldid(), geldBoerseEntity);
         context.json(geldBoerseEntity);
     }
 }
