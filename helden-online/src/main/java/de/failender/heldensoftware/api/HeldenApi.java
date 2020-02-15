@@ -64,16 +64,7 @@ public class HeldenApi {
 //		System.out.println(request.url());
 //		System.out.println(body);
 		InputStream is = RestUtils.request(request.url(), body, request.requestMethod());
-		if(!request.needsReplacing()) {
-			return Mono.just(is);
-		}
-		try {
-			BufferedReader br = new ReplacingBufferedReader(new InputStreamReader(is, "UTF-8"));
-			return Mono.just(new ReaderInputStream(br, "UTF-8"));
-		} catch (UnsupportedEncodingException e) {
-			throw new RuntimeException(e);
-		}
-
+		return Mono.just(is);
 	}
 
 	public String buildBody(ApiRequest request) {

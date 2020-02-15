@@ -10,7 +10,6 @@ package de.failender.heldensoftware.xml.datenxml;
 
 import javax.xml.bind.annotation.*;
 import java.math.BigDecimal;
-import java.math.BigInteger;
 
 
 /**
@@ -54,7 +53,7 @@ public class Muenze {
     @XmlElement(required = true)
     protected String name;
     @XmlElement(required = true)
-    protected BigInteger anzahl;
+    protected Long anzahl;
     @XmlElement(required = true)
     protected String namekurz;
     @XmlElement(required = true)
@@ -95,10 +94,10 @@ public class Muenze {
      * 
      * @return
      *     possible object is
-     *     {@link BigInteger }
+     *     {@link Long }
      *     
      */
-    public BigInteger getAnzahl() {
+    public Long getAnzahl() {
         return anzahl;
     }
 
@@ -107,10 +106,10 @@ public class Muenze {
      * 
      * @param value
      *     allowed object is
-     *     {@link BigInteger }
+     *     {@link Long }
      *     
      */
-    public void setAnzahl(BigInteger value) {
+    public void setAnzahl(Long value) {
         this.anzahl = value;
     }
 

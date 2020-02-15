@@ -13,7 +13,7 @@ public class GeldBoerseMapper extends EntityMapper<GeldBoerseEntity> {
 
     public static final LongFieldMapper ID = new LongFieldMapper<>("ID", GeldBoerseEntity::setId, GeldBoerseEntity::getId);
     public static final LongFieldMapper HELD_ID = new LongFieldMapper<>("HELD_ID", GeldBoerseEntity::setHeldid, GeldBoerseEntity::getHeldid);
-    public static final IntFieldMapper ANZAHL = new IntFieldMapper<>("ANZAHL", GeldBoerseEntity::setAnzahl, GeldBoerseEntity::getAnzahl);
+    public static final LongFieldMapper ANZAHL = new LongFieldMapper<>("ANZAHL", GeldBoerseEntity::setAnzahl, GeldBoerseEntity::getAnzahl);
     @Override
     public String table() {
         return "HELD_GELDBOERSE";

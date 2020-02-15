@@ -67,7 +67,7 @@ public class Daten {
     protected Angaben angaben;
     @XmlElement(required = true)
     protected Eigenschaften eigenschaften;
-    @XmlElement(required = true)
+    @XmlElement(required = true, name = "m\u00fcnzen")
     protected Muenzen muenzen;
     @XmlElement(required = true)
     protected Vorteile vorteile;

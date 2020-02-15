@@ -10,10 +10,7 @@ package de.failender.heldensoftware.xml.datenxml;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 
 
 /**
@@ -42,6 +39,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlRootElement(name = "m\u00fcnzen")
 public class Muenzen {
 
+    @XmlElement(name="m\u00fcnze")
     protected List<Muenze> muenze;
 
     /**

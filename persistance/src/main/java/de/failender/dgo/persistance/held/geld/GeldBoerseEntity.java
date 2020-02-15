@@ -5,7 +5,7 @@ import de.failender.dgo.persistance.BaseEntity;
 public class GeldBoerseEntity extends BaseEntity {
 
     private Long heldid;
-    private int anzahl;
+    private long anzahl;
 
     public Long getHeldid() {
         return heldid;
@@ -15,11 +15,11 @@ public class GeldBoerseEntity extends BaseEntity {
         this.heldid = heldid;
     }
 
-    public int getAnzahl() {
+    public long getAnzahl() {
         return anzahl;
     }
 
-    public void setAnzahl(int anzahl) {
+    public void setAnzahl(long anzahl) {
         this.anzahl = anzahl;
     }
 }

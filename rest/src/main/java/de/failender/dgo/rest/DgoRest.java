@@ -40,12 +40,14 @@ public class DgoRest {
         PropertyReader.initialize(args);
         EzqlConnector.initialize("hibernate.connection");
         if(PropertyReader.getProperty("hibernate.initialize.on.start").equals("true")) {
+            EzqlConnector.allocateConnection();
             EzqlConnector.execute(IOUtils.toString(DgoRest.class.getResourceAsStream("/setup.sql"), "UTF-8"));
             //EzqlConnector.execute(IOUtils.toString(DgoRest.class.getResourceAsStream("/talente.sql"), "UTF-8"));
             String adminInsert = "INSERT INTO USERS (NAME, PASSWORD, TOKEN, GRUPPE_ID, CAN_WRITE) VALUES ('Admin', 'pass', null, null, false)";
             EzqlConnector.execute(adminInsert);
             UserEntity admin = UserRepositoryService.findUserByName("Admin");
             UserRepositoryService.addRoleForUser(admin, 1L);
+            EzqlConnector.releaseConnection();
         }
         //Migration for dev mode
         InputStream is = DgoRest.class.getResourceAsStream("/migration.sql");
