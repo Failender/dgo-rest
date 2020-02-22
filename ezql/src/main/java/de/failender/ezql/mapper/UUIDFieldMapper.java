@@ -1,5 +1,7 @@
 package de.failender.ezql.mapper;
 
+import de.failender.ezql.util.TriConsumer;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.UUID;
@@ -13,9 +15,10 @@ public class UUIDFieldMapper<ENTITY> extends FieldMapper<ENTITY, UUID>{
 
 	}
 
-	private static final <ENTITY> BiConsumer<ENTITY, ResultSet> convertedSetter(BiConsumer<ENTITY, UUID> original, String field) {
-		return (ENTITY entity, ResultSet rs)  -> {
+	private static final <ENTITY> TriConsumer<ENTITY, ResultSet, String> convertedSetter(BiConsumer<ENTITY, UUID> original, String baseField) {
+		return (ENTITY entity, ResultSet rs, String prefix)  -> {
 			try {
+				String field = getField(baseField, prefix);
 				String value = rs.getString(field);
 				if(value == null) {
 					return;

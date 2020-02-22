@@ -1,6 +1,7 @@
 package de.failender.ezql.mapper.array;
 
 import de.failender.ezql.mapper.converter.IntFieldConverter;
+import de.failender.ezql.util.TriConsumer;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,9 +15,10 @@ public class IntArrayFieldMapper<ENTITY> extends ArrayFieldMapper<ENTITY, Intege
         super(field, convertedSetter(setter, field), originalGetter);
     }
 
-    static <ENTITY> BiConsumer<ENTITY, ResultSet> convertedSetter(BiConsumer<ENTITY, List<Integer>> original, String field) {
-        return (ENTITY entity, ResultSet rs) -> {
+    static <ENTITY> TriConsumer<ENTITY, ResultSet, String> convertedSetter(BiConsumer<ENTITY, List<Integer>> original, String baseField) {
+        return (ENTITY entity, ResultSet rs, String prefix) -> {
             try {
+                String field = getField(baseField, prefix);
                 if (rs.getObject(field) == null) {
                     return;
                 }

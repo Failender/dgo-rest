@@ -168,3 +168,17 @@ CREATE TABLE ASSET (
                        GRUPPE BIGINT UNIQUE NOT NULL REFERENCES GRUPPEN(ID),
                        NAME VARCHAR(100)
 );
+
+CREATE TABLE LAGERORT(
+                         ID SERIAL PRIMARY KEY,
+                         NAME varchar(40) NOT NULL,
+                         HELDID BIGINT NOT NULL REFERENCES HELDEN(ID),
+                         NOTIZ VARCHAR(200)
+);
+
+CREATE TABLE GEGENSTAND_TO_LAGERORT(
+                                       ID SERIAL PRIMARY KEY,
+                                       LAGERORT BIGINT REFERENCES LAGERORT(ID),
+                                       NAME VARCHAR(200) NOT NULL,
+                                       AMOUNT INTEGER NOT NULL
+);

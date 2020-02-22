@@ -1,7 +1,8 @@
 DROP TABLE IF EXISTS USERS;
 CREATE SEQUENCE user_seq;
+CREATE SEQUENCE book_seq;
 CREATE TABLE USERS(
-                    ID INTEGER DEFAULT nextval('user_seq') PRIMARY KEY,
+                    ID BIGINT DEFAULT nextval('user_seq') PRIMARY KEY,
                     NAME varchar(40) NOT NULL,
                     PASSWORD varchar(60),
                     ACTIVE BOOLEAN NOT NULL,
@@ -16,4 +17,18 @@ INSERT INTO USERS (ID, NAME, PASSWORD, LAST_LOGIN, ACTIVE) VALUES (1, 'Admin', '
 INSERT INTO USERS (ID, NAME, PASSWORD, LAST_LOGIN, ACTIVE) VALUES (2, 'User', 'user', '2011-01-01 17:00:00', TRUE);
 
 
+
+CREATE TABLE BOOKS(
+                      ID BIGINT DEFAULT nextval('book_seq') PRIMARY KEY,
+                      NAME varchar(40) NOT NULL,
+                      USER_ID INTEGER REFERENCES USERS(ID)
+);
+
+INSERT INTO BOOKS(ID, NAME, USER_ID) VALUES (0, 'Alpha', 1);
+INSERT INTO BOOKS(ID, NAME, USER_ID) VALUES (1, 'Beta', 1);
+INSERT INTO BOOKS(ID, NAME, USER_ID) VALUES (2, 'Gamma', 1);
+INSERT INTO BOOKS(ID, NAME, USER_ID) VALUES (3, 'Delta', 2);
+
+
 ALTER SEQUENCE user_seq RESTART WITH 100;
+ALTER SEQUENCE book_seq RESTART WITH 100;

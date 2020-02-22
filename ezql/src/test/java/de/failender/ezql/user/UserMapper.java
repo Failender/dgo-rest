@@ -67,9 +67,10 @@ public class UserMapper extends EntityMapper<UserEntity> {
 
 
 
+	public static final List<FieldMapper<UserEntity, ?>> FIELDS = Arrays.asList(USER_NAME, PASSWORD, ID, ACTIVE, UUID, NUMBERS);
 	@Override
 	public List<FieldMapper<UserEntity, ?>> fieldMappers() {
-		return Arrays.asList(USER_NAME, PASSWORD, ID, ACTIVE, UUID, NUMBERS);
+		return FIELDS;
 	}
 
 	@Override

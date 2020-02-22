@@ -57,7 +57,7 @@ public class SelectQuery<ENTITY> extends BaseQuery {
 			while(rs.next()) {
 				ENTITY entity = mapper.create();
 				for (FieldMapper<ENTITY, ?> entityFieldMapper : fieldMapper) {
-					entityFieldMapper.setValue(entity, rs);
+					entityFieldMapper.setValue(entity, rs, null);
 				}
 				results.add(entity);
 			}

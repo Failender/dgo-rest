@@ -1,5 +1,7 @@
 package de.failender.ezql.mapper;
 
+import de.failender.ezql.util.TriConsumer;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.function.BiConsumer;
@@ -10,10 +12,10 @@ public class StringFieldMapper<ENTITY> extends FieldMapper<ENTITY, String> {
         super(field, convertedSetter(setter, field), getter);
 	}
 
-	private static final <ENTITY> BiConsumer<ENTITY, ResultSet> convertedSetter(BiConsumer<ENTITY, String> original, String field) {
-		return (ENTITY entity, ResultSet rs)  -> {
+	private static final <ENTITY> TriConsumer<ENTITY, ResultSet, String> convertedSetter(BiConsumer<ENTITY, String> original, String baseField) {
+		return (ENTITY entity, ResultSet rs, String prefix)  -> {
 			try {
-
+				String field = getField(baseField, prefix);
 				original.accept(entity, rs.getString(field));
 			} catch (SQLException e) {
 				e.printStackTrace();

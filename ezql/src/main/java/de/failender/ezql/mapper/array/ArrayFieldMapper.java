@@ -2,6 +2,7 @@ package de.failender.ezql.mapper.array;
 
 import de.failender.ezql.mapper.FieldMapper;
 import de.failender.ezql.mapper.converter.FieldConverter;
+import de.failender.ezql.util.TriConsumer;
 
 import java.sql.ResultSet;
 import java.util.List;
@@ -13,7 +14,7 @@ import java.util.stream.Stream;
 public abstract class ArrayFieldMapper<ENTITY, FIELD> extends FieldMapper<ENTITY, List<FIELD>> implements FieldConverter<FIELD> {
 
 
-    public ArrayFieldMapper(String field, BiConsumer<ENTITY, ResultSet> setter, Function<ENTITY, List<FIELD>> originalGetter) {
+    public ArrayFieldMapper(String field, TriConsumer<ENTITY, ResultSet, String> setter, Function<ENTITY, List<FIELD>> originalGetter) {
         super(field, setter, originalGetter);
     }
 

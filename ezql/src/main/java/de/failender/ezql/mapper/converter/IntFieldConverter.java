@@ -1,14 +1,18 @@
 package de.failender.ezql.mapper.converter;
 
+import de.failender.ezql.mapper.FieldMapper;
+import de.failender.ezql.util.TriConsumer;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.function.BiConsumer;
 
 public interface IntFieldConverter extends FieldConverter<Integer> {
 
-    static <ENTITY> BiConsumer<ENTITY, ResultSet> convertedSetter(BiConsumer<ENTITY, Integer> original, String field) {
-        return (ENTITY entity, ResultSet rs) -> {
+    static <ENTITY> TriConsumer<ENTITY, ResultSet, String> convertedSetter(BiConsumer<ENTITY, Integer> original, String baseField) {
+        return (ENTITY entity, ResultSet rs, String prefix) -> {
             try {
+                String field = FieldMapper.getField(baseField, prefix);
                 if (rs.getObject(field) == null) {
                     return;
                 }

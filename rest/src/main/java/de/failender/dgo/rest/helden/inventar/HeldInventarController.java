@@ -30,6 +30,7 @@ public class HeldInventarController {
     private void getInventarForHeld(Context context) {
         Long held = Long.valueOf(context.pathParam("held"));
 
+
         HeldEntity heldEntity = HeldRepositoryService.findByIdReduced(held);
         List<HeldInventarEntity> heldInventar = HeldInventarRepositoryService.findByHeldid(heldEntity);
         context.json(heldInventar);
