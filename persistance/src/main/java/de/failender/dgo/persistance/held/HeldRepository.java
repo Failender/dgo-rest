@@ -1,5 +1,6 @@
 package de.failender.dgo.persistance.held;
 
+import de.failender.dgo.security.EntityNotFoundException;
 import de.failender.ezql.clause.OrderClause;
 import de.failender.ezql.mapper.EntityMapper;
 import de.failender.ezql.queries.SelectQuery;
@@ -46,7 +47,7 @@ class HeldRepository extends EzqlRepository<HeldEntity> {
 	}
 
 	public HeldEntity findByIdReduced(Long id) {
-		HeldEntity heldEntity = findOneBy(HeldMapper.ID, id, HeldMapper.USER_ID, HeldMapper.PUBLIC);
+		HeldEntity heldEntity = findOneBy(HeldMapper.ID, id, HeldMapper.USER_ID, HeldMapper.PUBLIC).orElseThrow(() -> new EntityNotFoundException("Held konnnte nicht gefunden werden"));
 		heldEntity.setId(id);
 		return heldEntity;
 	}

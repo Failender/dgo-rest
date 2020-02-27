@@ -6,6 +6,7 @@ import de.failender.ezql.repository.EzqlRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class HeldUebersichtRepository extends EzqlRepository<HeldUebersichtEntity> {
 
@@ -16,7 +17,7 @@ public class HeldUebersichtRepository extends EzqlRepository<HeldUebersichtEntit
         return HeldUebersichtMapper.INSTANCE;
     }
 
-    public HeldUebersichtEntity findByHeldid(Long heldid) {
+    public Optional<HeldUebersichtEntity> findByHeldid(Long heldid) {
         return findOneBy(HeldUebersichtMapper.HELDID, heldid);
     }
 

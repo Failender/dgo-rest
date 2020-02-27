@@ -1,11 +1,13 @@
 package de.failender.dgo.persistance.held.inventar;
 
 import de.failender.dgo.persistance.held.HeldEntity;
+import de.failender.dgo.persistance.held.HeldRepositoryService;
 import de.failender.ezql.queries.DeleteQuery;
 import de.failender.ezql.queries.InsertQuery;
 import de.failender.ezql.queries.SelectQuery;
 
 import java.util.List;
+import java.util.Optional;
 
 public class HeldInventarRepositoryService {
 
@@ -17,7 +19,7 @@ public class HeldInventarRepositoryService {
         return HeldInventarRepository.INSTANCE.findByHeldid(heldEntity.getId());
     }
 
-    public static HeldInventarEntity findById(Long id) {
+    public static Optional<HeldInventarEntity> findById(Long id) {
         return HeldInventarRepository.INSTANCE.findById(id);
     }
 
@@ -26,6 +28,8 @@ public class HeldInventarRepositoryService {
     }
 
     public static void delete(HeldInventarEntity entity) {
+        HeldEntity heldEntity = HeldRepositoryService.findByIdReduced(entity.getHeldid());
+        HeldRepositoryService.canCurrentUserEditHeld(heldEntity);
         HeldInventarRepository.delete(entity.getId());
     }
 }

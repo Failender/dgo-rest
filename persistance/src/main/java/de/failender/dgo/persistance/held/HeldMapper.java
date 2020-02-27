@@ -34,9 +34,10 @@ public class HeldMapper extends EntityMapper<HeldEntity> {
 		return new HeldEntity();
 	}
 
+	public static final List<FieldMapper<HeldEntity, ?>> FIELDS = Arrays.asList(ID, USER_ID, NAME, ACTIVE, DELETED, PUBLIC, GRUPPE, HKEY, LOCK_EXPIRE);
 	@Override
 	public List<FieldMapper<HeldEntity, ?>> fieldMappers() {
-		return Arrays.asList(ID, USER_ID, NAME, ACTIVE, DELETED, PUBLIC, GRUPPE, HKEY, LOCK_EXPIRE);
+		return FIELDS;
 	}
 
 	@Override

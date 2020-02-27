@@ -1,11 +1,17 @@
 package de.failender.dgo.persistance.held;
 
+import de.failender.dgo.persistance.user.UserMapper;
 import de.failender.dgo.security.DgoSecurityContext;
 import de.failender.dgo.security.EntityNotFoundException;
 import de.failender.dgo.security.NoPermissionException;
+import de.failender.ezql.queries.join.JoinQuery;
+import de.failender.ezql.queries.join.JoinType;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
+
+import static de.failender.ezql.repository.EzqlRepository.firstOrEmpty;
 
 public class HeldRepositoryService {
 
@@ -35,7 +41,8 @@ public class HeldRepositoryService {
         return heldEntity;
     }
     public static HeldEntity findById(Long id) {
-        HeldEntity heldEntity = new HeldRepository().findById(id);
+        Optional<HeldEntity> heldEntityOptional = new HeldRepository().findById(id);
+        HeldEntity heldEntity = heldEntityOptional.orElseThrow(() -> new EntityNotFoundException("Held konnte nicht gefunden werden"));
 
 
         if(!canCurrentUserViewHeld(heldEntity)) {
@@ -110,5 +117,20 @@ public class HeldRepositoryService {
 
     public static boolean existsById(Long id) {
         return HeldRepository.INSTANCE.existsById(id);
+    }
+
+    public static HeldWithUser getHeldWithUser(Long heldid) {
+        Optional<HeldWithUser> heldWithUserOptional = firstOrEmpty(JoinQuery.Builder.create(HeldMapper.INSTANCE, HeldWithUser::new)
+                .where(HeldMapper.INSTANCE, HeldMapper.ID, heldid)
+                .returns(HeldMapper.INSTANCE, (result, entity) -> result.setHeldEntity(entity), HeldMapper.FIELDS)
+                .returns(UserMapper.INSTANCE, (result, entity) -> result.setUserEntity(entity), UserMapper.FIELDS)
+                .join(JoinType.INNER, UserMapper.INSTANCE, UserMapper.ID, HeldMapper.INSTANCE, HeldMapper.USER_ID)
+                .execute());
+        HeldWithUser heldWithUser = heldWithUserOptional.orElseThrow(() -> new EntityNotFoundException("Held konnte nicht gefunden werden"));
+
+        if(heldWithUser != null){
+            canCurrentUserViewHeld(heldWithUser.getHeldEntity());
+        }
+        return heldWithUser;
     }
 }

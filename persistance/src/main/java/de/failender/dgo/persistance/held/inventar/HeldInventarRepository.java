@@ -7,6 +7,7 @@ import de.failender.ezql.queries.DeleteQuery;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 class HeldInventarRepository extends EzqlRepository<HeldInventarEntity> {
 
@@ -22,7 +23,7 @@ class HeldInventarRepository extends EzqlRepository<HeldInventarEntity> {
         return findBy(HeldInventarMapper.HELDID, heldid);
     }
 
-    public HeldInventarEntity findById(Long id) {
+    public Optional<HeldInventarEntity> findById(Long id) {
         return findOneBy(HeldInventarMapper.ID, id);
     }
 

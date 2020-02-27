@@ -8,16 +8,15 @@ public class HeldUebersichtRepositoryService {
 
     public static HeldUebersichtEntity findByHeld(HeldEntity heldEntity) {
 
-        HeldUebersichtEntity entity = HeldUebersichtRepository.INSTANCE.findByHeldid(heldEntity.getId());
-        if (entity != null) {
-            return entity;
-        }
+        return  HeldUebersichtRepository.INSTANCE.findByHeldid(heldEntity.getId()).orElseGet(() -> {
+            HeldUebersichtEntity value = new HeldUebersichtEntity();
+            value = new HeldUebersichtEntity();
+            value.setHeldid(heldEntity.getId());
+            value.setWunden(Arrays.asList(0, 0, 0, 0, 0));
+            persist(value);
+            return value;
+        });
 
-        entity = new HeldUebersichtEntity();
-        entity.setHeldid(heldEntity.getId());
-        entity.setWunden(Arrays.asList(0, 0, 0, 0, 0));
-        persist(entity);
-        return entity;
     }
 
     public static void persist(HeldUebersichtEntity heldUebersichtEntity) {

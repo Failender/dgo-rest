@@ -1,12 +1,10 @@
 package de.failender.dgo.rest.helden.geld;
 
-import de.failender.dgo.persistance.held.HeldEntity;
-import de.failender.dgo.persistance.held.HeldRepositoryService;
-import de.failender.dgo.persistance.held.VersionEntity;
-import de.failender.dgo.persistance.held.VersionRepositoryService;
+import de.failender.dgo.persistance.held.*;
 import de.failender.dgo.persistance.held.geld.GeldBoerseEntity;
 import de.failender.dgo.persistance.user.UserEntity;
 import de.failender.dgo.persistance.user.UserRepositoryService;
+import de.failender.dgo.rest.helden.VersionService;
 import de.failender.dgo.rest.integration.Beans;
 import de.failender.heldensoftware.api.XmlUtil;
 import de.failender.heldensoftware.api.authentication.TokenAuthentication;
@@ -25,11 +23,10 @@ import java.util.List;
 public class GeldService {
 
     public static void updateGeld(Long heldid, GeldBoerseEntity entity) {
-        HeldEntity heldEntity = HeldRepositoryService.findByIdReduced(heldid);
-        VersionEntity versionEntity = VersionRepositoryService.findLatestVersion(heldEntity);
+        HeldWithUser heldWithUser = HeldRepositoryService.getHeldWithUser(heldid);
+        VersionEntity versionEntity = VersionRepositoryService.findLatestVersion(heldWithUser.getHeldEntity());
         //securityUtils.canCurrentUserEditHeld(heldWithVersion.getHeld());
-        UserEntity userEntity = UserRepositoryService.findUserById(heldEntity.getUserId());
-        if(!userEntity.isCanWrite()) {
+        if(!heldWithUser.getUserEntity().isCanWrite()) {
             throw new RuntimeException();
             //throw new NoWritePermissionException();
         }
@@ -98,11 +95,6 @@ public class GeldService {
 
         xml = XmlUtil.toString(geldboerse.getOwnerDocument());
 
-        Beans.HELDEN_API.request(new UpdateXmlRequest(new TokenAuthentication(userEntity.getToken()), xml))
-                .block();
-
-        Beans.HELDEN_API.request(new ReturnHeldDatenWithEreignisseRequest(heldid, new TokenAuthentication(userEntity.getToken()), versionEntity.getCacheId()), false)
-                .block();
-
+        VersionService.updateVersion(xml, heldWithUser, versionEntity);
     }
 }

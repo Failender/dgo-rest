@@ -1,6 +1,5 @@
 package de.failender.dgo.persistance.held.inventar.lagerort;
 
-import de.failender.dgo.persistance.held.geld.GeldBoerseEntity;
 import de.failender.ezql.mapper.EntityMapper;
 import de.failender.ezql.mapper.FieldMapper;
 import de.failender.ezql.mapper.LongFieldMapper;

@@ -1,6 +1,5 @@
 package de.failender.dgo.persistance.held.inventar.lagerort;
 
-import de.failender.dgo.persistance.held.geld.GeldBoerseEntity;
 import de.failender.ezql.mapper.EntityMapper;
 import de.failender.ezql.mapper.FieldMapper;
 import de.failender.ezql.mapper.LongFieldMapper;
@@ -14,7 +13,7 @@ public class LagerortMapper extends EntityMapper<LagerortEntity> {
     public static final LongFieldMapper ID = new LongFieldMapper<>("ID", LagerortEntity::setId, LagerortEntity::getId);
     public static final StringFieldMapper NOTIZ = new StringFieldMapper<>("NOTIZ", LagerortEntity::setNotiz, LagerortEntity::getNotiz);
     public static final StringFieldMapper NAME = new StringFieldMapper<>("NAME", LagerortEntity::setName, LagerortEntity::getName);
-    public static final LongFieldMapper HELDID= new LongFieldMapper<>("HELDID", GeldBoerseEntity::setHeldid, GeldBoerseEntity::getHeldid);
+    public static final LongFieldMapper HELDID= new LongFieldMapper<>("HELDID", LagerortEntity::setHeldid, LagerortEntity::getHeldid);
     public static final LagerortMapper INSTANCE = new LagerortMapper();
 
 

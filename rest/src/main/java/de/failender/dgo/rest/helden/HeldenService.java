@@ -69,7 +69,7 @@ public class HeldenService {
                     UUID uuid = UUID.randomUUID();
                     //Fetch all the data before creating the version, to make sure the helden-api doesnt fail
                     Tuple3<String, Daten, InputStream> data = Mono.zip(
-                            Beans.HELDEN_API.request(new ReturnHeldXmlRequest(xmlHeld.getHeldenid(), new TokenAuthentication(userEntity.getToken()), uuid)),
+                            Beans.HELDEN_API.request(new ReturnHeldXmlRequest(xmlHeld.getHeldenid(), new TokenAuthentication(userEntity.getToken()), uuid), false),
                             Beans.HELDEN_API.request(new ReturnHeldDatenWithEreignisseRequest(heldEntity.getId(), new TokenAuthentication(userEntity.getToken()), uuid), false),
                             Beans.HELDEN_API.request(new ReturnHeldPdfRequest(heldEntity.getId(), new TokenAuthentication(userEntity.getToken()), uuid), false)).block();
                     IOUtils.closeQuietly(data.getT3());

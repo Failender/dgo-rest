@@ -5,7 +5,6 @@ import de.failender.dgo.persistance.held.HeldRepositoryService;
 import de.failender.dgo.persistance.held.VersionEntity;
 import de.failender.dgo.persistance.held.VersionRepositoryService;
 import de.failender.dgo.persistance.held.geld.GeldBoerseEntity;
-import de.failender.dgo.persistance.held.geld.GeldBoerseRepositoryService;
 import de.failender.dgo.rest.integration.Beans;
 import de.failender.heldensoftware.api.requests.ReturnHeldDatenWithEreignisseRequest;
 import de.failender.heldensoftware.xml.datenxml.Daten;
@@ -14,7 +13,6 @@ import io.javalin.Context;
 import io.javalin.Javalin;
 
 import java.math.BigDecimal;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 

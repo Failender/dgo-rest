@@ -1,9 +1,6 @@
 package de.failender.dgo.rest.helden;
 
-import de.failender.dgo.persistance.held.HeldEntity;
-import de.failender.dgo.persistance.held.HeldRepositoryService;
-import de.failender.dgo.persistance.held.VersionEntity;
-import de.failender.dgo.persistance.held.VersionRepositoryService;
+import de.failender.dgo.persistance.held.*;
 import de.failender.dgo.persistance.user.UserEntity;
 import de.failender.dgo.persistance.user.UserRepositoryService;
 import de.failender.dgo.rest.integration.Beans;
@@ -17,8 +14,10 @@ import de.failender.heldensoftware.xml.datenxml.Eigenschaftswerte;
 import de.failender.heldensoftware.xml.datenxml.Ereignis;
 import de.failender.heldensoftware.xml.datenxml.Sonderfertigkeit;
 import one.util.streamex.EntryStream;
+import org.apache.commons.io.IOUtils;
 import reactor.core.publisher.Mono;
 import reactor.util.function.Tuple2;
+import reactor.util.function.Tuple3;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -42,6 +41,18 @@ public class VersionService {
 
 
         return versionEntity;
+    }
+
+    public static void updateVersion(String xml, HeldWithUser heldWithUser, VersionEntity versionEntity) {
+        HeldRepositoryService.canCurrentUserEditHeld(heldWithUser.getHeldEntity());
+        TokenAuthentication tokenAuthentication = new TokenAuthentication(heldWithUser.getUserEntity().getToken());
+        Beans.HELDEN_API.request(new UpdateXmlRequest(new TokenAuthentication(heldWithUser.getUserEntity().getToken()), xml))
+                .block();
+        Tuple3<String, Daten, InputStream> data = Mono.zip(
+                Beans.HELDEN_API.request(new ReturnHeldXmlRequest(heldWithUser.getHeldEntity().getId(), tokenAuthentication, versionEntity.getCacheId()), false),
+                Beans.HELDEN_API.request(new ReturnHeldDatenWithEreignisseRequest(heldWithUser.getHeldEntity().getId(), tokenAuthentication, versionEntity.getCacheId()), false),
+                Beans.HELDEN_API.request(new ReturnHeldPdfRequest(heldWithUser.getHeldEntity().getId(), tokenAuthentication, versionEntity.getCacheId()), false)).block();
+        IOUtils.closeQuietly(data.getT3());
     }
 
     public static String extractLastEreignisString(List<Ereignis> ereignisse) {
@@ -70,7 +81,8 @@ public class VersionService {
     public static void saveHeld(Long id, String xml) {
         HeldenApi heldenApi = Beans.HELDEN_API;
         Tuple2<InputStream, InputStream> converted = Mono.zip(heldenApi.requestRaw(new ConvertingRequest(HeldenApi.Format.datenxml, xml), true), heldenApi.requestRaw(new ConvertingRequest(HeldenApi.Format.pdfintern, xml), true)).block();
-        HeldEntity held = HeldRepositoryService.findById(id);
+        HeldWithUser heldWithUser = HeldRepositoryService.getHeldWithUser(id);
+        HeldEntity held = heldWithUser.getHeldEntity();
         long key = XmlUtil.getKeyFromString(xml);
         if(held.getKey() != key) {
             return;
@@ -81,11 +93,10 @@ public class VersionService {
             return;
         }
         String message = null;
-        UserEntity userEntity = UserRepositoryService.findUserById(held.getUserId());
-        HeldEntity heldEntity = HeldRepositoryService.findByIdReduced(id);
+        UserEntity userEntity = heldWithUser.getUserEntity();
 
 
-        List<VersionEntity> versionEntities = VersionRepositoryService.findVersionsByHeld(heldEntity);
+        List<VersionEntity> versionEntities = VersionRepositoryService.findVersionsByHeld(held);
         VersionEntity latestVersion = versionEntities.get(0);
         VersionEntity firstVersionToMove = versionEntities.stream()
                 .filter(version -> version.getCreatedDate().isBefore(stand))
@@ -99,7 +110,7 @@ public class VersionService {
                     .block();
         } else {
             for (int i = latestVersion.getVersion(); i >= firstVersionToMoveInt; i--) {
-                VersionEntity versionEntity = VersionRepositoryService.findVersion(heldEntity, i);
+                VersionEntity versionEntity = VersionRepositoryService.findVersion(held, i);
                 VersionRepositoryService.updateVersion(versionEntity, versionEntity.getVersion());
             }
         }

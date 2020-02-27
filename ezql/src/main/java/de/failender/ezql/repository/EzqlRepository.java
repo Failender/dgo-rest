@@ -20,7 +20,7 @@ public abstract class EzqlRepository <ENTITY>{
 
     protected abstract EntityMapper<ENTITY> getMapper();
 
-    public ENTITY findById(Long id) {
+    public Optional<ENTITY> findById(Long id) {
         return findOneBy(getMapper().idField(), id);
     }
 
@@ -42,8 +42,8 @@ public abstract class EzqlRepository <ENTITY>{
                 .execute();
     }
 
-    protected  <FIELD> ENTITY findOneBy(FieldMapper<ENTITY, FIELD> fieldMapper, FIELD field) {
-        return firstOrNull(SelectQuery.Builder.selectAll(getMapper())
+    protected  <FIELD> Optional<ENTITY> findOneBy(FieldMapper<ENTITY, FIELD> fieldMapper, FIELD field) {
+        return firstOrEmpty(SelectQuery.Builder.selectAll(getMapper())
                 .where(fieldMapper, field)
                 .limit(1)
                 .execute());
@@ -61,8 +61,8 @@ public abstract class EzqlRepository <ENTITY>{
         return Optional.of(list.get(0));
     }
 
-    protected <FIELD> ENTITY findOneBy(FieldMapper<ENTITY, FIELD> fieldMapper, FIELD field, FieldMapper<ENTITY, ?>... fields) {
-        return firstOrNull(SelectQuery.Builder.select(getMapper(), fields)
+    protected <FIELD> Optional<ENTITY> findOneBy(FieldMapper<ENTITY, FIELD> fieldMapper, FIELD field, FieldMapper<ENTITY, ?>... fields) {
+        return firstOrEmpty(SelectQuery.Builder.select(getMapper(), fields)
                 .where(fieldMapper, field)
                 .limit(1)
                 .execute());
@@ -77,8 +77,6 @@ public abstract class EzqlRepository <ENTITY>{
         return SelectQuery.Builder.select(getMapper(), fields)
                 .execute();
     }
-
-
 
     protected void updateById(Long id, List<BaseClause<ENTITY, ?>> updateClauses) {
         List<Clause> whereClauses = Arrays.asList(new BaseClause<>(getMapper().idField(), id));
@@ -123,6 +121,14 @@ public abstract class EzqlRepository <ENTITY>{
         DeleteQuery.Builder.delete(getMapper()).where(field, value)
                 .build().execute();
     }
+    protected void deleteBy(Field... fields) {
+        DeleteQuery.Builder queryBuilder = DeleteQuery.Builder.delete(getMapper());
+        for (Field field : fields) {
+            queryBuilder.where(field.getFieldMapper(), field.getField());
+        }
+        queryBuilder.execute();
+    }
+
 
     public void persist(ENTITY entity) {
         new InsertQuery<>(getMapper(), entity).execute();
@@ -133,11 +139,11 @@ public abstract class EzqlRepository <ENTITY>{
     }
 
 
-    public static <T> T firstOrNull(List<T> list) {
+    public static <T> Optional<T> firstOrEmpty(List<T> list) {
         if(list.isEmpty()) {
-            return null;
+            return Optional.empty();
         }
-        return list.get(0);
+        return Optional.of(list.get(0));
     }
 
     protected class Field<FIELD> {
