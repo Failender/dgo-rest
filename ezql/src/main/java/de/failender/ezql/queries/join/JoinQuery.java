@@ -36,16 +36,23 @@ public class JoinQuery<RESULT> {
         String sql = "SELECT ";
         boolean first = true;
         for (JoinReturnField<RESULT, ?> field : fields) {
+
+            if(field.getFields() == null) {
+                sql  += field.getEntityMapper().table() + ".* AS " + field.getEntityMapper().table() + " ";
+
+                continue;
+            }
             for (FieldMapper<?, ?> fieldField : field.getFields()) {
 
                 if(!first) {
                     sql += ",";
                 }
-                sql  += field.getEntityMapper().table() + "." + fieldField.getField();
-                sql += " AS " + field.getEntityMapper().table() + "_" + fieldField.getField() + "";
                 first = false;
 
+                sql  += field.getEntityMapper().table() + "." + fieldField.getField();
+                sql += " AS " + field.getEntityMapper().table() + "_" + fieldField.getField() + " ";
             }
+
         }
         sql += " FROM " + baseTable.table() + " ";
 
@@ -93,6 +100,14 @@ public class JoinQuery<RESULT> {
 
     private <T> void fillResult(JoinReturnField<RESULT, T> field, ResultSet rs, RESULT result) {
         T entity  = field.getEntityMapper().create();
+        if(field.getFields() == null) {
+
+            for (FieldMapper<T, ?> fieldMapper : field.getEntityMapper().fieldMappers()) {
+                fieldMapper.setValue(entity, rs, field.getEntityMapper().table());
+
+            }
+            return;
+        }
         for (FieldMapper<T, ?> fieldField : field.getFields()) {
             fieldField.setValue(entity, rs, field.getEntityMapper().table());
         }
@@ -122,8 +137,14 @@ public class JoinQuery<RESULT> {
             return this;
         }
 
+
         public <ENTITY>Builder<RESULT> returns(EntityMapper<ENTITY> mapper, BiConsumer<RESULT, ENTITY> setter, List<FieldMapper<ENTITY, ?>> fields) {
             this.fields.add(new JoinReturnField<>(mapper, fields, setter));
+            return this;
+        }
+
+        public <ENTITY>Builder<RESULT> returnAll(EntityMapper<ENTITY> mapper, BiConsumer<RESULT, ENTITY> setter) {
+            this.fields.add(new JoinReturnField<>(mapper, null, setter));
             return this;
         }
 

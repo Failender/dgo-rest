@@ -124,7 +124,7 @@ public class HeldRepositoryService {
                 .where(HeldMapper.INSTANCE, HeldMapper.ID, heldid)
                 .returns(HeldMapper.INSTANCE, (result, entity) -> result.setHeldEntity(entity), HeldMapper.FIELDS)
                 .returns(UserMapper.INSTANCE, (result, entity) -> result.setUserEntity(entity), UserMapper.FIELDS)
-                .join(JoinType.INNER, UserMapper.INSTANCE, UserMapper.ID, HeldMapper.INSTANCE, HeldMapper.USER_ID)
+                .join(JoinType.INNER, HeldMapper.INSTANCE, HeldMapper.USER_ID, UserMapper.INSTANCE, UserMapper.ID)
                 .execute());
         HeldWithUser heldWithUser = heldWithUserOptional.orElseThrow(() -> new EntityNotFoundException("Held konnte nicht gefunden werden"));
 

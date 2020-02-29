@@ -56,9 +56,9 @@ public class SynchronizationService {
 
     public static void intialize(ObjectMapper  objectMapper) {
         INSTANCE = new SynchronizationService(objectMapper);
-//        if (isSyncEnabled()) {
-//            INSTANCE.synchronize();
-//        }
+        if (isSyncEnabled()) {
+            INSTANCE.synchronize();
+        }
     }
 
     private static boolean isSyncEnabled() {
@@ -85,7 +85,7 @@ public class SynchronizationService {
                         .map(DSOHeldVersion::getVersion)
                         .collect(Collectors.toSet());
                 if(versions.size() != versionen.size()){
-                    System.err.println("Duplicate version found for held " + heldEntity.getId());
+                    System.err.println("Duplicate version found for held " + heldEntity.getId() + " " +heldEntity.getName());
                     continue;
                 }
                 if(VersionRepositoryService.findLatestVersion(heldEntity).getVersion() != versionen.size()) {

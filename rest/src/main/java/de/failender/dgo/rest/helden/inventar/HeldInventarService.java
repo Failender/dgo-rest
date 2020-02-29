@@ -84,7 +84,7 @@ public class HeldInventarService {
             List<Long> removal = new ArrayList<>();
             for (GegenstandToLagerortEntity gl : GegenstandToLagerortRepositoryService.findByLagerort(lagerortEntity.getId())) {
                 List<Gegenstand> matches = items.stream()
-                        .filter(i -> i.getGegenstand().equals(gl.getName()))
+                        .filter(i -> i.getName().equals(gl.getName()))
                         .collect(Collectors.toList());
                 if(matches.isEmpty()) {
                     removal.add(gl.getId());
