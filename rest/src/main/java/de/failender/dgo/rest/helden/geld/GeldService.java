@@ -1,22 +1,19 @@
 package de.failender.dgo.rest.helden.geld;
 
-import de.failender.dgo.persistance.held.*;
+import de.failender.dgo.persistance.held.HeldRepositoryService;
+import de.failender.dgo.persistance.held.HeldWithUser;
+import de.failender.dgo.persistance.held.VersionEntity;
+import de.failender.dgo.persistance.held.VersionRepositoryService;
 import de.failender.dgo.persistance.held.geld.GeldBoerseEntity;
-import de.failender.dgo.persistance.user.UserEntity;
-import de.failender.dgo.persistance.user.UserRepositoryService;
 import de.failender.dgo.rest.helden.VersionService;
 import de.failender.dgo.rest.integration.Beans;
 import de.failender.heldensoftware.api.XmlUtil;
-import de.failender.heldensoftware.api.authentication.TokenAuthentication;
-import de.failender.heldensoftware.api.requests.ReturnHeldDatenWithEreignisseRequest;
 import de.failender.heldensoftware.api.requests.ReturnHeldXmlRequest;
-import de.failender.heldensoftware.api.requests.UpdateXmlRequest;
 import de.failender.heldensoftware.xml.datenxml.Muenze;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,7 +32,7 @@ public class GeldService {
         Element held = XmlUtil.getHeldFromXml(xml);
         Element geldboerse = (Element) held.getElementsByTagName("geldboerse").item(0);
 
-        List<Muenze> münzen = new ArrayList<>();
+        List<Muenze> muenzen = new ArrayList<>();
         NodeList nodeList = geldboerse.getElementsByTagName("muenze");
         for(int i = 0; i< nodeList.getLength(); i++) {
             Node node = nodeList.item(i);
@@ -43,10 +40,10 @@ public class GeldService {
                 continue;
             }
             Element mElement = (Element) node;
-            Muenze münze = new Muenze();
-            münze.setAnzahl(Long.valueOf(mElement.getAttribute("anzahl")));
-            münze.setName(mElement.getAttribute("name"));
-            münzen.add(münze);
+            Muenze muenze = new Muenze();
+            muenze.setAnzahl(Long.valueOf(mElement.getAttribute("anzahl")));
+            muenze.setName(mElement.getAttribute("name"));
+            muenzen.add(muenze);
         }
         long totalMoney = entity.getAnzahl();
 
@@ -54,7 +51,7 @@ public class GeldService {
         while(totalMoney != 0) {
             // Final variable for lambda
             final Waehrung wwährung = waehrung;
-            Muenze münze = münzen
+            Muenze muenze = muenzen
                     .stream()
                     .filter(data -> data.getName().equals(wwährung.name()))
                     .findFirst()
@@ -62,7 +59,7 @@ public class GeldService {
                         Muenze m = new Muenze();
                         m.setAnzahl(0L);
                         m.setName(wwährung.name());
-                        münzen.add(m);
+                        muenzen.add(m);
 
                         Element element = geldboerse.getOwnerDocument().createElement("muenze");
                         element.setAttribute("name", wwährung.name());
@@ -72,15 +69,15 @@ public class GeldService {
                         return m;
                     });
             if(wwährung.getNext() == null) {
-                münze.setAnzahl(totalMoney);
+                muenze.setAnzahl(totalMoney);
                 totalMoney = 0;
             } else{
-                münze.setAnzahl((totalMoney % 10));
+                muenze.setAnzahl((totalMoney % 10));
                 totalMoney /= 10;
                 waehrung = waehrung.getNext();
             }
             Element element = XmlUtil.findIn(nodeList, (e) -> e.getAttribute("name").equals(wwährung.name()));
-            element.setAttribute("anzahl", münze.getAnzahl().toString());
+            element.setAttribute("anzahl", muenze.getAnzahl().toString());
         }
 
         Element ereignisse = (Element) held.getElementsByTagName("ereignisse").item(0);

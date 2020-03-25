@@ -76,7 +76,7 @@ public class EzqlConnector {
 		}
 	}
 
-	public static void allocateConnection() {
+    public static synchronized void allocateConnection() {
 
 		if(availableConnections.isEmpty()) {
 		}
@@ -94,7 +94,7 @@ public class EzqlConnector {
 
 	}
 
-	public static void releaseConnection() {
+    public static synchronized void releaseConnection() {
 		availableConnections.add(requestConnection.get());
 	}
 
