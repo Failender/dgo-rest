@@ -11,6 +11,7 @@ import de.failender.dgo.rest.synchronization.SynchronizationService;
 import de.failender.dgo.security.DgoSecurityContext;
 import de.failender.heldensoftware.api.requests.ReturnHeldDatenWithEreignisseRequest;
 import de.failender.heldensoftware.api.requests.ReturnHeldPdfRequest;
+import de.failender.heldensoftware.api.requests.ReturnHeldXmlRequest;
 import de.failender.heldensoftware.xml.datenxml.Daten;
 import io.javalin.Context;
 import io.javalin.Javalin;
@@ -30,6 +31,7 @@ public class HeldenController {
 	public static final String SYNC_HELDEN_ONLINE = MEINE_HELDEN + "sync/helden-online";
 	public static final String HELD = PREFIX + "held/:held/:version/daten";
 	public static final String PDF = PREFIX + "held/:held/:version/pdf";
+	public static final String XML = PREFIX + "held/:held/:version/xml";
 	public static final String UPDATE_PUBLIC = PREFIX + "held/:held/public/:public";
 	public static final String UPDATE_ACTIVE = PREFIX + "held/:held/active/:active";
 
@@ -41,6 +43,7 @@ public class HeldenController {
 		app.get(MEINE_HELDEN, this::getMeineHelden);
 		app.get(HELD, this::getHeld);
 		app.get(PDF, this::getPdf);
+		app.get(XML, this::getXml);
 		app.put(UPDATE_ACTIVE, this::updateActive);
 		app.put(UPDATE_PUBLIC, this::updatePublic);
 		app.post(SYNC_DSO, this::syncDso);
@@ -66,6 +69,16 @@ public class HeldenController {
 
 		context.result(
 			Beans.HELDEN_API.provideDownload(new ReturnHeldPdfRequest(held, null, versionEntity.getCacheId())));
+	}
+
+	private void getXml(Context context) {
+		Long held = Long.valueOf(context.pathParam("held"));
+		int version = Integer.valueOf(context.pathParam("version"));
+		HeldEntity heldEntity = HeldRepositoryService.findByIdReduced(held);
+		VersionEntity versionEntity = VersionRepositoryService.findVersion(heldEntity, version);
+		context.result(
+				Beans.HELDEN_API.provideDownload(new ReturnHeldXmlRequest(held, null, versionEntity.getCacheId())));
+
 	}
 
 	private void getMeineHelden(Context context) {
