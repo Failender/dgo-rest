@@ -13,6 +13,7 @@ public class UserController {
 
     public UserController(Javalin app) {
         app.post(CREATE, this::registerUser);
+        app.post(PREFIX, this::registerUsers);
     }
 
     private void registerUser(Context context) {
@@ -21,6 +22,19 @@ public class UserController {
         UserEntity userEntity = UserService.registerUser(registration);
         if (userEntity == null) {
             context.status(409);
+        }
+    }
+
+    private void registerUsers(Context context) {
+
+
+        UserRegistration[] body = context.bodyAsClass(UserRegistration[].class);
+        for (UserRegistration userRegistration : body) {
+            try {
+                UserService.registerUser(userRegistration);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 }
