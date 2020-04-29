@@ -1,0 +1,1395 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<root version="3.3" release="6.2">
+    <calendar>
+        <public/>
+    </calendar>
+    <combattracker>
+        <public/>
+    </combattracker>
+    <effects>
+        <public/>
+    </effects>
+    <hilfetexte>
+        <chat>
+            <name type="string">Hilfe zu Chatbefehlen</name>
+            <text type="formattedtext">
+                <h>Allgemeine Hinweise</h>
+                <p>
+                    <b>Autovervollst&#228;ndigung von Charakternamen:</b>
+                </p>
+                <p>Der Chakatername kann soweit ein_e Spieler_in seinen Charakter ausgew&#228;hlt hat, nach der Eingabe
+                    der ersten Buchstaben durch Dr&#252;cken der Tab-Taste automatisch vervollst&#228;ndigt werden.
+                </p>
+                <p>Sollte nicht der gew&#252;nschte Charaktername autovervollst&#228;ndigt worden sein, obwohl der
+                    Charkater von einem Spielenden bereits ausgew&#228;hlt worden ist, so liegt dies daran, dass ein
+                    anderer ausgew&#228;hlter Charakter mit den gleichen Buchstaben beginnt. Hier muss man so viele
+                    Buchstaben eingeben, bis sich die Charakternamen unterscheiden.
+                </p>
+                <p>
+                    <b>Legende:</b>
+                </p>
+                <p>[...] = Das Feld ist bei der Eingabe des Befehls erforderlich.*</p>
+                <p>&#60;...&#62; = Das Feld ist bei der Eingabe des Befehls optional.*</p>
+                <p>* Weder die eckigen Klammern noch die Gr&#246;&#223;erals- und Kleineralszeichen d&#252;rfen bei der
+                    Eingabe mit eingegeben werden. Sie kennzeichnen nur, ob das Feld f&#252;r den jeweiligen Befehl
+                    zwingend erfoderlich oder optional ist.
+                </p>
+                <p>(M) = steht nur der Meisterin/ dem Meister zur Verf&#252;gung</p>
+                <p>(S) = steht nur den Spielenden zur Verf&#252;gung.</p>
+                <p>(MS) = steht sowohl der Meisterin/ dem Meister und den Spielenden zur Verf&#252;gung.</p>
+                <p></p>
+                <h>Nachrichten</h>
+                <p>
+                    <b>normale Nachrichten (MS):</b>
+                </p>
+                <p>Normalle Nachrichten gelten als gesprochenes Wort des jeweils aktiven Charakters im Fall der
+                    Spielenden und der jeweils aktiven Identit&#228;t des Spielleitenden.
+                </p>
+                <p>
+                    <b>Fl&#252;stern (MS):</b>
+                </p>
+                <list>
+                    <li>/w &#60;Empf&#228;nger&#62; [Nachricht]</li>
+                    <li>/whisper &#60;Empf&#228;nger&#62; [Nachricht]</li>
+                </list>
+                <p>Sendet ein Fl&#252;stern an den Empf&#228;nger mit dem Inhalt der Nachricht. Als Empf&#228;nger sind
+                    die vollst&#228;ndigen Charakternamen (am besten per Autovervollst&#228;ndigung eingeben siehe oben)
+                    sowie GM und SL m&#246;glich. Wird kein Empf&#228;nger oder kein g&#252;ltiger Empf&#228;nger
+                    eingegeben, dann wird an die Spielleitung gefl&#252;stert.
+                </p>
+                <list>
+                    <li>/r [Nachricht]</li>
+                    <li>/reply [Nachricht]</li>
+                </list>
+                <p>Sendet die Nachricht als Fl&#252;stern als Erwiderung auf das letzte Fl&#252;stern an den Sender des
+                    letzten Fl&#252;sterns.
+                </p>
+                <p>
+                    <b>Nachricht als OOC (MS):</b>
+                </p>
+                <list>
+                    <li>Alt Taste zus&#228;tzlich zu Enter dazu dr&#252;cken f&#252;rs Senden</li>
+                    <li>/ooc [Nachricht]</li>
+                    <li>/o [Nachricht]</li>
+                </list>
+                <p>Sendet die Nachricht &#34;out of character&#34;, also als Kommentar des Spielenden und nicht das
+                    Charakters.
+                </p>
+                <p>
+                    <b>Nachricht als Emotion (MS):</b>
+                </p>
+                <list>
+                    <li>Shift + Strg(Ctrl) Tasten zus&#228;tzlich zu Enter dazu dr&#252;cken f&#252;rs Senden</li>
+                    <li>/emote [Nachricht]</li>
+                    <li>/e [Nachricht]</li>
+                </list>
+                <p>Sendet die Nachricht so, dass ein Gef&#252;hl, Emotion ausgedr&#252;ckt wird. F&#252;r Spielende sehr
+                    &#228;hnlich zu &#34;Nachricht als Aktion&#34;. F&#252;r die Spielleitung eine M&#246;glichkeit
+                    Handlungen der aktiven Identit&#228;t auszudr&#252;cken.
+                </p>
+                <p>
+                    <b>Nachricht als Aktion (S):</b>
+                </p>
+                <list>
+                    <li>Strg Taste zus&#228;tzlich zu Enter dazu dr&#252;cken f&#252;rs Senden</li>
+                    <li>/action [Nachricht]</li>
+                    <li>/a [Nachricht]</li>
+                </list>
+                <p>Sendet eine Nachricht so, dass eine Handlung zum Ausdruck kommt.</p>
+                <p>
+                    <b>Nachricht als Geschichtsemelent (M):</b>
+                </p>
+                <list>
+                    <li>Strg Taste zus&#228;tzlich zu Enter dazu dr&#252;cken f&#252;rs Senden</li>
+                    <li>/story [Nachricht]</li>
+                    <li>/s [Nachricht]</li>
+                </list>
+                <p>Sendet die Nachricht so, dass sie als Geschichtselement im Chat angezeigt wird.</p>
+                <p>
+                    <b>normale Nachrichten mit einer Stimmung/Laune versehen (MS):</b>
+                </p>
+                <list>
+                    <li>/mood [Stimmung/Laune]</li>
+                </list>
+                <p>Zeigt solange bei allen normalen Chatnachrich die Stimmung/Laune mit an, bis dies wieder
+                    ausgeschaltet wird. Soll die Stimmung/Laune mehrere Worte umfassen, so sind diese Worte von runden
+                    Klammern einzufassen. Beispiel: /mood (hoch erfreut)
+                </p>
+                <list>
+                    <li>/mood</li>
+                </list>
+                <p>Schaltet die Anzeige der Stimmung/Laune bei den normalen Nachrichten ab.</p>
+                <p>
+                    <b>einzelne, normale Nachricht mit einer Stimmung/Laune versehen (MS):</b>
+                </p>
+                <list>
+                    <li>/mood [Stimmung/Laune] [Nachricht]</li>
+                </list>
+                <p>Sendet die Nachricht unter Anzeige einer bestimmten Stimmung/Laune ab. Soll die Stimmung/Laune
+                    mehrere Worte umfassen, so sind diese Worte von runden Klammern einzufassen.
+                </p>
+                <p>Beispiel: /mood (hoch erfreut) Gerne nehme ich Ihr Angebot an.</p>
+                <p>
+                    <b>Abstimmung starten (MS):</b>
+                </p>
+                <list>
+                    <li>/vote &#60;Nachricht&#62;</li>
+                </list>
+                <p>Erstellt im Chatfenster eine Abstimmung. Die Nachricht wird dabei mit ausgegeben, sofern sie eingeben
+                    wurde. Durch Anklicken des Kreises k&#246;nnen die Spielenden, nicht die Spielleitung, die Frage
+                    beantworten. Es gibt drei Zust&#228;nde: Hacken, Kreuz und freier Kreis.
+                </p>
+                <p>
+                    <b>Nachrichten verlauf l&#246;schen (M):</b>
+                </p>
+                <list>
+                    <li>/clear</li>
+                    <li>per Kontextmen&#252; des Chatfensters</li>
+                </list>
+                <p>L&#246;scht bei Spielenden und der Spielleitung des gesamten bisherigen Chatverlauf.</p>
+                <p></p>
+                <h>W&#252;rfelbefehle:</h>
+                <p>
+                    <b>W&#252;rfel werfen (MS):</b>
+                </p>
+                <list>
+                    <li>/die [XdY+-Z] &#60;Nachricht&#62;</li>
+                </list>
+                <p>W&#252;rfelt eine Anzahl x an y-seitigen W&#252;rfeln und addiert oder substrahiert z. Dabei wird,
+                    sofern eingegeben, die Nachricht mit ausgegeben.
+                </p>
+                <p>
+                    <b>Modifikator in die Modifikatorbox hinzuf&#252;gen (MS):</b>
+                </p>
+                <list>
+                    <li>/mod [X] &#60;Name&#62;</li>
+                </list>
+                <p>Setzt einen Modifikator in H&#246;he von X und speichert ihn der Modifikatorbox. Beim n&#228;chsten W&#252;rfeln
+                    wird dieser Modifikator ber&#252;cksichtigt und der Name, sofern eingegeben bei der W&#252;rfelausgabe
+                    im Chat mit ausgegeben.
+                </p>
+                <p>
+                    <b>Tabelle w&#252;rfen (MS):</b>
+                </p>
+                <list>
+                    <li>/rollon [Tabellenname] &#60;-c [Spaltenname]&#62; &#60;-d [XdY+-Z]&#62; &#60;-hide&#62;</li>
+                </list>
+                <p>W&#252;rfelt in der mit dem Tabellennamen angegebenen Tabelle. Insofern eine Spalte durch &#34;-c
+                    [Spaltennamen]&#34; angegeben wird, wird das Ergebnis nur aus dieser Spalte entnommen. Wenn per
+                    &#34;-d [XdY+-Z]&#34; ein W&#252;rfel definiert ist, so wird dieser W&#252;rfelwurf anstelle des in
+                    der Tabelle erfassten geworfen. X definiert dabei die Anzahl der y-seitigen W&#252;rfel. Z gibt an,
+                    ob zu dem W&#252;rfelergebnis etwas hinzugez&#228;hlt bzw. abgezogen wird. Wird &#34;-hide&#34;mit
+                    eingegeben, so wird das Ergebnis nur der Spielleitung angezeigt.
+                </p>
+                <p></p>
+                <h>Weitere Befehle</h>
+                <p>
+                    <b>Charakterdaten sichern (S):</b>
+                </p>
+                <list>
+                    <li>/save</li>
+                </list>
+                <p>Sichert die letzten &#196;nderungen am eigenen Charakter. Normalerweise speichert Fantasy Grounds
+                    alle f&#252;nf Minuten selbst. Zudem ist eigentlich immer die Spielleitung f&#252;r das sichern der
+                    Datenbank zust&#228;ndig. F&#252;r &#252;bervorsichtige Spielende vielleicht doch ein n&#252;tzlicher
+                    Befehl, vor allem, wenn man umfangreichere &#196;nderungen am Charakter vorgenommen hat.
+                </p>
+                <p>
+                    <b>Kampagne sichern (M):</b>
+                </p>
+                <list>
+                    <li>/save</li>
+                </list>
+                <p>Sichert die gesamte Kampagnendaten. Normalerweise speichert Fantasy Grounds alle f&#252;nf Minuten
+                    die Kampagnendaten selbst. Am Besten Ihr gebt den Befehl ein bevor Ihr Fantasy Grounds schlie&#223;t,
+                    zum Startbildschirm zur&#252;ckkehrt oder die Kampagne neu ladet (siehe unten).
+                </p>
+                <p>
+                    <b>Identit&#228;t &#228;ndern/hinzuf&#252;gen (M):</b>
+                </p>
+                <list>
+                    <li>/gmid [Name]</li>
+                    <li>/gm [Name]</li>
+                </list>
+                <p>&#196;ndern den Namen der Spielleitung, sodass im Chat ein anderer Name ausgegeben wird.</p>
+                <list>
+                    <li>/identity [Name]</li>
+                </list>
+                <p>F&#252;gt f&#252;r die Spielleitung eine weitere Identit&#228;t hinzu. Durch anklicken der jeweiligen
+                    Identit&#228;t unter dem Chatfenster kann zwischen diesen gewechselt werden. Die jeweils aktive wird
+                    f&#252;r die Anzeige in der Chatausgabe genutzt. Per Kontextmen&#252; kann eine solche Identit&#228;t
+                    auch wieder gel&#246;scht werden.
+                </p>
+                <p>Im Charakterbogen oder bei Nichtspielercharakteren kann durch Anklicken der Sprechblase die jeweilige
+                    Identit&#228;t hinzugef&#252;gt werden.
+                </p>
+                <p>
+                    <b>Lichteffekt einstellen (M):</b>
+                </p>
+                <list>
+                    <li>/day</li>
+                </list>
+                <p>Stellt den Lichteffekt auf Tag um. Mehr voreingestellteLichteffekte findet Ihr im der rechten oberen
+                    Ecke bei den kleinen Kn&#246;pfen (linke Spalte unterster Knopf).
+                </p>
+                <list>
+                    <li>/night</li>
+                </list>
+                <p>Stellt den Lichteffekt auf Nacht um. Mehr voreingestellteLichteffekte findet Ihr im der rechten
+                    oberen Ecke bei den kleinen Kn&#246;pfen (linke Spalte unterster Knopf).
+                </p>
+                <list>
+                    <li>/lighting [RGB-Hex-Zahl]</li>
+                </list>
+                <p>Stellt den Lichteffekt auf eine gewisse Farbe ein. Diese Frabe ist &#252;ber einen Hex-Code im
+                    RGB-Format (Rot-Gr&#252;n-Blau-Format) anzugeben. Viele Grafikprogramme geben bei Farbwerten auch
+                    ein HTML-Notation an. Diese entspricht dem RGB-Format im Hex-Code.
+                </p>
+                <p>
+                    <b>Modul exportieren (M):</b>
+                </p>
+                <list>
+                    <li>/export</li>
+                </list>
+                <p>&#214;ffnet ein Fenster zum exportieren von Modulen.</p>
+                <p>
+                    <b>Charakter exportieren (M):</b>
+                </p>
+                <list>
+                    <li>/exportchar &#60;Charktername&#62;</li>
+                </list>
+                <p>Exportiert alle Spielendencharakter, die in der Kampagne gespeichert sofern kein Charaktername
+                    angegeben ist. Wird dieser mit eingegeben, so wird nur dieser Charakter exportiert. Sofern die
+                    entsprechende Charakter von einem Spielenden ausgew&#228;hlt ist, kann der Charaktername per
+                    Autovervollst&#228;ndigung eingegeben werden.
+                </p>
+                <p>Eine andere M&#246;glichkeit einzelne Charaktere zu exportieren besteht darin, dass man in der
+                    Charakterauswahl bei jeweiligen Charakter auf den Exportknopf dr&#252;ckt.
+                </p>
+                <p>
+                    <b>Charakter importieren (M):</b>
+                </p>
+                <list>
+                    <li>/importchar</li>
+                </list>
+                <p>&#214;ffnet ein Fenster zum Ausw&#228;hlen der zu importierenden Charakterdatei im xml-Format.
+                    xml-Dateien aus der Heldensoftware k&#246;nnen nur erfolgreich importiert werden, wenn sie mit dem
+                    entsprechenden Plugin aus der Heldensoftware exportiert wurden. Speichern Sie dazu den Charakter
+                    dort als lokalen Charakter ab.
+                </p>
+                <p>
+                    <b>Benutzerschnittstelle anpassen (MS):</b>
+                </p>
+                <list>
+                    <li>/scaleui [x]</li>
+                </list>
+                <p>Passt die Skallierung der Benutzerschnittstelle (Grafikoberfl&#228;che) an. Zul&#228;sstige Werte f&#252;r
+                    x liegen zwischen 50 und 200. Der Nachteil liegt allerdings darin, dass die Qualit&#228;t der Grafik
+                    darunter leidet.
+                </p>
+                <p>
+                    <b>Console &#246;ffnen (MS)</b>
+                </p>
+                <list>
+                    <li>/console</li>
+                </list>
+                <p>&#214;ffnet das Fenster &#34;Console&#34; im Hintergrund und l&#228;sst dieses mitlaufen. Dies ist
+                    nur f&#252;r Debugingzwecke erfoderlich.
+                </p>
+                <p>
+                    <b>Kampagne neue laden (M):</b>
+                </p>
+                <list>
+                    <li>/reload</li>
+                </list>
+                <p>L&#228;dt die Kampagne neu. Dieser Befehl ist eigentlich nur bei der Erstellung von Rulesets und zu
+                    deren Test notwendig, da hier dann auch die ge&#228;nderten Dateien aus dem Ruleset neu geladen
+                    werden. Sollte man den Befehl auch aus anderen Gr&#252;nden nutzen wollen, so sollte man die
+                    Kampagne vorher sichern, damit es nicht zu ein Datenverlust kommt. Der Befehl wird nicht ausgef&#252;hrt,
+                    wenn sich Spielende oder andere Clients bereits verbunden haben.
+                </p>
+                <p>
+                    <b>Teilen an einzelne Charakter zur&#252;cknehmen</b>
+                </p>
+                <list>
+                    <li>/flushdb</li>
+                </list>
+                <p>Nimmt das Teilen von Bildern, Notizen, Erz&#228;hlungseintr&#228;gen usw. an einzelne Spielende zur&#252;ck,
+                    damit diese bei den Spielenden nicht mehr sichtbar sind. Solche Eintr&#228;ge k&#246;nnen anhand des
+                    S-Symbols im jeweiligen &#220;bersichtsfenster erkannt werden. Allerdings bleiben die Eintr&#228;ge
+                    f&#252;r die Eigent&#252;mer dennoch sichtbar. So sind bspw. die Notizen, die Spielende angelegt
+                    haben, zwar nicht nach Ausf&#252;hrung des Befehls nicht mehr f&#252;r alle sindern nur noch f&#252;r
+                    die erstellende Person sichtbar. Ebenso bleiben alle als &#246;ffentlich (public) geteilte Eintr&#228;ge
+                    erhalten. Sie k&#246;nnen durch ein P-Symbol im jeweiligen &#220;berischtsfenster erkannt werden.
+                </p>
+                <p></p>
+                <h>Support zum Ruleset</h>
+                <p>DSA_DZ_4.1WE@rpg.unbesiegbar.com</p>
+            </text>
+        </chat>
+        <kampfuebersichtClient>
+            <name type="string">Hilfe zur Kampf&#252;bersicht</name>
+            <text type="formattedtext">
+                <h>Kampf&#252;bersichtsfenster</h>
+                <p>Dieses Fenster bietet die M&#246;glichkeit K&#228;mpfe zu verwalten. Im Rahmen und an den R&#228;ndern
+                    gibt es verschiedene Elemente, welche der Steuerung dienen. Sie sollen im Uhreigersinn beginnend in
+                    der linken oberen Ecke vorgestellt werden.
+                </p>
+                <p>
+                    <b>Fragezeichensymbol:</b>
+                </p>
+                <p>Durch Anklicken des Symbols erscheint dieser Hilfetext, aber das wurde ja schon gemerkt ;-) .</p>
+                <p>
+                    <b>&#34;Fenster schlie&#223;en&#34;-Symbol:</b>
+                </p>
+                <p>Schlie&#223;t wie &#252;berall das Fenster.</p>
+                <p><b>Symbol f&#252;r n&#228;chsten Akteur</b>(linke untere Ecke, Pfeil nach unten)
+                    <b>:</b>
+                </p>
+                <p>Durch Anklicken kommt der n&#228;chste Eintrag an den Zug und man selbst beendet die Aktion des
+                    eignen Charakters oder tierischen Begleiters.
+                </p>
+                <h>Eintr&#228;ge</h>
+                <p>Es gibt zwei unterschiedliche Arten von Eintr&#228;gen, was die Darstellung betrifft. F&#252;r alle
+                    Eintr&#228;ge die dem jeweiligen Spielenden geh&#246;ren beinhaltet ein Eintrag mehr Felder und
+                    Informationen, als bei alle anderen Eintr&#228;gen.
+                </p>
+                <p>Eintr&#228;ge die zu einem Charakter des Spielenden geh&#246;ren haben Felder mit denen die Aktionen
+                    verwaltet werden k&#246;nnen. Dar&#252;ber hinaus wird bei diesen Eintr&#228;gen nicht nur die R&#252;stungszonen
+                    angezeigt sondern auch die R&#252;stungswerte der jeweiligen Zone. Unter R&#252;stung gibt es in
+                    diesem Fall auch ein Modifikatorfeld, welches die Werte aller anderen R&#252;stungsfelder
+                    modifiziert. So kann beispielsweise die Wirkung eines Armatrutz auf den Charakter leicht und schnell
+                    erfasst werden. (Mehr zu beiden Bereichen, die nur bei eigenen Charakteren sichtbar sind, findet
+                    sich unten.)
+                </p>
+                <h>Felder aller Eintr&#228;ge</h>
+                <p>
+                    <b>Tokenfeld:</b>
+                </p>
+                <p>Stellt das Token des jeweiligen Eintrags dar. Durch Anklicken des Tokens bei gedr&#252;ckter
+                    Strg-Taste wird dieser Eintrag als Ziel des aktuell aktiven Charakters in der Kampf&#252;bersicht
+                    hinzugef&#252;gt oder entfernt, je nachdem ob bereits darauf gezielt wurde oder nicht. Den jeweils
+                    aktiven Charakter erkennt man an der fetten Schrift des Namens unter dem Charakterportrait oben
+                    links &#252;ber dem Chatfenster.
+                </p>
+                <p>
+                    <b>Namesfeld:</b>
+                </p>
+                <p>Feld mit dem Namen des Charakters oder tierischen Begleiters.</p>
+                <p><b>INI-Feld</b>(Initiativfeld)
+                    <b>:</b>
+                </p>
+                <p>Feld, welches die gew&#252;rfelte Initiative enth&#228;llt. Vor dem Komma wird das Ergebnis des
+                    Initiativwurfs notiert. Nach dem Komma findet sich auf den ersten zwei Nachkommastellen der
+                    Initiativebasiswert. Eine Initiativebasis von 10 wird als x.1 und eine Initiativebasis von 1 wird
+                    als x.01 dargestellt.
+                </p>
+                <p>Damit ber&#252;cksichtigt das Ruleset soweit automatisch die richtige Sortierung nach dem Regelwerk.
+                    Ist der Initiativwert und die Initiativebasis bei zwei oder mehr Eintr&#228;gen identisch, so kann
+                    die dritte Nachkommestelle genutzt werden, um die endg&#252;ltig festgelegte Reihenfolge
+                    festzuhalten.
+                </p>
+                <p>Beispiel: Es gibt einen SC und zwei NSCs die jeweils ein Initiativergebnis von 14 und eine
+                    Initiativebasis von 11 haben. Dann w&#252;rde das Ruleset zun&#228;chst automatisch &#252;berall
+                    14.11 eintragen. Die Gruppe oder der SL haben nun festgelegt, dass die Reihenfolge der Zugzuteilung
+                    wie folgt aussehen soll: NSC1, SC, NSC2. Damit k&#246;nnte man dem NSC1 die Werte 14.112, dem SC die
+                    Werte 14.111 geben und beim NSC2 die Werte belassen, wie sie sind.
+                </p>
+                <p>
+                    <b>Rfg-Feld (Reihenfolgefeld):</b>
+                </p>
+                <p>Regelt die Reihenfolge im Kampfgeschehen und wird in Abh&#228;nigkeit des gew&#252;rfelten
+                    Initiativergebnisses, welches im INI-Feld festgehalten wird (siehe oben), und den Feldern &#34;Aktion(en)
+                    bei INI&#34; in der Aktionsansicht (siehe unten) innerhalb einer Kampfrunde angepasst wird. Nachdem
+                    der Charakter alle Aktionen in einer Kampfrunde hatte, wird der Wert des dieses Feld auf den Wert
+                    des INI-Felds gesetzt.
+                </p>
+                <p><b>LeP-Feld</b>(aktuelle Lebensenergie)
+                    <b>:</b>
+                </p>
+                <p>In diesem Feld wird je nach Einstellung der Option durch die Spielleitung die aktuelle Lebensenergie
+                    des Charakters oder der Gesundheitsstatus des Charakters angezeigt. Der Gesundheitsstatus wird durch
+                    Buchstaben abgek&#252;rzt. Die ausf&#252;hrliche Beschreibung befindet sich im Tooltip des Felders
+                    den man erh&#228;lt, wenn der Mauszeiger &#252;ber dem Feld verweilt.
+                </p>
+                <p>Sofern die Spielleitung per Option es den Spielenden erlaubt hat, den Schadenswurf auf die Eintr&#228;ge
+                    zu ziehen, wird der erzeugte Schaden, der auf dieses Feld gezogen wird, automatisch als
+                    Schadenspunkte abgezogen. Soll der Schaden als Trefferpunkte behandelt werden, so sind die Felder zu
+                    nutzen, welche die R&#252;stung bzw. Trefferzonen repr&#228;sentieren (siehe unten im Abschnitt
+                    &#34;zus&#228;tzliche Felder bei Eintr&#228;gen, die nicht einem Spielenden geh&#246;ren&#34;
+                    beziehungsweise &#34;zus&#228;tzliche Felder bei Eintr&#228;gen, die nicht einem Spielenden geh&#246;ren&#34;).
+                </p>
+                <p><b>Beziehungsfeld</b>(Fraktionsfeld)
+                    <b>:</b>
+                </p>
+                <p>Dieses Feld zeigt an, wie sich der jeweilige Charakter zu den Charakteren der Spielenden verh&#228;lt.
+                    Die Einstellung kann freundlich (gr&#252;nes Gesicht), neutral (gelbes Gesicht), feindlich (rotes
+                    Gesicht) oder noch nicht definiert (leerer Rahmen) sein.
+                </p>
+                <p><b>Aufz&#228;hlung der Ziele</b>(sofern vorhanden)
+                    <b>:</b>
+                </p>
+                <p>Die Aufz&#228;hlung der Ziele befindet sich am Ende eines Eintrags der Kampf&#252;bersicht. Sollten
+                    Effekte im Eintrag angezeigt werden, so befinden sich die Zielaufz&#228;hlung dar&#252;ber. Alle
+                    Eintr&#228;ge auf den dieser Eintrag zielt werden hier durch Semikolon getrennt aufgez&#228;hlt.
+                </p>
+                <p><b>Aufz&#228;hlung der Effekte</b>(sofern vorhanden)
+                    <b>:</b>
+                </p>
+                <p>Die Aufz&#228;hlung der Effekte befindet sich ganz am Ende eines Eintrags der Kampf&#252;bersicht.
+                    Einzelne Effekte werden durch den folgenden Strich getrennt: |. Aus einem Eintrag geht der Name des
+                    Effekts hervor und wie lange er noch anh&#228;lt bzw. wie lange es noch dauert, bis seine Wirkung
+                    eintritt. Gibt es keine Zeitangaben, so handelt es sich um einen permanenten Effekt. Effekte und
+                    ihre Beschreibungen die in runden Klammern stehen sind nur f&#252;r den jeweiligen Spielenden und
+                    die Spielleitung sichtbar.
+                </p>
+                <h>zus&#228;tzliche Felder bei Eintr&#228;gen, die nicht einem Spielenden geh&#246;ren</h>
+                <p>Hier gibt es Felder mit Abk&#252;rzungen, welche die einzelnen R&#252;stungszonen repr&#228;sentieren
+                    sowie ein Feld welches den gesamten R&#252;stungsschutz repr&#228;sentiert. Die Tooltips der
+                    jeweiligen Felder enthalten die entsprechenden Beschreibungen. Man erh&#228;lt sie, wenn man mit dem
+                    Mauszeiger &#252;ber dem jeweiligen Feld verweilt.
+                </p>
+                <p>Sofern die Spielleitung den Spielenden per Option erlaubt hat, den Schadenswurf auf die Eintr&#228;ge
+                    zu ziehen, wird der erzeugte Schaden automatisch unter Ber&#252;cksichtigung des jeweiligen R&#252;stungswertes
+                    abgezogen. Sollen bei einem Schadenswurf Trefferpunkte = Schadenspunkte sein, so kann der
+                    Schadenswurf aus dem Chat auf das LeP-Feld gezogen werden.
+                </p>
+                <h>zus&#228;tzliche Felder bei Eintr&#228;gen, die einem Spielenden geh&#246;ren</h>
+                <p>
+                    <b>Feld &#34;max. Anzahl Handlungen&#34;:</b>
+                </p>
+                <p>Dieses Feld gibt die Anzahl an regeltechnischen Aktionen zu unterschiedlichen Initiativwerten
+                    innerhalb einer Runde an. Normalerweise betr&#228;gt dieser Wert bei einem Charakter zwei, eine f&#252;r
+                    Angriff und eine f&#252;r Parade oder einen weiteren Angriff oder eine zweite Parade.
+                </p>
+                <p>Damit bei den Effekten doe Restdauer oder Restzeit bis zum Eintritt des Effekts richtig gez&#228;hlt
+                    wird, sollte der Wert hier immer zwei oder je nach F&#228;higkeiten eines Charakters auch h&#246;her
+                    sein, sofern diese F&#228;higkeiten dazu f&#252;hren, dass der Charakter mehr als zwei
+                    regeltechnische Aktionen in einer Kampfrunde besitzt.
+                </p>
+                <p>Will eine Spielrunde diese M&#246;glichkeit nicht nutzen, so kann sie bei allen Eintr&#228;gen 1 oder
+                    0 eintragen. In diesem Fall wird jeder Charakter nur einmal in einer Kampfrunde zum Zug aufgerufen.
+                    Entsprechend m&#252;ssen die Zeitwerte bei den Effekten nicht in Aktionen sondern in Kampfrunden
+                    erfasst werden. Ansonsten kommt es zu Fehlern beim Anpassen der Restdauer oder Restzeit bis ein
+                    Effekt wirkt.
+                </p>
+                <p>
+                    <b>Feld &#34;Aktion(en) bei INI&#34;:</b>
+                </p>
+                <p>Der Wert hier bestimmt bei welchem INI-Wert die Aktion durchgef&#252;hrt wird. Das Feld sollte immer
+                    eine ganze Zahl enthalten. Der erste Eintrag sollte zudem immer dem abgerundeten Wert des INI-Feldes
+                    entsprechen.
+                </p>
+                <p>Sollte es weitere Aktionen geben, so sollten die Werte in diesen Feldern sich auch immer
+                    unterscheiden. Insofern sind Aktionen, die zur selben INI-Zeit einer Kampfrunde stattfinden als
+                    weiterer Eintrag eingetragen werden. Hierzu kann das gr&#252;ne Pluszeichen verwendet werden, um
+                    einen weiteren Eintrag zu erstellen.
+                </p>
+                <p>Unterscheiden sich die Werte nicht, so wird der Charakter nur einmal in einer Kampfrunde zum Zug
+                    aufgerufen und die Restdauer bei den Effekten wird nicht richtig angepasst.
+                </p>
+                <p>Soll eine Aktion f&#252;r eine Parade genutzt werden, so ist sie dennoch zu erfassen und es gelten
+                    die oben angef&#252;hrten Bedingungen. Dies bedeutet nat&#252;rlich nicht, dass nur bei diesem
+                    INI-Wert pariert werden kann. In einem solchen Fall dient der Eintrag einfach dazu, dass bei den
+                    Effekten die Restdauer richtig berechnet werden. Ist man mit der Parade am Zug, so kann man gleich
+                    den Zug beenden.
+                </p>
+                <p>
+                    <b>Namensfeld unter &#34;Aktion(en) bei INI&#34;:</b>
+                </p>
+                <p>Hier wird der Name der Aktion eingetragen, also beispielsweise Attacke, Parade oder Wuchtschlag.</p>
+                <p>
+                    <b>Wertfeld hinter Namensfeld:</b>
+                </p>
+                <p>In dieses Feld kommt der Modifikator, der bei dieser Aktion zum Tragen kommt. Soll also ein
+                    Wuchtschlag +5 angesagt werden, so ist in dieses Feld eine F&#252;nf einzutragen. Ebenso lassen sich
+                    Erleichterungen beispielsweise aufgrund eines gro&#223;en Ziels erfassen. In Fall von
+                    Erleichterungen sind negative Werte zu erfassen.
+                </p>
+                <p>Sollen diese Werte bei der n&#228;chsten Probe ber&#252;cksichtigt werden, so kann vor der Probe
+                    dieses Feld per Doppelklick angeklickt oder per Drag &#38; Drop in die Modifikatorbox &#252;bertragen
+                    werden. Wenn anschlie&#223;end die Probe gew&#252;rfelt wird, wird bei dieser Auswertung die
+                    Erschwernis bzw. Erleichterung entsprechend ber&#252;cksichtigt.
+                </p>
+                <p>
+                    <b>R&#252;stungsfelder:</b>
+                </p>
+                <p>Felder zum Anzeigen der R&#252;stungswerte nach Zonen sowie ein Feld, welches den gesamten R&#252;stungsschutz
+                    repr&#228;sentiert. Dar&#252;ber hinaus gibt es noch ein Modifikatofeld. Dieses Feld bietet die M&#246;glichkeit,
+                    den Wert alle anderen R&#252;stungsfelder schnell zu modifizieren. So kann beispielsweise die
+                    Wirkung eines Armatrutz auf den Charakter leicht und schnell erfasst werden.
+                </p>
+                <p>Sofern die Spielleitung den Spielenden per Option erlaubt hat, den Schadenswurf auf die Eintr&#228;ge
+                    zu ziehen, wird der erzeugte Schaden automatisch unter Ber&#252;cksichtigung des jeweiligen R&#252;stungswertes
+                    abgezogen. Sollen bei einem Schadenswurf Trefferpunkte = Schadenspunkte sein, so kann der
+                    Schadenswurf aus dem Chat auf das LeP-Feld gezogen werden.
+                </p>
+            </text>
+        </kampfuebersichtClient>
+        <kampfuebersichtHost>
+            <name type="string">Hilfe zur Kampf&#252;bersicht</name>
+            <text type="formattedtext">
+                <h>Kampf&#252;bersichtsfenster</h>
+                <p>Dieses Fenster bietet die M&#246;glichkeit K&#228;mpfe zu verwalten. Im Rahmen und an den R&#228;ndern
+                    gibt es verschiedene Elemente, welche der Steuerung dienen. Sie sollen im Uhreigersinn beginnend in
+                    der linken oberen Ecke vorgestellt werden.
+                </p>
+                <p>
+                    <b>Fragezeichensymbol:</b>
+                </p>
+                <p>Durch Anklicken des Symbols erscheint dieser Hilfetext, aber das wurde ja schon gemerkt ;-) .</p>
+                <p>
+                    <b>Men&#252;-Symbol:</b>
+                </p>
+                <p>Durch Anklicken kann die Initiative zur&#252;ckgesetzt oder Eintr&#228;ge gesammelt gel&#246;scht
+                    werden. Hierzu einfach den Radialmen&#252;eintr&#228;gen und deren Tooltips folgen.
+                </p>
+                <p><b>Augensymbol</b>(unterhalb des Men&#252;-Symbols)
+                    <b>:</b>
+                </p>
+                <p>Macht alle NSC-Eintr&#228;ge f&#252;r die Spielenden in der Kampf&#252;bersicht und die dazugeh&#246;rigen
+                    Token auf der Karte sichtbar oder unsichtbar.
+                </p>
+                <p><b>Zielsymbol</b>(rechts im Fenster, links vom Fenster schlie&#223;en-Symbol)
+                    <b>:</b>
+                </p>
+                <p>Schaltet die Zielansicht f&#252;r alle Eintr&#228;ge an oder aus.</p>
+                <p><b>Aktionssymbol</b>(Schwert)
+                    <b>:</b>
+                </p>
+                <p>Schaltet die Aktionsansicht f&#252;r alle Eintr&#228;ge an oder aus.</p>
+                <p><b>Verteidigungssymbol</b>(Schild)
+                    <b>:</b>
+                </p>
+                <p>Schaltet die Verteidigungsansicht f&#252;r alle Eintr&#228;ge an oder aus.</p>
+                <p><b>Symbol f&#252;r Gr&#246;&#223;e, Reichweite &#38; Geschwindigkeit</b>(Raute)
+                    <b>:</b>
+                </p>
+                <p>Schaltet die Ansicht f&#252;r Gr&#246;&#223;e, Reichweite und Geschwindigkeit f&#252;r alle Eintr&#228;ge
+                    an oder aus.
+                </p>
+                <p><b>Effektsymbol</b>(Person)
+                    <b>:</b>
+                </p>
+                <p>Schaltet die Effektansicht f&#252;r alle Eintr&#228;ge an oder aus.</p>
+                <p>
+                    <b>&#34;Fenster schlie&#223;en&#34;-Symbol:</b>
+                </p>
+                <p>Schlie&#223;t wie &#252;berall das Fenster.</p>
+                <p><b>Symbol zum Start der n&#228;chsten Runde</b>(rechte untere Ecke)
+                    <b>:</b>
+                </p>
+                <p>Durch anklicken startet die n&#228;chste Runde. Der Z&#228;hler links vom Symbol stegt um eins. Der
+                    Rundenstart ist absolut unabh&#228;ngig davon, welcher Eintrag gerade aktiv ist.
+                </p>
+                <p><b>Symbol f&#252;r n&#228;chsten Akteur</b>(linke untere Ecke, Pfeil nach unten)
+                    <b>:</b>
+                </p>
+                <p>Durch Anklicken kommt der n&#228;chste Eintrag an den Zug.</p>
+                <p>
+                    <b>Symbol zum Anzeigen des aktiven Eintrags:</b>
+                </p>
+                <p>Durch Zug dieses Symbols auf einen Anker f&#252;r den Anzeiger, welcher Eintrag aktiv ist (&#34;Loch&#34;
+                    links neben dem Token im Fensterrahmen), wird der Eintrag aktiv. Die f&#252;hrt aber dazu, dass bei
+                    den evenuellen Effekten des Eintrags, der verlassen wird, die Z&#228;hlung bis zum Start oder Ende
+                    des Effekts nicht angepasst wird.
+                </p>
+                <h>Eintr&#228;ge</h>
+                <p>Es werden drei Arten von Eintr&#228;gen unterschieden: 1. Charaktere von Spielenden, 2. tiersiche
+                    Begleiter der Charaktere von Spielenden und 3. Nichtspielercharaktere. Nur Nichtspielercharaktere k&#246;nnen
+                    f&#252;r die Spielenden ausgeblendet werden (siehe unten Augensymbol). Dies gilt f&#252;r die
+                    Spieleransicht der Kampf&#252;bersicht als auch f&#252;r die Token auf Karten, die von der Kampf&#252;bersicht
+                    auf die jeweilige Karte gezogen wurden (siehe unten Token).
+                </p>
+                <p>Jeder Eintrag zweigt mindestens die &#220;bersichtsdarstellung. Weitere Informationen k&#246;nnen
+                    &#252;ber die verschiedenen Eintr&#228;ge ein- und ausgeblendet werden (siehe unten Ansichten).
+                </p>
+                <p>Die &#220;bersichtsdarstellung ist wie folgt von links nach rechts aufgebaut.</p>
+                <p>
+                    <b>Tokenfeld:</b>
+                </p>
+                <p>Stellt das Token des jeweiligen Eintrags dar. Es kann auf Karten gezogen werden (per Drag &#38;
+                    Drop). Mit einem Doppelklick auf dieses Token wird die Karte mit dem Token ge&#246;ffnet und in den
+                    Vordergrund geholt (sofern dies nicht bereits der Fall ist) und die Ansicht auf das Token zentriert.
+                </p>
+                <p>Durch Anklicken des Tokens bei gedr&#252;ckter Strg-Taste wird dieser Eintrag als Ziel des aktuell
+                    aktiven Eintrags in der Kampf&#252;bersicht hinzugef&#252;gt oder entfernt, je nachdem ob bereits
+                    darauf gezielt wurde oder nicht.
+                </p>
+                <p>
+                    <b>Augensymbol (nur NSCs):</b>
+                </p>
+                <p>Durch anklicken dieses Symbols werden die NSC-Eintr&#228;ge und ggf. die dazugeh&#246;rigen EIntr&#228;ge
+                    auf der Karte f&#252;r die Spielenen sichtbar oder unsichtbar. Die Einstellung gilt nur f&#252;r den
+                    jeweiligen Eintrag.
+                </p>
+                <p>
+                    <b>Namesfeld:</b>
+                </p>
+                <p>Feld mit dem Namen des Charakters oder tierischen Begleiters.</p>
+                <p><b>INI-Feld</b>(Initiativfeld)
+                    <b>:</b>
+                </p>
+                <p>Feld, welches die gew&#252;rfelte Initiative enth&#228;llt. Vor dem Komma wird das Ergebnis des
+                    Initiativwurfs notiert. Nach dem Komma findet sich auf den ersten zwei Nachkommastellen der
+                    Initiativebasiswert. Eine Initiativebasis von 10 wird als x.1 und eine Initiativebasis von 1 wird
+                    als x.01 dargestellt.
+                </p>
+                <p>Damit ber&#252;cksichtigt das Ruleset soweit automatisch die richtige Sortierung nach dem Regelwerk.
+                    Ist der Initiativwert und die Initiativebasis bei zwei oder mehr Eintr&#228;gen identisch, so kann
+                    die dritte Nachkommestelle genutzt werden, um die endg&#252;ltig festgelegte Reihenfolge
+                    festzuhalten.
+                </p>
+                <p>Beispiel: Es gibt einen SC und zwei NSCs die jeweils ein Initiativergebnis von 14 und eine
+                    Initiativebasis von 11 haben. Dann w&#252;rde das Ruleset zun&#228;chst automatisch &#252;berall
+                    14.11 eintragen. Die Gruppe oder der SL haben nun festgelegt, dass die Reihenfolge der Zugzuteilung
+                    wie folgt aussehen soll: NSC1, SC, NSC2. Damit k&#246;nnte man dem NSC1 die Werte 14.112, dem SC die
+                    Werte 14.111 geben und beim NSC2 die Werte belassen, wie sie sind.
+                </p>
+                <p><b>Rfg-Feld</b>(Reihenfolgefeld)
+                    <b>:</b>
+                </p>
+                <p>Regelt die Reihenfolge im Kampfgeschehen und wird in Abh&#228;nigkeit des gew&#252;rfelten
+                    Initiativergebnisses, welches im INI-Feld festgehalten wird (siehe oben), und den Feldern &#34;Aktion(en)
+                    bei INI&#34; in der Aktionsansicht (siehe unten) innerhalb einer Kampfrunde angepasst wird. Nachdem
+                    der Charakter alle Aktionen in einer Kampfrunde hatte, wird der Wert des dieses Feld auf den Wert
+                    des INI-Felds gesetzt.
+                </p>
+                <p><b>max-Feld</b>(maximale Lebensenergie)
+                    <b>:</b>
+                </p>
+                <p>Dieses Feld h&#228;lt die maximale Lebensenergie fest.</p>
+                <p><b>LeP-Feld</b>(aktuelle Lebensenergie)
+                    <b>:</b>
+                </p>
+                <p>In diesem Feld wird die aktuelle Lebensenergie des Charakters angezeigt.</p>
+                <p>Schaden, der auf dieses Feld gezogen wird, wird automatisch als Schadenspunkte abgezogen. Soll der
+                    Schaden als Trefferpunkte behandelt werden, so sind die Felder zu nutzen, welche die R&#252;stung
+                    bzw. Trefferzonen repr&#228;sentieren (siehe unten im Abschnitt &#34;Verteidigungsansicht&#34;).
+                </p>
+                <p><b>AsP-Fed</b>(aktuelle Astralenergie)
+                    <b>:</b>
+                </p>
+                <p>In diesem Feld wird die aktuelle Astralenergie des Charakters angezeigt.</p>
+                <p><b>KaP-Feld</b>(aktuelle Karmalenergie)
+                    <b>:</b>
+                </p>
+                <p>In diesem Feld wird die aktuelle Karmalenergie des Charakters angezeigt.</p>
+                <p><b>Wnd-Feld</b>(Wundfeld)
+                    <b>:</b>
+                </p>
+                <p>In diesem Feld wird die aktuelle Anzahl der Wunden festgehalten.</p>
+                <p><b>Beziehungsfeld</b>(Fraktionsfeld)
+                    <b>:</b>
+                </p>
+                <p>Dieses Feld zeigt an, wie sich der jeweilige Charakter zu den Charakteren der Spielenden verh&#228;lt.
+                    Die Einstellung kann freundlich (gr&#252;nes Gesicht), neutral (gelbes Gesicht), feindlich (rotes
+                    Gesicht) oder noch nicht definiert (leerer Rahmen) sein.
+                </p>
+                <p>
+                    <b>Zielsymbol:</b>
+                </p>
+                <p>Schaltet die Zielansicht des jeweiligen Eintrages an oder aus.</p>
+                <p><b>Aktionssymbol</b>(Schwert)
+                    <b>:</b>
+                </p>
+                <p>Schaltet die Aktionsansicht des jeweiligen Eintrages an oder aus.</p>
+                <p><b>Verteidungssymbol</b>(Schild)
+                    <b>:</b>
+                </p>
+                <p>Schaltet die Verteidigungsansicht f&#252;r alle Eintr&#228;ge an oder aus.</p>
+                <p><b>Symbol f&#252;r Gr&#246;&#223;e, Reichweite &#38; Geschwindigkeit</b>(Raute)
+                    <b>:</b>
+                </p>
+                <p>Schaltet die Ansicht f&#252;r Gr&#246;&#223;e, Reichweite und Geschwindigkeit f&#252;r alle Eintr&#228;ge
+                    an oder aus.
+                </p>
+                <p><b>Effektsymbol</b>(Person)
+                    <b>:</b>
+                </p>
+                <p>Schaltet die Effektansicht f&#252;r alle Eintr&#228;ge an oder aus.</p>
+                <p>
+                    <b>Linksymbol:</b>
+                </p>
+                <p>&#220;ber dieses Symbol kann der dazugeh&#246;rige Charakterbogen des Charakters eines Spielenden
+                    oder eines tierischen Begleiters ge&#246;ffnet werden, sofern der Eintrag einen solchen Repr&#228;sentiert.
+                    Repr&#228;sentiert ein Eintrag einen NSC, so &#246;ffnet sich ein Fenster, welches der Eingabemaske
+                    f&#252;r NSCs entspricht. Allerdings handelt es sich um eine eigene Instanz, die nur mit dem Eintrag
+                    in der Kampf&#252;bersicht verbunden ist. Entsprechend wird keine &#196;nderung an den Eintrag unter
+                    NSCs (Meisterpersonen &#38; Scharm&#252;tzel, drittes gro&#223;es Icon von oben auf der rechten
+                    Seite) &#252;bertragen.
+                </p>
+                <h>Ansichten</h>
+                <p>Die jeweiligen Ansichten k&#246;nnen ein- und ausgeschaltet werden. Hierzu k&#246;nnen entweder die
+                    Symbole f&#252;r Aktionen, Verteodigung, Gr&#246;&#223;e, Reichweite &#38; Geschwindigkeit oder
+                    Effekte ge&#246;ffnet werden. Soll die Ansicht nur f&#252;r den jeweiligen Eintrag ein- und
+                    ausgeblendet werden, so sind die Symbole im Eintrag selbst anzuklicken. Soll die jeweilige Ansicht f&#252;r
+                    alle Eintr&#228;ge in der Kampf&#252;bersicht ein- oder ausgeschaltet werden, so sind die Symbole am
+                    oberen Fensterrand zu verwenden. Die jeweiligen Beschreibungen finden Sie oben, einmal unter den
+                    &#220;berschriften &#34;Kampf&#252;bersichtsfenster&#34; und &#34;Eintr&#228;ge&#34;.
+                </p>
+                <h>Zieleansicht</h>
+                <p>Die Zielansicht besteht aus einem Feld und zwei K&#246;pfen. In dem Feld erscheinen sie Tokens der
+                    Charakt&#228;re und/oder tierischen Begleiter auf die der jeweilige Eintrag zielt. Der erste Knopf
+                    rechts mit dem Zielsymbol erm&#246;glicht es auf einen anderen Eintrag zu zielen. Hierzu muss der
+                    Knopf per Drag &#38; Drop auf einen anderen Eintrag gezogen werden. W&#228;hrend des Drag &#38;
+                    Drop-Vorgangs erscheint eine Null, die auf den Eintrag in der Kampf&#252;bersicht fallen gelassen
+                    werden muss, auf den gezielt werden soll. Der andere Knopf mit dem durchgestrichenen roten Kreis
+                    entfernt alle Ziele eines Eintrags.
+                </p>
+                <p>Ist die Zielansicht eines Eintrags ausgeblendet und zielt ein Eintrag auf einen anderen, so wird eine
+                    Zusammenfassung am Ende eines Eintrags angezeigt. Sind bei dem Eintrag auch aktive Effekte erfasst
+                    und die Effektansicht ausgeblendet sein (siehe unten), so findet sich die Zusammenfassung der Ziele
+                    &#252;ber der Zusammenfassung der Effekte.
+                </p>
+                <p>Die Zusammenfassung beinhaltet die Namen aller Ziele, die durch Semikolons voneinander getrennt
+                    sind.
+                </p>
+                <h>Aktionenansicht</h>
+                <p>
+                    <b>Feld &#34;max. Anzahl Handlungen&#34;:</b>
+                </p>
+                <p>Dieses Feld gibt die Anzahl an regeltechnischen Aktionen zu unterschiedlichen Initiativwerten
+                    innerhalb einer Runde an. Normalerweise betr&#228;gt dieser Wert bei einem Charakter zwei, eine f&#252;r
+                    Angriff und eine f&#252;r Parade oder einen weiteren Angriff oder eine zweite Parade.
+                </p>
+                <p>Damit bei den Effekten doe Restdauer oder Restzeit bis zum Eintritt des Effekts richtig gez&#228;hlt
+                    wird, sollte der Wert hier immer zwei oder je nach F&#228;higkeiten eines Charakters auch h&#246;her
+                    sein, sofern diese F&#228;higkeiten dazu f&#252;hren, dass der Charakter mehr als zwei
+                    regeltechnische Aktionen in einer Kampfrunde besitzt.
+                </p>
+                <p>Will eine Spielrunde diese M&#246;glichkeit nicht nutzen, so kann sie bei allen Eintr&#228;gen 1 oder
+                    0 eintragen. In diesem Fall wird jeder Charakter nur einmal in einer Kampfrunde zum Zug aufgerufen.
+                    Entsprechend m&#252;ssen die Zeitwerte bei den Effekten nicht in Aktionen sondern in Kampfrunden
+                    erfasst werden. Ansonsten kommt es zu Fehlern beim Anpassen der Restdauer oder Restzeit bis ein
+                    Effekt wirkt.
+                </p>
+                <p>
+                    <b>Ausdauerfeld:</b>
+                </p>
+                <p>Gibt den aktuellen Ausdauerwert des Charakters oder tierischen Begleiters wieder.</p>
+                <p>
+                    <b>Feld &#34;Aktion(en) bei INI&#34;:</b>
+                </p>
+                <p>Der Wert hier bestimmt bei welchem INI-Wert die Aktion durchgef&#252;hrt wird. Das Feld sollte immer
+                    eine ganze Zahl enthalten. Der erste Eintrag sollte zudem immer dem abgerundeten Wert des INI-Feldes
+                    entsprechen.
+                </p>
+                <p>Sollte es weitere Aktionen geben, so sollten die Werte in diesen Feldern sich auch immer
+                    unterscheiden. Insofern sind Aktionen, die zur selben INI-Zeit einer Kampfrunde stattfinden als
+                    weiterer Eintrag eingetragen werden. Hierzu kann das gr&#252;ne Pluszeichen verwendet werden, um
+                    einen weiteren Eintrag zu erstellen.
+                </p>
+                <p>Unterscheiden sich die Werte nicht, so wird der Charakter nur einmal in einer Kampfrunde zum Zug
+                    aufgerufen und die Restdauer bei den Effekten wird nicht richtig angepasst.
+                </p>
+                <p>Soll eine Aktion f&#252;r eine Parade genutzt werden, so ist sie dennoch zu erfassen und es gelten
+                    die oben angef&#252;hrten Bedingungen. Dies bedeutet nat&#252;rlich nicht, dass nur bei diesem
+                    INI-Wert pariert werden kann. In einem solchen Fall dient der Eintrag einfach dazu, dass bei den
+                    Effekten die Restdauer richtig berechnet werden. Ist man mit der Parade am Zug, so kann man gleich
+                    den Zug beenden.
+                </p>
+                <p>
+                    <b>Namensfeld unter &#34;Aktion(en) bei INI&#34;:</b>
+                </p>
+                <p>Hier wird der Name der Aktion eingetragen, also beispielsweise Attacke, Parade oder Wuchtschlag.</p>
+                <p>
+                    <b>Wertfeld hinter Namensfeld:</b>
+                </p>
+                <p>In dieses Feld kommt der Modifikator, der bei dieser Aktion zum Tragen kommt. Soll also ein
+                    Wuchtschlag +5 angesagt werden, so ist in dieses Feld eine F&#252;nf einzutragen. Ebenso lassen sich
+                    Erleichterungen beispielsweise aufgrund eines gro&#223;en Ziels erfassen. In Fall von
+                    Erleichterungen sind negative Werte zu erfassen.
+                </p>
+                <p>Sollen diese Werte bei der n&#228;chsten Probe ber&#252;cksichtigt werden, so kann vor der Probe
+                    dieses Feld per Doppelklick angeklickt oder per Drag &#38; Drop in die Modifikatorbox &#252;bertragen
+                    werden. Wenn anschlie&#223;end die Probe gew&#252;rfelt wird, wird bei dieser Auswertung die
+                    Erschwernis bzw. Erleichterung entsprechend ber&#252;cksichtigt.
+                </p>
+                <p><b>Angriffswerte</b>(nur bei NSCs)
+                    <b>:</b>
+                </p>
+                <p>Dieses Feld verwaltet die Angriffsm&#246;glichkeiten eines NSCs, bei denen einer Waffe ein
+                    Attackewert sowie ein Schadenswert zugeordnet werden k&#246;nnen. Es k&#246;nnen mehrere M&#246;glichkeiten
+                    eingetragen werden, die entweder durch Semikolon oder Zeilenumbr&#252;che getrennt werden m&#252;ssen.
+                </p>
+                <p>Die Eingabe einer M&#246;glichkeit erfolgt nach folgendem Schema:</p>
+                <p>Waffenname Attackewert (Schadenswert)</p>
+                <p>Als Waffenname k&#246;nnen mehrere W&#246;rter, jeweils durch Leerzeichen getrennt verwendet werden.
+                    Zahlen k&#246;nnen nur verwendet werden, wenn ihnen kein Leerzeichen vorangeht.
+                </p>
+                <p>Der Attackewert ist durch eine Zahl zu erfassen, die durch ein Leerzeichen vom Waffenname zu trennen
+                    ist.
+                </p>
+                <p>Der Schadenswert ist so festzuhalten, dass der ohne Leerzeichen in runden Klammern steht. Die runde
+                    Klammerauf ist wiederum durch ein Leerzeichen von dem Angriffswert zu trennen. F&#252;r den
+                    Schadenswert kann die Anzahl und Art von W&#252;rfeln, absolute Zahlen sowie die Rechenzeichen
+                    &#132;+&#147; und &#132;-&#147; verarbeiten. Zum Anzeigen, das es sich um Anzahl und Art von W&#252;rfeln
+                    handelt, k&#246;nnen die Buchstaben d, D, w und W verwendet werden. Die Zahl davor gibt an, wie
+                    viele W&#252;rfel dieser Art f&#252;r den Wurf verwendet werden soll. Die Zahl nach dem Buchstaben
+                    gibt die Seitenzahl der W&#252;rfel an, die verwendet werden soll.
+                </p>
+                <p>Mindestensangaben sind der Waffenname bzw. waffenlose Kampfart, Attackewert und &#34;()&#34;. F&#252;r
+                    einen Angriffswert mit Schwert von 10 muss der eintrag also mindestens wie folgt aussehen, wenn er w&#252;rfelbar
+                    sein soll: &#34;Schwer 10 ()&#34;.
+                </p>
+                <p>Beispiel:</p>
+                <p>Ein NSC soll die M&#246;glichkeit haben mit einem S&#228;bel AT-Wert von 12, einem Dolch AT-Wert von
+                    11 sowie per Raufen AT-Wert von 13 anzugreifen. Der S&#228;bel verursacht 1W6+3, der Dolch 1W6+1 und
+                    Raufen 1W6 Schaden. Das Feld w&#228;re dann so auszuf&#252;llen:
+                </p>
+                <p>&#132;S&#228;bel 12 (1W6+3); Dolch 11 (1W6+1); Raufen 13 (1W6)&#147;</p>
+                <h>Verteidigungsansicht</h>
+                <p><b>AW-Feld</b>(Ausweichen)
+                    <b>:</b>
+                </p>
+                <p>Feld zum Verwalten des Ausweichenwerts.</p>
+                <p>
+                    <b>R&#252;stungsfelder:</b>
+                </p>
+                <p>Felder zum Verwaltung der R&#252;stungswerte nach Zonen sowie ein Feld, welches den gesamten R&#252;stungsschutz
+                    repr&#228;sentiert. Dar&#252;ber hinaus gibt es noch ein Modifikator- und ein BE-Feld. Das BE-Feld
+                    repr&#228;sentiert die Behinderung eines Charakters aus R&#252;stung und je nach Optionseinstellung
+                    auch der &#220;berschreitung der Tragkraft. Das Modifikatorfeld stellt eine M&#246;glichkeit dar,
+                    den Wert alle anderen R&#252;stungsfelder schnell zu modifizieren. So kann beispielsweise die
+                    Wirkung eines Armatrutz auf den Charakter leicht und schnell erfasst werden.
+                </p>
+                <p>Schaden, der auf diese Felder gezogen wird, wird automatisch als unter Ber&#252;cksichtigung der
+                    jeweiligen R&#252;stunsgwerte von der Lebensenergie abgezogen. Soll der Schaden als Schadenspunkte
+                    behandelt werden, so ist das LeP-Feld zu nutzen (siehe oben im Abschnitt &#34;Eintr&#228;ge&#34;).
+                </p>
+                <p><b>MR-Feld</b>(Magieresistenz)
+                    <b>:</b>
+                </p>
+                <p>Dieses Feld bietet die M&#246;glichkeit die Magieresistenz eines Charkaters anzuzeigen und im Fall
+                    von NSCs auch zu verwalten.
+                </p>
+                <p><b>WS-Feld</b>(Wundschwelle)
+                    <b>:</b>
+                </p>
+                <p>Dieses Feld bietet die M&#246;glichkeit die Wundschwelle eines Charakters anzuzeigen und im Fall von
+                    NSCs auch zu verwalten.
+                </p>
+                <p><b>Paradewerte</b>(nur bei NSCs)
+                    <b>:</b>
+                </p>
+                <p>Dieses Feld verwaltet die Paradem&#246;glichkeiten eines NSCs, bei denen einer Waffe ein Paradewert
+                    und ein Schadenswert zugeordnet werden k&#246;nnen. Es k&#246;nnen mehrere M&#246;glichkeiten
+                    eingetragen werden, die entweder durch Semikolon oder Zeilenumbr&#252;che getrennt werden m&#252;ssen.
+                </p>
+                <p>N&#228;heres hierzu siehe oben unter &#34;Angriffswerte&#34; im Abschnitt
+                    &#34;Aktionenansicht&#34;.
+                </p>
+                <h>Ansicht f&#252;r Gr&#246;&#223;e, Reichweite &#38; Geschwindigkeit</h>
+                <p>
+                    <b>Gr&#246;&#223;e-Feld:</b>
+                </p>
+                <p>Der Wert in diesem Feld entspricht der K&#228;stchengr&#246;&#223;e, die dieser Charakter oder
+                    tierische Begleiter auf einer Karte einnimmt, sofern K&#228;stchen auf einer Karte gezogen wurden.
+                </p>
+                <p><b>Reichw.-Feld</b>(Reichweite)
+                    <b>:</b>
+                </p>
+                <p>Das Reichweitenfeld beinhaltet die Reichweite f&#252;r Angriffe eines Charakters oder tierischen
+                    Begleiters in Anzahl an K&#228;stchen, sofern K&#228;stchen auf einer Karte gezogen wurden.
+                </p>
+                <p><b>Geschw-Feld</b>(Geschwindigkeit)
+                    <b>:</b>
+                </p>
+                <p>Hier kann die Geschwindigkeit eines Charakters oder tierischen Begleiters angezeigt werden. Bei
+                    Spielercharakteren existiert nur ein Feld f&#252;r die Standardgeschwindigkeit des Chars. Bei allen
+                    anderen Arten von Eintr&#228;gen finden sich vier Felder, welche f&#252;r die Geschwindigkeiten
+                    gehend, laufend, schwimmend und fliegend stehen. Der Tooltip hilft bei der Identifizierung der
+                    einzelnen Felder, wenn der Mauszeiger &#252;ber einem Feld verweilt.
+                </p>
+                <h>Effektansicht</h>
+                <p>Dient der Verwaltung von Effekten. Ein neuer Effekt kann durch Klicken auf das Plus im gr&#252;nen
+                    Kreis erstellt werden. Durch zweimaliges Klicken auf den roten Kreis mit dem Strich kann der Effekt
+                    wieder gel&#246;scht werden.
+                </p>
+                <p>Ein Effekt behinhaltet zu Beginn zwei Schaltfl&#228;chen.</p>
+                <p>Die obere steuert die Sichtbarkeit des Effekts. Hier kann zwischen allen, nur Spieler_in und
+                    Spielleitung (SP + SL) und nur Spielleitung (nurSL) gew&#228;hlt werden. Unabh&#228;ngig von dieser
+                    Einstellung wird der Effekt auf Spielendenseite nur angezeigt, wenn er auch aktiv, also
+                    eingeschaltet ist (siehe unten).
+                </p>
+                <p>Die untere Schaltfl&#228;che schaltet einen Effekt an und aus. Nur wenn ein Effekt aktiv ist, wird
+                    die Restdauer (siehe unten) bei Zugende angepasst und nur dann ist er auch auf Spielendenseite in
+                    Abh&#228;ngigkeit der Einstellung der oberen Schaltfl&#228;che sichtbar.
+                </p>
+                <p>Rechts von den Schaltfl&#228;chen erstreckt sich ein Feld, in welches der Name des Effekts und ggf.
+                    eine Kurzbeschreiung eingef&#252;gt werden kann.
+                </p>
+                <p>Diesem Feld folgt eine weitere Schaltfl&#228;che, welche die Dauer eines Effekts anzeigt. Standardm&#228;&#223;ig
+                    zeigt sie &#34;permanent&#34; an. Sie kann aber auch durch Anklicken ver&#228;ndert werden. Weitere
+                    Werte der Schaltfl&#228;che sind &#34;Aktionen bis Ende&#34; und &#34;Aktionen bis Start&#34;. Ist
+                    der Wert der Schlatfl&#228;che nicht &#34;permanent&#34;, so folgt ihr ein weiteres Feld. In diesem
+                    Feld k&#246;nnen die Aktionen festgehalten werden, die noch vergehen sollen, bis der Effekt startet
+                    oder endet. Der Wert dieses Feldes wird bei Ende eines Zuges um eines reduziert. Wird der Wert
+                    dadurch negativ und die Schlatfl&#228;che stand auf &#34;Aktionen bis Ende&#34;, so wird der Effekt
+                    automatisch gel&#246;scht. War die Schaltfl&#228;che jedoch auf &#34;Aktionen bis Start&#34;
+                    gestanden, so wird der Effekt in diesem Fall automatisch zu einem permanenten Effekt. Selbstverst&#228;ndlich
+                    kann dies durch Anklicken der Schaltfl&#228;che beim n&#228;chsten Zug des Eintrags in &#34;Aktionen
+                    bis Ende&#34; ge&#228;ndert und eine entsprechende Zahl in das Feld hinter der Schlatfl&#228;che
+                    eingetragen werden.
+                </p>
+                <p>Damit die Anpassung der Restdauer bis zum Beginn oder Ende eines Effekts richtig angepasst wird, ist
+                    es wichtig, dass die Einstellungen in der &#34;Aktionsansicht&#34; richtig erfolgt sind (siehe
+                    oben). Sollte dort im Feld &#34;max. Anzahl Handlungen&#34; bewusst eine 0 oder 1 eingetragen worden
+                    sein, weil die Gruppe diese Funktionalit&#228;t nicht nutzen m&#246;chte, so muss die Restdauer
+                    nicht in Aktionen sondern Kampfrunden erfasst werden.
+                </p>
+                <p>Wie bei der Zielansicht gibt es auch f&#252;r die Effekte eine Zusammenfassung, wenn die
+                    Effektansicht ausgeblendet ist. Auch diese Zusammenfassung befindet sich am Ende eines Eintrags. In
+                    die Zusammenfassung werden nur aktive Effekte aufgenommen.
+                </p>
+                <p>Einzelne Effekte werden durch den folgenden Strich getrennt: |. Aus einem Eintrag geht der Name des
+                    Effekts hervor und wie lange er noch anh&#228;lt bzw. wie lange es noch dauert, bis seine Wirkung
+                    eintritt. Gibt es keine Zeitangaben, so handelt es sich um einen permanenten Effekt. Effekte und
+                    ihre Beschreibungen die in runden Klammern stehen sind nur f&#252;r den jeweiligen Spielenden und
+                    die Spielleitung bzw. nur f&#252;r die Spielleitung sichtbar.
+                </p>
+            </text>
+        </kampfuebersichtHost>
+        <nsc>
+            <name type="string">Hilfe zu NSCs</name>
+            <text type="formattedtext">
+                <h>Allgemeines</h>
+                <p>
+                    <b>allgemeine Felder</b>
+                </p>
+                <p>Im obersten Abschnitt des Fensters kann man links auf das runde Feld ein Token ziehen und dieses dem
+                    NSC-Typ zuweisen. Das Schloss sch&#252;tzt das Dokument vor Ver&#228;nderungen, wenn es geschlossen
+                    ist. Das Feld nach dem Namensfeld dient dazu zu definieren, wie sich der NSC-Typ zu den Helden verh&#228;lt
+                    (freundlich, neutral, feindlich). Per Klicken auf die Sprechblase kann die spielleitende Person f&#252;r
+                    den Chat die Identit&#228;t des NSCs &#252;bernehmen.
+                </p>
+                <p>
+                    <b>W&#252;rfelfelder</b>
+                </p>
+                <p>In den unten als W&#252;rfelfelder bezeichneten Felder, k&#246;nnen W&#252;rfel erfasst werden.
+                    Hierzu muss die Art und Anzahl an W&#252;rfel eingegeben werden. Absolute Zahlen k&#246;nnen
+                    ebenfalls erfasst werden, die dann nach dem Wurf mit dem W&#252;rfelergebnis verrechnet werden k&#246;nnen.
+                    Zul&#228;ssige Rechenzeichen sind + und -.
+                </p>
+                <p>Um W&#252;rfel zu erfassen k&#246;nnen die Buchstaben w, W, d und D verwendet werden. Die Zahl vor
+                    dem Buchstaben gibt die Anzahl der W&#252;rfel an. Die Zahl hinter dem Buchstaben gibt die Anzahl
+                    der Seiten des jeweiligen W&#252;rfels wieder. Zwischen den Rechenzeichen, Buchstaben und Ziffern d&#252;rfen
+                    keine Leerzeichen eingetragen werden. Sollen also zwei sechseitige W&#252;rfel geworfen und zu deren
+                    Ergebnis zwei hinzugez&#228;hlt werden, so w&#228;re die korrekte Eingabe: 2w6+2
+                </p>
+                <p>
+                    <b>NSC, Kreatur und Beschw&#246;rung</b>
+                </p>
+                <p>Am unteren Fensterrand findet sich eine Auswahl mit den Felder &#34;NSC&#34;, &#34;Kreatur&#34; und
+                    &#34;Beschw&#246;rung&#34;. Hier kann der Tyo der Meisterperson n&#228;her definiert werden. Es
+                    unterscheidet sich aber lediglich der Reiter &#34;Anderes&#34; zwischen den einzelnen Untertypen.
+                </p>
+                <h>Reiter Charakter</h>
+                <p>Hier haben alle m&#246;glichen Arten von Beschreibungen platz.</p>
+                <h>Reiter Kampf</h>
+                <p>
+                    <b>
+                        <u>Allgemeine Werte</u>
+                    </b>
+                </p>
+                <p>
+                    <b>LeP-Zufall:</b>
+                </p>
+                <p>W&#252;rfelfeld (siehe oben) zur Zufallsberechnung der Lebensenergie. Auf dieses Feld wird
+                    zugegriffen, wenn im Reiter Kampf bei der Option &#132;Kampf&#252;bersicht: zuf&#228;llige LeP, AuP,
+                    AsP&#147; entweder &#132;alle&#147; oder &#132;Gruppe&#147; ausgew&#228;hlt wurde. Wurde &#132;Gruppe&#147;
+                    ausgew&#228;hlt, so wird auf dieses Feld nur zugegriffen, wenn vom selben NSC mehrere in das Scharm&#252;tzel
+                    oder die Kampf&#252;bersicht gezogen wurden. Handelt sich nur um einen einzigen Eintrag dieses
+                    NSC-Typs, so wird als LeP der Wert aus dem Feld LeP-fest genommen.
+                </p>
+                <p>
+                    <b>AuP-Zufall:</b>
+                </p>
+                <p>Feld f&#252;r die Berechnungsweise des Zufallswerts der Ausdauer. N&#228;heres siehe Hilfe zu &#132;LeP-Zufall&#147;
+                    oben.
+                </p>
+                <p>
+                    <b>LeP-fest:</b>
+                </p>
+                <p>Feld zur Bestimmung der Lebensenergie eines NSCs. Auf dieses Feld wird zugegriffen, wenn im Reiter
+                    Kampf bei der Option &#132;NSCs: zuf&#228;llige LeP, AuP, AsP&#147; entweder &#132;aus&#147; oder
+                    &#132;Gruppe&#147; ausgew&#228;hlt wurde. Bei der Auswahl &#132;Gruppe&#147; wird auf dieses Feld
+                    nur dann zugegriffen, wenn von einem NSC nur eine Instanz in das Scharm&#252;ztel oder die Kampf&#252;bersicht
+                    gezogen wurden. Das Feld kann nur ganze, positive Zahlen verarbeiten.
+                </p>
+                <p>
+                    <b>AuP-fest:</b>
+                </p>
+                <p>Feld zur Bestimmung der Ausdauer eines NSCs. N&#228;heres siehe Hilfe zu &#132;LeP-fest&#147; oben.
+                </p>
+                <p>
+                    <b>AsP-Zufall:</b>
+                </p>
+                <p>Feld f&#252;r die Berechnungsweise des Zufallswerts der Astralpunkte. N&#228;heres siehe Hilfe zu
+                    &#132;LeP-Zufall&#147; oben.
+                </p>
+                <p>
+                    <b>KaP-Zufall:</b>
+                </p>
+                <p>Feld f&#252;r die Berechnungsweise des Zufallswerts der Karmalenergiepunkte. N&#228;heres siehe Hilfe
+                    zu &#132;LeP-Zufall&#147; oben.
+                </p>
+                <p>
+                    <b>AsP-fest:</b>
+                </p>
+                <p>Feld zur Bestimmung der Astralpunkte eines NSCs. N&#228;heres siehe Hilfe zu &#132;LeP-fest&#147;
+                    oben.
+                </p>
+                <p>
+                    <b>KaP-fest:</b>
+                </p>
+                <p>Feld zur Bestimmung der Karmalenergiepunkte eines NSCs. N&#228;heres siehe Hilfe zu &#132;LeP-fest&#147;
+                    oben.
+                </p>
+                <p>
+                    <b>INI:</b>
+                </p>
+                <p>W&#252;rfelfeld (siehe oben) zur Bestimmung der Initiative eines NSCs.</p>
+                <p>
+                    <b>GS:</b>
+                </p>
+                <p>Feld, mit dem die Geschwindigkeit eines NSCs festgelegt wird.</p>
+                <p>
+                    <b>AT/PA:</b>
+                </p>
+                <p>In diesem Feld k&#246;nnen der Attacke- und Paradebasiswert eingetragen werden. Die Eingabe hat ohne
+                    Leerzeichen zu erfolgen, wobei der Attackewert durch einen Schr&#228;gstrich vom Paradewert zu
+                    trennen ist. Beispiel f&#252;r AT-Basis von 9 und PA-Basis von 8: 9/8.
+                </p>
+                <p>Die Werte sind w&#252;rfelbar.</p>
+                <p>
+                    <b>GW:</b>
+                </p>
+                <p>Feld, in dem der Gefahrenwert festgehalten werden kann. Dieser reicht von 1 (absolut harmlos) bis 20
+                    (t&#246;dlich).
+                </p>
+                <p>
+                    <b>Ausweichen:</b>
+                </p>
+                <p>Hier kann der Ausweichenwert f&#252;r den NSC eingetragen werden. In dieses Feld kann nur eine ganze,
+                    positive Zahl eingetragen werden.
+                </p>
+                <p>Auf den Wert kann eine Probe abgelegt werden.</p>
+                <p>
+                    <b>Gr&#246;&#223;e/RW:</b>
+                </p>
+                <p>In diesem Feld k&#246;nnen die Gr&#246;&#223;e und Reichweite, gemessen in Gitterk&#228;stchen,
+                    eingetragen werden. Die Eingabe hat ohne Leerzeichen zu erfolgen, wobei der Wert f&#252;r die Gr&#246;&#223;e
+                    durch einen Schr&#228;gstrich vom Reichweitenwert zu trennen ist. Diese Angaben werden zur
+                    farblichen Hinterlegung verwendet, wenn ein Token vom Scharm&#252;tzel aus auf die Karte gezogen
+                    wird. Beispiel f&#252;r eine Gr&#246;&#223;e von 1 und einer Reichweite von 2: 1/2
+                </p>
+                <p>
+                    <b>Eigenschaften:</b>
+                </p>
+                <p>In diese Felder k&#246;nnen die Eigenschaftswerte eingetragen werden. &#132;MU&#147; steht dabei f&#252;r
+                    Mut, &#132;KL&#147; f&#252;r Klugheit, &#132;IN&#147; f&#252;r Intuition, &#132;CH&#147; f&#252;r
+                    Charisma, &#132;FF&#147; f&#252;r Fingerfertigkeit, &#132;GE&#147; f&#252;r Gewandtheit, &#132;KO&#147;
+                    f&#252;r Konstitution und &#132;KK&#147; f&#252;r K&#246;rperkraft.
+                </p>
+                <p>In all diese Felder k&#246;nnen nur ganze, positive Zahlen eingetragen werden. &#220;ber sie kann
+                    auch eine entsprechende Probe abgelegt werden.
+                </p>
+                <p></p>
+                <p>
+                    <b>
+                        <u>Kampfwerte</u>
+                    </b>
+                </p>
+                <p>
+                    <b>Attacke:</b>
+                </p>
+                <p>Dieses Feld verwaltet die Angriffsm&#246;glichkeiten eines NSCs, bei denen einer Waffe ein
+                    Attackewert sowie ein Schadenswert zugeordnet werden k&#246;nnen. Es k&#246;nnen mehrere M&#246;glichkeiten
+                    eingetragen werden, die entweder durch Semikolon oder Zeilenumbr&#252;che getrennt werden m&#252;ssen.
+                </p>
+                <p>Die Eingabe einer M&#246;glichkeit erfolgt nach folgendem Schema:</p>
+                <p>Waffenname Attackewert (Schadenswert)</p>
+                <p>Als Waffenname k&#246;nnen mehrere W&#246;rter, jeweils durch Leerzeichen getrennt verwendet werden.
+                    Zahlen k&#246;nnen nur verwendet werden, wenn ihnen kein Leerzeichen vorangeht.
+                </p>
+                <p>Der Attackewert ist durch eine Zahl zu erfassen, die durch ein Leerzeichen vom Waffenname zu trennen
+                    ist.
+                </p>
+                <p>Der Schadenswert ist so festzuhalten, dass der ohne Leerzeichen in runden Klammern steht. Die runde
+                    Klammerauf ist wiederum durch ein Leerzeichen von dem Angriffswert zu trennen. F&#252;r den
+                    Schadenswert kann die Anzahl und Art von W&#252;rfeln, absolute Zahlen sowie die Rechenzeichen
+                    &#132;+&#147; und &#132;-&#147; verarbeiten. Zum Anzeigen, das es sich um Anzahl und Art von W&#252;rfeln
+                    handelt, k&#246;nnen die Buchstaben d, D, w und W verwendet werden. Die Zahl davor gibt an, wie
+                    viele W&#252;rfel dieser Art f&#252;r den Wurf verwendet werden soll. Die Zahl nach dem Buchstaben
+                    gibt die Seitenzahl der W&#252;rfel an, die verwendet werden soll.
+                </p>
+                <p>Mindestensangaben sind der Waffenname bzw. waffenlose Kampfart, Attackewert und &#34;()&#34;. F&#252;r
+                    einen Angriffswert mit Schwert von 10 muss der eintrag also mindestens wie folgt aussehen, wenn er w&#252;rfelbar
+                    sein soll: &#34;Schwer 10 ()&#34;.
+                </p>
+                <p>Beispiel:</p>
+                <p>Ein NSC soll die M&#246;glichkeit haben mit einem S&#228;bel AT-Wert von 12, einem Dolch AT-Wert von
+                    11 sowie per Raufen AT-Wert von 13 anzugreifen. Der S&#228;bel verursacht 1W6+3, der Dolch 1W6+1 und
+                    Raufen 1W6 Schaden. Das Feld w&#228;re dann so auszuf&#252;llen:
+                </p>
+                <p>&#132;S&#228;bel 12 (1W6+3); Dolch 11 (1W6+1); Raufen 13 (1W6)&#147;</p>
+                <p>
+                    <b>Parade:</b>
+                </p>
+                <p>Dieses Feld verwaltet die Paradem&#246;glichkeiten eines NSCs, bei denen einer Waffe ein Paradewert
+                    und ein Schadenswert zugeordnet werden k&#246;nnen. Es k&#246;nnen mehrere M&#246;glichkeiten
+                    eingetragen werden, die entweder durch Semikolon oder Zeilenumbr&#252;che getrennt werden m&#252;ssen.
+                </p>
+                <p>N&#228;heres hierzu siehe oben bei Attacke.</p>
+                <p>
+                    <b>BE/WS/MR:</b>
+                </p>
+                <p>In die Felder kann die Behinderung (BE), Wundschwelle (WS) und Magieresistenz (MR) eingetragen
+                    werden.
+                </p>
+                <p>In all diese Felder k&#246;nnen nur ganze, positive Zahlen eingetragen werden.</p>
+                <p>
+                    <b>R&#252;stung:</b>
+                </p>
+                <p>In die Felder k&#246;nnen die R&#252;stungswerte f&#252;r die entsprechenden Zonen bzw. der R&#252;stungswert
+                    der gesamten R&#252;stung eingetragen werden. &#132;Ko&#147; steht dabei f&#252;r Kopf, &#132;Br&#147;
+                    f&#252;r Brust, &#132;Ba&#147; f&#252;r Bauch, &#132;R&#252;&#147; f&#252;r R&#252;cken, &#132;lA&#147;
+                    f&#252;r linker Arm, &#132;rA&#147; f&#252;r rechter Arm, &#132;lB&#147; f&#252;r linkes Bein,
+                    &#132;rB&#147; f&#252;r rechtes Bein und &#132;Ges.&#147; f&#252;r die gesamte R&#252;stung.
+                </p>
+                <p>In all diese Felder k&#246;nnen nur ganze, positive Zahlen eingetragen werden.</p>
+                <p>
+                    <b>Aktionen</b>
+                </p>
+                <p>Hier kann die Anzahl der Aktionen pro Kampfrunde eingetragen werden, welche der NSC, die Kreatur oder
+                    Beschw&#246;rung haben.
+                </p>
+                <p>
+                    <b>Kampfverhalten/Bemerkungen</b>
+                </p>
+                <p>Dieses Feld erm&#246;glicht es, das besondere Kampfverhalten oder sonstige Bemerkungen
+                    festzuhalten.
+                </p>
+                <p></p>
+                <p>
+                    <b>
+                        <u>Man&#246;ver</u>
+                    </b>
+                </p>
+                <p>
+                    <b>Sonderf&#228;higkeiten:</b>
+                </p>
+                <p>In diesem Feld k&#246;nnen die Sonderf&#228;higkeit erfasst werden. Ein erster Leereintrag existiert
+                    immer. Durch Anklicken kann ein Name vergeben werden. Durch Anklicken des roten Drachensymbols
+                    &#246;ffnet sich ein Fenster in welchem die verschiedenen Werte dieser Sonderfertigkeit erfasst
+                    werden k&#246;nnen.
+                </p>
+                <p>
+                    <b>Zauber:</b>
+                </p>
+                <p>Ein Feld zur Erfassung der Zauber. N&#228;heres siehe Sonderf&#228;higkeiten.</p>
+                <p>Das Wertefeld ist w&#252;rfelbar, wenn im verlinkten Fenster das Feld &#34;Probe&#34; entsprechend
+                    ausgef&#252;llt ist und die notwendigen Eigenschaftswerte erfasst wurden. Im Feld Probe m&#252;ssen
+                    als Erstes die drei K&#252;rzel f&#252;r die zugrundeliegenden Eigenschaften getrennt durch den Schr&#228;gstrich
+                    / erfasst sein. Danach k&#246;nnen in Klammer weitere Angaben folgen.
+                </p>
+                <p>Beispiel: MU / IN / GE (+Mod.)</p>
+                <p>
+                    <b>Liturgien:</b>
+                </p>
+                <p>Hier k&#246;nnen die Liturgien erfasst werden. N&#228;heres siehe Zauber.</p>
+                <p></p>
+                <h>Reiter Anderes</h>
+                <p>
+                    <b>
+                        <u>&#220;bersicht</u>
+                    </b>
+                </p>
+                <p>
+                    <b>Rasse, Kultur, Klasse, Kurzcharakteristik, Vorteile, Nachteile:</b>
+                </p>
+                <p>Felder, um entsprechende Beschreibungen festzuhalen.</p>
+                <p></p>
+                <p>
+                    <b>
+                        <u>Sonderfertigkeiten, Talente, Zauber und Rituale</u>
+                    </b>
+                </p>
+                <p>
+                    <b>Sonderfertigkeiten:</b>
+                </p>
+                <p>Feld zum Erfassen der Sonderf&#228;higkeiten.</p>
+                <p>
+                    <b>Talente:</b>
+                </p>
+                <p>Feld zum Erfassen von Talenten. Die Eingabe ist w&#252;rfelbar, wenn nach dem Name des Talents / der
+                    Fertigkeit durch ein Leerzeichen getrennt der Talentwert folgt und sich daran in runden Klammern die
+                    K&#252;rzel die zugrundeliegenden Eigenschaften folgen. Zudem m&#252;ssen die Eigenschaftswerte nat&#252;rlich
+                    im Tab Kampf unter Eigenschaften hinterlegt sein. Die einzelnen Talente/Fertigkeiten k&#246;nnen
+                    dabei durch Zeilenumbr&#252;che oder Semikolons/Strichpunkte getrennt sein.
+                </p>
+                <p>Beispiele:</p>
+                <p>Talentname 5 (MU/KL/IN)</p>
+                <p>Name des Talents 3 (ch/ff/ge)</p>
+                <p>Fertigkeitsname 7 (ko/kk/mu); Name der Fertigkeit 1 (KL/IN/CH)</p>
+                <p>
+                    <b>Zauber:</b>
+                </p>
+                <p>Hier k&#246;nnen Zauber erfasst werden. N&#228;heres siehe oben in der Beschreibung von &#34;Zauber&#34;
+                    bzw. &#34;Sonderf&#228;higkeiten&#34; unter Reiter &#34;Kampf&#34;.
+                </p>
+                <p>
+                    <b>Liturgien:</b>
+                </p>
+                <p>Hier k&#246;nnen Liturgien erfasst werden. N&#228;heres siehe oben in der Beschreibung von &#34;Zauber&#34;
+                    bzw. &#34;Sonderf&#228;higkeiten&#34; unter Reiter &#34;Kampf&#34;.
+                </p>
+                <p></p>
+                <p>
+                    <b>
+                        <u>Sonstiges</u>
+                    </b>
+                </p>
+                <p>
+                    <b>Anderes (alle Kategorien):</b>
+                </p>
+                <p>Platz um sonstige Angaben festzuhalten.</p>
+                <p>
+                    <b>Besonderheiten (alle Kategorien):</b>
+                </p>
+                <p>Feld um Besonderheiten des NSC-Typ zu erfassen.</p>
+                <p>
+                    <b>Verwendung im Spiel (alle Kategorien):</b>
+                </p>
+                <p>Hier kann die Verwendung des NSC-Typs im Spiel n&#228;her beschrieben werden.</p>
+                <p>
+                    <b>SO (nur NSC):</b>
+                </p>
+                <p>M&#246;glichkeit, um den Sozialstatus festzuhalten.</p>
+                <p>
+                    <b>GT (nur NSC):</b>
+                </p>
+                <p>Feld zum Eintragen des Werts f&#252;r Gesetzestreue.</p>
+                <p>
+                    <b>Gr&#246;&#223;e (nur NSC):</b>
+                </p>
+                <p>Hier kann die Gr&#246;&#223;e des NSC-Typs im Spiel selbst festgehalten werden, also beispielsweise
+                    in Schritt oder in Halbfinder, ...
+                </p>
+                <p>
+                    <b>Gewicht (nur NSC und Kreatur):</b>
+                </p>
+                <p>Feld zum Erfassen des Gewichts eine NSC-Typs im Spiel, also beispielsweise in Stein, Unzen ...</p>
+                <p>
+                    <b>Inventar (nur NSC und Kreatur):</b>
+                </p>
+                <p>M&#246;glichkeit das Inventar eines NSC-Typs festzuhalten.</p>
+                <p>
+                    <b>Gr&#246;&#223;e/Spannweite (nur Kreatur):</b>
+                </p>
+                <p>Hier kann die Gr&#246;&#223;e beziehungsweise die Spannweite des NSC-Typs im Spiel selbst
+                    festgehalten werden, also beispielsweise in Schritt, Halbfinder, ...
+                </p>
+                <p>
+                    <b>Verbreitung (nur Kreatur):</b>
+                </p>
+                <p>Feld, umzu erfasssen, in welchen Regionen die Kreatur vorkommt.</p>
+                <p>
+                    <b>Auftreten (nur Kreatur):</b>
+                </p>
+                <p>Wie treten die Tiere auf? In Rudeln, einzeln, paarweise, ...</p>
+                <p>
+                    <b>Beute (nur Kreatur):</b>
+                </p>
+                <p>Beschreibung der Teile einer Kreatur, die verwendet werden k&#246;nnen.</p>
+                <p>
+                    <b>Jagd (nur Kreatur):</b>
+                </p>
+                <p>Modifikator f&#252;r die Jagd auf diese Kreatur. Hier ist auch Platz um festzuhalten, ob die Kreatur
+                    fl&#252;chtet oder angreift.
+                </p>
+                <p>
+                    <b>Loyalit&#228;t (nur Kreatur):</b>
+                </p>
+                <p>Feld zum Erfassen der Loyalit&#228;t einer Kreatur.</p>
+                <p>
+                    <b>TK (nur Kreatur):</b>
+                </p>
+                <p>Tragkraft einer Kreatur.</p>
+                <p>
+                    <b>ZK (nur Kreatur):</b>
+                </p>
+                <p>Zugkraft einer Kreatur.</p>
+                <p>
+                    <b>FS (nur Kreatur):</b>
+                </p>
+                <p>Wert f&#252;r F&#228;hrtensuche einer Kreatur.</p>
+                <p>
+                    <b>Preis (nur Kreatur):</b>
+                </p>
+                <p>Der Preis zum Kauf einer Kreatur.</p>
+                <p>
+                    <b>Futterbedarf (nur Kreatur):</b>
+                </p>
+                <p>Futterbedraf und dessen Kosten einer Kreatur.</p>
+                <p>
+                    <b>Allg.Ausbildung (nur Kreatur):</b>
+                </p>
+                <p>Beschreinbung der allgemeinen Ausbildung einer Kreatur.</p>
+                <p>
+                    <b>Ausbildungsvarianten (nur Kreatur):</b>
+                </p>
+                <p>Beschreibung der m&#246;glichen Ausbildungsverianten einer Kreatur.</p>
+                <p>
+                    <b>M&#246;gliche Dienste (nur Beschw&#246;rung):</b>
+                </p>
+                <p>Feld, um die m&#246;glichen und automatischen Dienste eines beschworenen Wesens zu erfassen.</p>
+                <p>
+                    <b>Zus&#228;tzliche Dienste (nur Beschw&#246;rung):</b>
+                </p>
+                <p>Feld in dem die zus&#228;tzlichen Dienste oder Sonderdienste eines beschworenen Wesens zu erfassen.
+                </p>
+                <p>
+                    <b>Beschw&#246;rung (nur Beschw&#246;rung):</b>
+                </p>
+                <p>Beschw&#246;rungsschwierigkeit des Wesens</p>
+                <p>
+                    <b>Beherrschung (nur Beschw&#246;rung):</b>
+                </p>
+                <p>Beherrschungsschwierigkeit eines Wesens.</p>
+                <p>
+                    <b>Austreibung (nur Beschw&#246;rung):</b>
+                </p>
+                <p>Schwierigkeit der Austreibung des Wesens.</p>
+                <p>
+                    <b>Startloyalit&#228;t (nur Beschw&#246;rung):</b>
+                </p>
+                <p>Loyalit&#228;t eines beschworenen Wesens gegen&#252;ber dem Beschw&#246;rer bei gelungener Beschw&#246;rung
+                    ohne Ber&#252;cksichtigung weiterer Modifikatoren.
+                </p>
+                <p>
+                    <b>Wahrer Name (nur Beschw&#246;rung):</b>
+                </p>
+                <p>Feld zum Erfassen des Wahen Namens des Wesens.</p>
+                <p>
+                    <b>Basiskosten (nur Beschw&#246;rung):</b>
+                </p>
+                <p>Basiskosten der Beschw&#246;rung in AsP.</p>
+                <p>
+                    <b>Unterhaltskosten (nur Beschw&#246;rung):</b>
+                </p>
+                <p>Feld zum Eintragen der Unterhaltskosten.</p>
+            </text>
+        </nsc>
+    </hilfetexte>
+    <image>
+    </image>
+    <modifikatorenliste>
+        <public/>
+    </modifikatorenliste>
+    <options>
+        <public/>
+    </options>
+</root>

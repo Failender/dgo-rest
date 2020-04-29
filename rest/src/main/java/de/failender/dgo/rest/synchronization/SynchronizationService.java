@@ -76,6 +76,9 @@ public class SynchronizationService {
     }
 
     private int doSynchronize(List<HeldEntity> heldEntities) {
+        if (!isSyncEnabled()) {
+            return 0;
+        }
         int synced = 0;
         for (HeldEntity heldEntity : heldEntities) {
             try {

@@ -9,6 +9,7 @@
 package de.failender.heldensoftware.xml.datenxml;
 
 import de.failender.heldensoftware.Unterscheidbar;
+
 import javax.xml.bind.annotation.*;
 import java.math.BigInteger;
 
@@ -108,7 +109,7 @@ public class Zauber implements Unterscheidbar {
     protected boolean hauszauber;
     @XmlElement(required = true)
     protected String hauszauberformatiert;
-    @XmlElement(required = true, name = "repraesentation")
+    @XmlElement(required = true, name = "repr\u00e4sentation")
     protected String repraesentation;
     @XmlElement(required = true)
     protected String merkmale;

@@ -9,6 +9,7 @@
 package de.failender.heldensoftware.xml.datenxml;
 
 import de.failender.heldensoftware.Unterscheidbar;
+
 import javax.xml.bind.annotation.*;
 import java.math.BigInteger;
 
@@ -100,6 +101,7 @@ public class Talent implements Unterscheidbar {
     protected String nameausfuehrlichmitprobe;
     protected String at;
     protected String pa;
+    @XmlElement(name = "sprachkomplexit\u00e4t")
     protected BigInteger sprachkomplexitaet;
     protected Boolean muttersprache;
     protected Boolean schriftmuttersprache;

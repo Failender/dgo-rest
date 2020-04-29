@@ -1,0 +1,3562 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<root release="6.2" version="3.3">
+    <calendar>
+        <public/>
+    </calendar>
+    <combattracker>
+        <public/>
+    </combattracker>
+    <effects>
+        <public/>
+    </effects>
+    <hilfetexte>
+        <chat>
+            <name type="string">Hilfe zu Chatbefehlen</name>
+            <text type="formattedtext">
+                <h>Allgemeine Hinweise</h>
+                <p>
+                    <b>Autovervollständigung von Charakternamen:</b>
+                </p>
+                <p>Der Chakatername kann soweit ein_e Spieler_in seinen Charakter ausgewählt hat, nach der Eingabe der
+                    ersten Buchstaben durch Drücken der Tab-Taste automatisch vervollständigt werden.
+                </p>
+                <p>Sollte nicht der gewünschte Charaktername autovervollständigt worden sein, obwohl der Charkater von
+                    einem Spielenden bereits ausgewählt worden ist, so liegt dies daran, dass ein anderer ausgewählter
+                    Charakter mit den gleichen Buchstaben beginnt. Hier muss man so viele Buchstaben eingeben, bis sich
+                    die Charakternamen unterscheiden.
+                </p>
+                <p>
+                    <b>Legende:</b>
+                </p>
+                <p>[...] = Das Feld ist bei der Eingabe des Befehls erforderlich.*</p>
+                <p>&lt;...&gt; = Das Feld ist bei der Eingabe des Befehls optional.*</p>
+                <p>* Weder die eckigen Klammern noch die Größerals- und Kleineralszeichen dürfen bei der Eingabe mit
+                    eingegeben werden. Sie kennzeichnen nur, ob das Feld für den jeweiligen Befehl zwingend erfoderlich
+                    oder optional ist.
+                </p>
+                <p>(M) = steht nur der Meisterin/ dem Meister zur Verfügung</p>
+                <p>(S) = steht nur den Spielenden zur Verfügung.</p>
+                <p>(MS) = steht sowohl der Meisterin/ dem Meister und den Spielenden zur Verfügung.</p>
+                <p/>
+                <h>Nachrichten</h>
+                <p>
+                    <b>normale Nachrichten (MS):</b>
+                </p>
+                <p>Normalle Nachrichten gelten als gesprochenes Wort des jeweils aktiven Charakters im Fall der
+                    Spielenden und der jeweils aktiven Identität des Spielleitenden.
+                </p>
+                <p>
+                    <b>Flüstern (MS):</b>
+                </p>
+                <list>
+                    <li>/w &lt;Empfänger&gt; [Nachricht]</li>
+                    <li>/whisper &lt;Empfänger&gt; [Nachricht]</li>
+                </list>
+                <p>Sendet ein Flüstern an den Empfänger mit dem Inhalt der Nachricht. Als Empfänger sind die
+                    vollständigen Charakternamen (am besten per Autovervollständigung eingeben siehe oben) sowie GM und
+                    SL möglich. Wird kein Empfänger oder kein gültiger Empfänger eingegeben, dann wird an die
+                    Spielleitung geflüstert.
+                </p>
+                <list>
+                    <li>/r [Nachricht]</li>
+                    <li>/reply [Nachricht]</li>
+                </list>
+                <p>Sendet die Nachricht als Flüstern als Erwiderung auf das letzte Flüstern an den Sender des letzten
+                    Flüsterns.
+                </p>
+                <p>
+                    <b>Nachricht als OOC (MS):</b>
+                </p>
+                <list>
+                    <li>Alt Taste zusätzlich zu Enter dazu drücken fürs Senden</li>
+                    <li>/ooc [Nachricht]</li>
+                    <li>/o [Nachricht]</li>
+                </list>
+                <p>Sendet die Nachricht "out of character", also als Kommentar des Spielenden und nicht das
+                    Charakters.
+                </p>
+                <p>
+                    <b>Nachricht als Emotion (MS):</b>
+                </p>
+                <list>
+                    <li>Shift + Strg(Ctrl) Tasten zusätzlich zu Enter dazu drücken fürs Senden</li>
+                    <li>/emote [Nachricht]</li>
+                    <li>/e [Nachricht]</li>
+                </list>
+                <p>Sendet die Nachricht so, dass ein Gefühl, Emotion ausgedrückt wird. Für Spielende sehr ähnlich zu
+                    "Nachricht als Aktion". Für die Spielleitung eine Möglichkeit Handlungen der aktiven Identität
+                    auszudrücken.
+                </p>
+                <p>
+                    <b>Nachricht als Aktion (S):</b>
+                </p>
+                <list>
+                    <li>Strg Taste zusätzlich zu Enter dazu drücken fürs Senden</li>
+                    <li>/action [Nachricht]</li>
+                    <li>/a [Nachricht]</li>
+                </list>
+                <p>Sendet eine Nachricht so, dass eine Handlung zum Ausdruck kommt.</p>
+                <p>
+                    <b>Nachricht als Geschichtsemelent (M):</b>
+                </p>
+                <list>
+                    <li>Strg Taste zusätzlich zu Enter dazu drücken fürs Senden</li>
+                    <li>/story [Nachricht]</li>
+                    <li>/s [Nachricht]</li>
+                </list>
+                <p>Sendet die Nachricht so, dass sie als Geschichtselement im Chat angezeigt wird.</p>
+                <p>
+                    <b>normale Nachrichten mit einer Stimmung/Laune versehen (MS):</b>
+                </p>
+                <list>
+                    <li>/mood [Stimmung/Laune]</li>
+                </list>
+                <p>Zeigt solange bei allen normalen Chatnachrich die Stimmung/Laune mit an, bis dies wieder
+                    ausgeschaltet wird. Soll die Stimmung/Laune mehrere Worte umfassen, so sind diese Worte von runden
+                    Klammern einzufassen. Beispiel: /mood (hoch erfreut)
+                </p>
+                <list>
+                    <li>/mood</li>
+                </list>
+                <p>Schaltet die Anzeige der Stimmung/Laune bei den normalen Nachrichten ab.</p>
+                <p>
+                    <b>einzelne, normale Nachricht mit einer Stimmung/Laune versehen (MS):</b>
+                </p>
+                <list>
+                    <li>/mood [Stimmung/Laune] [Nachricht]</li>
+                </list>
+                <p>Sendet die Nachricht unter Anzeige einer bestimmten Stimmung/Laune ab. Soll die Stimmung/Laune
+                    mehrere Worte umfassen, so sind diese Worte von runden Klammern einzufassen.
+                </p>
+                <p>Beispiel: /mood (hoch erfreut) Gerne nehme ich Ihr Angebot an.</p>
+                <p>
+                    <b>Abstimmung starten (MS):</b>
+                </p>
+                <list>
+                    <li>/vote &lt;Nachricht&gt;</li>
+                </list>
+                <p>Erstellt im Chatfenster eine Abstimmung. Die Nachricht wird dabei mit ausgegeben, sofern sie eingeben
+                    wurde. Durch Anklicken des Kreises können die Spielenden, nicht die Spielleitung, die Frage
+                    beantworten. Es gibt drei Zustände: Hacken, Kreuz und freier Kreis.
+                </p>
+                <p>
+                    <b>Nachrichten verlauf löschen (M):</b>
+                </p>
+                <list>
+                    <li>/clear</li>
+                    <li>per Kontextmenü des Chatfensters</li>
+                </list>
+                <p>Löscht bei Spielenden und der Spielleitung des gesamten bisherigen Chatverlauf.</p>
+                <p/>
+                <h>Würfelbefehle:</h>
+                <p>
+                    <b>Würfel werfen (MS):</b>
+                </p>
+                <list>
+                    <li>/die [XdY+-Z] &lt;Nachricht&gt;</li>
+                </list>
+                <p>Würfelt eine Anzahl x an y-seitigen Würfeln und addiert oder substrahiert z. Dabei wird, sofern
+                    eingegeben, die Nachricht mit ausgegeben.
+                </p>
+                <p>
+                    <b>Modifikator in die Modifikatorbox hinzufügen (MS):</b>
+                </p>
+                <list>
+                    <li>/mod [X] &lt;Name&gt;</li>
+                </list>
+                <p>Setzt einen Modifikator in Höhe von X und speichert ihn der Modifikatorbox. Beim nächsten Würfeln
+                    wird dieser Modifikator berücksichtigt und der Name, sofern eingegeben bei der Würfelausgabe im Chat
+                    mit ausgegeben.
+                </p>
+                <p>
+                    <b>Tabelle würfen (MS):</b>
+                </p>
+                <list>
+                    <li>/rollon [Tabellenname] &lt;-c [Spaltenname]&gt; &lt;-d [XdY+-Z]&gt; &lt;-hide&gt;</li>
+                </list>
+                <p>Würfelt in der mit dem Tabellennamen angegebenen Tabelle. Insofern eine Spalte durch "-c
+                    [Spaltennamen]" angegeben wird, wird das Ergebnis nur aus dieser Spalte entnommen. Wenn per "-d
+                    [XdY+-Z]" ein Würfel definiert ist, so wird dieser Würfelwurf anstelle des in der Tabelle erfassten
+                    geworfen. X definiert dabei die Anzahl der y-seitigen Würfel. Z gibt an, ob zu dem Würfelergebnis
+                    etwas hinzugezählt bzw. abgezogen wird. Wird "-hide"mit eingegeben, so wird das Ergebnis nur der
+                    Spielleitung angezeigt.
+                </p>
+                <p/>
+                <h>Weitere Befehle</h>
+                <p>
+                    <b>Charakterdaten sichern (S):</b>
+                </p>
+                <list>
+                    <li>/save</li>
+                </list>
+                <p>Sichert die letzten Änderungen am eigenen Charakter. Normalerweise speichert Fantasy Grounds alle
+                    fünf Minuten selbst. Zudem ist eigentlich immer die Spielleitung für das sichern der Datenbank
+                    zuständig. Für übervorsichtige Spielende vielleicht doch ein nützlicher Befehl, vor allem, wenn man
+                    umfangreichere Änderungen am Charakter vorgenommen hat.
+                </p>
+                <p>
+                    <b>Kampagne sichern (M):</b>
+                </p>
+                <list>
+                    <li>/save</li>
+                </list>
+                <p>Sichert die gesamte Kampagnendaten. Normalerweise speichert Fantasy Grounds alle fünf Minuten die
+                    Kampagnendaten selbst. Am Besten Ihr gebt den Befehl ein bevor Ihr Fantasy Grounds schließt, zum
+                    Startbildschirm zurückkehrt oder die Kampagne neu ladet (siehe unten).
+                </p>
+                <p>
+                    <b>Identität ändern/hinzufügen (M):</b>
+                </p>
+                <list>
+                    <li>/gmid [Name]</li>
+                    <li>/gm [Name]</li>
+                </list>
+                <p>Ändern den Namen der Spielleitung, sodass im Chat ein anderer Name ausgegeben wird.</p>
+                <list>
+                    <li>/identity [Name]</li>
+                </list>
+                <p>Fügt für die Spielleitung eine weitere Identität hinzu. Durch anklicken der jeweiligen Identität
+                    unter dem Chatfenster kann zwischen diesen gewechselt werden. Die jeweils aktive wird für die
+                    Anzeige in der Chatausgabe genutzt. Per Kontextmenü kann eine solche Identität auch wieder gelöscht
+                    werden.
+                </p>
+                <p>Im Charakterbogen oder bei Nichtspielercharakteren kann durch Anklicken der Sprechblase die jeweilige
+                    Identität hinzugefügt werden.
+                </p>
+                <p>
+                    <b>Lichteffekt einstellen (M):</b>
+                </p>
+                <list>
+                    <li>/day</li>
+                </list>
+                <p>Stellt den Lichteffekt auf Tag um. Mehr voreingestellteLichteffekte findet Ihr im der rechten oberen
+                    Ecke bei den kleinen Knöpfen (linke Spalte unterster Knopf).
+                </p>
+                <list>
+                    <li>/night</li>
+                </list>
+                <p>Stellt den Lichteffekt auf Nacht um. Mehr voreingestellteLichteffekte findet Ihr im der rechten
+                    oberen Ecke bei den kleinen Knöpfen (linke Spalte unterster Knopf).
+                </p>
+                <list>
+                    <li>/lighting [RGB-Hex-Zahl]</li>
+                </list>
+                <p>Stellt den Lichteffekt auf eine gewisse Farbe ein. Diese Frabe ist über einen Hex-Code im RGB-Format
+                    (Rot-Grün-Blau-Format) anzugeben. Viele Grafikprogramme geben bei Farbwerten auch ein HTML-Notation
+                    an. Diese entspricht dem RGB-Format im Hex-Code.
+                </p>
+                <p>
+                    <b>Modul exportieren (M):</b>
+                </p>
+                <list>
+                    <li>/export</li>
+                </list>
+                <p>Öffnet ein Fenster zum exportieren von Modulen.</p>
+                <p>
+                    <b>Charakter exportieren (M):</b>
+                </p>
+                <list>
+                    <li>/exportchar &lt;Charktername&gt;</li>
+                </list>
+                <p>Exportiert alle Spielendencharakter, die in der Kampagne gespeichert sofern kein Charaktername
+                    angegeben ist. Wird dieser mit eingegeben, so wird nur dieser Charakter exportiert. Sofern die
+                    entsprechende Charakter von einem Spielenden ausgewählt ist, kann der Charaktername per
+                    Autovervollständigung eingegeben werden.
+                </p>
+                <p>Eine andere Möglichkeit einzelne Charaktere zu exportieren besteht darin, dass man in der
+                    Charakterauswahl bei jeweiligen Charakter auf den Exportknopf drückt.
+                </p>
+                <p>
+                    <b>Charakter importieren (M):</b>
+                </p>
+                <list>
+                    <li>/importchar</li>
+                </list>
+                <p>Öffnet ein Fenster zum Auswählen der zu importierenden Charakterdatei im xml-Format. xml-Dateien aus
+                    der Heldensoftware können nur erfolgreich importiert werden, wenn sie mit dem entsprechenden Plugin
+                    aus der Heldensoftware exportiert wurden. Speichern Sie dazu den Charakter dort als lokalen
+                    Charakter ab.
+                </p>
+                <p>
+                    <b>Benutzerschnittstelle anpassen (MS):</b>
+                </p>
+                <list>
+                    <li>/scaleui [x]</li>
+                </list>
+                <p>Passt die Skallierung der Benutzerschnittstelle (Grafikoberfläche) an. Zulässtige Werte für x liegen
+                    zwischen 50 und 200. Der Nachteil liegt allerdings darin, dass die Qualität der Grafik darunter
+                    leidet.
+                </p>
+                <p>
+                    <b>Console öffnen (MS)</b>
+                </p>
+                <list>
+                    <li>/console</li>
+                </list>
+                <p>Öffnet das Fenster "Console" im Hintergrund und lässt dieses mitlaufen. Dies ist nur für
+                    Debugingzwecke erfoderlich.
+                </p>
+                <p>
+                    <b>Kampagne neue laden (M):</b>
+                </p>
+                <list>
+                    <li>/reload</li>
+                </list>
+                <p>Lädt die Kampagne neu. Dieser Befehl ist eigentlich nur bei der Erstellung von Rulesets und zu deren
+                    Test notwendig, da hier dann auch die geänderten Dateien aus dem Ruleset neu geladen werden. Sollte
+                    man den Befehl auch aus anderen Gründen nutzen wollen, so sollte man die Kampagne vorher sichern,
+                    damit es nicht zu ein Datenverlust kommt. Der Befehl wird nicht ausgeführt, wenn sich Spielende oder
+                    andere Clients bereits verbunden haben.
+                </p>
+                <p>
+                    <b>Teilen an einzelne Charakter zurücknehmen</b>
+                </p>
+                <list>
+                    <li>/flushdb</li>
+                </list>
+                <p>Nimmt das Teilen von Bildern, Notizen, Erzählungseinträgen usw. an einzelne Spielende zurück, damit
+                    diese bei den Spielenden nicht mehr sichtbar sind. Solche Einträge können anhand des S-Symbols im
+                    jeweiligen Übersichtsfenster erkannt werden. Allerdings bleiben die Einträge für die Eigentümer
+                    dennoch sichtbar. So sind bspw. die Notizen, die Spielende angelegt haben, zwar nicht nach
+                    Ausführung des Befehls nicht mehr für alle sindern nur noch für die erstellende Person sichtbar.
+                    Ebenso bleiben alle als öffentlich (public) geteilte Einträge erhalten. Sie können durch ein
+                    P-Symbol im jeweiligen Überischtsfenster erkannt werden.
+                </p>
+                <p/>
+                <h>Support zum Ruleset</h>
+                <p>DSA_DZ_4.1WE@rpg.unbesiegbar.com</p>
+            </text>
+        </chat>
+        <kampfuebersichtClient>
+            <name type="string">Hilfe zur Kampfübersicht</name>
+            <text type="formattedtext">
+                <h>Kampfübersichtsfenster</h>
+                <p>Dieses Fenster bietet die Möglichkeit Kämpfe zu verwalten. Im Rahmen und an den Rändern gibt es
+                    verschiedene Elemente, welche der Steuerung dienen. Sie sollen im Uhreigersinn beginnend in der
+                    linken oberen Ecke vorgestellt werden.
+                </p>
+                <p>
+                    <b>Fragezeichensymbol:</b>
+                </p>
+                <p>Durch Anklicken des Symbols erscheint dieser Hilfetext, aber das wurde ja schon gemerkt ;-) .</p>
+                <p>
+                    <b>"Fenster schließen"-Symbol:</b>
+                </p>
+                <p>Schließt wie überall das Fenster.</p>
+                <p>
+                    <b>Symbol für nächsten Akteur</b>(linke untere Ecke, Pfeil nach unten)
+                    <b>:</b>
+                </p>
+                <p>Durch Anklicken kommt der nächste Eintrag an den Zug und man selbst beendet die Aktion des eignen
+                    Charakters oder tierischen Begleiters.
+                </p>
+                <h>Einträge</h>
+                <p>Es gibt zwei unterschiedliche Arten von Einträgen, was die Darstellung betrifft. Für alle Einträge
+                    die dem jeweiligen Spielenden gehören beinhaltet ein Eintrag mehr Felder und Informationen, als bei
+                    alle anderen Einträgen.
+                </p>
+                <p>Einträge die zu einem Charakter des Spielenden gehören haben Felder mit denen die Aktionen verwaltet
+                    werden können. Darüber hinaus wird bei diesen Einträgen nicht nur die Rüstungszonen angezeigt
+                    sondern auch die Rüstungswerte der jeweiligen Zone. Unter Rüstung gibt es in diesem Fall auch ein
+                    Modifikatorfeld, welches die Werte aller anderen Rüstungsfelder modifiziert. So kann beispielsweise
+                    die Wirkung eines Armatrutz auf den Charakter leicht und schnell erfasst werden. (Mehr zu beiden
+                    Bereichen, die nur bei eigenen Charakteren sichtbar sind, findet sich unten.)
+                </p>
+                <h>Felder aller Einträge</h>
+                <p>
+                    <b>Tokenfeld:</b>
+                </p>
+                <p>Stellt das Token des jeweiligen Eintrags dar. Durch Anklicken des Tokens bei gedrückter Strg-Taste
+                    wird dieser Eintrag als Ziel des aktuell aktiven Charakters in der Kampfübersicht hinzugefügt oder
+                    entfernt, je nachdem ob bereits darauf gezielt wurde oder nicht. Den jeweils aktiven Charakter
+                    erkennt man an der fetten Schrift des Namens unter dem Charakterportrait oben links über dem
+                    Chatfenster.
+                </p>
+                <p>
+                    <b>Namesfeld:</b>
+                </p>
+                <p>Feld mit dem Namen des Charakters oder tierischen Begleiters.</p>
+                <p>
+                    <b>INI-Feld</b>(Initiativfeld)
+                    <b>:</b>
+                </p>
+                <p>Feld, welches die gewürfelte Initiative enthällt. Vor dem Komma wird das Ergebnis des Initiativwurfs
+                    notiert. Nach dem Komma findet sich auf den ersten zwei Nachkommastellen der Initiativebasiswert.
+                    Eine Initiativebasis von 10 wird als x.1 und eine Initiativebasis von 1 wird als x.01 dargestellt.
+                </p>
+                <p>Damit berücksichtigt das Ruleset soweit automatisch die richtige Sortierung nach dem Regelwerk. Ist
+                    der Initiativwert und die Initiativebasis bei zwei oder mehr Einträgen identisch, so kann die dritte
+                    Nachkommestelle genutzt werden, um die endgültig festgelegte Reihenfolge festzuhalten.
+                </p>
+                <p>Beispiel: Es gibt einen SC und zwei NSCs die jeweils ein Initiativergebnis von 14 und eine
+                    Initiativebasis von 11 haben. Dann würde das Ruleset zunächst automatisch überall 14.11 eintragen.
+                    Die Gruppe oder der SL haben nun festgelegt, dass die Reihenfolge der Zugzuteilung wie folgt
+                    aussehen soll: NSC1, SC, NSC2. Damit könnte man dem NSC1 die Werte 14.112, dem SC die Werte 14.111
+                    geben und beim NSC2 die Werte belassen, wie sie sind.
+                </p>
+                <p>
+                    <b>Rfg-Feld (Reihenfolgefeld):</b>
+                </p>
+                <p>Regelt die Reihenfolge im Kampfgeschehen und wird in Abhänigkeit des gewürfelten
+                    Initiativergebnisses, welches im INI-Feld festgehalten wird (siehe oben), und den Feldern
+                    "Aktion(en) bei INI" in der Aktionsansicht (siehe unten) innerhalb einer Kampfrunde angepasst wird.
+                    Nachdem der Charakter alle Aktionen in einer Kampfrunde hatte, wird der Wert des dieses Feld auf den
+                    Wert des INI-Felds gesetzt.
+                </p>
+                <p>
+                    <b>LeP-Feld</b>(aktuelle Lebensenergie)
+                    <b>:</b>
+                </p>
+                <p>In diesem Feld wird je nach Einstellung der Option durch die Spielleitung die aktuelle Lebensenergie
+                    des Charakters oder der Gesundheitsstatus des Charakters angezeigt. Der Gesundheitsstatus wird durch
+                    Buchstaben abgekürzt. Die ausführliche Beschreibung befindet sich im Tooltip des Felders den man
+                    erhält, wenn der Mauszeiger über dem Feld verweilt.
+                </p>
+                <p>Sofern die Spielleitung per Option es den Spielenden erlaubt hat, den Schadenswurf auf die Einträge
+                    zu ziehen, wird der erzeugte Schaden, der auf dieses Feld gezogen wird, automatisch als
+                    Schadenspunkte abgezogen. Soll der Schaden als Trefferpunkte behandelt werden, so sind die Felder zu
+                    nutzen, welche die Rüstung bzw. Trefferzonen repräsentieren (siehe unten im Abschnitt "zusätzliche
+                    Felder bei Einträgen, die nicht einem Spielenden gehören" beziehungsweise "zusätzliche Felder bei
+                    Einträgen, die nicht einem Spielenden gehören").
+                </p>
+                <p>
+                    <b>Beziehungsfeld</b>(Fraktionsfeld)
+                    <b>:</b>
+                </p>
+                <p>Dieses Feld zeigt an, wie sich der jeweilige Charakter zu den Charakteren der Spielenden verhält. Die
+                    Einstellung kann freundlich (grünes Gesicht), neutral (gelbes Gesicht), feindlich (rotes Gesicht)
+                    oder noch nicht definiert (leerer Rahmen) sein.
+                </p>
+                <p>
+                    <b>Aufzählung der Ziele</b>(sofern vorhanden)
+                    <b>:</b>
+                </p>
+                <p>Die Aufzählung der Ziele befindet sich am Ende eines Eintrags der Kampfübersicht. Sollten Effekte im
+                    Eintrag angezeigt werden, so befinden sich die Zielaufzählung darüber. Alle Einträge auf den dieser
+                    Eintrag zielt werden hier durch Semikolon getrennt aufgezählt.
+                </p>
+                <p>
+                    <b>Aufzählung der Effekte</b>(sofern vorhanden)
+                    <b>:</b>
+                </p>
+                <p>Die Aufzählung der Effekte befindet sich ganz am Ende eines Eintrags der Kampfübersicht. Einzelne
+                    Effekte werden durch den folgenden Strich getrennt: |. Aus einem Eintrag geht der Name des Effekts
+                    hervor und wie lange er noch anhält bzw. wie lange es noch dauert, bis seine Wirkung eintritt. Gibt
+                    es keine Zeitangaben, so handelt es sich um einen permanenten Effekt. Effekte und ihre
+                    Beschreibungen die in runden Klammern stehen sind nur für den jeweiligen Spielenden und die
+                    Spielleitung sichtbar.
+                </p>
+                <h>zusätzliche Felder bei Einträgen, die nicht einem Spielenden gehören</h>
+                <p>Hier gibt es Felder mit Abkürzungen, welche die einzelnen Rüstungszonen repräsentieren sowie ein Feld
+                    welches den gesamten Rüstungsschutz repräsentiert. Die Tooltips der jeweiligen Felder enthalten die
+                    entsprechenden Beschreibungen. Man erhält sie, wenn man mit dem Mauszeiger über dem jeweiligen Feld
+                    verweilt.
+                </p>
+                <p>Sofern die Spielleitung den Spielenden per Option erlaubt hat, den Schadenswurf auf die Einträge zu
+                    ziehen, wird der erzeugte Schaden automatisch unter Berücksichtigung des jeweiligen Rüstungswertes
+                    abgezogen. Sollen bei einem Schadenswurf Trefferpunkte = Schadenspunkte sein, so kann der
+                    Schadenswurf aus dem Chat auf das LeP-Feld gezogen werden.
+                </p>
+                <h>zusätzliche Felder bei Einträgen, die einem Spielenden gehören</h>
+                <p>
+                    <b>Feld "max. Anzahl Handlungen":</b>
+                </p>
+                <p>Dieses Feld gibt die Anzahl an regeltechnischen Aktionen zu unterschiedlichen Initiativwerten
+                    innerhalb einer Runde an. Normalerweise beträgt dieser Wert bei einem Charakter zwei, eine für
+                    Angriff und eine für Parade oder einen weiteren Angriff oder eine zweite Parade.
+                </p>
+                <p>Damit bei den Effekten doe Restdauer oder Restzeit bis zum Eintritt des Effekts richtig gezählt wird,
+                    sollte der Wert hier immer zwei oder je nach Fähigkeiten eines Charakters auch höher sein, sofern
+                    diese Fähigkeiten dazu führen, dass der Charakter mehr als zwei regeltechnische Aktionen in einer
+                    Kampfrunde besitzt.
+                </p>
+                <p>Will eine Spielrunde diese Möglichkeit nicht nutzen, so kann sie bei allen Einträgen 1 oder 0
+                    eintragen. In diesem Fall wird jeder Charakter nur einmal in einer Kampfrunde zum Zug aufgerufen.
+                    Entsprechend müssen die Zeitwerte bei den Effekten nicht in Aktionen sondern in Kampfrunden erfasst
+                    werden. Ansonsten kommt es zu Fehlern beim Anpassen der Restdauer oder Restzeit bis ein Effekt
+                    wirkt.
+                </p>
+                <p>
+                    <b>Feld "Aktion(en) bei INI":</b>
+                </p>
+                <p>Der Wert hier bestimmt bei welchem INI-Wert die Aktion durchgeführt wird. Das Feld sollte immer eine
+                    ganze Zahl enthalten. Der erste Eintrag sollte zudem immer dem abgerundeten Wert des INI-Feldes
+                    entsprechen.
+                </p>
+                <p>Sollte es weitere Aktionen geben, so sollten die Werte in diesen Feldern sich auch immer
+                    unterscheiden. Insofern sind Aktionen, die zur selben INI-Zeit einer Kampfrunde stattfinden als
+                    weiterer Eintrag eingetragen werden. Hierzu kann das grüne Pluszeichen verwendet werden, um einen
+                    weiteren Eintrag zu erstellen.
+                </p>
+                <p>Unterscheiden sich die Werte nicht, so wird der Charakter nur einmal in einer Kampfrunde zum Zug
+                    aufgerufen und die Restdauer bei den Effekten wird nicht richtig angepasst.
+                </p>
+                <p>Soll eine Aktion für eine Parade genutzt werden, so ist sie dennoch zu erfassen und es gelten die
+                    oben angeführten Bedingungen. Dies bedeutet natürlich nicht, dass nur bei diesem INI-Wert pariert
+                    werden kann. In einem solchen Fall dient der Eintrag einfach dazu, dass bei den Effekten die
+                    Restdauer richtig berechnet werden. Ist man mit der Parade am Zug, so kann man gleich den Zug
+                    beenden.
+                </p>
+                <p>
+                    <b>Namensfeld unter "Aktion(en) bei INI":</b>
+                </p>
+                <p>Hier wird der Name der Aktion eingetragen, also beispielsweise Attacke, Parade oder Wuchtschlag.</p>
+                <p>
+                    <b>Wertfeld hinter Namensfeld:</b>
+                </p>
+                <p>In dieses Feld kommt der Modifikator, der bei dieser Aktion zum Tragen kommt. Soll also ein
+                    Wuchtschlag +5 angesagt werden, so ist in dieses Feld eine Fünf einzutragen. Ebenso lassen sich
+                    Erleichterungen beispielsweise aufgrund eines großen Ziels erfassen. In Fall von Erleichterungen
+                    sind negative Werte zu erfassen.
+                </p>
+                <p>Sollen diese Werte bei der nächsten Probe berücksichtigt werden, so kann vor der Probe dieses Feld
+                    per Doppelklick angeklickt oder per Drag &amp; Drop in die Modifikatorbox übertragen werden. Wenn
+                    anschließend die Probe gewürfelt wird, wird bei dieser Auswertung die Erschwernis bzw. Erleichterung
+                    entsprechend berücksichtigt.
+                </p>
+                <p>
+                    <b>Rüstungsfelder:</b>
+                </p>
+                <p>Felder zum Anzeigen der Rüstungswerte nach Zonen sowie ein Feld, welches den gesamten Rüstungsschutz
+                    repräsentiert. Darüber hinaus gibt es noch ein Modifikatofeld. Dieses Feld bietet die Möglichkeit,
+                    den Wert alle anderen Rüstungsfelder schnell zu modifizieren. So kann beispielsweise die Wirkung
+                    eines Armatrutz auf den Charakter leicht und schnell erfasst werden.
+                </p>
+                <p>Sofern die Spielleitung den Spielenden per Option erlaubt hat, den Schadenswurf auf die Einträge zu
+                    ziehen, wird der erzeugte Schaden automatisch unter Berücksichtigung des jeweiligen Rüstungswertes
+                    abgezogen. Sollen bei einem Schadenswurf Trefferpunkte = Schadenspunkte sein, so kann der
+                    Schadenswurf aus dem Chat auf das LeP-Feld gezogen werden.
+                </p>
+            </text>
+        </kampfuebersichtClient>
+        <kampfuebersichtHost>
+            <name type="string">Hilfe zur Kampfübersicht</name>
+            <text type="formattedtext">
+                <h>Kampfübersichtsfenster</h>
+                <p>Dieses Fenster bietet die Möglichkeit Kämpfe zu verwalten. Im Rahmen und an den Rändern gibt es
+                    verschiedene Elemente, welche der Steuerung dienen. Sie sollen im Uhreigersinn beginnend in der
+                    linken oberen Ecke vorgestellt werden.
+                </p>
+                <p>
+                    <b>Fragezeichensymbol:</b>
+                </p>
+                <p>Durch Anklicken des Symbols erscheint dieser Hilfetext, aber das wurde ja schon gemerkt ;-) .</p>
+                <p>
+                    <b>Menü-Symbol:</b>
+                </p>
+                <p>Durch Anklicken kann die Initiative zurückgesetzt oder Einträge gesammelt gelöscht werden. Hierzu
+                    einfach den Radialmenüeinträgen und deren Tooltips folgen.
+                </p>
+                <p>
+                    <b>Augensymbol</b>(unterhalb des Menü-Symbols)
+                    <b>:</b>
+                </p>
+                <p>Macht alle NSC-Einträge für die Spielenden in der Kampfübersicht und die dazugehörigen Token auf der
+                    Karte sichtbar oder unsichtbar.
+                </p>
+                <p>
+                    <b>Zielsymbol</b>(rechts im Fenster, links vom Fenster schließen-Symbol)
+                    <b>:</b>
+                </p>
+                <p>Schaltet die Zielansicht für alle Einträge an oder aus.</p>
+                <p>
+                    <b>Aktionssymbol</b>(Schwert)
+                    <b>:</b>
+                </p>
+                <p>Schaltet die Aktionsansicht für alle Einträge an oder aus.</p>
+                <p>
+                    <b>Verteidigungssymbol</b>(Schild)
+                    <b>:</b>
+                </p>
+                <p>Schaltet die Verteidigungsansicht für alle Einträge an oder aus.</p>
+                <p>
+                    <b>Symbol für Größe, Reichweite &amp; Geschwindigkeit</b>(Raute)
+                    <b>:</b>
+                </p>
+                <p>Schaltet die Ansicht für Größe, Reichweite und Geschwindigkeit für alle Einträge an oder aus.</p>
+                <p>
+                    <b>Effektsymbol</b>(Person)
+                    <b>:</b>
+                </p>
+                <p>Schaltet die Effektansicht für alle Einträge an oder aus.</p>
+                <p>
+                    <b>"Fenster schließen"-Symbol:</b>
+                </p>
+                <p>Schließt wie überall das Fenster.</p>
+                <p>
+                    <b>Symbol zum Start der nächsten Runde</b>(rechte untere Ecke)
+                    <b>:</b>
+                </p>
+                <p>Durch anklicken startet die nächste Runde. Der Zähler links vom Symbol stegt um eins. Der Rundenstart
+                    ist absolut unabhängig davon, welcher Eintrag gerade aktiv ist.
+                </p>
+                <p>
+                    <b>Symbol für nächsten Akteur</b>(linke untere Ecke, Pfeil nach unten)
+                    <b>:</b>
+                </p>
+                <p>Durch Anklicken kommt der nächste Eintrag an den Zug.</p>
+                <p>
+                    <b>Symbol zum Anzeigen des aktiven Eintrags:</b>
+                </p>
+                <p>Durch Zug dieses Symbols auf einen Anker für den Anzeiger, welcher Eintrag aktiv ist ("Loch" links
+                    neben dem Token im Fensterrahmen), wird der Eintrag aktiv. Die führt aber dazu, dass bei den
+                    evenuellen Effekten des Eintrags, der verlassen wird, die Zählung bis zum Start oder Ende des
+                    Effekts nicht angepasst wird.
+                </p>
+                <h>Einträge</h>
+                <p>Es werden drei Arten von Einträgen unterschieden: 1. Charaktere von Spielenden, 2. tiersiche
+                    Begleiter der Charaktere von Spielenden und 3. Nichtspielercharaktere. Nur Nichtspielercharaktere
+                    können für die Spielenden ausgeblendet werden (siehe unten Augensymbol). Dies gilt für die
+                    Spieleransicht der Kampfübersicht als auch für die Token auf Karten, die von der Kampfübersicht auf
+                    die jeweilige Karte gezogen wurden (siehe unten Token).
+                </p>
+                <p>Jeder Eintrag zweigt mindestens die Übersichtsdarstellung. Weitere Informationen können über die
+                    verschiedenen Einträge ein- und ausgeblendet werden (siehe unten Ansichten).
+                </p>
+                <p>Die Übersichtsdarstellung ist wie folgt von links nach rechts aufgebaut.</p>
+                <p>
+                    <b>Tokenfeld:</b>
+                </p>
+                <p>Stellt das Token des jeweiligen Eintrags dar. Es kann auf Karten gezogen werden (per Drag &amp;
+                    Drop). Mit einem Doppelklick auf dieses Token wird die Karte mit dem Token geöffnet und in den
+                    Vordergrund geholt (sofern dies nicht bereits der Fall ist) und die Ansicht auf das Token zentriert.
+                </p>
+                <p>Durch Anklicken des Tokens bei gedrückter Strg-Taste wird dieser Eintrag als Ziel des aktuell aktiven
+                    Eintrags in der Kampfübersicht hinzugefügt oder entfernt, je nachdem ob bereits darauf gezielt wurde
+                    oder nicht.
+                </p>
+                <p>
+                    <b>Augensymbol (nur NSCs):</b>
+                </p>
+                <p>Durch anklicken dieses Symbols werden die NSC-Einträge und ggf. die dazugehörigen EInträge auf der
+                    Karte für die Spielenen sichtbar oder unsichtbar. Die Einstellung gilt nur für den jeweiligen
+                    Eintrag.
+                </p>
+                <p>
+                    <b>Namesfeld:</b>
+                </p>
+                <p>Feld mit dem Namen des Charakters oder tierischen Begleiters.</p>
+                <p>
+                    <b>INI-Feld</b>(Initiativfeld)
+                    <b>:</b>
+                </p>
+                <p>Feld, welches die gewürfelte Initiative enthällt. Vor dem Komma wird das Ergebnis des Initiativwurfs
+                    notiert. Nach dem Komma findet sich auf den ersten zwei Nachkommastellen der Initiativebasiswert.
+                    Eine Initiativebasis von 10 wird als x.1 und eine Initiativebasis von 1 wird als x.01 dargestellt.
+                </p>
+                <p>Damit berücksichtigt das Ruleset soweit automatisch die richtige Sortierung nach dem Regelwerk. Ist
+                    der Initiativwert und die Initiativebasis bei zwei oder mehr Einträgen identisch, so kann die dritte
+                    Nachkommestelle genutzt werden, um die endgültig festgelegte Reihenfolge festzuhalten.
+                </p>
+                <p>Beispiel: Es gibt einen SC und zwei NSCs die jeweils ein Initiativergebnis von 14 und eine
+                    Initiativebasis von 11 haben. Dann würde das Ruleset zunächst automatisch überall 14.11 eintragen.
+                    Die Gruppe oder der SL haben nun festgelegt, dass die Reihenfolge der Zugzuteilung wie folgt
+                    aussehen soll: NSC1, SC, NSC2. Damit könnte man dem NSC1 die Werte 14.112, dem SC die Werte 14.111
+                    geben und beim NSC2 die Werte belassen, wie sie sind.
+                </p>
+                <p>
+                    <b>Rfg-Feld</b>(Reihenfolgefeld)
+                    <b>:</b>
+                </p>
+                <p>Regelt die Reihenfolge im Kampfgeschehen und wird in Abhänigkeit des gewürfelten
+                    Initiativergebnisses, welches im INI-Feld festgehalten wird (siehe oben), und den Feldern
+                    "Aktion(en) bei INI" in der Aktionsansicht (siehe unten) innerhalb einer Kampfrunde angepasst wird.
+                    Nachdem der Charakter alle Aktionen in einer Kampfrunde hatte, wird der Wert des dieses Feld auf den
+                    Wert des INI-Felds gesetzt.
+                </p>
+                <p>
+                    <b>max-Feld</b>(maximale Lebensenergie)
+                    <b>:</b>
+                </p>
+                <p>Dieses Feld hält die maximale Lebensenergie fest.</p>
+                <p>
+                    <b>LeP-Feld</b>(aktuelle Lebensenergie)
+                    <b>:</b>
+                </p>
+                <p>In diesem Feld wird die aktuelle Lebensenergie des Charakters angezeigt.</p>
+                <p>Schaden, der auf dieses Feld gezogen wird, wird automatisch als Schadenspunkte abgezogen. Soll der
+                    Schaden als Trefferpunkte behandelt werden, so sind die Felder zu nutzen, welche die Rüstung bzw.
+                    Trefferzonen repräsentieren (siehe unten im Abschnitt "Verteidigungsansicht").
+                </p>
+                <p>
+                    <b>AsP-Fed</b>(aktuelle Astralenergie)
+                    <b>:</b>
+                </p>
+                <p>In diesem Feld wird die aktuelle Astralenergie des Charakters angezeigt.</p>
+                <p>
+                    <b>KaP-Feld</b>(aktuelle Karmalenergie)
+                    <b>:</b>
+                </p>
+                <p>In diesem Feld wird die aktuelle Karmalenergie des Charakters angezeigt.</p>
+                <p>
+                    <b>Wnd-Feld</b>(Wundfeld)
+                    <b>:</b>
+                </p>
+                <p>In diesem Feld wird die aktuelle Anzahl der Wunden festgehalten.</p>
+                <p>
+                    <b>Beziehungsfeld</b>(Fraktionsfeld)
+                    <b>:</b>
+                </p>
+                <p>Dieses Feld zeigt an, wie sich der jeweilige Charakter zu den Charakteren der Spielenden verhält. Die
+                    Einstellung kann freundlich (grünes Gesicht), neutral (gelbes Gesicht), feindlich (rotes Gesicht)
+                    oder noch nicht definiert (leerer Rahmen) sein.
+                </p>
+                <p>
+                    <b>Zielsymbol:</b>
+                </p>
+                <p>Schaltet die Zielansicht des jeweiligen Eintrages an oder aus.</p>
+                <p>
+                    <b>Aktionssymbol</b>(Schwert)
+                    <b>:</b>
+                </p>
+                <p>Schaltet die Aktionsansicht des jeweiligen Eintrages an oder aus.</p>
+                <p>
+                    <b>Verteidungssymbol</b>(Schild)
+                    <b>:</b>
+                </p>
+                <p>Schaltet die Verteidigungsansicht für alle Einträge an oder aus.</p>
+                <p>
+                    <b>Symbol für Größe, Reichweite &amp; Geschwindigkeit</b>(Raute)
+                    <b>:</b>
+                </p>
+                <p>Schaltet die Ansicht für Größe, Reichweite und Geschwindigkeit für alle Einträge an oder aus.</p>
+                <p>
+                    <b>Effektsymbol</b>(Person)
+                    <b>:</b>
+                </p>
+                <p>Schaltet die Effektansicht für alle Einträge an oder aus.</p>
+                <p>
+                    <b>Linksymbol:</b>
+                </p>
+                <p>Über dieses Symbol kann der dazugehörige Charakterbogen des Charakters eines Spielenden oder eines
+                    tierischen Begleiters geöffnet werden, sofern der Eintrag einen solchen Repräsentiert. Repräsentiert
+                    ein Eintrag einen NSC, so öffnet sich ein Fenster, welches der Eingabemaske für NSCs entspricht.
+                    Allerdings handelt es sich um eine eigene Instanz, die nur mit dem Eintrag in der Kampfübersicht
+                    verbunden ist. Entsprechend wird keine Änderung an den Eintrag unter NSCs (Meisterpersonen &amp;
+                    Scharmützel, drittes großes Icon von oben auf der rechten Seite) übertragen.
+                </p>
+                <h>Ansichten</h>
+                <p>Die jeweiligen Ansichten können ein- und ausgeschaltet werden. Hierzu können entweder die Symbole für
+                    Aktionen, Verteodigung, Größe, Reichweite &amp; Geschwindigkeit oder Effekte geöffnet werden. Soll
+                    die Ansicht nur für den jeweiligen Eintrag ein- und ausgeblendet werden, so sind die Symbole im
+                    Eintrag selbst anzuklicken. Soll die jeweilige Ansicht für alle Einträge in der Kampfübersicht ein-
+                    oder ausgeschaltet werden, so sind die Symbole am oberen Fensterrand zu verwenden. Die jeweiligen
+                    Beschreibungen finden Sie oben, einmal unter den Überschriften "Kampfübersichtsfenster" und
+                    "Einträge".
+                </p>
+                <h>Zieleansicht</h>
+                <p>Die Zielansicht besteht aus einem Feld und zwei Köpfen. In dem Feld erscheinen sie Tokens der
+                    Charaktäre und/oder tierischen Begleiter auf die der jeweilige Eintrag zielt. Der erste Knopf rechts
+                    mit dem Zielsymbol ermöglicht es auf einen anderen Eintrag zu zielen. Hierzu muss der Knopf per Drag
+                    &amp; Drop auf einen anderen Eintrag gezogen werden. Während des Drag &amp; Drop-Vorgangs erscheint
+                    eine Null, die auf den Eintrag in der Kampfübersicht fallen gelassen werden muss, auf den gezielt
+                    werden soll. Der andere Knopf mit dem durchgestrichenen roten Kreis entfernt alle Ziele eines
+                    Eintrags.
+                </p>
+                <p>Ist die Zielansicht eines Eintrags ausgeblendet und zielt ein Eintrag auf einen anderen, so wird eine
+                    Zusammenfassung am Ende eines Eintrags angezeigt. Sind bei dem Eintrag auch aktive Effekte erfasst
+                    und die Effektansicht ausgeblendet sein (siehe unten), so findet sich die Zusammenfassung der Ziele
+                    über der Zusammenfassung der Effekte.
+                </p>
+                <p>Die Zusammenfassung beinhaltet die Namen aller Ziele, die durch Semikolons voneinander getrennt
+                    sind.
+                </p>
+                <h>Aktionenansicht</h>
+                <p>
+                    <b>Feld "max. Anzahl Handlungen":</b>
+                </p>
+                <p>Dieses Feld gibt die Anzahl an regeltechnischen Aktionen zu unterschiedlichen Initiativwerten
+                    innerhalb einer Runde an. Normalerweise beträgt dieser Wert bei einem Charakter zwei, eine für
+                    Angriff und eine für Parade oder einen weiteren Angriff oder eine zweite Parade.
+                </p>
+                <p>Damit bei den Effekten doe Restdauer oder Restzeit bis zum Eintritt des Effekts richtig gezählt wird,
+                    sollte der Wert hier immer zwei oder je nach Fähigkeiten eines Charakters auch höher sein, sofern
+                    diese Fähigkeiten dazu führen, dass der Charakter mehr als zwei regeltechnische Aktionen in einer
+                    Kampfrunde besitzt.
+                </p>
+                <p>Will eine Spielrunde diese Möglichkeit nicht nutzen, so kann sie bei allen Einträgen 1 oder 0
+                    eintragen. In diesem Fall wird jeder Charakter nur einmal in einer Kampfrunde zum Zug aufgerufen.
+                    Entsprechend müssen die Zeitwerte bei den Effekten nicht in Aktionen sondern in Kampfrunden erfasst
+                    werden. Ansonsten kommt es zu Fehlern beim Anpassen der Restdauer oder Restzeit bis ein Effekt
+                    wirkt.
+                </p>
+                <p>
+                    <b>Ausdauerfeld:</b>
+                </p>
+                <p>Gibt den aktuellen Ausdauerwert des Charakters oder tierischen Begleiters wieder.</p>
+                <p>
+                    <b>Feld "Aktion(en) bei INI":</b>
+                </p>
+                <p>Der Wert hier bestimmt bei welchem INI-Wert die Aktion durchgeführt wird. Das Feld sollte immer eine
+                    ganze Zahl enthalten. Der erste Eintrag sollte zudem immer dem abgerundeten Wert des INI-Feldes
+                    entsprechen.
+                </p>
+                <p>Sollte es weitere Aktionen geben, so sollten die Werte in diesen Feldern sich auch immer
+                    unterscheiden. Insofern sind Aktionen, die zur selben INI-Zeit einer Kampfrunde stattfinden als
+                    weiterer Eintrag eingetragen werden. Hierzu kann das grüne Pluszeichen verwendet werden, um einen
+                    weiteren Eintrag zu erstellen.
+                </p>
+                <p>Unterscheiden sich die Werte nicht, so wird der Charakter nur einmal in einer Kampfrunde zum Zug
+                    aufgerufen und die Restdauer bei den Effekten wird nicht richtig angepasst.
+                </p>
+                <p>Soll eine Aktion für eine Parade genutzt werden, so ist sie dennoch zu erfassen und es gelten die
+                    oben angeführten Bedingungen. Dies bedeutet natürlich nicht, dass nur bei diesem INI-Wert pariert
+                    werden kann. In einem solchen Fall dient der Eintrag einfach dazu, dass bei den Effekten die
+                    Restdauer richtig berechnet werden. Ist man mit der Parade am Zug, so kann man gleich den Zug
+                    beenden.
+                </p>
+                <p>
+                    <b>Namensfeld unter "Aktion(en) bei INI":</b>
+                </p>
+                <p>Hier wird der Name der Aktion eingetragen, also beispielsweise Attacke, Parade oder Wuchtschlag.</p>
+                <p>
+                    <b>Wertfeld hinter Namensfeld:</b>
+                </p>
+                <p>In dieses Feld kommt der Modifikator, der bei dieser Aktion zum Tragen kommt. Soll also ein
+                    Wuchtschlag +5 angesagt werden, so ist in dieses Feld eine Fünf einzutragen. Ebenso lassen sich
+                    Erleichterungen beispielsweise aufgrund eines großen Ziels erfassen. In Fall von Erleichterungen
+                    sind negative Werte zu erfassen.
+                </p>
+                <p>Sollen diese Werte bei der nächsten Probe berücksichtigt werden, so kann vor der Probe dieses Feld
+                    per Doppelklick angeklickt oder per Drag &amp; Drop in die Modifikatorbox übertragen werden. Wenn
+                    anschließend die Probe gewürfelt wird, wird bei dieser Auswertung die Erschwernis bzw. Erleichterung
+                    entsprechend berücksichtigt.
+                </p>
+                <p>
+                    <b>Angriffswerte</b>(nur bei NSCs)
+                    <b>:</b>
+                </p>
+                <p>Dieses Feld verwaltet die Angriffsmöglichkeiten eines NSCs, bei denen einer Waffe ein Attackewert
+                    sowie ein Schadenswert zugeordnet werden können. Es können mehrere Möglichkeiten eingetragen werden,
+                    die entweder durch Semikolon oder Zeilenumbrüche getrennt werden müssen.
+                </p>
+                <p>Die Eingabe einer Möglichkeit erfolgt nach folgendem Schema:</p>
+                <p>Waffenname Attackewert (Schadenswert)</p>
+                <p>Als Waffenname können mehrere Wörter, jeweils durch Leerzeichen getrennt verwendet werden. Zahlen
+                    können nur verwendet werden, wenn ihnen kein Leerzeichen vorangeht.
+                </p>
+                <p>Der Attackewert ist durch eine Zahl zu erfassen, die durch ein Leerzeichen vom Waffenname zu trennen
+                    ist.
+                </p>
+                <p>Der Schadenswert ist so festzuhalten, dass der ohne Leerzeichen in runden Klammern steht. Die runde
+                    Klammerauf ist wiederum durch ein Leerzeichen von dem Angriffswert zu trennen. Für den Schadenswert
+                    kann die Anzahl und Art von Würfeln, absolute Zahlen sowie die Rechenzeichen &#132;+&#147; und
+                    &#132;-&#147; verarbeiten. Zum Anzeigen, das es sich um Anzahl und Art von Würfeln handelt, können
+                    die Buchstaben d, D, w und W verwendet werden. Die Zahl davor gibt an, wie viele Würfel dieser Art
+                    für den Wurf verwendet werden soll. Die Zahl nach dem Buchstaben gibt die Seitenzahl der Würfel an,
+                    die verwendet werden soll.
+                </p>
+                <p>Mindestensangaben sind der Waffenname bzw. waffenlose Kampfart, Attackewert und "()". Für einen
+                    Angriffswert mit Schwert von 10 muss der eintrag also mindestens wie folgt aussehen, wenn er
+                    würfelbar sein soll: "Schwer 10 ()".
+                </p>
+                <p>Beispiel:</p>
+                <p>Ein NSC soll die Möglichkeit haben mit einem Säbel AT-Wert von 12, einem Dolch AT-Wert von 11 sowie
+                    per Raufen AT-Wert von 13 anzugreifen. Der Säbel verursacht 1W6+3, der Dolch 1W6+1 und Raufen 1W6
+                    Schaden. Das Feld wäre dann so auszufüllen:
+                </p>
+                <p>&#132;Säbel 12 (1W6+3); Dolch 11 (1W6+1); Raufen 13 (1W6)&#147;</p>
+                <h>Verteidigungsansicht</h>
+                <p>
+                    <b>AW-Feld</b>(Ausweichen)
+                    <b>:</b>
+                </p>
+                <p>Feld zum Verwalten des Ausweichenwerts.</p>
+                <p>
+                    <b>Rüstungsfelder:</b>
+                </p>
+                <p>Felder zum Verwaltung der Rüstungswerte nach Zonen sowie ein Feld, welches den gesamten
+                    Rüstungsschutz repräsentiert. Darüber hinaus gibt es noch ein Modifikator- und ein BE-Feld. Das
+                    BE-Feld repräsentiert die Behinderung eines Charakters aus Rüstung und je nach Optionseinstellung
+                    auch der Überschreitung der Tragkraft. Das Modifikatorfeld stellt eine Möglichkeit dar, den Wert
+                    alle anderen Rüstungsfelder schnell zu modifizieren. So kann beispielsweise die Wirkung eines
+                    Armatrutz auf den Charakter leicht und schnell erfasst werden.
+                </p>
+                <p>Schaden, der auf diese Felder gezogen wird, wird automatisch als unter Berücksichtigung der
+                    jeweiligen Rüstunsgwerte von der Lebensenergie abgezogen. Soll der Schaden als Schadenspunkte
+                    behandelt werden, so ist das LeP-Feld zu nutzen (siehe oben im Abschnitt "Einträge").
+                </p>
+                <p>
+                    <b>MR-Feld</b>(Magieresistenz)
+                    <b>:</b>
+                </p>
+                <p>Dieses Feld bietet die Möglichkeit die Magieresistenz eines Charkaters anzuzeigen und im Fall von
+                    NSCs auch zu verwalten.
+                </p>
+                <p>
+                    <b>WS-Feld</b>(Wundschwelle)
+                    <b>:</b>
+                </p>
+                <p>Dieses Feld bietet die Möglichkeit die Wundschwelle eines Charakters anzuzeigen und im Fall von NSCs
+                    auch zu verwalten.
+                </p>
+                <p>
+                    <b>Paradewerte</b>(nur bei NSCs)
+                    <b>:</b>
+                </p>
+                <p>Dieses Feld verwaltet die Parademöglichkeiten eines NSCs, bei denen einer Waffe ein Paradewert und
+                    ein Schadenswert zugeordnet werden können. Es können mehrere Möglichkeiten eingetragen werden, die
+                    entweder durch Semikolon oder Zeilenumbrüche getrennt werden müssen.
+                </p>
+                <p>Näheres hierzu siehe oben unter "Angriffswerte" im Abschnitt "Aktionenansicht".</p>
+                <h>Ansicht für Größe, Reichweite &amp; Geschwindigkeit</h>
+                <p>
+                    <b>Größe-Feld:</b>
+                </p>
+                <p>Der Wert in diesem Feld entspricht der Kästchengröße, die dieser Charakter oder tierische Begleiter
+                    auf einer Karte einnimmt, sofern Kästchen auf einer Karte gezogen wurden.
+                </p>
+                <p>
+                    <b>Reichw.-Feld</b>(Reichweite)
+                    <b>:</b>
+                </p>
+                <p>Das Reichweitenfeld beinhaltet die Reichweite für Angriffe eines Charakters oder tierischen
+                    Begleiters in Anzahl an Kästchen, sofern Kästchen auf einer Karte gezogen wurden.
+                </p>
+                <p>
+                    <b>Geschw-Feld</b>(Geschwindigkeit)
+                    <b>:</b>
+                </p>
+                <p>Hier kann die Geschwindigkeit eines Charakters oder tierischen Begleiters angezeigt werden. Bei
+                    Spielercharakteren existiert nur ein Feld für die Standardgeschwindigkeit des Chars. Bei allen
+                    anderen Arten von Einträgen finden sich vier Felder, welche für die Geschwindigkeiten gehend,
+                    laufend, schwimmend und fliegend stehen. Der Tooltip hilft bei der Identifizierung der einzelnen
+                    Felder, wenn der Mauszeiger über einem Feld verweilt.
+                </p>
+                <h>Effektansicht</h>
+                <p>Dient der Verwaltung von Effekten. Ein neuer Effekt kann durch Klicken auf das Plus im grünen Kreis
+                    erstellt werden. Durch zweimaliges Klicken auf den roten Kreis mit dem Strich kann der Effekt wieder
+                    gelöscht werden.
+                </p>
+                <p>Ein Effekt behinhaltet zu Beginn zwei Schaltflächen.</p>
+                <p>Die obere steuert die Sichtbarkeit des Effekts. Hier kann zwischen allen, nur Spieler_in und
+                    Spielleitung (SP + SL) und nur Spielleitung (nurSL) gewählt werden. Unabhängig von dieser
+                    Einstellung wird der Effekt auf Spielendenseite nur angezeigt, wenn er auch aktiv, also
+                    eingeschaltet ist (siehe unten).
+                </p>
+                <p>Die untere Schaltfläche schaltet einen Effekt an und aus. Nur wenn ein Effekt aktiv ist, wird die
+                    Restdauer (siehe unten) bei Zugende angepasst und nur dann ist er auch auf Spielendenseite in
+                    Abhängigkeit der Einstellung der oberen Schaltfläche sichtbar.
+                </p>
+                <p>Rechts von den Schaltflächen erstreckt sich ein Feld, in welches der Name des Effekts und ggf. eine
+                    Kurzbeschreiung eingefügt werden kann.
+                </p>
+                <p>Diesem Feld folgt eine weitere Schaltfläche, welche die Dauer eines Effekts anzeigt. Standardmäßig
+                    zeigt sie "permanent" an. Sie kann aber auch durch Anklicken verändert werden. Weitere Werte der
+                    Schaltfläche sind "Aktionen bis Ende" und "Aktionen bis Start". Ist der Wert der Schlatfläche nicht
+                    "permanent", so folgt ihr ein weiteres Feld. In diesem Feld können die Aktionen festgehalten werden,
+                    die noch vergehen sollen, bis der Effekt startet oder endet. Der Wert dieses Feldes wird bei Ende
+                    eines Zuges um eines reduziert. Wird der Wert dadurch negativ und die Schlatfläche stand auf
+                    "Aktionen bis Ende", so wird der Effekt automatisch gelöscht. War die Schaltfläche jedoch auf
+                    "Aktionen bis Start" gestanden, so wird der Effekt in diesem Fall automatisch zu einem permanenten
+                    Effekt. Selbstverständlich kann dies durch Anklicken der Schaltfläche beim nächsten Zug des Eintrags
+                    in "Aktionen bis Ende" geändert und eine entsprechende Zahl in das Feld hinter der Schlatfläche
+                    eingetragen werden.
+                </p>
+                <p>Damit die Anpassung der Restdauer bis zum Beginn oder Ende eines Effekts richtig angepasst wird, ist
+                    es wichtig, dass die Einstellungen in der "Aktionsansicht" richtig erfolgt sind (siehe oben). Sollte
+                    dort im Feld "max. Anzahl Handlungen" bewusst eine 0 oder 1 eingetragen worden sein, weil die Gruppe
+                    diese Funktionalität nicht nutzen möchte, so muss die Restdauer nicht in Aktionen sondern
+                    Kampfrunden erfasst werden.
+                </p>
+                <p>Wie bei der Zielansicht gibt es auch für die Effekte eine Zusammenfassung, wenn die Effektansicht
+                    ausgeblendet ist. Auch diese Zusammenfassung befindet sich am Ende eines Eintrags. In die
+                    Zusammenfassung werden nur aktive Effekte aufgenommen.
+                </p>
+                <p>Einzelne Effekte werden durch den folgenden Strich getrennt: |. Aus einem Eintrag geht der Name des
+                    Effekts hervor und wie lange er noch anhält bzw. wie lange es noch dauert, bis seine Wirkung
+                    eintritt. Gibt es keine Zeitangaben, so handelt es sich um einen permanenten Effekt. Effekte und
+                    ihre Beschreibungen die in runden Klammern stehen sind nur für den jeweiligen Spielenden und die
+                    Spielleitung bzw. nur für die Spielleitung sichtbar.
+                </p>
+            </text>
+        </kampfuebersichtHost>
+        <nsc>
+            <name type="string">Hilfe zu NSCs</name>
+            <text type="formattedtext">
+                <h>Allgemeines</h>
+                <p>
+                    <b>allgemeine Felder</b>
+                </p>
+                <p>Im obersten Abschnitt des Fensters kann man links auf das runde Feld ein Token ziehen und dieses dem
+                    NSC-Typ zuweisen. Das Schloss schützt das Dokument vor Veränderungen, wenn es geschlossen ist. Das
+                    Feld nach dem Namensfeld dient dazu zu definieren, wie sich der NSC-Typ zu den Helden verhält
+                    (freundlich, neutral, feindlich). Per Klicken auf die Sprechblase kann die spielleitende Person für
+                    den Chat die Identität des NSCs übernehmen.
+                </p>
+                <p>
+                    <b>Würfelfelder</b>
+                </p>
+                <p>In den unten als Würfelfelder bezeichneten Felder, können Würfel erfasst werden. Hierzu muss die Art
+                    und Anzahl an Würfel eingegeben werden. Absolute Zahlen können ebenfalls erfasst werden, die dann
+                    nach dem Wurf mit dem Würfelergebnis verrechnet werden können. Zulässige Rechenzeichen sind + und -.
+                </p>
+                <p>Um Würfel zu erfassen können die Buchstaben w, W, d und D verwendet werden. Die Zahl vor dem
+                    Buchstaben gibt die Anzahl der Würfel an. Die Zahl hinter dem Buchstaben gibt die Anzahl der Seiten
+                    des jeweiligen Würfels wieder. Zwischen den Rechenzeichen, Buchstaben und Ziffern dürfen keine
+                    Leerzeichen eingetragen werden. Sollen also zwei sechseitige Würfel geworfen und zu deren Ergebnis
+                    zwei hinzugezählt werden, so wäre die korrekte Eingabe: 2w6+2
+                </p>
+                <p>
+                    <b>NSC, Kreatur und Beschwörung</b>
+                </p>
+                <p>Am unteren Fensterrand findet sich eine Auswahl mit den Felder "NSC", "Kreatur" und "Beschwörung".
+                    Hier kann der Tyo der Meisterperson näher definiert werden. Es unterscheidet sich aber lediglich der
+                    Reiter "Anderes" zwischen den einzelnen Untertypen.
+                </p>
+                <h>Reiter Charakter</h>
+                <p>Hier haben alle möglichen Arten von Beschreibungen platz.</p>
+                <h>Reiter Kampf</h>
+                <p>
+                    <b>
+                        <u>Allgemeine Werte</u>
+                    </b>
+                </p>
+                <p>
+                    <b>LeP-Zufall:</b>
+                </p>
+                <p>Würfelfeld (siehe oben) zur Zufallsberechnung der Lebensenergie. Auf dieses Feld wird zugegriffen,
+                    wenn im Reiter Kampf bei der Option &#132;Kampfübersicht: zufällige LeP, AuP, AsP&#147; entweder
+                    &#132;alle&#147; oder &#132;Gruppe&#147; ausgewählt wurde. Wurde &#132;Gruppe&#147; ausgewählt, so
+                    wird auf dieses Feld nur zugegriffen, wenn vom selben NSC mehrere in das Scharmützel oder die
+                    Kampfübersicht gezogen wurden. Handelt sich nur um einen einzigen Eintrag dieses NSC-Typs, so wird
+                    als LeP der Wert aus dem Feld LeP-fest genommen.
+                </p>
+                <p>
+                    <b>AuP-Zufall:</b>
+                </p>
+                <p>Feld für die Berechnungsweise des Zufallswerts der Ausdauer. Näheres siehe Hilfe zu &#132;LeP-Zufall&#147;
+                    oben.
+                </p>
+                <p>
+                    <b>LeP-fest:</b>
+                </p>
+                <p>Feld zur Bestimmung der Lebensenergie eines NSCs. Auf dieses Feld wird zugegriffen, wenn im Reiter
+                    Kampf bei der Option &#132;NSCs: zufällige LeP, AuP, AsP&#147; entweder &#132;aus&#147; oder &#132;Gruppe&#147;
+                    ausgewählt wurde. Bei der Auswahl &#132;Gruppe&#147; wird auf dieses Feld nur dann zugegriffen, wenn
+                    von einem NSC nur eine Instanz in das Scharmüztel oder die Kampfübersicht gezogen wurden. Das Feld
+                    kann nur ganze, positive Zahlen verarbeiten.
+                </p>
+                <p>
+                    <b>AuP-fest:</b>
+                </p>
+                <p>Feld zur Bestimmung der Ausdauer eines NSCs. Näheres siehe Hilfe zu &#132;LeP-fest&#147; oben.</p>
+                <p>
+                    <b>AsP-Zufall:</b>
+                </p>
+                <p>Feld für die Berechnungsweise des Zufallswerts der Astralpunkte. Näheres siehe Hilfe zu &#132;LeP-Zufall&#147;
+                    oben.
+                </p>
+                <p>
+                    <b>KaP-Zufall:</b>
+                </p>
+                <p>Feld für die Berechnungsweise des Zufallswerts der Karmalenergiepunkte. Näheres siehe Hilfe zu &#132;LeP-Zufall&#147;
+                    oben.
+                </p>
+                <p>
+                    <b>AsP-fest:</b>
+                </p>
+                <p>Feld zur Bestimmung der Astralpunkte eines NSCs. Näheres siehe Hilfe zu &#132;LeP-fest&#147; oben.
+                </p>
+                <p>
+                    <b>KaP-fest:</b>
+                </p>
+                <p>Feld zur Bestimmung der Karmalenergiepunkte eines NSCs. Näheres siehe Hilfe zu &#132;LeP-fest&#147;
+                    oben.
+                </p>
+                <p>
+                    <b>INI:</b>
+                </p>
+                <p>Würfelfeld (siehe oben) zur Bestimmung der Initiative eines NSCs.</p>
+                <p>
+                    <b>GS:</b>
+                </p>
+                <p>Feld, mit dem die Geschwindigkeit eines NSCs festgelegt wird.</p>
+                <p>
+                    <b>AT/PA:</b>
+                </p>
+                <p>In diesem Feld können der Attacke- und Paradebasiswert eingetragen werden. Die Eingabe hat ohne
+                    Leerzeichen zu erfolgen, wobei der Attackewert durch einen Schrägstrich vom Paradewert zu trennen
+                    ist. Beispiel für AT-Basis von 9 und PA-Basis von 8: 9/8.
+                </p>
+                <p>Die Werte sind würfelbar.</p>
+                <p>
+                    <b>GW:</b>
+                </p>
+                <p>Feld, in dem der Gefahrenwert festgehalten werden kann. Dieser reicht von 1 (absolut harmlos) bis 20
+                    (tödlich).
+                </p>
+                <p>
+                    <b>Ausweichen:</b>
+                </p>
+                <p>Hier kann der Ausweichenwert für den NSC eingetragen werden. In dieses Feld kann nur eine ganze,
+                    positive Zahl eingetragen werden.
+                </p>
+                <p>Auf den Wert kann eine Probe abgelegt werden.</p>
+                <p>
+                    <b>Größe/RW:</b>
+                </p>
+                <p>In diesem Feld können die Größe und Reichweite, gemessen in Gitterkästchen, eingetragen werden. Die
+                    Eingabe hat ohne Leerzeichen zu erfolgen, wobei der Wert für die Größe durch einen Schrägstrich vom
+                    Reichweitenwert zu trennen ist. Diese Angaben werden zur farblichen Hinterlegung verwendet, wenn ein
+                    Token vom Scharmützel aus auf die Karte gezogen wird. Beispiel für eine Größe von 1 und einer
+                    Reichweite von 2: 1/2
+                </p>
+                <p>
+                    <b>Eigenschaften:</b>
+                </p>
+                <p>In diese Felder können die Eigenschaftswerte eingetragen werden. &#132;MU&#147; steht dabei für Mut,
+                    &#132;KL&#147; für Klugheit, &#132;IN&#147; für Intuition, &#132;CH&#147; für Charisma, &#132;FF&#147;
+                    für Fingerfertigkeit, &#132;GE&#147; für Gewandtheit, &#132;KO&#147; für Konstitution und &#132;KK&#147;
+                    für Körperkraft.
+                </p>
+                <p>In all diese Felder können nur ganze, positive Zahlen eingetragen werden. Über sie kann auch eine
+                    entsprechende Probe abgelegt werden.
+                </p>
+                <p/>
+                <p>
+                    <b>
+                        <u>Kampfwerte</u>
+                    </b>
+                </p>
+                <p>
+                    <b>Attacke:</b>
+                </p>
+                <p>Dieses Feld verwaltet die Angriffsmöglichkeiten eines NSCs, bei denen einer Waffe ein Attackewert
+                    sowie ein Schadenswert zugeordnet werden können. Es können mehrere Möglichkeiten eingetragen werden,
+                    die entweder durch Semikolon oder Zeilenumbrüche getrennt werden müssen.
+                </p>
+                <p>Die Eingabe einer Möglichkeit erfolgt nach folgendem Schema:</p>
+                <p>Waffenname Attackewert (Schadenswert)</p>
+                <p>Als Waffenname können mehrere Wörter, jeweils durch Leerzeichen getrennt verwendet werden. Zahlen
+                    können nur verwendet werden, wenn ihnen kein Leerzeichen vorangeht.
+                </p>
+                <p>Der Attackewert ist durch eine Zahl zu erfassen, die durch ein Leerzeichen vom Waffenname zu trennen
+                    ist.
+                </p>
+                <p>Der Schadenswert ist so festzuhalten, dass der ohne Leerzeichen in runden Klammern steht. Die runde
+                    Klammerauf ist wiederum durch ein Leerzeichen von dem Angriffswert zu trennen. Für den Schadenswert
+                    kann die Anzahl und Art von Würfeln, absolute Zahlen sowie die Rechenzeichen &#132;+&#147; und
+                    &#132;-&#147; verarbeiten. Zum Anzeigen, das es sich um Anzahl und Art von Würfeln handelt, können
+                    die Buchstaben d, D, w und W verwendet werden. Die Zahl davor gibt an, wie viele Würfel dieser Art
+                    für den Wurf verwendet werden soll. Die Zahl nach dem Buchstaben gibt die Seitenzahl der Würfel an,
+                    die verwendet werden soll.
+                </p>
+                <p>Mindestensangaben sind der Waffenname bzw. waffenlose Kampfart, Attackewert und "()". Für einen
+                    Angriffswert mit Schwert von 10 muss der eintrag also mindestens wie folgt aussehen, wenn er
+                    würfelbar sein soll: "Schwer 10 ()".
+                </p>
+                <p>Beispiel:</p>
+                <p>Ein NSC soll die Möglichkeit haben mit einem Säbel AT-Wert von 12, einem Dolch AT-Wert von 11 sowie
+                    per Raufen AT-Wert von 13 anzugreifen. Der Säbel verursacht 1W6+3, der Dolch 1W6+1 und Raufen 1W6
+                    Schaden. Das Feld wäre dann so auszufüllen:
+                </p>
+                <p>&#132;Säbel 12 (1W6+3); Dolch 11 (1W6+1); Raufen 13 (1W6)&#147;</p>
+                <p>
+                    <b>Parade:</b>
+                </p>
+                <p>Dieses Feld verwaltet die Parademöglichkeiten eines NSCs, bei denen einer Waffe ein Paradewert und
+                    ein Schadenswert zugeordnet werden können. Es können mehrere Möglichkeiten eingetragen werden, die
+                    entweder durch Semikolon oder Zeilenumbrüche getrennt werden müssen.
+                </p>
+                <p>Näheres hierzu siehe oben bei Attacke.</p>
+                <p>
+                    <b>BE/WS/MR:</b>
+                </p>
+                <p>In die Felder kann die Behinderung (BE), Wundschwelle (WS) und Magieresistenz (MR) eingetragen
+                    werden.
+                </p>
+                <p>In all diese Felder können nur ganze, positive Zahlen eingetragen werden.</p>
+                <p>
+                    <b>Rüstung:</b>
+                </p>
+                <p>In die Felder können die Rüstungswerte für die entsprechenden Zonen bzw. der Rüstungswert der
+                    gesamten Rüstung eingetragen werden. &#132;Ko&#147; steht dabei für Kopf, &#132;Br&#147; für Brust,
+                    &#132;Ba&#147; für Bauch, &#132;Rü&#147; für Rücken, &#132;lA&#147; für linker Arm, &#132;rA&#147;
+                    für rechter Arm, &#132;lB&#147; für linkes Bein, &#132;rB&#147; für rechtes Bein und &#132;Ges.&#147;
+                    für die gesamte Rüstung.
+                </p>
+                <p>In all diese Felder können nur ganze, positive Zahlen eingetragen werden.</p>
+                <p>
+                    <b>Aktionen</b>
+                </p>
+                <p>Hier kann die Anzahl der Aktionen pro Kampfrunde eingetragen werden, welche der NSC, die Kreatur oder
+                    Beschwörung haben.
+                </p>
+                <p>
+                    <b>Kampfverhalten/Bemerkungen</b>
+                </p>
+                <p>Dieses Feld ermöglicht es, das besondere Kampfverhalten oder sonstige Bemerkungen festzuhalten.</p>
+                <p/>
+                <p>
+                    <b>
+                        <u>Manöver</u>
+                    </b>
+                </p>
+                <p>
+                    <b>Sonderfähigkeiten:</b>
+                </p>
+                <p>In diesem Feld können die Sonderfähigkeit erfasst werden. Ein erster Leereintrag existiert immer.
+                    Durch Anklicken kann ein Name vergeben werden. Durch Anklicken des roten Drachensymbols öffnet sich
+                    ein Fenster in welchem die verschiedenen Werte dieser Sonderfertigkeit erfasst werden können.
+                </p>
+                <p>
+                    <b>Zauber:</b>
+                </p>
+                <p>Ein Feld zur Erfassung der Zauber. Näheres siehe Sonderfähigkeiten.</p>
+                <p>Das Wertefeld ist würfelbar, wenn im verlinkten Fenster das Feld "Probe" entsprechend ausgefüllt ist
+                    und die notwendigen Eigenschaftswerte erfasst wurden. Im Feld Probe müssen als Erstes die drei
+                    Kürzel für die zugrundeliegenden Eigenschaften getrennt durch den Schrägstrich / erfasst sein.
+                    Danach können in Klammer weitere Angaben folgen.
+                </p>
+                <p>Beispiel: MU / IN / GE (+Mod.)</p>
+                <p>
+                    <b>Liturgien:</b>
+                </p>
+                <p>Hier können die Liturgien erfasst werden. Näheres siehe Zauber.</p>
+                <p/>
+                <h>Reiter Anderes</h>
+                <p>
+                    <b>
+                        <u>Übersicht</u>
+                    </b>
+                </p>
+                <p>
+                    <b>Rasse, Kultur, Klasse, Kurzcharakteristik, Vorteile, Nachteile:</b>
+                </p>
+                <p>Felder, um entsprechende Beschreibungen festzuhalen.</p>
+                <p/>
+                <p>
+                    <b>
+                        <u>Sonderfertigkeiten, Talente, Zauber und Rituale</u>
+                    </b>
+                </p>
+                <p>
+                    <b>Sonderfertigkeiten:</b>
+                </p>
+                <p>Feld zum Erfassen der Sonderfähigkeiten.</p>
+                <p>
+                    <b>Talente:</b>
+                </p>
+                <p>Feld zum Erfassen von Talenten. Die Eingabe ist würfelbar, wenn nach dem Name des Talents / der
+                    Fertigkeit durch ein Leerzeichen getrennt der Talentwert folgt und sich daran in runden Klammern die
+                    Kürzel die zugrundeliegenden Eigenschaften folgen. Zudem müssen die Eigenschaftswerte natürlich im
+                    Tab Kampf unter Eigenschaften hinterlegt sein. Die einzelnen Talente/Fertigkeiten können dabei durch
+                    Zeilenumbrüche oder Semikolons/Strichpunkte getrennt sein.
+                </p>
+                <p>Beispiele:</p>
+                <p>Talentname 5 (MU/KL/IN)</p>
+                <p>Name des Talents 3 (ch/ff/ge)</p>
+                <p>Fertigkeitsname 7 (ko/kk/mu); Name der Fertigkeit 1 (KL/IN/CH)</p>
+                <p>
+                    <b>Zauber:</b>
+                </p>
+                <p>Hier können Zauber erfasst werden. Näheres siehe oben in der Beschreibung von "Zauber" bzw.
+                    "Sonderfähigkeiten" unter Reiter "Kampf".
+                </p>
+                <p>
+                    <b>Liturgien:</b>
+                </p>
+                <p>Hier können Liturgien erfasst werden. Näheres siehe oben in der Beschreibung von "Zauber" bzw.
+                    "Sonderfähigkeiten" unter Reiter "Kampf".
+                </p>
+                <p/>
+                <p>
+                    <b>
+                        <u>Sonstiges</u>
+                    </b>
+                </p>
+                <p>
+                    <b>Anderes (alle Kategorien):</b>
+                </p>
+                <p>Platz um sonstige Angaben festzuhalten.</p>
+                <p>
+                    <b>Besonderheiten (alle Kategorien):</b>
+                </p>
+                <p>Feld um Besonderheiten des NSC-Typ zu erfassen.</p>
+                <p>
+                    <b>Verwendung im Spiel (alle Kategorien):</b>
+                </p>
+                <p>Hier kann die Verwendung des NSC-Typs im Spiel näher beschrieben werden.</p>
+                <p>
+                    <b>SO (nur NSC):</b>
+                </p>
+                <p>Möglichkeit, um den Sozialstatus festzuhalten.</p>
+                <p>
+                    <b>GT (nur NSC):</b>
+                </p>
+                <p>Feld zum Eintragen des Werts für Gesetzestreue.</p>
+                <p>
+                    <b>Größe (nur NSC):</b>
+                </p>
+                <p>Hier kann die Größe des NSC-Typs im Spiel selbst festgehalten werden, also beispielsweise in Schritt
+                    oder in Halbfinder, ...
+                </p>
+                <p>
+                    <b>Gewicht (nur NSC und Kreatur):</b>
+                </p>
+                <p>Feld zum Erfassen des Gewichts eine NSC-Typs im Spiel, also beispielsweise in Stein, Unzen ...</p>
+                <p>
+                    <b>Inventar (nur NSC und Kreatur):</b>
+                </p>
+                <p>Möglichkeit das Inventar eines NSC-Typs festzuhalten.</p>
+                <p>
+                    <b>Größe/Spannweite (nur Kreatur):</b>
+                </p>
+                <p>Hier kann die Größe beziehungsweise die Spannweite des NSC-Typs im Spiel selbst festgehalten werden,
+                    also beispielsweise in Schritt, Halbfinder, ...
+                </p>
+                <p>
+                    <b>Verbreitung (nur Kreatur):</b>
+                </p>
+                <p>Feld, umzu erfasssen, in welchen Regionen die Kreatur vorkommt.</p>
+                <p>
+                    <b>Auftreten (nur Kreatur):</b>
+                </p>
+                <p>Wie treten die Tiere auf? In Rudeln, einzeln, paarweise, ...</p>
+                <p>
+                    <b>Beute (nur Kreatur):</b>
+                </p>
+                <p>Beschreibung der Teile einer Kreatur, die verwendet werden können.</p>
+                <p>
+                    <b>Jagd (nur Kreatur):</b>
+                </p>
+                <p>Modifikator für die Jagd auf diese Kreatur. Hier ist auch Platz um festzuhalten, ob die Kreatur
+                    flüchtet oder angreift.
+                </p>
+                <p>
+                    <b>Loyalität (nur Kreatur):</b>
+                </p>
+                <p>Feld zum Erfassen der Loyalität einer Kreatur.</p>
+                <p>
+                    <b>TK (nur Kreatur):</b>
+                </p>
+                <p>Tragkraft einer Kreatur.</p>
+                <p>
+                    <b>ZK (nur Kreatur):</b>
+                </p>
+                <p>Zugkraft einer Kreatur.</p>
+                <p>
+                    <b>FS (nur Kreatur):</b>
+                </p>
+                <p>Wert für Fährtensuche einer Kreatur.</p>
+                <p>
+                    <b>Preis (nur Kreatur):</b>
+                </p>
+                <p>Der Preis zum Kauf einer Kreatur.</p>
+                <p>
+                    <b>Futterbedarf (nur Kreatur):</b>
+                </p>
+                <p>Futterbedraf und dessen Kosten einer Kreatur.</p>
+                <p>
+                    <b>Allg.Ausbildung (nur Kreatur):</b>
+                </p>
+                <p>Beschreinbung der allgemeinen Ausbildung einer Kreatur.</p>
+                <p>
+                    <b>Ausbildungsvarianten (nur Kreatur):</b>
+                </p>
+                <p>Beschreibung der möglichen Ausbildungsverianten einer Kreatur.</p>
+                <p>
+                    <b>Mögliche Dienste (nur Beschwörung):</b>
+                </p>
+                <p>Feld, um die möglichen und automatischen Dienste eines beschworenen Wesens zu erfassen.</p>
+                <p>
+                    <b>Zusätzliche Dienste (nur Beschwörung):</b>
+                </p>
+                <p>Feld in dem die zusätzlichen Dienste oder Sonderdienste eines beschworenen Wesens zu erfassen.</p>
+                <p>
+                    <b>Beschwörung (nur Beschwörung):</b>
+                </p>
+                <p>Beschwörungsschwierigkeit des Wesens</p>
+                <p>
+                    <b>Beherrschung (nur Beschwörung):</b>
+                </p>
+                <p>Beherrschungsschwierigkeit eines Wesens.</p>
+                <p>
+                    <b>Austreibung (nur Beschwörung):</b>
+                </p>
+                <p>Schwierigkeit der Austreibung des Wesens.</p>
+                <p>
+                    <b>Startloyalität (nur Beschwörung):</b>
+                </p>
+                <p>Loyalität eines beschworenen Wesens gegenüber dem Beschwörer bei gelungener Beschwörung ohne
+                    Berücksichtigung weiterer Modifikatoren.
+                </p>
+                <p>
+                    <b>Wahrer Name (nur Beschwörung):</b>
+                </p>
+                <p>Feld zum Erfassen des Wahen Namens des Wesens.</p>
+                <p>
+                    <b>Basiskosten (nur Beschwörung):</b>
+                </p>
+                <p>Basiskosten der Beschwörung in AsP.</p>
+                <p>
+                    <b>Unterhaltskosten (nur Beschwörung):</b>
+                </p>
+                <p>Feld zum Eintragen der Unterhaltskosten.</p>
+            </text>
+        </nsc>
+    </hilfetexte>
+    <image>
+    </image>
+    <modifikatorenliste>
+        <public/>
+    </modifikatorenliste>
+    <options>
+        <public/>
+    </options>
+    <charsheet idcounter="34">
+        <id-00001>
+            <gesch type="string">männlich</gesch>
+            <kultur type="string">Mittelländische Städte/Hafenstädte und Städte an großen Flüssen</kultur>
+            <klasse type="string">Akademie Schwert und Stab zu Gareth</klasse>
+            <rasse type="string">Halbelf: Halbelf, in menschlicher Kultur aufgewachsen</rasse>
+            <gew type="string">68 Stein</gew>
+            <faugen type="string">dunkelbraun</faugen>
+            <hoehe type="string">188 Halbfinger</hoehe>
+            <fhaare type="string">hellblond</fhaare>
+            <geburtsdatum type="string">3. Travia 1003 BF</geburtsdatum>
+            <stand type="string"/>
+            <titel type="string"/>
+            <BE>
+                <end type="number">0</end>
+            </BE>
+            <aep>
+                <akt type="number">53</akt>
+                <base type="number">21</base>
+                <max type="number">53</max>
+                <mod1 type="number">0</mod1>
+                <mod2 type="number">32</mod2>
+            </aep>
+            <ap>
+                <frei type="number">0</frei>
+                <gesamt type="number">12073</gesamt>
+                <verbraucht type="number">12073</verbraucht>
+            </ap>
+            <at>
+                <base type="number">7</base>
+            </at>
+            <attribute>
+                <charisma>
+                    <aktuell type="number">15</aktuell>
+                    <basis type="number">15</basis>
+                </charisma>
+                <fingerfertigkeit>
+                    <aktuell type="number">12</aktuell>
+                    <basis type="number">12</basis>
+                </fingerfertigkeit>
+                <gewandtheit>
+                    <aktuell type="number">12</aktuell>
+                    <basis type="number">12</basis>
+                </gewandtheit>
+                <intuition>
+                    <aktuell type="number">15</aktuell>
+                    <basis type="number">15</basis>
+                </intuition>
+                <klugheit>
+                    <aktuell type="number">15</aktuell>
+                    <basis type="number">15</basis>
+                </klugheit>
+                <koerperkraft>
+                    <aktuell type="number">12</aktuell>
+                    <basis type="number">12</basis>
+                </koerperkraft>
+                <konstitution>
+                    <aktuell type="number">15</aktuell>
+                    <basis type="number">15</basis>
+                </konstitution>
+                <mut>
+                    <aktuell type="number">12</aktuell>
+                    <basis type="number">12</basis>
+                </mut>
+                <wundschwelle>
+                    <wert type="number">7</wert>
+                </wundschwelle>
+                <sozialstatus type="number">10</sozialstatus>
+                <geschwindigkeit type="number">8</geschwindigkeit>
+            </attribute>
+            <aup>
+                <akt type="number">30</akt>
+                <base type="number">20</base>
+                <max type="number">30</max>
+                <mod1 type="number">0</mod1>
+                <mod2 type="number">10</mod2>
+            </aup>
+            <ausweichen>
+                <mod type="number">0</mod>
+            </ausweichen>
+            <aw type="number">8</aw>
+            <coins>
+                <slot3>
+                    <amount type="number">5</amount>
+                </slot3>
+                <slot2>
+                    <amount type="number">2</amount>
+                </slot2>
+            </coins>
+            <coinother type="string"/>
+            <fernkampfwaffenliste/>
+            <fk>
+                <base type="number">8</base>
+            </fk>
+            <ini>
+                <base type="number">10</base>
+                <max type="number">10</max>
+                <mod type="number">0</mod>
+            </ini>
+            <inventorylist>
+                <id-00001>
+                    <name type="string">(Lang-)Schwert</name>
+                    <carried type="number">0</carried>
+                    <weight type="number">80</weight>
+                    <count type="number">1</count>
+                    <location type="string"/>
+                </id-00001>
+                <id-00002>
+                    <name type="string">Pinsel</name>
+                    <carried type="number">0</carried>
+                    <weight type="number">10</weight>
+                    <count type="number">1</count>
+                    <location type="string"/>
+                </id-00002>
+                <id-00003>
+                    <name type="string">Iryanrüstung</name>
+                    <carried type="number">0</carried>
+                    <weight type="number">140</weight>
+                    <count type="number">1</count>
+                    <location type="string"/>
+                </id-00003>
+                <id-00004>
+                    <name type="string">Magierstab mit Kristallk.</name>
+                    <carried type="number">0</carried>
+                    <weight type="number">150</weight>
+                    <count type="number">1</count>
+                    <location type="string"/>
+                </id-00004>
+                <id-00005>
+                    <name type="string">Pferd: Tralloper Riese</name>
+                    <carried type="number">0</carried>
+                    <weight type="number">44000</weight>
+                    <count type="number">1</count>
+                    <location type="string"/>
+                </id-00005>
+                <id-00006>
+                    <name type="string">Toris linkes Auge</name>
+                    <carried type="number">0</carried>
+                    <weight type="number">20</weight>
+                    <count type="number">1</count>
+                    <location type="string"/>
+                </id-00006>
+            </inventorylist>
+            <kap>
+                <akt type="number">0</akt>
+                <max type="number">0</max>
+                <mod1 type="number">0</mod1>
+                <mod2 type="number">0</mod2>
+            </kap>
+            <lep>
+                <akt type="number">32</akt>
+                <base type="number">21</base>
+                <max type="number">32</max>
+                <mod1 type="number">0</mod1>
+                <mod2 type="number">11</mod2>
+            </lep>
+            <mr>
+                <base type="number">8</base>
+                <max type="number">9</max>
+                <mod type="number">1</mod>
+            </mr>
+            <nachteile idcounter="0">
+                <id-00006>
+                    <label type="string">Arroganz</label>
+                    <stufe type="number">4</stufe>
+                </id-00006>
+                <id-00007>
+                    <label type="string">Autoritätsgläubig</label>
+                    <stufe type="number">8</stufe>
+                </id-00007>
+                <id-00008>
+                    <label type="string">Eitelkeit</label>
+                    <stufe type="number">8</stufe>
+                </id-00008>
+                <id-00009>
+                    <label type="string">Feind</label>
+                    <stufe type="number">8</stufe>
+                </id-00009>
+                <id-00010>
+                    <label type="string">Goldgier</label>
+                    <stufe type="number">4</stufe>
+                </id-00010>
+                <id-00011>
+                    <label type="string">Neugier</label>
+                    <stufe type="number">7</stufe>
+                </id-00011>
+                <id-00012>
+                    <label type="string">Prinzipientreue</label>
+                    <stufe type="number">12</stufe>
+                </id-00012>
+                <id-00013>
+                    <label type="string">Rachsucht</label>
+                    <stufe type="number">3</stufe>
+                </id-00013>
+                <id-00014>
+                    <label type="string">Schulden</label>
+                    <stufe type="number">475</stufe>
+                </id-00014>
+                <id-00015>
+                    <label type="string">Speisegebote</label>
+                </id-00015>
+                <id-00016>
+                    <label type="string">Stigma</label>
+                    <stufe type="number">3</stufe>
+                </id-00016>
+                <id-00017>
+                    <label type="string">Verpflichtungen</label>
+                </id-00017>
+                <id-00018>
+                    <label type="string">Verwöhnt</label>
+                    <stufe type="number">4</stufe>
+                </id-00018>
+            </nachteile>
+            <nahkampfwaffenliste idcounter="4">
+                <id-00001>
+                    <attacke type="number">15</attacke>
+                    <bruchfaktor type="number">1</bruchfaktor>
+                    <damagedice type="dice">d6</damagedice>
+                    <damagebonus type="number">4</damagebonus>
+                    <dk type="string">N</dk>
+                    <ini type="number">0</ini>
+                    <label type="string">(Lang-)Schwert</label>
+                    <parade type="number">12</parade>
+                    <showonminisheet type="number">1</showonminisheet>
+                    <wm1 type="number">0</wm1>
+                    <wm2 type="number">0</wm2>
+                    <tpkk>
+                        <eins type="number">11</eins>
+                        <zwei type="number">4</zwei>
+                    </tpkk>
+                </id-00001>
+                <id-00002>
+                    <attacke type="number">4</attacke>
+                    <bruchfaktor type="number">-9</bruchfaktor>
+                    <damagedice type="dice">d6</damagedice>
+                    <damagebonus type="number">1</damagebonus>
+                    <dk type="string">N</dk>
+                    <ini type="number">-2</ini>
+                    <label type="string">Magierstab mit Kristallk.</label>
+                    <parade type="number">4</parade>
+                    <showonminisheet type="number">1</showonminisheet>
+                    <wm1 type="number">-1</wm1>
+                    <wm2 type="number">-2</wm2>
+                    <tpkk>
+                        <eins type="number">11</eins>
+                        <zwei type="number">4</zwei>
+                    </tpkk>
+                </id-00002>
+                <id-00003>
+                    <attacke type="number">7</attacke>
+                    <bruchfaktor type="number">0</bruchfaktor>
+                    <damagedice type="dice">d6</damagedice>
+                    <damagebonus type="number">0</damagebonus>
+                    <dk type="string">H</dk>
+                    <ini type="number">0</ini>
+                    <label type="string">Raufen</label>
+                    <parade type="number">11</parade>
+                    <showonminisheet type="number">1</showonminisheet>
+                    <tpkk>
+                        <eins type="number">10</eins>
+                        <zwei type="number">3</zwei>
+                    </tpkk>
+                </id-00003>
+                <id-00004>
+                    <attacke type="number">7</attacke>
+                    <bruchfaktor type="number">0</bruchfaktor>
+                    <damagedice type="dice">d6</damagedice>
+                    <damagebonus type="number">0</damagebonus>
+                    <dk type="string">H</dk>
+                    <ini type="number">0</ini>
+                    <label type="string">Ringen</label>
+                    <parade type="number">10</parade>
+                    <showonminisheet type="number">1</showonminisheet>
+                    <tpkk>
+                        <eins type="number">10</eins>
+                        <zwei type="number">3</zwei>
+                    </tpkk>
+                </id-00004>
+            </nahkampfwaffenliste>
+            <name type="string">Tori Novritalkos</name>
+            <pa>
+                <base type="number">8</base>
+            </pa>
+            <schildliste idcounter="0"/>
+            <sf idcounter="33">
+                <id-00000>
+                    <label type="string">Apport</label>
+                </id-00000>
+                <id-00001>
+                    <label type="string">Astrale Meditation</label>
+                </id-00001>
+                <id-00002>
+                    <label type="string">Gefäß der Sterne</label>
+                </id-00002>
+                <id-00003>
+                    <label type="string">Große Meditation</label>
+                </id-00003>
+                <id-00004>
+                    <label type="string">Kulturkunde (Mittelreich)</label>
+                </id-00004>
+                <id-00005>
+                    <label type="string">Meisterliche Regeneration</label>
+                </id-00005>
+                <id-00006>
+                    <label type="string">Merkmalskenntnis: Eigenschaften</label>
+                </id-00006>
+                <id-00007>
+                    <label type="string">Merkmalskenntnis: Elementar (Feuer)</label>
+                </id-00007>
+                <id-00008>
+                    <label type="string">Merkmalskenntnis: Schaden</label>
+                </id-00008>
+                <id-00009>
+                    <label type="string">Ortskenntnis (Stadtteil/Kleinstadt)</label>
+                </id-00009>
+                <id-00010>
+                    <label type="string">Regeneration I</label>
+                </id-00010>
+                <id-00011>
+                    <label type="string">Regeneration II</label>
+                </id-00011>
+                <id-00012>
+                    <label type="string">Repräsentation: Magier</label>
+                </id-00012>
+                <id-00013>
+                    <label type="string">Ritualkenntnis: Gildenmagie</label>
+                </id-00013>
+                <id-00014>
+                    <label type="string">Rüstungsgewöhnung I (Gambeson, Iryanrüstung)</label>
+                </id-00014>
+                <id-00015>
+                    <label type="string">Stabzauber: Bindung</label>
+                </id-00015>
+                <id-00016>
+                    <label type="string">Stabzauber: Fackel</label>
+                </id-00016>
+                <id-00017>
+                    <label type="string">Stabzauber: Flammenschwert</label>
+                </id-00017>
+                <id-00018>
+                    <label type="string">Stabzauber: Hammer des Magus</label>
+                </id-00018>
+                <id-00019>
+                    <label type="string">Stabzauber: Kraftfokus</label>
+                </id-00019>
+                <id-00020>
+                    <label type="string">Stabzauber: Zauberspeicher</label>
+                </id-00020>
+                <id-00021>
+                    <label type="string">Talentspezialisierung Überreden (Feilschen)</label>
+                </id-00021>
+                <id-00022>
+                    <label type="string">Zauberkontrolle</label>
+                </id-00022>
+                <id-00023>
+                    <label type="string">Zauberroutine</label>
+                </id-00023>
+                <id-00024>
+                    <label type="string">Zauberspezialisierung Attributo [Magier] (Körperkraft)</label>
+                </id-00024>
+                <id-00025>
+                    <label type="string">Zauberspezialisierung Ignisphaero Feuerball [Magier] (Zauberdauer)</label>
+                </id-00025>
+                <id-00026>
+                    <label type="string">Zauberzeichen</label>
+                </id-00026>
+                <id-00027>
+                    <label type="string">Zauberzeichen: Bann- und Schutzkreis gegen Geisterwesen</label>
+                </id-00027>
+                <id-00028>
+                    <label type="string">Zauberzeichen: Glyphe der Elementaren Attraktion</label>
+                </id-00028>
+                <id-00029>
+                    <label type="string">Zauberzeichen: Satinavs Siegel</label>
+                </id-00029>
+                <id-00030>
+                    <label type="string">Zauberzeichen: Siegel der Seelenruhe</label>
+                </id-00030>
+                <id-00031>
+                    <label type="string">Zauberzeichen: Sigille des unsichtbaren Trägers</label>
+                </id-00031>
+                <id-00032>
+                    <label type="string">Zauberzeichen: Zeichen des Handwerks</label>
+                </id-00032>
+            </sf>
+            <litlist/>
+            <rklist/>
+            <soderfertigkeiten type="string">Rüstungsgewöhnung I (Gambeson, Iryanrüstung)</soderfertigkeiten>
+            <skilllist>
+                <gesellschaft>
+                    <id-00001>
+                        <label type="string">Betören</label>
+                        <wert type="number">5</wert>
+                        <e1 type="string">attribute.intuition.aktuell</e1>
+                        <e2 type="string">attribute.charisma.aktuell</e2>
+                        <e3 type="string">attribute.charisma.aktuell</e3>
+                    </id-00001>
+                    <id-00002>
+                        <label type="string">Etikette</label>
+                        <wert type="number">7</wert>
+                        <e1 type="string">attribute.klugheit.aktuell</e1>
+                        <e2 type="string">attribute.intuition.aktuell</e2>
+                        <e3 type="string">attribute.charisma.aktuell</e3>
+                    </id-00002>
+                    <id-00003>
+                        <label type="string">Gassenwissen</label>
+                        <wert type="number">10</wert>
+                        <e1 type="string">attribute.klugheit.aktuell</e1>
+                        <e2 type="string">attribute.intuition.aktuell</e2>
+                        <e3 type="string">attribute.charisma.aktuell</e3>
+                    </id-00003>
+                    <id-00004>
+                        <label type="string">Lehren</label>
+                        <wert type="number">9</wert>
+                        <e1 type="string">attribute.klugheit.aktuell</e1>
+                        <e2 type="string">attribute.intuition.aktuell</e2>
+                        <e3 type="string">attribute.charisma.aktuell</e3>
+                    </id-00004>
+                    <id-00005>
+                        <label type="string">Menschenkenntnis</label>
+                        <wert type="number">12</wert>
+                        <e1 type="string">attribute.klugheit.aktuell</e1>
+                        <e2 type="string">attribute.intuition.aktuell</e2>
+                        <e3 type="string">attribute.charisma.aktuell</e3>
+                    </id-00005>
+                    <id-00006>
+                        <label type="string">Überreden</label>
+                        <wert type="number">15</wert>
+                        <e1 type="string">attribute.mut.aktuell</e1>
+                        <e2 type="string">attribute.intuition.aktuell</e2>
+                        <e3 type="string">attribute.charisma.aktuell</e3>
+                    </id-00006>
+                    <id-00007>
+                        <label type="string">Überzeugen</label>
+                        <wert type="number">12</wert>
+                        <e1 type="string">attribute.klugheit.aktuell</e1>
+                        <e2 type="string">attribute.intuition.aktuell</e2>
+                        <e3 type="string">attribute.charisma.aktuell</e3>
+                    </id-00007>
+                </gesellschaft>
+                <handwerk>
+                    <id-00001>
+                        <label type="string">Alchimie</label>
+                        <wert type="number">5</wert>
+                        <e1 type="string">attribute.mut.aktuell</e1>
+                        <e2 type="string">attribute.klugheit.aktuell</e2>
+                        <e3 type="string">attribute.fingerfertigkeit.aktuell</e3>
+                    </id-00001>
+                    <id-00002>
+                        <label type="string">Boote fahren</label>
+                        <wert type="number">1</wert>
+                        <e1 type="string">attribute.gewandtheit.aktuell</e1>
+                        <e2 type="string">attribute.konstitution.aktuell</e2>
+                        <e3 type="string">attribute.koerperkraft.aktuell</e3>
+                    </id-00002>
+                    <id-00003>
+                        <label type="string">Hauswirtschaft</label>
+                        <wert type="number">1</wert>
+                        <e1 type="string">attribute.intuition.aktuell</e1>
+                        <e2 type="string">attribute.charisma.aktuell</e2>
+                        <e3 type="string">attribute.fingerfertigkeit.aktuell</e3>
+                    </id-00003>
+                    <id-00004>
+                        <label type="string">Heilkunde: Gift</label>
+                        <wert type="number">3</wert>
+                        <e1 type="string">attribute.mut.aktuell</e1>
+                        <e2 type="string">attribute.klugheit.aktuell</e2>
+                        <e3 type="string">attribute.intuition.aktuell</e3>
+                    </id-00004>
+                    <id-00005>
+                        <label type="string">Heilkunde: Wunden</label>
+                        <wert type="number">4</wert>
+                        <e1 type="string">attribute.klugheit.aktuell</e1>
+                        <e2 type="string">attribute.charisma.aktuell</e2>
+                        <e3 type="string">attribute.fingerfertigkeit.aktuell</e3>
+                    </id-00005>
+                    <id-00006>
+                        <label type="string">Holzbearbeitung</label>
+                        <wert type="number">5</wert>
+                        <e1 type="string">attribute.klugheit.aktuell</e1>
+                        <e2 type="string">attribute.fingerfertigkeit.aktuell</e2>
+                        <e3 type="string">attribute.koerperkraft.aktuell</e3>
+                    </id-00006>
+                    <id-00007>
+                        <label type="string">Kochen</label>
+                        <wert type="number">0</wert>
+                        <e1 type="string">attribute.klugheit.aktuell</e1>
+                        <e2 type="string">attribute.intuition.aktuell</e2>
+                        <e3 type="string">attribute.fingerfertigkeit.aktuell</e3>
+                    </id-00007>
+                    <id-00008>
+                        <label type="string">Lederarbeiten</label>
+                        <wert type="number">6</wert>
+                        <e1 type="string">attribute.klugheit.aktuell</e1>
+                        <e2 type="string">attribute.fingerfertigkeit.aktuell</e2>
+                        <e3 type="string">attribute.fingerfertigkeit.aktuell</e3>
+                    </id-00008>
+                    <id-00009>
+                        <label type="string">Malen/Zeichnen</label>
+                        <wert type="number">10</wert>
+                        <e1 type="string">attribute.klugheit.aktuell</e1>
+                        <e2 type="string">attribute.intuition.aktuell</e2>
+                        <e3 type="string">attribute.fingerfertigkeit.aktuell</e3>
+                    </id-00009>
+                    <id-00010>
+                        <label type="string">Schneidern</label>
+                        <wert type="number">6</wert>
+                        <e1 type="string">attribute.klugheit.aktuell</e1>
+                        <e2 type="string">attribute.fingerfertigkeit.aktuell</e2>
+                        <e3 type="string">attribute.fingerfertigkeit.aktuell</e3>
+                    </id-00010>
+                    <id-00011>
+                        <label type="string">Seefahrt</label>
+                        <wert type="number">1</wert>
+                        <e1 type="string">attribute.fingerfertigkeit.aktuell</e1>
+                        <e2 type="string">attribute.gewandtheit.aktuell</e2>
+                        <e3 type="string">attribute.koerperkraft.aktuell</e3>
+                    </id-00011>
+                </handwerk>
+                <kampf>
+                    <id-00001>
+                        <label type="string">Dolche</label>
+                        <wert type="number">1</wert>
+                        <ebe type="string">-1</ebe>
+                        <at type="number">7</at>
+                        <pa type="number">9</pa>
+                    </id-00001>
+                    <id-00002>
+                        <label type="string">Hiebwaffen</label>
+                        <wert type="number">0</wert>
+                        <ebe type="string">-4</ebe>
+                        <at type="number">7</at>
+                        <pa type="number">8</pa>
+                    </id-00002>
+                    <id-00003>
+                        <label type="string">Infanteriewaffen</label>
+                        <wert type="number">1</wert>
+                        <ebe type="string">-3</ebe>
+                        <at type="number">7</at>
+                        <pa type="number">9</pa>
+                    </id-00003>
+                    <id-00004>
+                        <label type="string">Raufen</label>
+                        <wert type="number">3</wert>
+                        <ebe type="string">0</ebe>
+                        <at type="number">7</at>
+                        <pa type="number">11</pa>
+                    </id-00004>
+                    <id-00005>
+                        <label type="string">Ringen</label>
+                        <wert type="number">2</wert>
+                        <ebe type="string">0</ebe>
+                        <at type="number">7</at>
+                        <pa type="number">10</pa>
+                    </id-00005>
+                    <id-00006>
+                        <label type="string">Säbel</label>
+                        <wert type="number">0</wert>
+                        <ebe type="string">-2</ebe>
+                        <at type="number">7</at>
+                        <pa type="number">8</pa>
+                    </id-00006>
+                    <id-00007>
+                        <label type="string">Schwerter</label>
+                        <wert type="number">12</wert>
+                        <ebe type="string">-2</ebe>
+                        <at type="number">15</at>
+                        <pa type="number">12</pa>
+                    </id-00007>
+                    <id-00008>
+                        <label type="string">Stäbe</label>
+                        <wert type="number">8</wert>
+                        <ebe type="string">-2</ebe>
+                        <at type="number">12</at>
+                        <pa type="number">11</pa>
+                    </id-00008>
+                </kampf>
+                <fernkampf>
+                    <id-00001>
+                        <label type="string">Armbrust</label>
+                        <wert type="number">1</wert>
+                        <ebe type="string">-5</ebe>
+                        <at type="number">9</at>
+                    </id-00001>
+                    <id-00002>
+                        <label type="string">Wurfmesser</label>
+                        <wert type="number">0</wert>
+                        <ebe type="string">-3</ebe>
+                        <at type="number">8</at>
+                    </id-00002>
+                </fernkampf>
+                <koerper>
+                    <id-00001>
+                        <label type="string">Athletik</label>
+                        <wert type="number">7</wert>
+                        <e1 type="string">attribute.gewandtheit.aktuell</e1>
+                        <e2 type="string">attribute.konstitution.aktuell</e2>
+                        <e3 type="string">attribute.koerperkraft.aktuell</e3>
+                        <ebe type="string">*2</ebe>
+                    </id-00001>
+                    <id-00002>
+                        <label type="string">Klettern</label>
+                        <wert type="number">7</wert>
+                        <e1 type="string">attribute.mut.aktuell</e1>
+                        <e2 type="string">attribute.gewandtheit.aktuell</e2>
+                        <e3 type="string">attribute.koerperkraft.aktuell</e3>
+                        <ebe type="string">*2</ebe>
+                    </id-00002>
+                    <id-00003>
+                        <label type="string">Körperbeherrschung</label>
+                        <wert type="number">7</wert>
+                        <e1 type="string">attribute.mut.aktuell</e1>
+                        <e2 type="string">attribute.intuition.aktuell</e2>
+                        <e3 type="string">attribute.gewandtheit.aktuell</e3>
+                        <ebe type="string">*2</ebe>
+                    </id-00003>
+                    <id-00004>
+                        <label type="string">Reiten</label>
+                        <wert type="number">7</wert>
+                        <e1 type="string">attribute.charisma.aktuell</e1>
+                        <e2 type="string">attribute.gewandtheit.aktuell</e2>
+                        <e3 type="string">attribute.koerperkraft.aktuell</e3>
+                        <ebe type="string">-2</ebe>
+                    </id-00004>
+                    <id-00005>
+                        <label type="string">Schleichen</label>
+                        <wert type="number">8</wert>
+                        <e1 type="string">attribute.mut.aktuell</e1>
+                        <e2 type="string">attribute.intuition.aktuell</e2>
+                        <e3 type="string">attribute.gewandtheit.aktuell</e3>
+                        <ebe type="string">0</ebe>
+                    </id-00005>
+                    <id-00006>
+                        <label type="string">Schwimmen</label>
+                        <wert type="number">5</wert>
+                        <e1 type="string">attribute.gewandtheit.aktuell</e1>
+                        <e2 type="string">attribute.konstitution.aktuell</e2>
+                        <e3 type="string">attribute.koerperkraft.aktuell</e3>
+                        <ebe type="string">*2</ebe>
+                    </id-00006>
+                    <id-00007>
+                        <label type="string">Selbstbeherrschung</label>
+                        <wert type="number">6</wert>
+                        <e1 type="string">attribute.mut.aktuell</e1>
+                        <e2 type="string">attribute.konstitution.aktuell</e2>
+                        <e3 type="string">attribute.koerperkraft.aktuell</e3>
+                        <ebe type="string"/>
+                    </id-00007>
+                    <id-00008>
+                        <label type="string">Sich Verstecken</label>
+                        <wert type="number">5</wert>
+                        <e1 type="string">attribute.mut.aktuell</e1>
+                        <e2 type="string">attribute.intuition.aktuell</e2>
+                        <e3 type="string">attribute.gewandtheit.aktuell</e3>
+                        <ebe type="string">-2</ebe>
+                    </id-00008>
+                    <id-00009>
+                        <label type="string">Singen</label>
+                        <wert type="number">5</wert>
+                        <e1 type="string">attribute.intuition.aktuell</e1>
+                        <e2 type="string">attribute.charisma.aktuell</e2>
+                        <e3 type="string">attribute.charisma.aktuell</e3>
+                        <ebe type="string">-3</ebe>
+                    </id-00009>
+                    <id-00010>
+                        <label type="string">Sinnesschärfe</label>
+                        <wert type="number">8</wert>
+                        <e1 type="string">attribute.klugheit.aktuell</e1>
+                        <e2 type="string">attribute.intuition.aktuell</e2>
+                        <e3 type="string">attribute.intuition.aktuell</e3>
+                        <ebe type="string"/>
+                    </id-00010>
+                    <id-00011>
+                        <label type="string">Tanzen</label>
+                        <wert type="number">3</wert>
+                        <e1 type="string">attribute.charisma.aktuell</e1>
+                        <e2 type="string">attribute.gewandtheit.aktuell</e2>
+                        <e3 type="string">attribute.gewandtheit.aktuell</e3>
+                        <ebe type="string">*2</ebe>
+                    </id-00011>
+                    <id-00012>
+                        <label type="string">Zechen</label>
+                        <wert type="number">3</wert>
+                        <e1 type="string">attribute.intuition.aktuell</e1>
+                        <e2 type="string">attribute.konstitution.aktuell</e2>
+                        <e3 type="string">attribute.koerperkraft.aktuell</e3>
+                        <ebe type="string"/>
+                    </id-00012>
+                </koerper>
+                <natur>
+                    <id-00001>
+                        <label type="string">Ansitzjagd incl Waffe</label>
+                        <wert type="number">0</wert>
+                        <e1 type="string">attribute.mut.aktuell</e1>
+                        <e2 type="string">attribute.intuition.aktuell</e2>
+                        <e3 type="string">attribute.gewandtheit.aktuell</e3>
+                    </id-00001>
+                    <id-00002>
+                        <label type="string">Fährtensuchen</label>
+                        <wert type="number">0</wert>
+                        <e1 type="string">attribute.klugheit.aktuell</e1>
+                        <e2 type="string">attribute.intuition.aktuell</e2>
+                        <e3 type="string">attribute.konstitution.aktuell</e3>
+                    </id-00002>
+                    <id-00003>
+                        <label type="string">Fesseln/Entfesseln</label>
+                        <wert type="number">1</wert>
+                        <e1 type="string">attribute.fingerfertigkeit.aktuell</e1>
+                        <e2 type="string">attribute.gewandtheit.aktuell</e2>
+                        <e3 type="string">attribute.koerperkraft.aktuell</e3>
+                    </id-00003>
+                    <id-00004>
+                        <label type="string">Fischen/Angeln</label>
+                        <wert type="number">1</wert>
+                        <e1 type="string">attribute.intuition.aktuell</e1>
+                        <e2 type="string">attribute.fingerfertigkeit.aktuell</e2>
+                        <e3 type="string">attribute.koerperkraft.aktuell</e3>
+                    </id-00004>
+                    <id-00005>
+                        <label type="string">Kräuter suchen</label>
+                        <wert type="number">8</wert>
+                        <e1 type="string">attribute.mut.aktuell</e1>
+                        <e2 type="string">attribute.intuition.aktuell</e2>
+                        <e3 type="string">attribute.fingerfertigkeit.aktuell</e3>
+                    </id-00005>
+                    <id-00006>
+                        <label type="string">Nahrung sammeln</label>
+                        <wert type="number">8</wert>
+                        <e1 type="string">attribute.mut.aktuell</e1>
+                        <e2 type="string">attribute.intuition.aktuell</e2>
+                        <e3 type="string">attribute.fingerfertigkeit.aktuell</e3>
+                    </id-00006>
+                    <id-00007>
+                        <label type="string">Orientierung</label>
+                        <wert type="number">6</wert>
+                        <e1 type="string">attribute.klugheit.aktuell</e1>
+                        <e2 type="string">attribute.intuition.aktuell</e2>
+                        <e3 type="string">attribute.intuition.aktuell</e3>
+                    </id-00007>
+                    <id-00008>
+                        <label type="string">Pirschjagd incl Waffe</label>
+                        <wert type="number">0</wert>
+                        <e1 type="string">attribute.mut.aktuell</e1>
+                        <e2 type="string">attribute.intuition.aktuell</e2>
+                        <e3 type="string">attribute.gewandtheit.aktuell</e3>
+                    </id-00008>
+                    <id-00009>
+                        <label type="string">Wettervorhersage</label>
+                        <wert type="number">1</wert>
+                        <e1 type="string">attribute.klugheit.aktuell</e1>
+                        <e2 type="string">attribute.intuition.aktuell</e2>
+                        <e3 type="string">attribute.intuition.aktuell</e3>
+                    </id-00009>
+                    <id-00010>
+                        <label type="string">Wildnisleben</label>
+                        <wert type="number">8</wert>
+                        <e1 type="string">attribute.intuition.aktuell</e1>
+                        <e2 type="string">attribute.gewandtheit.aktuell</e2>
+                        <e3 type="string">attribute.konstitution.aktuell</e3>
+                    </id-00010>
+                </natur>
+                <lesen>
+                    <id-00001>
+                        <label type="string">Kusliker Zeichen</label>
+                        <wert type="number">7</wert>
+                        <komp type="number">10</komp>
+                        <e1 type="string">attribute.klugheit.aktuell</e1>
+                        <e2 type="string">attribute.klugheit.aktuell</e2>
+                        <e3 type="string">attribute.fingerfertigkeit.aktuell</e3>
+                    </id-00001>
+                </lesen>
+                <sonstige>
+                    <id-00001>
+                        <label type="string">Ritualkenntnis: Gildenmagie</label>
+                        <wert type="number">14</wert>
+                        <e1 type="string"/>
+                        <e2 type="string"/>
+                        <e3 type="string"/>
+                    </id-00001>
+                </sonstige>
+                <sprechen>
+                    <id-00001>
+                        <label type="string">Bosparano</label>
+                        <wert type="number">10</wert>
+                        <komp type="number">21</komp>
+                        <e1 type="string">attribute.klugheit.aktuell</e1>
+                        <e2 type="string">attribute.intuition.aktuell</e2>
+                        <e3 type="string">attribute.charisma.aktuell</e3>
+                    </id-00001>
+                    <id-00002>
+                        <label type="string">Garethi</label>
+                        <wert type="number">12</wert>
+                        <komp type="number">18</komp>
+                        <e1 type="string">attribute.klugheit.aktuell</e1>
+                        <e2 type="string">attribute.intuition.aktuell</e2>
+                        <e3 type="string">attribute.charisma.aktuell</e3>
+                    </id-00002>
+                    <id-00003>
+                        <label type="string">Isdira</label>
+                        <wert type="number">7</wert>
+                        <komp type="number">21</komp>
+                        <e1 type="string">attribute.klugheit.aktuell</e1>
+                        <e2 type="string">attribute.intuition.aktuell</e2>
+                        <e3 type="string">attribute.charisma.aktuell</e3>
+                    </id-00003>
+                    <id-00004>
+                        <label type="string">Thorwalsch</label>
+                        <wert type="number">5</wert>
+                        <komp type="number">18</komp>
+                        <e1 type="string">attribute.klugheit.aktuell</e1>
+                        <e2 type="string">attribute.intuition.aktuell</e2>
+                        <e3 type="string">attribute.charisma.aktuell</e3>
+                    </id-00004>
+                    <id-00005>
+                        <label type="string">Tulamidya</label>
+                        <wert type="number">6</wert>
+                        <komp type="number">18</komp>
+                        <e1 type="string">attribute.klugheit.aktuell</e1>
+                        <e2 type="string">attribute.intuition.aktuell</e2>
+                        <e3 type="string">attribute.charisma.aktuell</e3>
+                    </id-00005>
+                </sprechen>
+                <wissen>
+                    <id-00001>
+                        <label type="string">Geografie</label>
+                        <wert type="number">4</wert>
+                        <e1 type="string">attribute.klugheit.aktuell</e1>
+                        <e2 type="string">attribute.klugheit.aktuell</e2>
+                        <e3 type="string">attribute.intuition.aktuell</e3>
+                    </id-00001>
+                    <id-00002>
+                        <label type="string">Geschichtswissen</label>
+                        <wert type="number">5</wert>
+                        <e1 type="string">attribute.klugheit.aktuell</e1>
+                        <e2 type="string">attribute.klugheit.aktuell</e2>
+                        <e3 type="string">attribute.intuition.aktuell</e3>
+                    </id-00002>
+                    <id-00003>
+                        <label type="string">Götter/Kulte</label>
+                        <wert type="number">9</wert>
+                        <e1 type="string">attribute.klugheit.aktuell</e1>
+                        <e2 type="string">attribute.klugheit.aktuell</e2>
+                        <e3 type="string">attribute.intuition.aktuell</e3>
+                    </id-00003>
+                    <id-00004>
+                        <label type="string">Heraldik</label>
+                        <wert type="number">3</wert>
+                        <e1 type="string">attribute.klugheit.aktuell</e1>
+                        <e2 type="string">attribute.klugheit.aktuell</e2>
+                        <e3 type="string">attribute.fingerfertigkeit.aktuell</e3>
+                    </id-00004>
+                    <id-00005>
+                        <label type="string">Kriegskunst</label>
+                        <wert type="number">5</wert>
+                        <e1 type="string">attribute.mut.aktuell</e1>
+                        <e2 type="string">attribute.klugheit.aktuell</e2>
+                        <e3 type="string">attribute.charisma.aktuell</e3>
+                    </id-00005>
+                    <id-00006>
+                        <label type="string">Magiekunde</label>
+                        <wert type="number">13</wert>
+                        <e1 type="string">attribute.klugheit.aktuell</e1>
+                        <e2 type="string">attribute.klugheit.aktuell</e2>
+                        <e3 type="string">attribute.intuition.aktuell</e3>
+                    </id-00006>
+                    <id-00007>
+                        <label type="string">Mechanik</label>
+                        <wert type="number">2</wert>
+                        <e1 type="string">attribute.klugheit.aktuell</e1>
+                        <e2 type="string">attribute.klugheit.aktuell</e2>
+                        <e3 type="string">attribute.fingerfertigkeit.aktuell</e3>
+                    </id-00007>
+                    <id-00008>
+                        <label type="string">Pflanzenkunde</label>
+                        <wert type="number">7</wert>
+                        <e1 type="string">attribute.klugheit.aktuell</e1>
+                        <e2 type="string">attribute.intuition.aktuell</e2>
+                        <e3 type="string">attribute.fingerfertigkeit.aktuell</e3>
+                    </id-00008>
+                    <id-00009>
+                        <label type="string">Rechnen</label>
+                        <wert type="number">8</wert>
+                        <e1 type="string">attribute.klugheit.aktuell</e1>
+                        <e2 type="string">attribute.klugheit.aktuell</e2>
+                        <e3 type="string">attribute.intuition.aktuell</e3>
+                    </id-00009>
+                    <id-00010>
+                        <label type="string">Rechtskunde</label>
+                        <wert type="number">7</wert>
+                        <e1 type="string">attribute.klugheit.aktuell</e1>
+                        <e2 type="string">attribute.klugheit.aktuell</e2>
+                        <e3 type="string">attribute.intuition.aktuell</e3>
+                    </id-00010>
+                    <id-00011>
+                        <label type="string">Sagen/Legenden</label>
+                        <wert type="number">9</wert>
+                        <e1 type="string">attribute.klugheit.aktuell</e1>
+                        <e2 type="string">attribute.intuition.aktuell</e2>
+                        <e3 type="string">attribute.charisma.aktuell</e3>
+                    </id-00011>
+                    <id-00012>
+                        <label type="string">Schätzen</label>
+                        <wert type="number">5</wert>
+                        <e1 type="string">attribute.klugheit.aktuell</e1>
+                        <e2 type="string">attribute.intuition.aktuell</e2>
+                        <e3 type="string">attribute.intuition.aktuell</e3>
+                    </id-00012>
+                    <id-00013>
+                        <label type="string">Staatskunst</label>
+                        <wert type="number">5</wert>
+                        <e1 type="string">attribute.klugheit.aktuell</e1>
+                        <e2 type="string">attribute.intuition.aktuell</e2>
+                        <e3 type="string">attribute.charisma.aktuell</e3>
+                    </id-00013>
+                    <id-00014>
+                        <label type="string">Sternkunde</label>
+                        <wert type="number">3</wert>
+                        <e1 type="string">attribute.klugheit.aktuell</e1>
+                        <e2 type="string">attribute.klugheit.aktuell</e2>
+                        <e3 type="string">attribute.intuition.aktuell</e3>
+                    </id-00014>
+                    <id-00015>
+                        <label type="string">Tierkunde</label>
+                        <wert type="number">2</wert>
+                        <e1 type="string">attribute.mut.aktuell</e1>
+                        <e2 type="string">attribute.klugheit.aktuell</e2>
+                        <e3 type="string">attribute.intuition.aktuell</e3>
+                    </id-00015>
+                </wissen>
+            </skilllist>
+            <ritklist>
+                <id-00001>
+                    <label type="string">Ritualkenntnis: Gildenmagie</label>
+                    <rep type="string"/>
+                    <werte3 type="number">14</werte3>
+                </id-00001>
+            </ritklist>
+            <spelllist>
+                <id-00001>
+                    <label type="string">Adamantium Erzstruktur</label>
+                    <rep type="string">Magier</rep>
+                    <wert type="number">3</wert>
+                    <e1 type="string">attribute.klugheit.aktuell</e1>
+                    <e2 type="string">attribute.fingerfertigkeit.aktuell</e2>
+                    <e3 type="string">attribute.konstitution.aktuell</e3>
+                </id-00001>
+                <id-00002>
+                    <label type="string">Adlerauge Luchsenohr</label>
+                    <rep type="string">Magier</rep>
+                    <wert type="number">9</wert>
+                    <e1 type="string">attribute.klugheit.aktuell</e1>
+                    <e2 type="string">attribute.intuition.aktuell</e2>
+                    <e3 type="string">attribute.fingerfertigkeit.aktuell</e3>
+                </id-00002>
+                <id-00003>
+                    <label type="string">Analys Arkanstruktur</label>
+                    <rep type="string">Magier</rep>
+                    <wert type="number">6</wert>
+                    <e1 type="string">attribute.klugheit.aktuell</e1>
+                    <e2 type="string">attribute.klugheit.aktuell</e2>
+                    <e3 type="string">attribute.intuition.aktuell</e3>
+                </id-00003>
+                <id-00004>
+                    <label type="string">Ängste lindern</label>
+                    <rep type="string">Magier</rep>
+                    <wert type="number">8</wert>
+                    <e1 type="string">attribute.mut.aktuell</e1>
+                    <e2 type="string">attribute.intuition.aktuell</e2>
+                    <e3 type="string">attribute.charisma.aktuell</e3>
+                </id-00004>
+                <id-00005>
+                    <label type="string">Applicatus Zauberspeicher</label>
+                    <rep type="string">Magier</rep>
+                    <wert type="number">8</wert>
+                    <e1 type="string">attribute.klugheit.aktuell</e1>
+                    <e2 type="string">attribute.fingerfertigkeit.aktuell</e2>
+                    <e3 type="string">attribute.fingerfertigkeit.aktuell</e3>
+                </id-00005>
+                <id-00006>
+                    <label type="string">Armatrutz</label>
+                    <rep type="string">Magier</rep>
+                    <wert type="number">12</wert>
+                    <e1 type="string">attribute.intuition.aktuell</e1>
+                    <e2 type="string">attribute.gewandtheit.aktuell</e2>
+                    <e3 type="string">attribute.konstitution.aktuell</e3>
+                </id-00006>
+                <id-00007>
+                    <label type="string">Attributo</label>
+                    <rep type="string">Magier</rep>
+                    <wert type="number">18</wert>
+                    <e1 type="string">attribute.klugheit.aktuell</e1>
+                    <e2 type="string">attribute.charisma.aktuell</e2>
+                    <e3 type="string"/>
+                </id-00007>
+                <id-00008>
+                    <label type="string">Balsam Salabunde</label>
+                    <rep type="string">Magier</rep>
+                    <wert type="number">11</wert>
+                    <e1 type="string">attribute.klugheit.aktuell</e1>
+                    <e2 type="string">attribute.intuition.aktuell</e2>
+                    <e3 type="string">attribute.charisma.aktuell</e3>
+                </id-00008>
+                <id-00009>
+                    <label type="string">Blitz dich find</label>
+                    <rep type="string">Magier</rep>
+                    <wert type="number">18</wert>
+                    <e1 type="string">attribute.klugheit.aktuell</e1>
+                    <e2 type="string">attribute.intuition.aktuell</e2>
+                    <e3 type="string">attribute.gewandtheit.aktuell</e3>
+                </id-00009>
+                <id-00010>
+                    <label type="string">Corpofrigo Kälteschock</label>
+                    <rep type="string">Magier</rep>
+                    <wert type="number">11</wert>
+                    <e1 type="string">attribute.charisma.aktuell</e1>
+                    <e2 type="string">attribute.gewandtheit.aktuell</e2>
+                    <e3 type="string">attribute.konstitution.aktuell</e3>
+                </id-00010>
+                <id-00011>
+                    <label type="string">Custodosigil Diebesbann</label>
+                    <rep type="string">Magier</rep>
+                    <wert type="number">2</wert>
+                    <e1 type="string">attribute.klugheit.aktuell</e1>
+                    <e2 type="string">attribute.fingerfertigkeit.aktuell</e2>
+                    <e3 type="string">attribute.fingerfertigkeit.aktuell</e3>
+                </id-00011>
+                <id-00012>
+                    <label type="string">Desintegratus Pulverstaub</label>
+                    <rep type="string">Magier</rep>
+                    <wert type="number">6</wert>
+                    <e1 type="string">attribute.klugheit.aktuell</e1>
+                    <e2 type="string">attribute.konstitution.aktuell</e2>
+                    <e3 type="string">attribute.koerperkraft.aktuell</e3>
+                </id-00012>
+                <id-00013>
+                    <label type="string">Eisenrost und Patina</label>
+                    <rep type="string">Magier</rep>
+                    <wert type="number">5</wert>
+                    <e1 type="string">attribute.klugheit.aktuell</e1>
+                    <e2 type="string">attribute.charisma.aktuell</e2>
+                    <e3 type="string">attribute.gewandtheit.aktuell</e3>
+                </id-00013>
+                <id-00014>
+                    <label type="string">Feuersturm</label>
+                    <rep type="string">Magier</rep>
+                    <wert type="number">7</wert>
+                    <e1 type="string">attribute.mut.aktuell</e1>
+                    <e2 type="string">attribute.intuition.aktuell</e2>
+                    <e3 type="string">attribute.koerperkraft.aktuell</e3>
+                </id-00014>
+                <id-00015>
+                    <label type="string">Flim Flam Funkel</label>
+                    <rep type="string">Magier</rep>
+                    <wert type="number">7</wert>
+                    <e1 type="string">attribute.klugheit.aktuell</e1>
+                    <e2 type="string">attribute.klugheit.aktuell</e2>
+                    <e3 type="string">attribute.fingerfertigkeit.aktuell</e3>
+                </id-00015>
+                <id-00016>
+                    <label type="string">Foramen Foraminor</label>
+                    <rep type="string">Scharlatan</rep>
+                    <wert type="number">6</wert>
+                    <e1 type="string">attribute.klugheit.aktuell</e1>
+                    <e2 type="string">attribute.klugheit.aktuell</e2>
+                    <e3 type="string">attribute.fingerfertigkeit.aktuell</e3>
+                </id-00016>
+                <id-00017>
+                    <label type="string">Fortifex arkane Wand</label>
+                    <rep type="string">Magier</rep>
+                    <wert type="number">7</wert>
+                    <e1 type="string">attribute.intuition.aktuell</e1>
+                    <e2 type="string">attribute.konstitution.aktuell</e2>
+                    <e3 type="string">attribute.koerperkraft.aktuell</e3>
+                </id-00017>
+                <id-00018>
+                    <label type="string">Fulminictus Donnerkeil</label>
+                    <rep type="string">Magier</rep>
+                    <wert type="number">7</wert>
+                    <e1 type="string">attribute.intuition.aktuell</e1>
+                    <e2 type="string">attribute.gewandtheit.aktuell</e2>
+                    <e3 type="string">attribute.konstitution.aktuell</e3>
+                </id-00018>
+                <id-00019>
+                    <label type="string">Gardianum Zauberschild</label>
+                    <rep type="string">Magier</rep>
+                    <wert type="number">10</wert>
+                    <e1 type="string">attribute.klugheit.aktuell</e1>
+                    <e2 type="string">attribute.intuition.aktuell</e2>
+                    <e3 type="string">attribute.konstitution.aktuell</e3>
+                </id-00019>
+                <id-00020>
+                    <label type="string">Gedankenbilder Elfenruf</label>
+                    <rep type="string">Magier</rep>
+                    <wert type="number">7</wert>
+                    <e1 type="string">attribute.klugheit.aktuell</e1>
+                    <e2 type="string">attribute.intuition.aktuell</e2>
+                    <e3 type="string">attribute.charisma.aktuell</e3>
+                </id-00020>
+                <id-00021>
+                    <label type="string">Ignifaxius Flammenstrahl</label>
+                    <rep type="string">Magier</rep>
+                    <wert type="number">12</wert>
+                    <e1 type="string">attribute.klugheit.aktuell</e1>
+                    <e2 type="string">attribute.fingerfertigkeit.aktuell</e2>
+                    <e3 type="string">attribute.konstitution.aktuell</e3>
+                </id-00021>
+                <id-00022>
+                    <label type="string">Ignisphaero Feuerball</label>
+                    <rep type="string">Magier</rep>
+                    <wert type="number">14</wert>
+                    <e1 type="string">attribute.mut.aktuell</e1>
+                    <e2 type="string">attribute.intuition.aktuell</e2>
+                    <e3 type="string">attribute.konstitution.aktuell</e3>
+                </id-00022>
+                <id-00023>
+                    <label type="string">Invercano Spiegeltrick</label>
+                    <rep type="string">Magier</rep>
+                    <wert type="number">5</wert>
+                    <e1 type="string">attribute.mut.aktuell</e1>
+                    <e2 type="string">attribute.intuition.aktuell</e2>
+                    <e3 type="string">attribute.fingerfertigkeit.aktuell</e3>
+                </id-00023>
+                <id-00024>
+                    <label type="string">Kulminatio Kugelblitz</label>
+                    <rep type="string">Magier</rep>
+                    <wert type="number">7</wert>
+                    <e1 type="string">attribute.mut.aktuell</e1>
+                    <e2 type="string">attribute.intuition.aktuell</e2>
+                    <e3 type="string">attribute.fingerfertigkeit.aktuell</e3>
+                </id-00024>
+                <id-00025>
+                    <label type="string">Odem Arcanum</label>
+                    <rep type="string">Magier</rep>
+                    <wert type="number">10</wert>
+                    <e1 type="string">attribute.klugheit.aktuell</e1>
+                    <e2 type="string">attribute.intuition.aktuell</e2>
+                    <e3 type="string">attribute.intuition.aktuell</e3>
+                </id-00025>
+                <id-00026>
+                    <label type="string">Paralysis starr wie Stein</label>
+                    <rep type="string">Magier</rep>
+                    <wert type="number">5</wert>
+                    <e1 type="string">attribute.intuition.aktuell</e1>
+                    <e2 type="string">attribute.charisma.aktuell</e2>
+                    <e3 type="string">attribute.koerperkraft.aktuell</e3>
+                </id-00026>
+                <id-00027>
+                    <label type="string">Plumbumbarum schwerer Arm</label>
+                    <rep type="string">Magier</rep>
+                    <wert type="number">5</wert>
+                    <e1 type="string">attribute.charisma.aktuell</e1>
+                    <e2 type="string">attribute.gewandtheit.aktuell</e2>
+                    <e3 type="string">attribute.koerperkraft.aktuell</e3>
+                </id-00027>
+                <id-00028>
+                    <label type="string">Psychostabilis</label>
+                    <rep type="string">Magier</rep>
+                    <wert type="number">6</wert>
+                    <e1 type="string">attribute.mut.aktuell</e1>
+                    <e2 type="string">attribute.klugheit.aktuell</e2>
+                    <e3 type="string">attribute.konstitution.aktuell</e3>
+                </id-00028>
+                <id-00029>
+                    <label type="string">Respondami</label>
+                    <rep type="string">Magier</rep>
+                    <wert type="number">7</wert>
+                    <e1 type="string">attribute.mut.aktuell</e1>
+                    <e2 type="string">attribute.intuition.aktuell</e2>
+                    <e3 type="string">attribute.charisma.aktuell</e3>
+                </id-00029>
+                <id-00030>
+                    <label type="string">Sapefacta Zauberschwamm</label>
+                    <rep type="string">Magier</rep>
+                    <wert type="number">5</wert>
+                    <e1 type="string">attribute.klugheit.aktuell</e1>
+                    <e2 type="string">attribute.charisma.aktuell</e2>
+                    <e3 type="string">attribute.fingerfertigkeit.aktuell</e3>
+                </id-00030>
+                <id-00031>
+                    <label type="string">Sensattacco Meisterstreich</label>
+                    <rep type="string">Magier</rep>
+                    <wert type="number">9</wert>
+                    <e1 type="string">attribute.mut.aktuell</e1>
+                    <e2 type="string">attribute.intuition.aktuell</e2>
+                    <e3 type="string">attribute.gewandtheit.aktuell</e3>
+                </id-00031>
+                <id-00032>
+                    <label type="string">Unitatio Geistesbund</label>
+                    <rep type="string">Magier</rep>
+                    <wert type="number">6</wert>
+                    <e1 type="string">attribute.intuition.aktuell</e1>
+                    <e2 type="string">attribute.charisma.aktuell</e2>
+                    <e3 type="string">attribute.konstitution.aktuell</e3>
+                </id-00032>
+            </spelllist>
+            <vorteile>
+                <id-00000>
+                    <label type="string">Akademische Ausbildung (Magier)</label>
+                </id-00000>
+                <id-00001>
+                    <label type="string">Astrale Regeneration</label>
+                    <stufe type="number">2</stufe>
+                </id-00001>
+                <id-00002>
+                    <label type="string">Begabung für [Merkmal] Hellsicht</label>
+                </id-00002>
+                <id-00003>
+                    <label type="string">Gutaussehend</label>
+                </id-00003>
+                <id-00004>
+                    <label type="string">Vollzauberer</label>
+                </id-00004>
+                <id-00005>
+                    <label type="string">Zauberhaar</label>
+                </id-00005>
+            </vorteile>
+            <weaponlist>
+                <id-00001>
+                    <RSBauch type="number">2</RSBauch>
+                    <RSBrust type="number">3</RSBrust>
+                    <RSKopf type="number">0</RSKopf>
+                    <RSLA type="number">0</RSLA>
+                    <RSLB type="number">1</RSLB>
+                    <RSRA type="number">0</RSRA>
+                    <RSRB type="number">1</RSRB>
+                    <RSRuecken type="number">2</RSRuecken>
+                    <RSteilgesamt type="number">2</RSteilgesamt>
+                    <BEteilgesamt type="number">2</BEteilgesamt>
+                    <carried type="number">0</carried>
+                    <name type="string">Iryanrüstung</name>
+                </id-00001>
+            </weaponlist>
+        </id-00001>
+        <id-00033>
+            <gesch type="string">männlich</gesch>
+            <kultur type="string">Erzzwerge</kultur>
+            <klasse type="string">Handwerker, Grobschmied</klasse>
+            <rasse type="string">Zwerg</rasse>
+            <gew type="string">55 Stein</gew>
+            <faugen type="string">grün</faugen>
+            <hoehe type="string">135 Halbfinger</hoehe>
+            <fhaare type="string">blond</fhaare>
+            <geburtsdatum type="string">12. Phex 1003 BF</geburtsdatum>
+            <stand type="string"/>
+            <titel type="string"/>
+            <BE>
+                <end type="number">0</end>
+            </BE>
+            <aep>
+                <akt type="number">0</akt>
+                <base type="number">20</base>
+                <max type="number">0</max>
+                <mod1 type="number">0</mod1>
+                <mod2 type="number">-20</mod2>
+            </aep>
+            <ap>
+                <frei type="number">203</frei>
+                <gesamt type="number">6008</gesamt>
+                <verbraucht type="number">5805</verbraucht>
+            </ap>
+            <at>
+                <base type="number">9</base>
+            </at>
+            <attribute>
+                <charisma>
+                    <aktuell type="number">12</aktuell>
+                    <basis type="number">12</basis>
+                </charisma>
+                <fingerfertigkeit>
+                    <aktuell type="number">15</aktuell>
+                    <basis type="number">15</basis>
+                </fingerfertigkeit>
+                <gewandtheit>
+                    <aktuell type="number">12</aktuell>
+                    <basis type="number">12</basis>
+                </gewandtheit>
+                <intuition>
+                    <aktuell type="number">12</aktuell>
+                    <basis type="number">12</basis>
+                </intuition>
+                <klugheit>
+                    <aktuell type="number">11</aktuell>
+                    <basis type="number">11</basis>
+                </klugheit>
+                <koerperkraft>
+                    <aktuell type="number">17</aktuell>
+                    <basis type="number">17</basis>
+                </koerperkraft>
+                <konstitution>
+                    <aktuell type="number">15</aktuell>
+                    <basis type="number">15</basis>
+                </konstitution>
+                <mut>
+                    <aktuell type="number">15</aktuell>
+                    <basis type="number">15</basis>
+                </mut>
+                <wundschwelle>
+                    <wert type="number">7</wert>
+                </wundschwelle>
+                <sozialstatus type="number">5</sozialstatus>
+                <geschwindigkeit type="number">5</geschwindigkeit>
+            </attribute>
+            <aup>
+                <akt type="number">36</akt>
+                <base type="number">21</base>
+                <max type="number">36</max>
+                <mod1 type="number">0</mod1>
+                <mod2 type="number">15</mod2>
+            </aup>
+            <ausweichen>
+                <mod type="number">0</mod>
+            </ausweichen>
+            <aw type="number">6</aw>
+            <coins/>
+            <coinother type="string"/>
+            <fernkampfwaffenliste>
+                <id-00000>
+                    <bruchfaktor type="number">0</bruchfaktor>
+                    <damagedice type="dice">d6,d6</damagedice>
+                    <damagebonus type="number">6</damagebonus>
+                    <entfernungen>
+                        <werte type="string">10/30/60/100/180</werte>
+                        <tp type="string">+4/+2/0/-1/-3</tp>
+                    </entfernungen>
+                    <fernkampf type="number">24</fernkampf>
+                    <geschosse type="number">0</geschosse>
+                    <label type="string">Windenarmbrust</label>
+                </id-00000>
+            </fernkampfwaffenliste>
+            <fk>
+                <base type="number">9</base>
+            </fk>
+            <ini>
+                <base type="number">11</base>
+                <max type="number">11</max>
+                <mod type="number">0</mod>
+            </ini>
+            <inventorylist>
+                <id-00001>
+                    <name type="string">Armschienen (Paar), Stahl</name>
+                    <carried type="number">0</carried>
+                    <weight type="number">60</weight>
+                    <count type="number">1</count>
+                    <location type="string"/>
+                </id-00001>
+                <id-00002>
+                    <name type="string">Beinschienen (Paar), Stahl</name>
+                    <carried type="number">0</carried>
+                    <weight type="number">120</weight>
+                    <count type="number">1</count>
+                    <location type="string"/>
+                </id-00002>
+                <id-00003>
+                    <name type="string">Kettenhaube mit Gesichtsschutz</name>
+                    <carried type="number">0</carried>
+                    <weight type="number">160</weight>
+                    <count type="number">1</count>
+                    <location type="string"/>
+                </id-00003>
+                <id-00004>
+                    <name type="string">Kettenhemd, Lang</name>
+                    <carried type="number">0</carried>
+                    <weight type="number">400</weight>
+                    <count type="number">1</count>
+                    <location type="string"/>
+                </id-00004>
+                <id-00005>
+                    <name type="string">Panzerhandschuhe (Paar)</name>
+                    <carried type="number">0</carried>
+                    <weight type="number">60</weight>
+                    <count type="number">1</count>
+                    <location type="string"/>
+                </id-00005>
+                <id-00006>
+                    <name type="string">Panzerschuhe (Paar)</name>
+                    <carried type="number">0</carried>
+                    <weight type="number">40</weight>
+                    <count type="number">1</count>
+                    <location type="string"/>
+                </id-00006>
+                <id-00007>
+                    <name type="string">Pony: Beilunker Zwergenpony</name>
+                    <carried type="number">0</carried>
+                    <weight type="number">8400</weight>
+                    <count type="number">1</count>
+                    <location type="string"/>
+                </id-00007>
+                <id-00008>
+                    <name type="string">Stechhelm / Visierhelm</name>
+                    <carried type="number">0</carried>
+                    <weight type="number">160</weight>
+                    <count type="number">1</count>
+                    <location type="string"/>
+                </id-00008>
+                <id-00009>
+                    <name type="string">Wattiertes Unterzeug</name>
+                    <carried type="number">0</carried>
+                    <weight type="number">100</weight>
+                    <count type="number">1</count>
+                    <location type="string"/>
+                </id-00009>
+                <id-00010>
+                    <name type="string">Windenarmbrust</name>
+                    <carried type="number">0</carried>
+                    <weight type="number">200</weight>
+                    <count type="number">1</count>
+                    <location type="string"/>
+                </id-00010>
+                <id-00011>
+                    <name type="string">Zwergenschlägel des Fickers</name>
+                    <carried type="number">0</carried>
+                    <weight type="number">120</weight>
+                    <count type="number">1</count>
+                    <location type="string"/>
+                </id-00011>
+            </inventorylist>
+            <kap>
+                <akt type="number">0</akt>
+                <max type="number">0</max>
+                <mod1 type="number">0</mod1>
+                <mod2 type="number">0</mod2>
+            </kap>
+            <lep>
+                <akt type="number">35</akt>
+                <base type="number">24</base>
+                <max type="number">35</max>
+                <mod1 type="number">0</mod1>
+                <mod2 type="number">11</mod2>
+            </lep>
+            <mr>
+                <base type="number">8</base>
+                <max type="number">6</max>
+                <mod type="number">-2</mod>
+            </mr>
+            <nachteile idcounter="0">
+                <id-00006>
+                    <label type="string">Behäbig</label>
+                </id-00006>
+                <id-00007>
+                    <label type="string">Goldgier</label>
+                    <stufe type="number">8</stufe>
+                </id-00007>
+                <id-00008>
+                    <label type="string">Höhenangst</label>
+                    <stufe type="number">7</stufe>
+                </id-00008>
+                <id-00009>
+                    <label type="string">Meeresangst</label>
+                    <stufe type="number">5</stufe>
+                </id-00009>
+                <id-00010>
+                    <label type="string">Platzangst</label>
+                    <stufe type="number">5</stufe>
+                </id-00010>
+                <id-00011>
+                    <label type="string">Schlechte Regeneration</label>
+                </id-00011>
+                <id-00012>
+                    <label type="string">Unfähigkeit für [Talent] Schwimmen</label>
+                </id-00012>
+                <id-00013>
+                    <label type="string">Ungebildet</label>
+                    <stufe type="number">5</stufe>
+                </id-00013>
+                <id-00014>
+                    <label type="string">Zwergenwuchs</label>
+                </id-00014>
+            </nachteile>
+            <nahkampfwaffenliste idcounter="3">
+                <id-00001>
+                    <attacke type="number">22</attacke>
+                    <bruchfaktor type="number">1</bruchfaktor>
+                    <damagedice type="dice">d6</damagedice>
+                    <damagebonus type="number">8</damagebonus>
+                    <dk type="string">N</dk>
+                    <ini type="number">-1</ini>
+                    <label type="string">Zwergenschlägel des Fickers</label>
+                    <parade type="number">15</parade>
+                    <showonminisheet type="number">1</showonminisheet>
+                    <wm1 type="number">1</wm1>
+                    <wm2 type="number">-1</wm2>
+                    <tpkk>
+                        <eins type="number">13</eins>
+                        <zwei type="number">3</zwei>
+                    </tpkk>
+                </id-00001>
+                <id-00002>
+                    <attacke type="number">9</attacke>
+                    <bruchfaktor type="number">0</bruchfaktor>
+                    <damagedice type="dice">d6</damagedice>
+                    <damagebonus type="number">0</damagebonus>
+                    <dk type="string">H</dk>
+                    <ini type="number">0</ini>
+                    <label type="string">Raufen</label>
+                    <parade type="number">9</parade>
+                    <showonminisheet type="number">1</showonminisheet>
+                    <tpkk>
+                        <eins type="number">10</eins>
+                        <zwei type="number">3</zwei>
+                    </tpkk>
+                </id-00002>
+                <id-00003>
+                    <attacke type="number">8</attacke>
+                    <bruchfaktor type="number">0</bruchfaktor>
+                    <damagedice type="dice">d6</damagedice>
+                    <damagebonus type="number">0</damagebonus>
+                    <dk type="string">H</dk>
+                    <ini type="number">0</ini>
+                    <label type="string">Ringen</label>
+                    <parade type="number">10</parade>
+                    <showonminisheet type="number">1</showonminisheet>
+                    <tpkk>
+                        <eins type="number">10</eins>
+                        <zwei type="number">3</zwei>
+                    </tpkk>
+                </id-00003>
+            </nahkampfwaffenliste>
+            <name type="string">Zoromir Grantir Sohn des Arbold</name>
+            <pa>
+                <base type="number">8</base>
+            </pa>
+            <schildliste idcounter="0"/>
+            <sf idcounter="12">
+                <id-00000>
+                    <label type="string">Gegenhalten</label>
+                </id-00000>
+                <id-00001>
+                    <label type="string">Höhlenkundig</label>
+                </id-00001>
+                <id-00002>
+                    <label type="string">Kulturkunde (Erzzwerge)</label>
+                </id-00002>
+                <id-00003>
+                    <label type="string">Meister der Improvisation</label>
+                </id-00003>
+                <id-00004>
+                    <label type="string">Meisterparade</label>
+                </id-00004>
+                <id-00005>
+                    <label type="string">Niederwerfen</label>
+                </id-00005>
+                <id-00006>
+                    <label type="string">Ortskenntnis (Stadtviertel oder Ort)</label>
+                </id-00006>
+                <id-00007>
+                    <label type="string">Rüstungsgewöhnung I (Kettenhemd, Lang)</label>
+                </id-00007>
+                <id-00008>
+                    <label type="string">Scharfschütze (Armbrust)</label>
+                </id-00008>
+                <id-00009>
+                    <label type="string">Talentspezialisierung Grobschmied (Waffenschmied)</label>
+                </id-00009>
+                <id-00010>
+                    <label type="string">Talentspezialisierung Zweihandhiebwaffen (Zwergenschlägel)</label>
+                </id-00010>
+                <id-00011>
+                    <label type="string">Wuchtschlag</label>
+                </id-00011>
+            </sf>
+            <litlist/>
+            <rklist/>
+            <soderfertigkeiten type="string">Gegenhalten,Meisterparade,Niederwerfen,Rüstungsgewöhnung I (Kettenhemd,
+                Lang),Scharfschütze (Armbrust),Wuchtschlag
+            </soderfertigkeiten>
+            <skilllist>
+                <gesellschaft>
+                    <id-00001>
+                        <label type="string">Etikette</label>
+                        <wert type="number">3</wert>
+                        <e1 type="string">attribute.klugheit.aktuell</e1>
+                        <e2 type="string">attribute.intuition.aktuell</e2>
+                        <e3 type="string">attribute.charisma.aktuell</e3>
+                    </id-00001>
+                    <id-00002>
+                        <label type="string">Gassenwissen</label>
+                        <wert type="number">1</wert>
+                        <e1 type="string">attribute.klugheit.aktuell</e1>
+                        <e2 type="string">attribute.intuition.aktuell</e2>
+                        <e3 type="string">attribute.charisma.aktuell</e3>
+                    </id-00002>
+                    <id-00003>
+                        <label type="string">Lehren</label>
+                        <wert type="number">3</wert>
+                        <e1 type="string">attribute.klugheit.aktuell</e1>
+                        <e2 type="string">attribute.intuition.aktuell</e2>
+                        <e3 type="string">attribute.charisma.aktuell</e3>
+                    </id-00003>
+                    <id-00004>
+                        <label type="string">Menschenkenntnis</label>
+                        <wert type="number">6</wert>
+                        <e1 type="string">attribute.klugheit.aktuell</e1>
+                        <e2 type="string">attribute.intuition.aktuell</e2>
+                        <e3 type="string">attribute.charisma.aktuell</e3>
+                    </id-00004>
+                    <id-00005>
+                        <label type="string">Schauspielerei</label>
+                        <wert type="number">3</wert>
+                        <e1 type="string">attribute.mut.aktuell</e1>
+                        <e2 type="string">attribute.klugheit.aktuell</e2>
+                        <e3 type="string">attribute.charisma.aktuell</e3>
+                    </id-00005>
+                    <id-00006>
+                        <label type="string">Überreden</label>
+                        <wert type="number">4</wert>
+                        <e1 type="string">attribute.mut.aktuell</e1>
+                        <e2 type="string">attribute.intuition.aktuell</e2>
+                        <e3 type="string">attribute.charisma.aktuell</e3>
+                    </id-00006>
+                    <id-00007>
+                        <label type="string">Überzeugen</label>
+                        <wert type="number">3</wert>
+                        <e1 type="string">attribute.klugheit.aktuell</e1>
+                        <e2 type="string">attribute.intuition.aktuell</e2>
+                        <e3 type="string">attribute.charisma.aktuell</e3>
+                    </id-00007>
+                </gesellschaft>
+                <handwerk>
+                    <id-00001>
+                        <label type="string">Bergbau</label>
+                        <wert type="number">2</wert>
+                        <e1 type="string">attribute.intuition.aktuell</e1>
+                        <e2 type="string">attribute.konstitution.aktuell</e2>
+                        <e3 type="string">attribute.koerperkraft.aktuell</e3>
+                    </id-00001>
+                    <id-00002>
+                        <label type="string">Bogenbau</label>
+                        <wert type="number">10</wert>
+                        <e1 type="string">attribute.klugheit.aktuell</e1>
+                        <e2 type="string">attribute.intuition.aktuell</e2>
+                        <e3 type="string">attribute.fingerfertigkeit.aktuell</e3>
+                    </id-00002>
+                    <id-00003>
+                        <label type="string">Boote fahren</label>
+                        <wert type="number">0</wert>
+                        <e1 type="string">attribute.gewandtheit.aktuell</e1>
+                        <e2 type="string">attribute.konstitution.aktuell</e2>
+                        <e3 type="string">attribute.koerperkraft.aktuell</e3>
+                    </id-00003>
+                    <id-00004>
+                        <label type="string">Fahrzeug lenken</label>
+                        <wert type="number">6</wert>
+                        <e1 type="string">attribute.intuition.aktuell</e1>
+                        <e2 type="string">attribute.charisma.aktuell</e2>
+                        <e3 type="string">attribute.fingerfertigkeit.aktuell</e3>
+                    </id-00004>
+                    <id-00005>
+                        <label type="string">Fleischer</label>
+                        <wert type="number">6</wert>
+                        <e1 type="string">attribute.klugheit.aktuell</e1>
+                        <e2 type="string">attribute.fingerfertigkeit.aktuell</e2>
+                        <e3 type="string">attribute.koerperkraft.aktuell</e3>
+                    </id-00005>
+                    <id-00006>
+                        <label type="string">Gerber/Kürschner</label>
+                        <wert type="number">7</wert>
+                        <e1 type="string">attribute.klugheit.aktuell</e1>
+                        <e2 type="string">attribute.fingerfertigkeit.aktuell</e2>
+                        <e3 type="string">attribute.konstitution.aktuell</e3>
+                    </id-00006>
+                    <id-00007>
+                        <label type="string">Grobschmied</label>
+                        <wert type="number">19</wert>
+                        <e1 type="string">attribute.fingerfertigkeit.aktuell</e1>
+                        <e2 type="string">attribute.konstitution.aktuell</e2>
+                        <e3 type="string">attribute.koerperkraft.aktuell</e3>
+                    </id-00007>
+                    <id-00008>
+                        <label type="string">Handel</label>
+                        <wert type="number">2</wert>
+                        <e1 type="string">attribute.klugheit.aktuell</e1>
+                        <e2 type="string">attribute.intuition.aktuell</e2>
+                        <e3 type="string">attribute.charisma.aktuell</e3>
+                    </id-00008>
+                    <id-00009>
+                        <label type="string">Heilkunde: Krankheiten</label>
+                        <wert type="number">5</wert>
+                        <e1 type="string">attribute.mut.aktuell</e1>
+                        <e2 type="string">attribute.klugheit.aktuell</e2>
+                        <e3 type="string">attribute.charisma.aktuell</e3>
+                    </id-00009>
+                    <id-00010>
+                        <label type="string">Heilkunde: Wunden</label>
+                        <wert type="number">15</wert>
+                        <e1 type="string">attribute.klugheit.aktuell</e1>
+                        <e2 type="string">attribute.charisma.aktuell</e2>
+                        <e3 type="string">attribute.fingerfertigkeit.aktuell</e3>
+                    </id-00010>
+                    <id-00011>
+                        <label type="string">Holzbearbeitung</label>
+                        <wert type="number">12</wert>
+                        <e1 type="string">attribute.klugheit.aktuell</e1>
+                        <e2 type="string">attribute.fingerfertigkeit.aktuell</e2>
+                        <e3 type="string">attribute.koerperkraft.aktuell</e3>
+                    </id-00011>
+                    <id-00012>
+                        <label type="string">Kochen</label>
+                        <wert type="number">8</wert>
+                        <e1 type="string">attribute.klugheit.aktuell</e1>
+                        <e2 type="string">attribute.intuition.aktuell</e2>
+                        <e3 type="string">attribute.fingerfertigkeit.aktuell</e3>
+                    </id-00012>
+                    <id-00013>
+                        <label type="string">Lederarbeiten</label>
+                        <wert type="number">7</wert>
+                        <e1 type="string">attribute.klugheit.aktuell</e1>
+                        <e2 type="string">attribute.fingerfertigkeit.aktuell</e2>
+                        <e3 type="string">attribute.fingerfertigkeit.aktuell</e3>
+                    </id-00013>
+                    <id-00014>
+                        <label type="string">Malen/Zeichnen</label>
+                        <wert type="number">5</wert>
+                        <e1 type="string">attribute.klugheit.aktuell</e1>
+                        <e2 type="string">attribute.intuition.aktuell</e2>
+                        <e3 type="string">attribute.fingerfertigkeit.aktuell</e3>
+                    </id-00014>
+                    <id-00015>
+                        <label type="string">Schlösser knacken</label>
+                        <wert type="number">9</wert>
+                        <e1 type="string">attribute.intuition.aktuell</e1>
+                        <e2 type="string">attribute.fingerfertigkeit.aktuell</e2>
+                        <e3 type="string">attribute.fingerfertigkeit.aktuell</e3>
+                    </id-00015>
+                    <id-00016>
+                        <label type="string">Schneidern</label>
+                        <wert type="number">4</wert>
+                        <e1 type="string">attribute.klugheit.aktuell</e1>
+                        <e2 type="string">attribute.fingerfertigkeit.aktuell</e2>
+                        <e3 type="string">attribute.fingerfertigkeit.aktuell</e3>
+                    </id-00016>
+                </handwerk>
+                <kampf>
+                    <id-00001>
+                        <label type="string">Dolche</label>
+                        <wert type="number">2</wert>
+                        <ebe type="string">-1</ebe>
+                        <at type="number">9</at>
+                        <pa type="number">10</pa>
+                    </id-00001>
+                    <id-00002>
+                        <label type="string">Hiebwaffen</label>
+                        <wert type="number">3</wert>
+                        <ebe type="string">-4</ebe>
+                        <at type="number">9</at>
+                        <pa type="number">11</pa>
+                    </id-00002>
+                    <id-00003>
+                        <label type="string">Raufen</label>
+                        <wert type="number">3</wert>
+                        <ebe type="string">0</ebe>
+                        <at type="number">10</at>
+                        <pa type="number">10</pa>
+                    </id-00003>
+                    <id-00004>
+                        <label type="string">Ringen</label>
+                        <wert type="number">3</wert>
+                        <ebe type="string">0</ebe>
+                        <at type="number">9</at>
+                        <pa type="number">11</pa>
+                    </id-00004>
+                    <id-00005>
+                        <label type="string">Säbel</label>
+                        <wert type="number">0</wert>
+                        <ebe type="string">-2</ebe>
+                        <at type="number">9</at>
+                        <pa type="number">8</pa>
+                    </id-00005>
+                    <id-00006>
+                        <label type="string">Zweihandhiebwaffen</label>
+                        <wert type="number">18</wert>
+                        <ebe type="string">-3</ebe>
+                        <at type="number">20</at>
+                        <pa type="number">15</pa>
+                    </id-00006>
+                </kampf>
+                <fernkampf>
+                    <id-00001>
+                        <label type="string">Armbrust</label>
+                        <wert type="number">15</wert>
+                        <ebe type="string">-5</ebe>
+                        <at type="number">24</at>
+                    </id-00001>
+                    <id-00002>
+                        <label type="string">Wurfmesser</label>
+                        <wert type="number">0</wert>
+                        <ebe type="string">-3</ebe>
+                        <at type="number">9</at>
+                    </id-00002>
+                </fernkampf>
+                <koerper>
+                    <id-00001>
+                        <label type="string">Akrobatik</label>
+                        <wert type="number">-3</wert>
+                        <e1 type="string">attribute.mut.aktuell</e1>
+                        <e2 type="string">attribute.gewandtheit.aktuell</e2>
+                        <e3 type="string">attribute.koerperkraft.aktuell</e3>
+                        <ebe type="string">*2</ebe>
+                    </id-00001>
+                    <id-00002>
+                        <label type="string">Athletik</label>
+                        <wert type="number">9</wert>
+                        <e1 type="string">attribute.gewandtheit.aktuell</e1>
+                        <e2 type="string">attribute.konstitution.aktuell</e2>
+                        <e3 type="string">attribute.koerperkraft.aktuell</e3>
+                        <ebe type="string">*2</ebe>
+                    </id-00002>
+                    <id-00003>
+                        <label type="string">Klettern</label>
+                        <wert type="number">7</wert>
+                        <e1 type="string">attribute.mut.aktuell</e1>
+                        <e2 type="string">attribute.gewandtheit.aktuell</e2>
+                        <e3 type="string">attribute.koerperkraft.aktuell</e3>
+                        <ebe type="string">*2</ebe>
+                    </id-00003>
+                    <id-00004>
+                        <label type="string">Körperbeherrschung</label>
+                        <wert type="number">5</wert>
+                        <e1 type="string">attribute.mut.aktuell</e1>
+                        <e2 type="string">attribute.intuition.aktuell</e2>
+                        <e3 type="string">attribute.gewandtheit.aktuell</e3>
+                        <ebe type="string">*2</ebe>
+                    </id-00004>
+                    <id-00005>
+                        <label type="string">Reiten</label>
+                        <wert type="number">4</wert>
+                        <e1 type="string">attribute.charisma.aktuell</e1>
+                        <e2 type="string">attribute.gewandtheit.aktuell</e2>
+                        <e3 type="string">attribute.koerperkraft.aktuell</e3>
+                        <ebe type="string">-2</ebe>
+                    </id-00005>
+                    <id-00006>
+                        <label type="string">Schleichen</label>
+                        <wert type="number">3</wert>
+                        <e1 type="string">attribute.mut.aktuell</e1>
+                        <e2 type="string">attribute.intuition.aktuell</e2>
+                        <e3 type="string">attribute.gewandtheit.aktuell</e3>
+                        <ebe type="string">0</ebe>
+                    </id-00006>
+                    <id-00007>
+                        <label type="string">Schwimmen</label>
+                        <wert type="number">5</wert>
+                        <e1 type="string">attribute.gewandtheit.aktuell</e1>
+                        <e2 type="string">attribute.konstitution.aktuell</e2>
+                        <e3 type="string">attribute.koerperkraft.aktuell</e3>
+                        <ebe type="string">*2</ebe>
+                    </id-00007>
+                    <id-00008>
+                        <label type="string">Selbstbeherrschung</label>
+                        <wert type="number">6</wert>
+                        <e1 type="string">attribute.mut.aktuell</e1>
+                        <e2 type="string">attribute.konstitution.aktuell</e2>
+                        <e3 type="string">attribute.koerperkraft.aktuell</e3>
+                        <ebe type="string"/>
+                    </id-00008>
+                    <id-00009>
+                        <label type="string">Sich Verstecken</label>
+                        <wert type="number">1</wert>
+                        <e1 type="string">attribute.mut.aktuell</e1>
+                        <e2 type="string">attribute.intuition.aktuell</e2>
+                        <e3 type="string">attribute.gewandtheit.aktuell</e3>
+                        <ebe type="string">-2</ebe>
+                    </id-00009>
+                    <id-00010>
+                        <label type="string">Singen</label>
+                        <wert type="number">1</wert>
+                        <e1 type="string">attribute.intuition.aktuell</e1>
+                        <e2 type="string">attribute.charisma.aktuell</e2>
+                        <e3 type="string">attribute.charisma.aktuell</e3>
+                        <ebe type="string">-3</ebe>
+                    </id-00010>
+                    <id-00011>
+                        <label type="string">Sinnesschärfe</label>
+                        <wert type="number">5</wert>
+                        <e1 type="string">attribute.klugheit.aktuell</e1>
+                        <e2 type="string">attribute.intuition.aktuell</e2>
+                        <e3 type="string">attribute.intuition.aktuell</e3>
+                        <ebe type="string"/>
+                    </id-00011>
+                    <id-00012>
+                        <label type="string">Tanzen</label>
+                        <wert type="number">1</wert>
+                        <e1 type="string">attribute.charisma.aktuell</e1>
+                        <e2 type="string">attribute.gewandtheit.aktuell</e2>
+                        <e3 type="string">attribute.gewandtheit.aktuell</e3>
+                        <ebe type="string">*2</ebe>
+                    </id-00012>
+                    <id-00013>
+                        <label type="string">Zechen</label>
+                        <wert type="number">4</wert>
+                        <e1 type="string">attribute.intuition.aktuell</e1>
+                        <e2 type="string">attribute.konstitution.aktuell</e2>
+                        <e3 type="string">attribute.koerperkraft.aktuell</e3>
+                        <ebe type="string"/>
+                    </id-00013>
+                </koerper>
+                <natur>
+                    <id-00001>
+                        <label type="string">Ansitzjagd incl Waffe</label>
+                        <wert type="number">2</wert>
+                        <e1 type="string">attribute.mut.aktuell</e1>
+                        <e2 type="string">attribute.intuition.aktuell</e2>
+                        <e3 type="string">attribute.gewandtheit.aktuell</e3>
+                    </id-00001>
+                    <id-00002>
+                        <label type="string">Fährtensuchen</label>
+                        <wert type="number">4</wert>
+                        <e1 type="string">attribute.klugheit.aktuell</e1>
+                        <e2 type="string">attribute.intuition.aktuell</e2>
+                        <e3 type="string">attribute.konstitution.aktuell</e3>
+                    </id-00002>
+                    <id-00003>
+                        <label type="string">Fesseln/Entfesseln</label>
+                        <wert type="number">3</wert>
+                        <e1 type="string">attribute.fingerfertigkeit.aktuell</e1>
+                        <e2 type="string">attribute.gewandtheit.aktuell</e2>
+                        <e3 type="string">attribute.koerperkraft.aktuell</e3>
+                    </id-00003>
+                    <id-00004>
+                        <label type="string">Orientierung</label>
+                        <wert type="number">1</wert>
+                        <e1 type="string">attribute.klugheit.aktuell</e1>
+                        <e2 type="string">attribute.intuition.aktuell</e2>
+                        <e3 type="string">attribute.intuition.aktuell</e3>
+                    </id-00004>
+                    <id-00005>
+                        <label type="string">Pirschjagd incl Waffe</label>
+                        <wert type="number">6</wert>
+                        <e1 type="string">attribute.mut.aktuell</e1>
+                        <e2 type="string">attribute.intuition.aktuell</e2>
+                        <e3 type="string">attribute.gewandtheit.aktuell</e3>
+                    </id-00005>
+                    <id-00006>
+                        <label type="string">Wettervorhersage</label>
+                        <wert type="number">-2</wert>
+                        <e1 type="string">attribute.klugheit.aktuell</e1>
+                        <e2 type="string">attribute.intuition.aktuell</e2>
+                        <e3 type="string">attribute.intuition.aktuell</e3>
+                    </id-00006>
+                    <id-00007>
+                        <label type="string">Wildnisleben</label>
+                        <wert type="number">6</wert>
+                        <e1 type="string">attribute.intuition.aktuell</e1>
+                        <e2 type="string">attribute.gewandtheit.aktuell</e2>
+                        <e3 type="string">attribute.konstitution.aktuell</e3>
+                    </id-00007>
+                </natur>
+                <lesen>
+                    <id-00001>
+                        <label type="string">Rogolan</label>
+                        <wert type="number">11</wert>
+                        <komp type="number">11</komp>
+                        <e1 type="string">attribute.klugheit.aktuell</e1>
+                        <e2 type="string">attribute.klugheit.aktuell</e2>
+                        <e3 type="string">attribute.fingerfertigkeit.aktuell</e3>
+                    </id-00001>
+                </lesen>
+                <sonstige/>
+                <sprechen>
+                    <id-00001>
+                        <label type="string">Garethi</label>
+                        <wert type="number">9</wert>
+                        <komp type="number">18</komp>
+                        <e1 type="string">attribute.klugheit.aktuell</e1>
+                        <e2 type="string">attribute.intuition.aktuell</e2>
+                        <e3 type="string">attribute.charisma.aktuell</e3>
+                    </id-00001>
+                    <id-00002>
+                        <label type="string">Rogolan</label>
+                        <wert type="number">8</wert>
+                        <komp type="number">21</komp>
+                        <e1 type="string">attribute.klugheit.aktuell</e1>
+                        <e2 type="string">attribute.intuition.aktuell</e2>
+                        <e3 type="string">attribute.charisma.aktuell</e3>
+                    </id-00002>
+                    <id-00003>
+                        <label type="string">Thorwalsch</label>
+                        <wert type="number">1</wert>
+                        <komp type="number">18</komp>
+                        <e1 type="string">attribute.klugheit.aktuell</e1>
+                        <e2 type="string">attribute.intuition.aktuell</e2>
+                        <e3 type="string">attribute.charisma.aktuell</e3>
+                    </id-00003>
+                    <id-00004>
+                        <label type="string">Tulamidya</label>
+                        <wert type="number">4</wert>
+                        <komp type="number">18</komp>
+                        <e1 type="string">attribute.klugheit.aktuell</e1>
+                        <e2 type="string">attribute.intuition.aktuell</e2>
+                        <e3 type="string">attribute.charisma.aktuell</e3>
+                    </id-00004>
+                </sprechen>
+                <wissen>
+                    <id-00001>
+                        <label type="string">Geschichtswissen</label>
+                        <wert type="number">3</wert>
+                        <e1 type="string">attribute.klugheit.aktuell</e1>
+                        <e2 type="string">attribute.klugheit.aktuell</e2>
+                        <e3 type="string">attribute.intuition.aktuell</e3>
+                    </id-00001>
+                    <id-00002>
+                        <label type="string">Gesteinskunde</label>
+                        <wert type="number">6</wert>
+                        <e1 type="string">attribute.klugheit.aktuell</e1>
+                        <e2 type="string">attribute.intuition.aktuell</e2>
+                        <e3 type="string">attribute.fingerfertigkeit.aktuell</e3>
+                    </id-00002>
+                    <id-00003>
+                        <label type="string">Götter/Kulte</label>
+                        <wert type="number">3</wert>
+                        <e1 type="string">attribute.klugheit.aktuell</e1>
+                        <e2 type="string">attribute.klugheit.aktuell</e2>
+                        <e3 type="string">attribute.intuition.aktuell</e3>
+                    </id-00003>
+                    <id-00004>
+                        <label type="string">Hüttenkunde</label>
+                        <wert type="number">2</wert>
+                        <e1 type="string">attribute.klugheit.aktuell</e1>
+                        <e2 type="string">attribute.intuition.aktuell</e2>
+                        <e3 type="string">attribute.konstitution.aktuell</e3>
+                    </id-00004>
+                    <id-00005>
+                        <label type="string">Magiekunde</label>
+                        <wert type="number">2</wert>
+                        <e1 type="string">attribute.klugheit.aktuell</e1>
+                        <e2 type="string">attribute.klugheit.aktuell</e2>
+                        <e3 type="string">attribute.intuition.aktuell</e3>
+                    </id-00005>
+                    <id-00006>
+                        <label type="string">Mechanik</label>
+                        <wert type="number">8</wert>
+                        <e1 type="string">attribute.klugheit.aktuell</e1>
+                        <e2 type="string">attribute.klugheit.aktuell</e2>
+                        <e3 type="string">attribute.fingerfertigkeit.aktuell</e3>
+                    </id-00006>
+                    <id-00007>
+                        <label type="string">Rechnen</label>
+                        <wert type="number">7</wert>
+                        <e1 type="string">attribute.klugheit.aktuell</e1>
+                        <e2 type="string">attribute.klugheit.aktuell</e2>
+                        <e3 type="string">attribute.intuition.aktuell</e3>
+                    </id-00007>
+                    <id-00008>
+                        <label type="string">Rechtskunde</label>
+                        <wert type="number">1</wert>
+                        <e1 type="string">attribute.klugheit.aktuell</e1>
+                        <e2 type="string">attribute.klugheit.aktuell</e2>
+                        <e3 type="string">attribute.intuition.aktuell</e3>
+                    </id-00008>
+                    <id-00009>
+                        <label type="string">Sagen/Legenden</label>
+                        <wert type="number">7</wert>
+                        <e1 type="string">attribute.klugheit.aktuell</e1>
+                        <e2 type="string">attribute.intuition.aktuell</e2>
+                        <e3 type="string">attribute.charisma.aktuell</e3>
+                    </id-00009>
+                    <id-00010>
+                        <label type="string">Schätzen</label>
+                        <wert type="number">5</wert>
+                        <e1 type="string">attribute.klugheit.aktuell</e1>
+                        <e2 type="string">attribute.intuition.aktuell</e2>
+                        <e3 type="string">attribute.intuition.aktuell</e3>
+                    </id-00010>
+                    <id-00011>
+                        <label type="string">Tierkunde</label>
+                        <wert type="number">4</wert>
+                        <e1 type="string">attribute.mut.aktuell</e1>
+                        <e2 type="string">attribute.klugheit.aktuell</e2>
+                        <e3 type="string">attribute.intuition.aktuell</e3>
+                    </id-00011>
+                </wissen>
+            </skilllist>
+            <ritklist/>
+            <spelllist/>
+            <vorteile>
+                <id-00000>
+                    <label type="string">Begabung für [Talentgruppe] Handwerk</label>
+                </id-00000>
+                <id-00001>
+                    <label type="string">Dämmerungssicht</label>
+                </id-00001>
+                <id-00002>
+                    <label type="string">Resistenz gegen Gift mineralische Gifte</label>
+                </id-00002>
+                <id-00003>
+                    <label type="string">Resistenz gegen Krankheiten</label>
+                </id-00003>
+                <id-00004>
+                    <label type="string">Schwer zu verzaubern</label>
+                </id-00004>
+                <id-00005>
+                    <label type="string">Verbindungen</label>
+                    <stufe type="number">18</stufe>
+                </id-00005>
+            </vorteile>
+            <weaponlist>
+                <id-00001>
+                    <RSBauch type="number">0</RSBauch>
+                    <RSBrust type="number">0</RSBrust>
+                    <RSKopf type="number">5</RSKopf>
+                    <RSLA type="number">0</RSLA>
+                    <RSLB type="number">0</RSLB>
+                    <RSRA type="number">0</RSRA>
+                    <RSRB type="number">0</RSRB>
+                    <RSRuecken type="number">0</RSRuecken>
+                    <RSteilgesamt type="number">2</RSteilgesamt>
+                    <BEteilgesamt type="number">0</BEteilgesamt>
+                    <carried type="number">0</carried>
+                    <name type="string">Stechhelm / Visierhelm</name>
+                </id-00001>
+                <id-00002>
+                    <RSBauch type="number">0</RSBauch>
+                    <RSBrust type="number">0</RSBrust>
+                    <RSKopf type="number">0</RSKopf>
+                    <RSLA type="number">0</RSLA>
+                    <RSLB type="number">1</RSLB>
+                    <RSRA type="number">0</RSRA>
+                    <RSRB type="number">1</RSRB>
+                    <RSRuecken type="number">0</RSRuecken>
+                    <RSteilgesamt type="number">1</RSteilgesamt>
+                    <BEteilgesamt type="number">0</BEteilgesamt>
+                    <carried type="number">0</carried>
+                    <name type="string">Panzerschuhe (Paar)</name>
+                </id-00002>
+                <id-00003>
+                    <RSBauch type="number">0</RSBauch>
+                    <RSBrust type="number">0</RSBrust>
+                    <RSKopf type="number">0</RSKopf>
+                    <RSLA type="number">2</RSLA>
+                    <RSLB type="number">0</RSLB>
+                    <RSRA type="number">2</RSRA>
+                    <RSRB type="number">0</RSRB>
+                    <RSRuecken type="number">0</RSRuecken>
+                    <RSteilgesamt type="number">2</RSteilgesamt>
+                    <BEteilgesamt type="number">1</BEteilgesamt>
+                    <carried type="number">0</carried>
+                    <name type="string">Panzerhandschuhe (Paar)</name>
+                </id-00003>
+                <id-00004>
+                    <RSBauch type="number">4</RSBauch>
+                    <RSBrust type="number">4</RSBrust>
+                    <RSKopf type="number">0</RSKopf>
+                    <RSLA type="number">3</RSLA>
+                    <RSLB type="number">2</RSLB>
+                    <RSRA type="number">3</RSRA>
+                    <RSRB type="number">2</RSRB>
+                    <RSRuecken type="number">4</RSRuecken>
+                    <RSteilgesamt type="number">4</RSteilgesamt>
+                    <BEteilgesamt type="number">3</BEteilgesamt>
+                    <carried type="number">0</carried>
+                    <name type="string">Kettenhemd, Lang</name>
+                </id-00004>
+            </weaponlist>
+        </id-00033>
+    </charsheet>
+</root>

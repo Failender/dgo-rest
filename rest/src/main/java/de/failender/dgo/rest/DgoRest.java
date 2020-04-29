@@ -8,6 +8,7 @@ import de.failender.dgo.persistance.user.UserRepositoryService;
 import de.failender.dgo.rest.asset.AssetController;
 import de.failender.dgo.rest.gruppen.GruppeController;
 import de.failender.dgo.rest.helden.HeldenController;
+import de.failender.dgo.rest.helden.HeldenService;
 import de.failender.dgo.rest.helden.geld.GeldController;
 import de.failender.dgo.rest.helden.inventar.HeldInventarController;
 import de.failender.dgo.rest.helden.steigern.SteigernController;
@@ -23,7 +24,6 @@ import de.failender.dgo.rest.user.UserController;
 import de.failender.dgo.rest.user.UserService;
 import de.failender.ezql.EzqlConnector;
 import de.failender.ezql.properties.PropertyReader;
-import de.failender.ezql.repository.EzqlRepository;
 import io.javalin.Javalin;
 import io.javalin.json.JavalinJackson;
 import org.apache.commons.io.IOUtils;
@@ -88,6 +88,8 @@ public class DgoRest {
         SynchronizationService.intialize(om);
         UserService.initialize();
         EzqlConnector.releaseConnection();
+
+        UserRepositoryService.findAll().forEach(user -> HeldenService.updateHeldenForUser(user));
 
         double elapsedTimeInSecond = (double) (System.nanoTime() - start) / 1_000_000_000;
 		long takenMemory = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
