@@ -33,7 +33,7 @@ public class HeldenService {
 
     public static SynchronizationResult updateHeldenForUser(UserEntity userEntity) {
 		if (userEntity.getToken() == null || userEntity.getToken().isEmpty()) {
-            log.error("User with getName {} has null token ", userEntity.getName());
+            log.error("User with name {} has null token ", userEntity.getName());
             return null;
         }
         List<Held> helden = Beans.HELDEN_API.request(new GetAllHeldenRequest(new TokenAuthentication(userEntity.getToken())), false).block().getHeld();

@@ -12,6 +12,7 @@ import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class FantasyGroundsConverterServiceTest extends XMLTestCase {
@@ -28,7 +29,7 @@ public class FantasyGroundsConverterServiceTest extends XMLTestCase {
         helden.add(zoromirDaten);
 
 
-        String tested = FantasyGroundsConverterService.convert(helden, FantasyGroundsConverterServiceTest.class.getResourceAsStream("db.xml"));
+        String tested = FantasyGroundsConverterService.convert(helden, FantasyGroundsConverterServiceTest.class.getResourceAsStream("db.xml"), Collections.emptyList());
 
         String migrated = toString(FantasyGroundsConverterServiceTest.class.getResourceAsStream("db_migrated.xml"));
         XMLUnit.setIgnoreWhitespace(true);

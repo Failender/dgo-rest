@@ -77,6 +77,10 @@ public class XmlWorker {
         }
     }
 
+    public static void Oeffne_Held(Document xml) {
+        XmlWorker.heldXML = xml;
+    }
+
     public static String documentToString() {
         return XmlUtil.toString(XmlWorker.heldXML);
     }
@@ -386,28 +390,28 @@ public class XmlWorker {
         addNumberNode(XmlWorker.heldXML, attibuteNode, "geschwindigkeit", phww.getGeschwindigkeit());
     }
 
-    private static void add_Node_aep(final Element node, final PluginHeld held, final PluginHeldenWerteWerkzeug2 phww) {
+    private static void add_Node_aep(final Element node, final PluginHeld held, final PluginHeldenWerteWerkzeug2 phww, Character exportCharacter) {
         final int max = phww.getEigenschaftswert("Astralenergie");
         final Element astralnode = addNode(XmlWorker.heldXML, node, "aep");
         final int e1 = phww.getEigenschaftswert("Mut");
         final int e2 = phww.getEigenschaftswert("Intuition");
         final int e3 = phww.getEigenschaftswert("Charisma");
         final int base = Math.round((e1 + e2 + e3) / 2.0f);
-        addNumberNode(XmlWorker.heldXML, astralnode, "akt", max);
+        addNumberNode(XmlWorker.heldXML, astralnode, "akt", exportCharacter == null || exportCharacter.getCurrentAsp() == null ? max : exportCharacter.getCurrentAsp());
         addNumberNode(XmlWorker.heldXML, astralnode, "base", base);
         addNumberNode(XmlWorker.heldXML, astralnode, "max", max);
         addNumberNode(XmlWorker.heldXML, astralnode, "mod1", 0);
         addNumberNode(XmlWorker.heldXML, astralnode, "mod2", max - base);
     }
 
-    private static void add_Node_lep(final Element node, final PluginHeld held, final PluginHeldenWerteWerkzeug2 phww) {
+    private static void add_Node_lep(final Element node, final PluginHeld held, final PluginHeldenWerteWerkzeug2 phww, Character exportCharacter) {
         final int max = phww.getEigenschaftswert("Lebensenergie");
         final Element lebensnode = addNode(XmlWorker.heldXML, node, "lep");
         final int e1 = phww.getEigenschaftswert("Konstitution");
         final int e2 = phww.getEigenschaftswert("Konstitution");
         final int e3 = phww.getEigenschaftswert("K\u00f6rperkraft");
         final int base = Math.round((e1 + e2 + e3) / 2.0f);
-        addNumberNode(XmlWorker.heldXML, lebensnode, "akt", max);
+        addNumberNode(XmlWorker.heldXML, lebensnode, "akt", exportCharacter == null ? max : exportCharacter.getCurrentLep());
         addNumberNode(XmlWorker.heldXML, lebensnode, "base", base);
         addNumberNode(XmlWorker.heldXML, lebensnode, "max", max);
         addNumberNode(XmlWorker.heldXML, lebensnode, "mod1", 0);
@@ -1008,11 +1012,11 @@ public class XmlWorker {
         ShowMessage("Konvertierung abgeschlossen !");
     }
 
-    public static void Konvertiere_Held(final DGOPluginHeldenWerteWerkzeug phww) {
+    public static void Konvertiere_Held(final DGOPluginHeldenWerteWerkzeug phww, Character exportCharacter) {
         final Element idElement = add_Node_base();
         add_Node_details(idElement, phww.getSelectesHeld(), phww);
         add_Node_be(idElement, phww.getSelectesHeld(), phww);
-        add_Node_aep(idElement, phww.getSelectesHeld(), phww);
+        add_Node_aep(idElement, phww.getSelectesHeld(), phww, exportCharacter);
         add_Node_ap(idElement, phww.getSelectesHeld(), phww);
         add_Node_at(idElement, phww.getSelectesHeld(), phww);
         add_Node_attribute(idElement, phww.getSelectesHeld(), phww);
@@ -1025,7 +1029,7 @@ public class XmlWorker {
         add_Node_ini(idElement, phww.getSelectesHeld(), phww);
         add_Node_inventorylist(idElement, phww.getSelectesHeld(), phww);
         add_Node_kap(idElement, phww.getSelectesHeld(), phww);
-        add_Node_lep(idElement, phww.getSelectesHeld(), phww);
+        add_Node_lep(idElement, phww.getSelectesHeld(), phww, exportCharacter);
         add_Node_mr(idElement, phww.getSelectesHeld(), phww);
         add_Node_nachteile(idElement, phww.getSelectesHeld(), phww);
         add_Node_nahkampfwaffenliste(idElement, phww.getSelectesHeld(), phww);

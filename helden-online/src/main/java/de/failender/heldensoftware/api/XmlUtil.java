@@ -13,15 +13,27 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import java.io.InputStream;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.time.Instant;
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.TimeZone;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
 public class XmlUtil {
+
+    public static Document documentFromInputStream(InputStream is) {
+        try {
+            return DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(is);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 	public static Document documentFromString(String xml) {
 		try {

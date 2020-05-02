@@ -57,9 +57,6 @@ public class PNahkampfWaffe implements PluginNahkampfWaffe2 {
 
     @Override
     public String[] getDistanzklasse() {
-        if (nahkampfwaffe.getDk().trim().length() > 1) {
-            throw new RuntimeException(nahkampfwaffe.getDk());
-        }
         return new String[]{nahkampfwaffe.getDk()};
 
     }

@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import de.failender.dgo.persistance.user.UserEntity;
 import de.failender.dgo.persistance.user.UserRepositoryService;
 import de.failender.dgo.rest.asset.AssetController;
+import de.failender.dgo.rest.fantasygrounds.FantasyGroundsController;
 import de.failender.dgo.rest.gruppen.GruppeController;
 import de.failender.dgo.rest.helden.HeldenController;
 import de.failender.dgo.rest.helden.HeldenService;
@@ -83,6 +84,7 @@ public class DgoRest {
         new SteigernController(app);
         new VersionController(app);
         new AssetController(app);
+        new FantasyGroundsController(app);
 
         DgoSecurity.registerSecurity(app);
         SynchronizationService.intialize(om);
