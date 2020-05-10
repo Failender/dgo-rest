@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import de.failender.dgo.persistance.gruppe.GruppeEntity;
 import de.failender.dgo.persistance.gruppe.GruppeRepositoryService;
+import de.failender.dgo.persistance.held.HeldRepositoryService;
 import de.failender.dgo.persistance.user.UserEntity;
 import de.failender.dgo.persistance.user.UserRepositoryService;
 import de.failender.dgo.rest.helden.HeldenService;
@@ -49,8 +50,12 @@ public class UserService {
 			log.error("User or group cant be null");
 			return null;
 		}
-		if (UserRepositoryService.findUserByName(userRegistration.getName()) != null) {
+		UserEntity userEntity = UserRepositoryService.findUserByName(userRegistration.getName());
+		if (userEntity != null) {
 			log.error("User already exists");
+			if (Boolean.TRUE == userRegistration.getHeldenPublic()) {
+				updateHeldenPublicForUser(userEntity);
+			}
 			return null;
 		}
 		GruppeEntity gruppeEntity = GruppeRepositoryService.findByName(userRegistration.getGruppe());
@@ -59,7 +64,7 @@ public class UserService {
 			gruppeEntity.setName(userRegistration.getGruppe());
 			GruppeRepositoryService.save(gruppeEntity);
 		}
-		UserEntity userEntity = new UserEntity();
+		userEntity = new UserEntity();
 		userEntity.setGruppe(gruppeEntity.getId());
 		userEntity.setName(userRegistration.getName());
 		userEntity.setToken(userRegistration.getToken());
@@ -84,8 +89,14 @@ public class UserService {
 		}
 		if(syncHelden) {
 			HeldenService.updateHeldenForUser(userEntity);
-
+			if (Boolean.TRUE == userRegistration.getHeldenPublic()) {
+				updateHeldenPublicForUser(userEntity);
+			}
 		}
 		return userEntity;
+	}
+
+	private static void updateHeldenPublicForUser(UserEntity userEntity) {
+		HeldRepositoryService.updatePublic(userEntity, true);
 	}
 }

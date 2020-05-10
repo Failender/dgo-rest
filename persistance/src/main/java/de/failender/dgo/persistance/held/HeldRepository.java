@@ -15,6 +15,13 @@ class HeldRepository extends EzqlRepository<HeldEntity> {
 
 	static final HeldRepository INSTANCE = new HeldRepository();
 
+	public static void updateActiveByUserId(Long userId, boolean value) {
+		UpdateQuery.Builder.update(HeldMapper.INSTANCE)
+				.where(HeldMapper.USER_ID, userId)
+				.update(HeldMapper.PUBLIC, value)
+				.build().execute();
+	}
+
 	public boolean existsById(Long id) {
 		return findByIdReduced(id) != null;
 	}

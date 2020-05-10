@@ -7,6 +7,7 @@ public class UserRegistration {
 	private String token;
 	private String gruppe;
 	private Long role;
+	private Boolean heldenPublic;
 
 
 	public String getName() {
@@ -54,6 +55,14 @@ public class UserRegistration {
 
 	public void setRole(Long role) {
 		this.role = role;
+	}
+
+	public Boolean getHeldenPublic() {
+		return heldenPublic;
+	}
+
+	public void setHeldenPublic(Boolean heldenPublic) {
+		this.heldenPublic = heldenPublic;
 	}
 
 	public UserRegistration() {

@@ -1,5 +1,6 @@
 package de.failender.dgo.persistance.held;
 
+import de.failender.dgo.persistance.user.UserEntity;
 import de.failender.dgo.persistance.user.UserMapper;
 import de.failender.dgo.security.DgoSecurityContext;
 import de.failender.dgo.security.EntityNotFoundException;
@@ -103,6 +104,10 @@ public class HeldRepositoryService {
     public static void updatePublic(HeldEntity heldEntity, boolean value) {
         canCurrentUserEditHeld(heldEntity);
         HeldRepository.updatePublic(heldEntity.getId(), value);
+    }
+
+    public static void updatePublic(UserEntity userEntity, boolean value) {
+        HeldRepository.updateActiveByUserId(userEntity.getId(), value);
     }
 
     public static void updateActive(HeldEntity heldEntity, boolean value) {
