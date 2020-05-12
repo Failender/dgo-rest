@@ -138,4 +138,9 @@ public class HeldRepositoryService {
         }
         return heldWithUser;
     }
+
+    public static void updateDeleted(HeldEntity heldEntity, boolean deleted) {
+        HeldRepository.INSTANCE.updateDeleted(heldEntity.getId(), deleted);
+
+    }
 }

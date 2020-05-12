@@ -28,7 +28,7 @@ public class PSchildParadeWaffe implements PluginSchildParadewaffe {
 
     @Override
     public int getBruchfaktor() {
-        return Integer.valueOf(schild.getBf());
+        return Integer.valueOf(schild.getBfakt().intValue());
     }
 
     @Override
@@ -43,11 +43,12 @@ public class PSchildParadeWaffe implements PluginSchildParadewaffe {
 
     @Override
     public int getWaffenModifikatorAT() {
-        return Integer.valueOf(schild.getMod());
+        return Integer.valueOf(schild.getMod().split("/")[0].trim());
     }
 
     @Override
     public int getWaffenModifikatorPA() {
-        return 0;
+        return Integer.valueOf(schild.getMod().split("/")[1].trim());
+
     }
 }

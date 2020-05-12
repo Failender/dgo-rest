@@ -82,7 +82,7 @@ public class XmlWorker {
     }
 
     public static String documentToString() {
-        return XmlUtil.toString(XmlWorker.heldXML);
+        return XmlUtil.toString(XmlWorker.heldXML, "ISO-8859-1");
     }
 
     private static Element addNode(final Document doc, final Node parent, final String typ) {

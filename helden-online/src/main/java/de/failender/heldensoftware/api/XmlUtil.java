@@ -51,22 +51,26 @@ public class XmlUtil {
 		}
 	}
 
-	public static String toString(Document document) {
-		StringWriter sw = new StringWriter();
-		TransformerFactory tf = TransformerFactory.newInstance();
+    public static String toString(Document document) {
+        return toString(document, "UTF-8");
+    }
 
-		try {
-			Transformer transformer = tf.newTransformer();
-			transformer.setOutputProperty("standalone", "yes");
-			transformer.setOutputProperty("encoding", "UTF-8");
-			transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "no");
-			transformer.transform(new DOMSource(document), new StreamResult(sw));
-			return sw.toString();
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
+    public static String toString(Document document, String encoding) {
+        StringWriter sw = new StringWriter();
+        TransformerFactory tf = TransformerFactory.newInstance();
 
-	}
+        try {
+            Transformer transformer = tf.newTransformer();
+            transformer.setOutputProperty("standalone", "yes");
+            transformer.setOutputProperty("encoding", encoding);
+            transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "no");
+            transformer.transform(new DOMSource(document), new StreamResult(sw));
+            return sw.toString();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+    }
 
 	public static LocalDateTime getStandFromString(String xml) {
 

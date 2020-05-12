@@ -73,6 +73,13 @@ class HeldRepository extends EzqlRepository<HeldEntity> {
 				.build().execute();
 	}
 
+	public static void updateDeleted(Long heldid, boolean value) {
+		UpdateQuery.Builder.update(HeldMapper.INSTANCE)
+				.where(HeldMapper.ID, heldid)
+				.update(HeldMapper.DELETED, value)
+				.build().execute();
+	}
+
 	public static void updateLockExpire(Long heldid, LocalDateTime value) {
 		UpdateQuery.Builder.update(HeldMapper.INSTANCE)
 				.where(HeldMapper.ID, heldid)

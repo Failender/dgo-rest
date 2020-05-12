@@ -50,12 +50,12 @@ public class HeldenService {
             if (!heldOptional.isPresent()) {
                 log.debug("Held with Name {} is no longer online, disabling it", heldEntity.getName());
                 heldEntity.setDeleted(true);
-                HeldRepositoryService.saveHeld(heldEntity);
+                HeldRepositoryService.updateDeleted(heldEntity, true);
             } else {
                 if (heldEntity.isDeleted()) {
                     heldEntity.setDeleted(false);
                     log.debug("Held with Name {} is no online again, enabling it", heldEntity.getName());
-                    HeldRepositoryService.saveHeld(heldEntity);
+                    HeldRepositoryService.updateDeleted(heldEntity, false);
                 }
                 Held xmlHeld = heldOptional.get();
                 helden.remove(xmlHeld);

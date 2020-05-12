@@ -17,7 +17,8 @@ import io.javalin.Context;
 import io.javalin.Javalin;
 import io.javalin.UploadedFile;
 
-import java.io.InputStream;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -75,10 +76,30 @@ public class FantasyGroundsController {
                 });
             }
         }
-
         String xml = FantasyGroundsConverterService.convert(heldenDaten, campaignInformation.getXml(), exportCharacters);
-        MigrationResult migrationResult = new MigrationResult();
-        migrationResult.setXml(xml);
-        context.json(migrationResult);
+
+        try {
+            File file = File.createTempFile("temp", null);
+            file.deleteOnExit();
+
+            try (OutputStreamWriter writer =
+                         new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.ISO_8859_1)) {
+                writer.write(xml);
+                context.result(new FileInputStream(file));
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+//        MigrationResult migrationResult = new MigrationResult();
+//        migrationResult.setXml(xml);
+//
+//        context.json(migrationResult);
+        campaignCache.invalidate(DgoSecurityContext.getAuthenticatedUser().getName());
     }
 }

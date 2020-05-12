@@ -47,7 +47,14 @@ public class PFernkampfWaffe implements PluginFernkampfWaffe {
     @Override
     public int[] getTrefferpunkte() {
         int diceCount = Integer.valueOf(fernkampfwaffe.getTp().substring(0, fernkampfwaffe.getTp().indexOf("W")));
-        int diceBonus = Integer.valueOf(fernkampfwaffe.getTp().substring(fernkampfwaffe.getTp().indexOf("+") + 1));
+        boolean isPositiv = fernkampfwaffe.getTp().contains("+");
+        int diceBonus;
+        if (isPositiv) {
+            diceBonus = Integer.valueOf(fernkampfwaffe.getTp().substring(fernkampfwaffe.getTp().indexOf("+") + 1));
+        } else {
+            diceBonus = Integer.valueOf(fernkampfwaffe.getTp().substring(fernkampfwaffe.getTp().indexOf("-") + 1));
+        }
+
         return new int[]{diceCount, 6, diceBonus};
     }
 
