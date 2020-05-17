@@ -67,7 +67,9 @@ public class FantasyGroundsConverterService {
             Element element = (Element) node;
 
             Element nameElement = findChildWithName(element.getChildNodes(), "name");
-
+            if (nameElement == null) {
+                continue;
+            }
             Character character = new Character();
             character.setName(nameElement.getTextContent());
 
