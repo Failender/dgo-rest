@@ -7,8 +7,11 @@ import de.failender.dgo.persistance.held.HeldRepositoryService;
 import de.failender.dgo.persistance.held.VersionEntity;
 import de.failender.dgo.persistance.held.VersionRepositoryService;
 import de.failender.dgo.persistance.user.UserEntity;
+import de.failender.dgo.persistance.user.UserRepositoryService;
+import de.failender.dgo.rest.helden.HeldenService;
 import de.failender.dgo.rest.helden.VersionService;
 import de.failender.dgo.rest.integration.Beans;
+import de.failender.ezql.EzqlConnector;
 import de.failender.ezql.properties.PropertyReader;
 import de.failender.heldensoftware.JaxbUtil;
 import de.failender.heldensoftware.api.HeldenApi;
@@ -45,6 +48,7 @@ public class SynchronizationService {
 
     private SynchronizationService(ObjectMapper objectMapper) {
         this.objectMapper = objectMapper;
+
         headers = new HashMap<>();
         String password = PropertyReader.getProperty("dsa.gruppen.online.user.password");
         String username = PropertyReader.getProperty("dsa.gruppen.online.user.name");
@@ -59,10 +63,25 @@ public class SynchronizationService {
         if (isSyncEnabled()) {
             INSTANCE.synchronize();
         }
+
+        new Thread(() -> {
+            while (true) {
+                EzqlConnector.allocateConnection();
+                UserRepositoryService.findAll().forEach(user -> HeldenService.updateHeldenForUser(user));
+                EzqlConnector.releaseConnection();
+                try {
+                    Thread.sleep(1000 * 60 * 30);
+                } catch (InterruptedException e) {
+                    ;
+                }
+
+            }
+        }).run();
     }
 
     private static boolean isSyncEnabled() {
-        return "true".equals(PropertyReader.getProperty("dsa.gruppen.online.synchronize"));
+        return false;
+//        return "true".equals(PropertyReader.getProperty("dsa.gruppen.online.synchronize"));
 
     }
 
