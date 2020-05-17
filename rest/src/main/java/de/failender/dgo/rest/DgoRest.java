@@ -9,7 +9,6 @@ import de.failender.dgo.rest.asset.AssetController;
 import de.failender.dgo.rest.fantasygrounds.FantasyGroundsController;
 import de.failender.dgo.rest.gruppen.GruppeController;
 import de.failender.dgo.rest.helden.HeldenController;
-import de.failender.dgo.rest.helden.HeldenService;
 import de.failender.dgo.rest.helden.geld.GeldController;
 import de.failender.dgo.rest.helden.inventar.HeldInventarController;
 import de.failender.dgo.rest.helden.steigern.SteigernController;
@@ -86,12 +85,13 @@ public class DgoRest {
         new AssetController(app);
         new FantasyGroundsController(app);
 
+
+//        TelegramService.initialize();
         DgoSecurity.registerSecurity(app);
         SynchronizationService.intialize(om);
         UserService.initialize();
         EzqlConnector.releaseConnection();
 
-        UserRepositoryService.findAll().forEach(user -> HeldenService.updateHeldenForUser(user));
 
         double elapsedTimeInSecond = (double) (System.nanoTime() - start) / 1_000_000_000;
 		long takenMemory = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
