@@ -2,7 +2,6 @@ package de.failender.dgo.rest.helden;
 
 import de.failender.dgo.persistance.held.*;
 import de.failender.dgo.persistance.user.UserEntity;
-import de.failender.dgo.persistance.user.UserRepositoryService;
 import de.failender.dgo.rest.integration.Beans;
 import de.failender.heldensoftware.Unterscheidbar;
 import de.failender.heldensoftware.api.HeldenApi;
@@ -38,6 +37,7 @@ public class VersionService {
         versionEntity.setLastEvent(extractLastEreignisString(daten.getEreignisse().getEreignis()));
         versionEntity.setAp(daten.getAngaben().getAp().getGesamt().intValue());
         VersionRepositoryService.saveVersion(held, versionEntity);
+        Beans.HELD_UPDATE_LISTENER.forEach(listener -> listener.updated(held));
 
 
         return versionEntity;

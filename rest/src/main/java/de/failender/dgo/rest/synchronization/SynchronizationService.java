@@ -76,7 +76,7 @@ public class SynchronizationService {
                 }
 
             }
-        }).run();
+        }).start();
     }
 
     private static boolean isSyncEnabled() {

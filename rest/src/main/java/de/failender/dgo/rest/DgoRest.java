@@ -17,6 +17,7 @@ import de.failender.dgo.rest.helden.version.VersionController;
 import de.failender.dgo.rest.helden.zauberspeicher.ZauberspeicherController;
 import de.failender.dgo.rest.kampf.KampfController;
 import de.failender.dgo.rest.meister.raumplan.RaumplanController;
+import de.failender.dgo.rest.messaging.telegram.TelegramService;
 import de.failender.dgo.rest.pdf.PdfController;
 import de.failender.dgo.rest.security.DgoSecurity;
 import de.failender.dgo.rest.synchronization.SynchronizationService;
@@ -86,7 +87,7 @@ public class DgoRest {
         new FantasyGroundsController(app);
 
 
-//        TelegramService.initialize();
+        TelegramService.initialize();
         DgoSecurity.registerSecurity(app);
         SynchronizationService.intialize(om);
         UserService.initialize();

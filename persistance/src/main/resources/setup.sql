@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS TELEGRAM_NOTIFICATIONS;
 DROP TABLE IF EXISTS ASSET;
 DROP TABLE IF EXISTS GEGENSTAND_TO_LAGERORT;
 DROP TABLE IF EXISTS LAGERORT;
@@ -183,4 +184,11 @@ CREATE TABLE GEGENSTAND_TO_LAGERORT(
                                        LAGERORT BIGINT REFERENCES LAGERORT(ID),
                                        NAME VARCHAR(200) NOT NULL,
                                        AMOUNT INTEGER NOT NULL
+);
+
+CREATE TABLE TELEGRAM_NOTIFICATIONS(
+                                       ID SERIAL PRIMARY KEY,
+                                       GRUPPE_ID BIGINT REFERENCES GRUPPEN(ID),
+                                       CHAT_ID BIGINT,
+                                       UNIQUE (GRUPPE_ID, CHAT_ID)
 );
