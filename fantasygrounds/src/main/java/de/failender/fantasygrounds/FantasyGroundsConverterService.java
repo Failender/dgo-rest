@@ -13,6 +13,9 @@ import java.util.List;
 
 public class FantasyGroundsConverterService {
 
+    private static final org.slf4j.Logger LOGGER = org.slf4j.LoggerFactory.getLogger(FantasyGroundsConverterService.class);
+
+
     public static String convert(List<Daten> helden, Document xml, List<Character> exportCharacters) {
 
         XmlWorker.Oeffne_Held(xml);
@@ -27,9 +30,12 @@ public class FantasyGroundsConverterService {
 
     private static String processHelden(List<Daten> helden, List<Character> exportCharacters) {
         for (Daten daten : helden) {
+            LOGGER.info("Starting to export {}", daten.getAngaben().getName());
             Character exportCharacter = exportCharacters.stream().filter(entry -> entry.getName().equals(daten.getAngaben().getName())).findFirst().orElse(null);
             DGOPluginHeldenWerteWerkzeug werteWerkzeug = new DGOPluginHeldenWerteWerkzeug(daten);
             XmlWorker.Konvertiere_Held(werteWerkzeug, exportCharacter);
+            LOGGER.info("Finished export for {}", daten.getAngaben().getName());
+
         }
 
         String converted = XmlWorker.documentToString();
