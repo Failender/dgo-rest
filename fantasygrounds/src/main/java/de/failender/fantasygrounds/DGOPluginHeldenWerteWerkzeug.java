@@ -10,12 +10,17 @@ import helden.plugin.werteplugin2.PluginAusruestung2;
 import helden.plugin.werteplugin2.PluginGegenstand;
 import helden.plugin.werteplugin2.PluginHeldenWerteWerkzeug2;
 import helden.plugin.werteplugin2.PluginTreeNode;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class DGOPluginHeldenWerteWerkzeug implements PluginHeldenWerteWerkzeug2 {
+
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(DGOPluginHeldenWerteWerkzeug.class);
 
 
     private final Daten daten;
@@ -104,7 +109,14 @@ public class DGOPluginHeldenWerteWerkzeug implements PluginHeldenWerteWerkzeug2 
 
     @Override
     public String getSprachKomplexitaet(PluginTalent pluginTalent) {
-        return ((PTalent) pluginTalent).getSprachKomplexitaet();
+        String value = ((PTalent) pluginTalent).getSprachKomplexitaet();
+        if (value == null) {
+
+            LOGGER.error("Held {} has no complexity for talent {}", daten.getAngaben().getName(), ((PTalent) pluginTalent).getNameAusfuehrlich());
+            return "0";
+        }
+
+        return value;
 
     }
 
@@ -178,6 +190,10 @@ public class DGOPluginHeldenWerteWerkzeug implements PluginHeldenWerteWerkzeug2 
 
     @Override
     public GeldBoerse getGeldBoerse() {
+
+        if (daten.getMuenzen() == null) {
+            return new PGeldBoerse(new ArrayList<>());
+        }
         return new PGeldBoerse(daten.getMuenzen().getMuenze());
     }
 

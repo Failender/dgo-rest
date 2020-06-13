@@ -58,6 +58,9 @@ public class PTalent implements PluginTalent {
 
 
     public String getSprachKomplexitaet() {
+        if (talent.getSprachkomplexitaet() == null) {
+            return null;
+        }
         return String.valueOf(talent.getSprachkomplexitaet());
     }
 
