@@ -1,0 +1,18 @@
+apply plugin: 'java'
+
+
+repositories { mavenCentral() }
+dependencies {
+
+
+    compile group: 'com.github.pengrad', name: 'java-telegram-bot-api', version: '4.8.0'
+
+    compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.25'
+    compile project(':persistance')
+    compile group: 'one.util', name: 'streamex', version:'0.6.5'
+
+    compile group: 'org.quartz-scheduler', name: 'quartz', version: '2.3.2'
+
+    compile project(':helden-online')
+    compile project(':fantasygrounds')
+}

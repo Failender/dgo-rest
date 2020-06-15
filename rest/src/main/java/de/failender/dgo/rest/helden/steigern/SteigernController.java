@@ -2,13 +2,13 @@ package de.failender.dgo.rest.helden.steigern;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import de.failender.dgo.integration.Beans;
 import de.failender.dgo.persistance.held.HeldEntity;
 import de.failender.dgo.persistance.held.HeldRepositoryService;
 import de.failender.dgo.persistance.held.VersionEntity;
 import de.failender.dgo.persistance.held.VersionRepositoryService;
 import de.failender.dgo.persistance.user.UserEntity;
 import de.failender.dgo.persistance.user.UserRepositoryService;
-import de.failender.dgo.rest.integration.Beans;
 import de.failender.heldensoftware.api.XmlUtil;
 import de.failender.heldensoftware.api.authentication.TokenAuthentication;
 import de.failender.heldensoftware.api.requests.*;

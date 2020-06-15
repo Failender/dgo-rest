@@ -1,8 +1,7 @@
-package de.failender.dgo.rest.helden;
+package de.failender.dgo.integration;
 
 import de.failender.dgo.persistance.held.*;
 import de.failender.dgo.persistance.user.UserEntity;
-import de.failender.dgo.rest.integration.Beans;
 import de.failender.heldensoftware.Unterscheidbar;
 import de.failender.heldensoftware.api.HeldenApi;
 import de.failender.heldensoftware.api.XmlUtil;

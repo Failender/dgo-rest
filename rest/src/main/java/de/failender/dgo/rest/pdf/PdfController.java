@@ -1,9 +1,8 @@
 package de.failender.dgo.rest.pdf;
 
+import de.failender.dgo.integration.Beans;
 import de.failender.dgo.persistance.pdf.PdfEntity;
 import de.failender.dgo.persistance.pdf.PdfRepositoryService;
-import de.failender.dgo.rest.integration.Beans;
-import de.failender.dgo.rest.security.DgoSecurity;
 import de.failender.dgo.security.DgoSecurityContext;
 import de.failender.dgo.security.NoPermissionException;
 import de.failender.ezql.properties.PropertyReader;

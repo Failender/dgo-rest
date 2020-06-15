@@ -1,11 +1,11 @@
 package de.failender.dgo.rest.helden.version;
 
+import de.failender.dgo.integration.Differences;
+import de.failender.dgo.integration.VersionService;
 import de.failender.dgo.persistance.held.HeldEntity;
 import de.failender.dgo.persistance.held.VersionEntity;
 import de.failender.dgo.persistance.held.VersionRepositoryService;
-import de.failender.dgo.rest.helden.Differences;
-import de.failender.dgo.rest.helden.HeldenService;
-import de.failender.dgo.rest.helden.VersionService;
+import de.failender.dgo.rest.UtilService;
 import io.javalin.Context;
 import io.javalin.Javalin;
 
@@ -25,7 +25,7 @@ public class VersionController {
     }
 
     private void getVersionenForHeld(Context ctx) {
-        HeldEntity heldEntity = HeldenService.getHeldEntity(ctx);
+        HeldEntity heldEntity = UtilService.getHeldEntity(ctx);
         List<VersionEntity> versionEntityList =VersionRepositoryService.findVersionsByHeld(heldEntity);
         ctx.json(versionEntityList.stream().map(VersionDto::new).collect(Collectors.toList()));
     }

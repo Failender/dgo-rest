@@ -79,7 +79,13 @@ public class PNahkampfWaffe implements PluginNahkampfWaffe2 {
     @Override
     public int[] getTrefferpunkte() {
         int diceCount = Integer.valueOf(nahkampfwaffe.getTp().substring(0, nahkampfwaffe.getTp().indexOf("W")));
-        int diceBonus = Integer.valueOf(nahkampfwaffe.getTp().substring(nahkampfwaffe.getTp().indexOf("+") + 1));
+        int diceBonus;
+        if (nahkampfwaffe.getTp().contains("+")) {
+            diceBonus = Integer.valueOf(nahkampfwaffe.getTp().substring(nahkampfwaffe.getTp().indexOf("+") + 1));
+        } else {
+            diceBonus = Integer.valueOf(nahkampfwaffe.getTp().substring(nahkampfwaffe.getTp().indexOf("-") + 1));
+        }
+
         return new int[]{diceCount, 6, diceBonus};
     }
 

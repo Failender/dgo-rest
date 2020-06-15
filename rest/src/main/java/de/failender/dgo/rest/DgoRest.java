@@ -20,9 +20,9 @@ import de.failender.dgo.rest.meister.raumplan.RaumplanController;
 import de.failender.dgo.rest.messaging.telegram.TelegramService;
 import de.failender.dgo.rest.pdf.PdfController;
 import de.failender.dgo.rest.security.DgoSecurity;
-import de.failender.dgo.rest.synchronization.SynchronizationService;
 import de.failender.dgo.rest.user.UserController;
 import de.failender.dgo.rest.user.UserService;
+import de.failender.dgo.scheduling.QuartzIntegrationService;
 import de.failender.ezql.EzqlConnector;
 import de.failender.ezql.properties.PropertyReader;
 import io.javalin.Javalin;
@@ -89,8 +89,8 @@ public class DgoRest {
 
         TelegramService.initialize();
         DgoSecurity.registerSecurity(app);
-        SynchronizationService.intialize(om);
         UserService.initialize();
+        QuartzIntegrationService.initialize();
         EzqlConnector.releaseConnection();
 
 

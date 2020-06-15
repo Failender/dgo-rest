@@ -1,4 +1,4 @@
-package de.failender.dgo.rest.helden;
+package de.failender.dgo.integration;
 
 import de.failender.dgo.persistance.held.HeldEntity;
 

@@ -2,14 +2,13 @@ package de.failender.dgo.rest.user;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import de.failender.dgo.integration.Beans;
+import de.failender.dgo.integration.HeldenService;
 import de.failender.dgo.persistance.gruppe.GruppeEntity;
 import de.failender.dgo.persistance.gruppe.GruppeRepositoryService;
 import de.failender.dgo.persistance.held.HeldRepositoryService;
 import de.failender.dgo.persistance.user.UserEntity;
 import de.failender.dgo.persistance.user.UserRepositoryService;
-import de.failender.dgo.rest.helden.HeldenService;
-import de.failender.dgo.rest.integration.Beans;
-import de.failender.dgo.rest.synchronization.SynchronizationService;
 import de.failender.heldensoftware.api.requests.PermissionRequest;
 import de.failender.heldensoftware.xml.currentrights.Recht;
 import de.failender.heldensoftware.xml.currentrights.Rechte;
@@ -39,7 +38,7 @@ public class UserService {
 	public static UserEntity registerUser(UserRegistration userRegistration) {
         UserEntity userEntity = registerUser(userRegistration, true);
         if (userEntity != null) {
-			SynchronizationService.INSTANCE.synchronizeForUser(userEntity);
+            HeldenService.updateHeldenForUser(userEntity);
         }
         return userEntity;
 

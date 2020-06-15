@@ -5,13 +5,13 @@ import com.pengrad.telegrambot.UpdatesListener;
 import com.pengrad.telegrambot.model.Chat;
 import com.pengrad.telegrambot.model.Update;
 import com.pengrad.telegrambot.request.SendMessage;
+import de.failender.dgo.integration.Beans;
+import de.failender.dgo.integration.HeldUpdateListener;
 import de.failender.dgo.persistance.gruppe.GruppeEntity;
 import de.failender.dgo.persistance.gruppe.GruppeRepositoryService;
 import de.failender.dgo.persistance.held.HeldEntity;
 import de.failender.dgo.persistance.telegram.NotificationConfiguration;
 import de.failender.dgo.persistance.telegram.NotificationConfigurationRepositoryService;
-import de.failender.dgo.rest.helden.HeldUpdateListener;
-import de.failender.dgo.rest.integration.Beans;
 import de.failender.ezql.EzqlConnector;
 import de.failender.ezql.properties.PropertyReader;
 

@@ -1,6 +1,5 @@
-package de.failender.dgo.rest.integration;
+package de.failender.dgo.integration;
 
-import de.failender.dgo.rest.helden.HeldUpdateListener;
 import de.failender.ezql.properties.PropertyReader;
 import de.failender.heldensoftware.api.HeldenApi;
 

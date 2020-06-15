@@ -1,13 +1,13 @@
 package de.failender.dgo.rest.helden.inventar;
 
+import de.failender.dgo.integration.Beans;
+import de.failender.dgo.integration.VersionService;
 import de.failender.dgo.persistance.held.*;
 import de.failender.dgo.persistance.held.inventar.lagerort.GegenstandToLagerortEntity;
 import de.failender.dgo.persistance.held.inventar.lagerort.GegenstandToLagerortRepositoryService;
 import de.failender.dgo.persistance.held.inventar.lagerort.LagerortEntity;
 import de.failender.dgo.persistance.held.inventar.lagerort.LagerortRepositoryService;
 import de.failender.dgo.persistance.user.UserEntity;
-import de.failender.dgo.rest.helden.VersionService;
-import de.failender.dgo.rest.integration.Beans;
 import de.failender.heldensoftware.api.XmlUtil;
 import de.failender.heldensoftware.api.authentication.TokenAuthentication;
 import de.failender.heldensoftware.api.requests.ReturnHeldXmlRequest;

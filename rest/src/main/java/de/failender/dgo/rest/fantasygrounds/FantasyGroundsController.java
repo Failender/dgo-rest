@@ -2,10 +2,10 @@ package de.failender.dgo.rest.fantasygrounds;
 
 import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;
+import de.failender.dgo.integration.Beans;
 import de.failender.dgo.persistance.held.HeldRepositoryService;
 import de.failender.dgo.persistance.held.VersionEntity;
 import de.failender.dgo.persistance.held.VersionRepositoryService;
-import de.failender.dgo.rest.integration.Beans;
 import de.failender.dgo.security.DgoSecurityContext;
 import de.failender.dgo.security.EntityNotFoundException;
 import de.failender.fantasygrounds.CampaignInformation;

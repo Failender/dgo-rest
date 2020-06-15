@@ -1,11 +1,10 @@
-package de.failender.dgo.rest.helden;
+package de.failender.dgo.integration;
 
 import de.failender.dgo.persistance.held.HeldEntity;
 import de.failender.dgo.persistance.held.HeldRepositoryService;
 import de.failender.dgo.persistance.held.VersionEntity;
 import de.failender.dgo.persistance.held.VersionRepositoryService;
 import de.failender.dgo.persistance.user.UserEntity;
-import de.failender.dgo.rest.integration.Beans;
 import de.failender.heldensoftware.api.XmlUtil;
 import de.failender.heldensoftware.api.authentication.TokenAuthentication;
 import de.failender.heldensoftware.api.requests.GetAllHeldenRequest;
@@ -14,7 +13,6 @@ import de.failender.heldensoftware.api.requests.ReturnHeldPdfRequest;
 import de.failender.heldensoftware.api.requests.ReturnHeldXmlRequest;
 import de.failender.heldensoftware.xml.datenxml.Daten;
 import de.failender.heldensoftware.xml.heldenliste.Held;
-import io.javalin.Context;
 import org.apache.commons.io.IOUtils;
 import reactor.core.publisher.Mono;
 import reactor.util.function.Tuple3;
@@ -118,12 +116,6 @@ public class HeldenService {
         }
 
         return lastEditedDate.isAfter(heldCreatedDate);
-    }
-
-    public static HeldEntity getHeldEntity(Context context) {
-        Long held = Long.valueOf(context.pathParam("held"));
-        return HeldRepositoryService.findByIdReduced(held);
-
     }
 
     public static class SynchronizationResult {

@@ -1,8 +1,8 @@
 package de.failender.dgo.rest.asset;
 
+import de.failender.dgo.integration.Beans;
 import de.failender.dgo.persistance.asset.AssetEntity;
 import de.failender.dgo.persistance.asset.AssetRepositoryService;
-import de.failender.dgo.rest.integration.Beans;
 import io.javalin.Context;
 import io.javalin.Javalin;
 import io.javalin.UploadedFile;

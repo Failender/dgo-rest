@@ -1,12 +1,12 @@
 package de.failender.dgo.rest.helden.geld;
 
+import de.failender.dgo.integration.Beans;
+import de.failender.dgo.integration.VersionService;
 import de.failender.dgo.persistance.held.HeldRepositoryService;
 import de.failender.dgo.persistance.held.HeldWithUser;
 import de.failender.dgo.persistance.held.VersionEntity;
 import de.failender.dgo.persistance.held.VersionRepositoryService;
 import de.failender.dgo.persistance.held.geld.GeldBoerseEntity;
-import de.failender.dgo.rest.helden.VersionService;
-import de.failender.dgo.rest.integration.Beans;
 import de.failender.heldensoftware.api.XmlUtil;
 import de.failender.heldensoftware.api.requests.ReturnHeldXmlRequest;
 import de.failender.heldensoftware.xml.datenxml.Muenze;
