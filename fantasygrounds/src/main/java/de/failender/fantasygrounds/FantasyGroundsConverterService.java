@@ -85,6 +85,9 @@ public class FantasyGroundsConverterService {
             }
             if (lepElement != null) {
                 Element aktElement = findChildWithName(lepElement.getChildNodes(), "akt");
+                if(aktElement == null || aktElement.getTextContent() == null) {
+                    continue;
+                }
                 int currentLep = Integer.valueOf(aktElement.getTextContent());
                 character.setCurrentLep(currentLep);
             }
