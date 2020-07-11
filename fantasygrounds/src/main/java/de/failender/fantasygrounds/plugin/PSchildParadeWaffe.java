@@ -51,4 +51,9 @@ public class PSchildParadeWaffe implements PluginSchildParadewaffe {
         return Integer.valueOf(schild.getMod().split("/")[1].trim());
 
     }
+
+    @Override
+    public String toString() {
+        return schild.getName();
+    }
 }
