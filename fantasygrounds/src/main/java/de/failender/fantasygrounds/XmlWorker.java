@@ -236,7 +236,7 @@ public class XmlWorker {
         return output.toString();
     }
 
-    private static Element add_Node_base() {
+    private static Element add_Node_base(Character exportCharacter) {
         Element rootElement = XmlWorker.heldXML.getDocumentElement();
         if (rootElement == null) {
             rootElement = XmlWorker.heldXML.createElement("root");
@@ -254,19 +254,39 @@ public class XmlWorker {
             }
             NodeList idElementList = null;
             Element idroot = null;
-            int idIndex = 1;
-            String tagName;
-            while (true) {
-                tagName = "id-" + toNormString(idIndex);
-                idElementList = charsheetElement.getElementsByTagName(tagName);
-                if (idElementList.getLength() == 0) {
-                    break;
+            if (exportCharacter == null) {
+                int idIndex = 1;
+
+                String tagName;
+                while (true) {
+                    tagName = "id-" + toNormString(idIndex);
+                    idElementList = charsheetElement.getElementsByTagName(tagName);
+                    if (idElementList.getLength() == 0) {
+                        break;
+                    }
+                    ++idIndex;
                 }
-                ++idIndex;
+                idroot = addNode(XmlWorker.heldXML, charsheetElement, tagName);
+                idIndex = Math.max(idIndex + 1, charsheetElementList.getLength());
+                charsheetElement.setAttribute("idcounter", new Integer(idIndex).toString());
+            } else {
+                for (int i = 0; i < charsheetElement.getChildNodes().getLength(); i++) {
+                    if (!(charsheetElement.getChildNodes().item(i) instanceof Element)) {
+                        continue;
+                    }
+                    Element element = (Element) charsheetElement.getChildNodes().item(i);
+                    int id = FantasyGroundsConverterService.getId(element);
+                    if (id != exportCharacter.getId()) {
+                        continue;
+                    }
+                    while (element.hasChildNodes()) {
+                        element.removeChild(element.getFirstChild());
+                    }
+                    return element;
+                }
+
             }
-            idroot = addNode(XmlWorker.heldXML, charsheetElement, tagName);
-            idIndex = Math.max(idIndex + 1, charsheetElementList.getLength());
-            charsheetElement.setAttribute("idcounter", new Integer(idIndex).toString());
+
             return idroot;
         }
         final Element charsheetElement2 = addNode(XmlWorker.heldXML, rootElement, "character", "portrait", "");
@@ -1013,7 +1033,7 @@ public class XmlWorker {
     }
 
     public static void Konvertiere_Held(final DGOPluginHeldenWerteWerkzeug phww, Character exportCharacter) {
-        final Element idElement = add_Node_base();
+        final Element idElement = add_Node_base(exportCharacter);
         add_Node_details(idElement, phww.getSelectesHeld(), phww);
         add_Node_be(idElement, phww.getSelectesHeld(), phww);
         add_Node_aep(idElement, phww.getSelectesHeld(), phww, exportCharacter);

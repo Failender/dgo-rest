@@ -55,9 +55,7 @@ public class FantasyGroundsConverterService {
         }
 
         characters = parseCharacters(charsheet);
-        while (charsheet.hasChildNodes()) {
-            charsheet.removeChild(charsheet.getFirstChild());
-        }
+
         return new CampaignInformation(characters, xml);
     }
 
@@ -83,14 +81,17 @@ public class FantasyGroundsConverterService {
             if (lepElement == null) {
                 lepElement = findChildWithName(element.getChildNodes(), "lep");
             }
-            if (lepElement != null) {
-                Element aktElement = findChildWithName(lepElement.getChildNodes(), "akt");
-                if(aktElement == null || aktElement.getTextContent() == null) {
-                    continue;
-                }
-                int currentLep = Integer.valueOf(aktElement.getTextContent());
-                character.setCurrentLep(currentLep);
+            if (lepElement == null) {
+                continue;
             }
+
+            Element lepAktElement = findChildWithName(lepElement.getChildNodes(), "akt");
+            if (lepAktElement == null || lepAktElement.getTextContent() == null) {
+                continue;
+            }
+            int currentLep = Integer.valueOf(lepAktElement.getTextContent());
+            character.setCurrentLep(currentLep);
+
             Element aspElement = findChildWithName(element.getChildNodes(), "aep");
             if (aspElement == null) {
                 aspElement = findChildWithName(element.getChildNodes(), "astral");
@@ -100,11 +101,17 @@ public class FantasyGroundsConverterService {
                 int currentAsp = Integer.valueOf(aktElement.getTextContent());
                 character.setCurrentAsp(currentAsp);
             }
-            character.setId(characters.size());
+            character.setId(getId(element));
             characters.add(character);
         }
 
         return characters;
+    }
+
+    public static int getId(Element characterNode) {
+        String name = characterNode.getNodeName();
+        name = name.substring(name.indexOf("-") + 1);
+        return Integer.valueOf(name);
     }
 
     private static Element findChildWithName(NodeList nodeList, String name) {
