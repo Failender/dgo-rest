@@ -17,6 +17,7 @@ import de.failender.dgo.rest.helden.version.VersionController;
 import de.failender.dgo.rest.helden.zauberspeicher.ZauberspeicherController;
 import de.failender.dgo.rest.kampf.KampfController;
 import de.failender.dgo.rest.meister.raumplan.RaumplanController;
+import de.failender.dgo.rest.messaging.discord.DiscordService;
 import de.failender.dgo.rest.messaging.telegram.TelegramService;
 import de.failender.dgo.rest.pdf.PdfController;
 import de.failender.dgo.rest.security.DgoSecurity;
@@ -88,6 +89,7 @@ public class DgoRest {
 
 
         TelegramService.initialize();
+        DiscordService.initialize();
         DgoSecurity.registerSecurity(app);
         UserService.initialize();
         QuartzIntegrationService.initialize();

@@ -8,6 +8,11 @@ public class NotificationConfigurationRepositoryService {
         return NotificationConfigurationRepository.INSTANCE.findByGroup(group);
     }
 
+    public static List<NotificationConfiguration> findByGroupAndListenerType(long group, int listenerType) {
+        return NotificationConfigurationRepository.INSTANCE.findByGroupAndListenerType(group, listenerType);
+    }
+
+
     public static void persist(NotificationConfiguration notificationConfiguration) {
         NotificationConfigurationRepository.INSTANCE.persist(notificationConfiguration);
     }

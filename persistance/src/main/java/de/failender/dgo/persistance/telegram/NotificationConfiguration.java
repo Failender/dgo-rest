@@ -6,6 +6,8 @@ public class NotificationConfiguration extends BaseEntity {
 
     private long groupId;
     private long chatId;
+    private long guildId;
+    private int listenerType;
 
 
     public long getGroupId() {
@@ -22,5 +24,21 @@ public class NotificationConfiguration extends BaseEntity {
 
     public void setChatId(long chatId) {
         this.chatId = chatId;
+    }
+
+    public int getListenerType() {
+        return listenerType;
+    }
+
+    public void setListenerType(int listenerType) {
+        this.listenerType = listenerType;
+    }
+
+    public long getGuildId() {
+        return guildId;
+    }
+
+    public void setGuildId(long guildId) {
+        this.guildId = guildId;
     }
 }

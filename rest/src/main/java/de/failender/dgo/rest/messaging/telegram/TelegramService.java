@@ -18,6 +18,7 @@ import de.failender.ezql.properties.PropertyReader;
 
 public class TelegramService {
 
+    public static int TELEGRAM_LISTENER = 0;
 
     private static TelegramBot telegramBot;
 
@@ -45,6 +46,7 @@ public class TelegramService {
                                     NotificationConfiguration notificationConfiguration = new NotificationConfiguration();
                                     notificationConfiguration.setChatId(chatId);
                                     notificationConfiguration.setGroupId(gruppeId);
+                                    notificationConfiguration.setListenerType(TELEGRAM_LISTENER);
                                     try {
                                         NotificationConfigurationRepositoryService.persist(notificationConfiguration);
                                         telegramBot.execute(new SendMessage(chatId, "Dieser Chat wurde für Updates von der Gruppe " + gruppeEntity.getName() + "  registriert!"));
@@ -78,8 +80,7 @@ public class TelegramService {
         Beans.HELD_UPDATE_LISTENER.add(new HeldUpdateListener() {
             @Override
             public void updated(HeldEntity heldEntity) {
-                System.out.println(heldEntity);
-                for (NotificationConfiguration notificationConfiguration : NotificationConfigurationRepositoryService.findByGroup(heldEntity.getGruppe())) {
+                for (NotificationConfiguration notificationConfiguration : NotificationConfigurationRepositoryService.findByGroupAndListenerType(heldEntity.getGruppe(), TELEGRAM_LISTENER)) {
                     try {
                         telegramBot.execute(new SendMessage(notificationConfiguration.getChatId(), "Neue Version für den Helden " + heldEntity.getName()));
                     } catch (Exception e) {

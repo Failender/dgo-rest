@@ -189,6 +189,9 @@ CREATE TABLE GEGENSTAND_TO_LAGERORT(
 CREATE TABLE TELEGRAM_NOTIFICATIONS(
                                        ID SERIAL PRIMARY KEY,
                                        GRUPPE_ID BIGINT REFERENCES GRUPPEN(ID),
+                                       GUILD_ID BIGINT,
                                        CHAT_ID BIGINT,
-                                       UNIQUE (GRUPPE_ID, CHAT_ID)
+                                       LISTENER_TYPE INTEGER,
+                                       UNIQUE (GUILD_ID , GRUPPE_ID, CHAT_ID, LISTENER_TYPE )
 );
+
