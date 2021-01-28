@@ -21,12 +21,13 @@ public class HeldRepositoryService {
     }
 
     public static List<HeldEntity> findByGruppeId(Long id, boolean includePrivate, boolean showInactive) {
-        if(includePrivate) {
+        if (includePrivate) {
             DgoSecurityContext.checkPermission(DgoSecurityContext.VIEW_ALL);
 
         }
         return HeldRepository.findByGruppe(id, includePrivate, showInactive);
     }
+
     public static void saveHeld(HeldEntity heldEntity) {
         new HeldRepository().persist(heldEntity, true);
     }
@@ -36,17 +37,18 @@ public class HeldRepositoryService {
      */
     public static HeldEntity findByIdReduced(Long id) {
         HeldEntity heldEntity = new HeldRepository().findByIdReduced(id);
-        if(!canCurrentUserViewHeld(heldEntity)) {
+        if (!canCurrentUserViewHeld(heldEntity)) {
             throw new NoPermissionException();
         }
         return heldEntity;
     }
+
     public static HeldEntity findById(Long id) {
         Optional<HeldEntity> heldEntityOptional = new HeldRepository().findById(id);
         HeldEntity heldEntity = heldEntityOptional.orElseThrow(() -> new EntityNotFoundException("Held konnte nicht gefunden werden"));
 
 
-        if(!canCurrentUserViewHeld(heldEntity)) {
+        if (!canCurrentUserViewHeld(heldEntity)) {
             throw new NoPermissionException();
         }
 
@@ -60,14 +62,17 @@ public class HeldRepositoryService {
         if (heldEntity.isPublic()) {
             return true;
         }
+        if (DgoSecurityContext.checkPermissionBool(DgoSecurityContext.VIEW_ALL)) {
+            return true;
+        }
         if (!DgoSecurityContext.isAuthenticated()) {
             return false;
         }
         if (DgoSecurityContext.getAuthenticatedUser().getId() == heldEntity.getUserId()) {
             return true;
         }
-        DgoSecurityContext.checkPermission(DgoSecurityContext.VIEW_ALL);
-        return true;
+
+        return false;
     }
 
     public static boolean canCurrentUserEditHeld(HeldEntity heldEntity) {
@@ -133,7 +138,7 @@ public class HeldRepositoryService {
                 .execute());
         HeldWithUser heldWithUser = heldWithUserOptional.orElseThrow(() -> new EntityNotFoundException("Held konnte nicht gefunden werden"));
 
-        if(heldWithUser != null){
+        if (heldWithUser != null) {
             canCurrentUserViewHeld(heldWithUser.getHeldEntity());
         }
         return heldWithUser;

@@ -30,7 +30,7 @@ public class HeldenService {
     private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(HeldenService.class);
 
     public static SynchronizationResult updateHeldenForUser(UserEntity userEntity) {
-		if (userEntity.getToken() == null || userEntity.getToken().isEmpty()) {
+        if (userEntity.getToken() == null || userEntity.getToken().isEmpty()) {
             log.error("User with name {} has null token ", userEntity.getName());
             return null;
         }
@@ -43,42 +43,46 @@ public class HeldenService {
 
         log.debug("Updating helden for user {}, online found {}", userEntity.getName(), helden.size());
         HeldRepositoryService.findByUserId(userEntity.getId()).forEach(heldEntity -> {
-
-            Optional<Held> heldOptional = helden.stream().filter(_held -> _held.getHeldenid().equals(heldEntity.getId())).findFirst();
-            if (!heldOptional.isPresent()) {
-                log.debug("Held with Name {} is no longer online, disabling it", heldEntity.getName());
-                heldEntity.setDeleted(true);
-                HeldRepositoryService.updateDeleted(heldEntity, true);
-            } else {
-                if (heldEntity.isDeleted()) {
-                    heldEntity.setDeleted(false);
-                    log.debug("Held with Name {} is no online again, enabling it", heldEntity.getName());
-                    HeldRepositoryService.updateDeleted(heldEntity, false);
-                }
-                Held xmlHeld = heldOptional.get();
-                helden.remove(xmlHeld);
-                if(heldEntity.getLockExpire() != null && heldEntity.getLockExpire().isBefore(LocalDateTime.now())) {
-                    log.info("Held {} is locked - skipping", heldEntity.getName());
-                }
-                VersionEntity versionEntity = VersionRepositoryService.findLatestVersion(heldEntity);
-                if (isOnlineVersionOlder(xmlHeld, versionEntity.getCreatedDate())) {
-                    log.info("Got a new version for held with name {}", heldEntity.getName());
-                    //We got a new version of this xmlHeld
-                    UUID uuid = UUID.randomUUID();
-                    //Fetch all the data before creating the version, to make sure the helden-api doesnt fail
-                    Tuple3<String, Daten, InputStream> data = Mono.zip(
-                            Beans.HELDEN_API.request(new ReturnHeldXmlRequest(xmlHeld.getHeldenid(), new TokenAuthentication(userEntity.getToken()), uuid), false),
-                            Beans.HELDEN_API.request(new ReturnHeldDatenWithEreignisseRequest(heldEntity.getId(), new TokenAuthentication(userEntity.getToken()), uuid), false),
-                            Beans.HELDEN_API.request(new ReturnHeldPdfRequest(heldEntity.getId(), new TokenAuthentication(userEntity.getToken()), uuid), false)).block();
-                    IOUtils.closeQuietly(data.getT3());
-                    String xml = data.getT1();
-                    versionEntity = VersionService.persistVersion(heldEntity, versionEntity.getVersion() + 1, xml, uuid, data.getT2());
-                    result.incrementUpdated();
-
+            try {
+                Optional<Held> heldOptional = helden.stream().filter(_held -> _held.getHeldenid().equals(heldEntity.getId())).findFirst();
+                if (!heldOptional.isPresent()) {
+                    log.debug("Held with Name {} is no longer online, disabling it", heldEntity.getName());
+                    heldEntity.setDeleted(true);
+                    HeldRepositoryService.updateDeleted(heldEntity, true);
                 } else {
-                    log.debug("Held with Name {} is already on latest version", heldEntity.getName());
+                    if (heldEntity.isDeleted()) {
+                        heldEntity.setDeleted(false);
+                        log.debug("Held with Name {} is no online again, enabling it", heldEntity.getName());
+                        HeldRepositoryService.updateDeleted(heldEntity, false);
+                    }
+                    Held xmlHeld = heldOptional.get();
+                    helden.remove(xmlHeld);
+                    if (heldEntity.getLockExpire() != null && heldEntity.getLockExpire().isBefore(LocalDateTime.now())) {
+                        log.info("Held {} is locked - skipping", heldEntity.getName());
+                    }
+                    VersionEntity versionEntity = VersionRepositoryService.findLatestVersion(heldEntity);
+                    if (isOnlineVersionOlder(xmlHeld, versionEntity.getCreatedDate())) {
+                        log.info("Got a new version for held with name {}", heldEntity.getName());
+                        //We got a new version of this xmlHeld
+                        UUID uuid = UUID.randomUUID();
+                        //Fetch all the data before creating the version, to make sure the helden-api doesnt fail
+                        Tuple3<String, Daten, InputStream> data = Mono.zip(
+                                Beans.HELDEN_API.request(new ReturnHeldXmlRequest(xmlHeld.getHeldenid(), new TokenAuthentication(userEntity.getToken()), uuid), false),
+                                Beans.HELDEN_API.request(new ReturnHeldDatenWithEreignisseRequest(heldEntity.getId(), new TokenAuthentication(userEntity.getToken()), uuid), false),
+                                Beans.HELDEN_API.request(new ReturnHeldPdfRequest(heldEntity.getId(), new TokenAuthentication(userEntity.getToken()), uuid), false)).block();
+                        IOUtils.closeQuietly(data.getT3());
+                        String xml = data.getT1();
+                        versionEntity = VersionService.persistVersion(heldEntity, versionEntity.getVersion() + 1, xml, uuid, data.getT2());
+                        result.incrementUpdated();
+
+                    } else {
+                        log.debug("Held with Name {} is already on latest version", heldEntity.getName());
+                    }
                 }
+            } catch (Exception e) {
+
             }
+
         });
         helden.forEach(held -> {
             UUID uuid = UUID.randomUUID();

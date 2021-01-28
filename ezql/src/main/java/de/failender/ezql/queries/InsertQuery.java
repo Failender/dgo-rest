@@ -28,7 +28,7 @@ public class InsertQuery<ENTITY> {
 
     public void execute() {
         List<FieldMapper<ENTITY, ?>> mappers;
-        if(fixedId) {
+        if (fixedId) {
             mappers = mapper.fieldMappers();
         } else {
             mappers = mapper.fieldMappers()
@@ -43,16 +43,16 @@ public class InsertQuery<ENTITY> {
         String columnValues = mappers.stream()
                 .map(fieldMapper -> fieldMapper.toSqlValueFromEntity(entity))
                 .collect(Collectors.joining(", "));
-        String sql = "INSERT INTO " + mapper.table() + " (" + columnDefinitions + ") VALUES (" + columnValues + ") RETURNING " + mapper.idField().getField() + ";";
+        String sql = "INSERT INTO " + mapper.table() + " (" + columnDefinitions + ") VALUES (" + columnValues + ");";
 
         try (Statement statement = EzqlConnector.createStatement()) {
-
             System.out.println(sql);
 
-           ResultSet rs  =  statement.executeQuery(sql);
-           rs.next();
-           long id = rs.getLong(1);
-           this.mapper.idField().getOriginalSetter().accept(this.entity, id);
+            statement.executeUpdate(sql);
+            ResultSet rs = statement.getGeneratedKeys();
+            rs.next();
+            long id = rs.getLong(1);
+            this.mapper.idField().getOriginalSetter().accept(this.entity, id);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

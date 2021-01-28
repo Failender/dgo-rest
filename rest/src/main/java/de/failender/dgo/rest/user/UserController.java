@@ -1,6 +1,8 @@
 package de.failender.dgo.rest.user;
 
-import de.failender.dgo.persistance.user.UserEntity;
+import de.failender.dgo.integration.HeldenService;
+import de.failender.dgo.integration.user.UserRegistration;
+import de.failender.dgo.integration.user.UserService;
 import de.failender.dgo.rest.security.DgoSecurity;
 import de.failender.dgo.security.DgoSecurityContext;
 import io.javalin.Context;
@@ -19,8 +21,8 @@ public class UserController {
     private void registerUser(Context context) {
         UserRegistration registration = context.bodyAsClass(UserRegistration.class);
         DgoSecurityContext.checkPermission(DgoSecurity.CREATE_USER);
-        UserEntity userEntity = UserService.registerUser(registration);
-        if (userEntity == null) {
+        HeldenService.SynchronizationResult result = UserService.registerUser(registration);
+        if (result == null) {
             context.status(409);
         }
     }

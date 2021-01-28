@@ -5,6 +5,7 @@ import de.failender.dgo.persistance.user.UserEntity;
 import de.failender.dgo.persistance.user.UserRepositoryService;
 
 import java.util.List;
+import java.util.function.Function;
 
 public class DgoSecurityContext {
 
@@ -14,6 +15,8 @@ public class DgoSecurityContext {
     public static void resetContext() {
         contextThreadLocal.set(null);
     }
+
+    public static Function<String, Boolean> permissionChecker;
 
     public static final String EDIT_ALL = "EDIT_ALL";
     public static final String VIEW_ALL = "VIEW_ALL";
@@ -39,20 +42,28 @@ public class DgoSecurityContext {
 
 
     public static void checkPermission(String permission) {
+        if (permissionChecker != null) {
+            if (permissionChecker.apply(permission)) {
+                return;
+            }
+        }
         SecurityContext ctx = contextThreadLocal.get();
         if (ctx == null) {
             throw new UserNotLoggedInException();
         }
-        if(ctx.permissions == null) {
+        if (ctx.permissions == null) {
             throw new NoPermissionException();
         }
-        if(ctx.permissions.contains(permission)) {
+        if (ctx.permissions.contains(permission)) {
             return;
         }
         throw new NoPermissionException();
     }
 
     public static boolean checkPermissionBool(String permission) {
+        if (permissionChecker != null) {
+            return permissionChecker.apply(permission);
+        }
         SecurityContext ctx = contextThreadLocal.get();
         if (ctx == null) {
             return false;
@@ -64,6 +75,7 @@ public class DgoSecurityContext {
     }
 
     public static boolean isAuthenticated() {
+
         return contextThreadLocal.get() != null;
     }
 

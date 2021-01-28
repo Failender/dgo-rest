@@ -1,0 +1,38 @@
+plugins {
+    id 'java'
+    id 'org.openjfx.javafxplugin' version '0.0.9'
+}
+
+group 'de.failender.dgo-rest'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 8
+targetCompatibility = 8
+
+
+dependencies {
+
+    compile group: 'com.h2database', name: 'h2', version: '1.3.148'
+
+    compile project(':persistance')
+    compile project(':integration')
+    compile project(':helden-online')
+}
+
+repositories {
+    mavenCentral()
+}
+
+task fatJar(type: Jar) {
+    manifest {
+        attributes 'Main-Class': 'de.failender.dgo.client.DgoClientLauncher'
+    }
+    baseName = 'dgo-client'
+    from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+
+javafx {
+    version = "15.0.1"
+    modules = ['javafx.controls']
+}

@@ -9,8 +9,8 @@ dependencies {
 
     compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.25'
     compile project(':persistance')
-    compile group: 'one.util', name: 'streamex', version:'0.6.5'
-
+    compile group: 'one.util', name: 'streamex', version: '0.6.5'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.6'
     compile group: 'org.quartz-scheduler', name: 'quartz', version: '2.3.2'
 
     compile project(':helden-online')
