@@ -16,6 +16,7 @@ public class DgoClientLauncher {
         PropertyReader.initialize(args);
         EzqlConnector.initialize("hibernate.connection");
         if (PropertyReader.getProperty("hibernate.initialize.on.start").equals("true")) {
+            System.out.println("Initializing db");
             EzqlConnector.allocateConnection();
             EzqlConnector.execute(IOUtils.toString(DgoClientLauncher.class.getResourceAsStream("/setup_h2.sql"), "UTF-8"));
             String adminInsert = "INSERT INTO USERS (NAME, PASSWORD, TOKEN, GRUPPE_ID, CAN_WRITE) VALUES ('Admin', 'pass', null, null, false)";

@@ -2,6 +2,7 @@ package de.failender.dgo.client;
 
 import de.failender.dgo.integration.Beans;
 import de.failender.dgo.integration.HeldenService;
+import de.failender.dgo.persistance.gruppe.GruppeEntity;
 import de.failender.dgo.persistance.gruppe.GruppeRepositoryService;
 import de.failender.dgo.persistance.held.HeldEntity;
 import de.failender.dgo.persistance.held.HeldRepositoryService;
@@ -117,8 +118,12 @@ public class HeldenView extends VBox {
     }
 
     private void loadHelden() {
+        List<GruppeEntity> gruppeEntities = singleRequest(() -> GruppeRepositoryService.findAll());
+        if (gruppeEntities.isEmpty()) {
+            return;
+        }
         heldEntityTableView.getItems().setAll(singleRequest(() ->
-                HeldRepositoryService.findByGruppeId(GruppeRepositoryService.findAll().get(0).getId(), true, true)));
+                HeldRepositoryService.findByGruppeId(gruppeEntities.get(0).getId(), true, true)));
     }
 
     class ButtonCell extends TableCell<HeldEntity, HeldEntity> {

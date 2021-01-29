@@ -69,7 +69,7 @@ public class EzqlConnector {
 
     public static void execute(String sql) {
         try {
-//			System.out.println(sql);
+            System.out.println(sql);
             Statement statement = EzqlConnector.createStatement();
             statement.execute(sql);
             statement.close();
